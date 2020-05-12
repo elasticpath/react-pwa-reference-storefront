@@ -28,7 +28,7 @@ interface ImageContainerProps {
   /** name of file */
   fileName?: string;
   /** image URL that exists in the project */
-  fallbackImgUrl?: string;
+  imgUrl?: string;
   /** class name */
   pictureClassName?: string;
   /** img Classname */
@@ -39,16 +39,22 @@ interface ImageContainerProps {
   imageFileTypes?: string[];
   /** sizes of the files. */
   sizes?: string[];
+  /** Should it use the srcSet and create  */
+  createSrcSet?: boolean;
+  /** alt to be passed to img element */
+  alt?: string
 }
 
 function ImageContainer(props: ImageContainerProps) {
   const {
-    fallbackImgUrl, pictureClassName, imgClassName, isSkuImage, imageFileTypes, sizes, fileName,
+    imgUrl, pictureClassName, imgClassName, isSkuImage, imageFileTypes, sizes, fileName, alt,
   } = props;
 
   const imageSizes = sizes === undefined ? Config.imageFileTypes.sizes : sizes;
 
   let imgPrefix = '';
+  const imgAlt = alt != null ? alt : '';
+
   if (isSkuImage) {
     imgPrefix = Config.skuImagesUrl;
   } else {
@@ -56,20 +62,24 @@ function ImageContainer(props: ImageContainerProps) {
   }
 
   const generateSrcSet = type => imageSizes.reduce((acc, imageSize) => {
-    console.log('inside the img prefix');
-    console.log(imgPrefix);
+    // console.log('inside the img prefix');
+    // console.log(imgPrefix);
     if (acc === '') {
       return `${acc}${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`;
     }
     return `${acc}, ${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`;
   }, '');
 
-  return (
-    <picture className={pictureClassName}>
-      {imageFileTypes.map(type => <source srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
-      <img className={imgClassName} alt="animage" src={fallbackImgUrl} />
-    </picture>
-  );
+  if (imageFileTypes.length > 0) {
+    return (
+      <picture className={pictureClassName} key={fileName}>
+        {imageFileTypes.map(type => <source key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
+        <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} />
+      </picture>
+    );
+  }
+
+  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} />);
 }
 
 ImageContainer.defaultProps = {

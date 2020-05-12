@@ -75,7 +75,6 @@ export interface ProductDisplayItemMainProps {
 }
 
 export interface ProductDisplayItemMainState {
-  productId: any,
   productData: any,
   requisitionListData: any,
   arFileExists: boolean,
@@ -117,7 +116,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     super(props);
 
     this.state = {
-      productId: '',
       productData: undefined,
       requisitionListData: undefined,
       arFileExists: false,
@@ -143,14 +141,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.fetchRequisitionListsData();
   }
 
-  static async getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.productId !== prevState.productId) {
+  async componentDidUpdate(prevProps, prevState) {
+    const { productId } = this.props;
+    if (prevProps.productId !== productId) {
       try {
         await login();
 
         await cortexFetchItemLookupForm();
-        const itemLookupRes:any = await itemLookup(nextProps.productId);
-
+        const itemLookupRes:any = await itemLookup(productId);
         let arFileExists = false;
         let backgroundVRImageExists = false;
         let meshVRImageExists = false;
@@ -164,14 +162,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           arFileExists = await ProductDisplayItemMain.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
         }
 
-        return {
-          productId: nextProps.productId,
+        // eslint-disable-next-line react/no-did-update-set-state
+        this.setState({
           productData: itemLookupRes,
           detailsProductData: itemLookupRes._definition[0].details,
           arFileExists,
           backgroundVRImageExists,
           meshVRImageExists,
-        };
+        });
       } catch (err) {
         // eslint-disable-next-line no-console
         console.error(err);
@@ -191,8 +189,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
       const imgIndexArr = Array.from(new Array(5), (val, index) => index);
 
-      const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%sku%', `${productId}_${i}`),
+      const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%fileName%', `${productId}_${i}`),
         { method: 'GET' }));
+
       const result = await Promise.all(promises);
       const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
 
@@ -343,7 +342,13 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
               ))
             ) : (
               <div>
-                <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
+                <ImageContainer
+                  imgClassName="itemdetail-main-img"
+                  isSkuImage
+                  fileName={productData._code[0].code}
+                  imageFileTypes={['webp', 'jp2', 'jpg', 'png']}
+                  imgUrl={Config.skuImagesUrl.replace('%fileName%', `jpg/${productData._code[0].code}.jpg`)}
+                />
               </div>
             )}
           </Slider>
