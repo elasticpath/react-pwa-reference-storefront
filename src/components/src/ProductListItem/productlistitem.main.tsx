@@ -148,7 +148,14 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
         <div className="category-item-inner">
           <div className={`category-item-thumbnail-container ${imageStatus === 'loaded' ? 'loaded' : ''}`}>
             <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
-              <ImageContainer className="category-item-thumbnail img-responsive" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onLoadData={() => { this.handleImageLoaded(); }} />
+              <ImageContainer
+                imgClassName="category-item-thumbnail img-responsive"
+                isSkuImage
+                fileName={productData._code[0].code}
+                imageFileTypes={['webp', 'jp2', 'jpg']}
+                imgUrl={Config.skuImagesUrl.replace('%fileName%', `jpg/${productData._code[0].code}.jpg`)}
+                onLoadData={() => { this.handleImageLoaded(); }}
+              />
             </Link>
           </div>
           <div className="category-item-title-container">
