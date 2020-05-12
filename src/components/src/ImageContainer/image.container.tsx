@@ -43,7 +43,7 @@ interface ImageContainerProps {
   /** Should it use the srcSet and create  */
   createSrcSet?: boolean;
   /** alt to be passed to img element */
-  alt?: string,
+  alt: string,
   /** The onLoadData */
   onLoadData?: any,
 }
@@ -63,7 +63,6 @@ function ImageContainer(props: ImageContainerProps) {
   } else {
     imgPrefix = Config.siteImagesUrl;
   }
-
 
   const [error, setError] = useState(false);
 

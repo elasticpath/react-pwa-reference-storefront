@@ -298,7 +298,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
           <div className="main-container-col">
             <div className="logo-container">
               <Link to={appHeaderLinks.mainPage} className="logo">
-                <ImageContainer imgClassName="logo-image" fileName={headerLogoFileName} imgUrl={headerLogo} />
+                <ImageContainer alt="logo image" imgClassName="logo-image" fileName={headerLogoFileName} imgUrl={headerLogo} />
               </Link>
             </div>
 
