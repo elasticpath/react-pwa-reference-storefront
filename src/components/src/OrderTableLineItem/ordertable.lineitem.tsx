@@ -106,6 +106,7 @@ function OrderTableLineItem(props: OrderTableLineItemProps) {
     <tr className="order-lineitem-row">
       <td className="thumbnail-col">
         <ImageContainer
+          alt="order line item image"
           pictureClassName="thumbnail"
           imgClassName="thumbnail"
           isSkuImage

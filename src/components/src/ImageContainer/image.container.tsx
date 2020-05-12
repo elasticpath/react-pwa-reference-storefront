@@ -26,22 +26,20 @@ import Config from '../../../ep.config.json';
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 
 interface ImageContainerProps {
-  /** name of file */
+  /** prefix name of the file in s3 with this form ${fileName}-${size}.${type} */
   fileName?: string;
-  /** image URL that exists in the project */
+  /** image URL that will be used as a fallback if no types are supported or sent into the parameter */
   imgUrl?: string;
-  /** class name */
+  /** picture element class name */
   pictureClassName?: string;
-  /** img Classname */
+  /** img element class name */
   imgClassName?: string;
   /** is a sku image */
   isSkuImage?: boolean;
-  /** loading data */
+  /** Types to use for srcSet */
   imageFileTypes?: string[];
-  /** sizes of the files. */
+  /** different width values to serve different images */
   sizes?: string[];
-  /** Should it use the srcSet and create  */
-  createSrcSet?: boolean;
   /** alt to be passed to img element */
   alt: string,
   /** The onLoadData */
@@ -82,7 +80,7 @@ function ImageContainer(props: ImageContainerProps) {
     return (
       <picture className={pictureClassName} key={fileName}>
         {imageFileTypes.map(type => <source onError={e => handleError(e, imgUrl)} key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
-        <img className={imgClassName} alt={imgAlt} src={imgPlaceholder} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
+        <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
       </picture>
     );
   }

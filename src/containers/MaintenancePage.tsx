@@ -56,7 +56,11 @@ function MaintenancePage() {
                 </div>
                 <div className="static-container dog-container">
                   <div className="container">
-                    <ImageContainer fileName={dogeFileName} imgUrl={doge} />
+                    <ImageContainer
+                      alt="Maintenance page image"
+                      fileName={dogeFileName}
+                      imgUrl={doge}
+                    />
                   </div>
                   <h2 className="static-dog-name">
                     {intl.get('name-moki')}
