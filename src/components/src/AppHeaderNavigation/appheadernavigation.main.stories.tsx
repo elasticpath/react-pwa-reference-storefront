@@ -47,11 +47,6 @@ storiesOf('Components|AppHeaderNavigationMain', module)
         <MemoryRouter initialEntries={['/']}>
           <AppHeaderNavigationMain 
             isMobileView={false} 
-            isOffline={false}
-            isOfflineCheck={() => { textToFunc(isOfflineCheckFuncText) }} 
-            checkedLocation={boolean('checkedLocation', false)}
-            onFetchNavigationError={()=>{ textToFunc(onFetchNavigationErrorFuncText) }}
-            appHeaderNavigationLinks={object('appHeaderNavigationLinks', {})}
           />
         </MemoryRouter>
       </div>

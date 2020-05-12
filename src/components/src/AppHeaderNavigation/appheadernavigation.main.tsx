@@ -19,363 +19,105 @@
  *
  */
 
-import React, { Component } from 'react';
-import intl from 'react-intl-universal';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { set, get } from 'lodash';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import useOnClickOutside from 'use-onclickoutside';
 import Config from '../../../ep.config.json';
+import { useFetchCategories, CategoryResult } from '../../../hooks/use-fetch-categories';
 
 import './appheadernavigation.main.scss';
 
 
-const zoomArray = [
-  'navigations:element',
-  'navigations:element:child',
-  'navigations:element:child:child',
-  'navigations:element:child:child:child',
-  'navigations:element:child:child:child:child',
-  'navigations:element:child:child:child:child:child',
-  'navigations:element:child:child:child:child:child:child',
-  'navigations:element:child:child:child:child:child:child:child',
-  'navigations:element:child:child:child:child:child:child:child:child',
-];
-
 interface AppHeaderNavigationMainProps {
-  /** is offline check */
-  isOfflineCheck: (...args: any[]) => any,
-  /** is offline */
-  isOffline?: boolean,
-  /** checked location */
-  checkedLocation?: boolean,
-  /** is mobile view */
-  isMobileView: boolean,
-  /** on fetch navigation error */
-  onFetchNavigationError?: (...args: any[]) => any,
-  /** links in app header navigation */
-  appHeaderNavigationLinks?: { [key: string]: any },
+  isMobileView: boolean;
 }
 
-interface AppHeaderNavigationMainState {
-  navigations: any,
-  originalMinimizedNav: any,
-  topMenuData: any,
-  showProducts: boolean,
+interface SubMenuProps {
+  classNamePrefix?: string;
+  categories: CategoryResult[];
+  level?: number;
+  prefix?: string[];
+  selectedKeys: string[];
+  subMenuPlacement?: 'within' | 'after';
+  onCategorySelected: (e: React.MouseEvent, keys: string[], category: CategoryResult) => void;
 }
 
-class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {
-  private dropdownB2b: React.RefObject<HTMLUListElement>;
+const SubMenu: React.FC<SubMenuProps> = (props) => {
+  const level = props.level || 0;
+  const prefix = props.prefix || [];
+  const selectedCategory = props.categories.filter(category => category.name === props.selectedKeys[level])[0];
 
-  static defaultProps = {
-    isOffline: undefined,
-    onFetchNavigationError: () => {},
-    checkedLocation: false,
-    appHeaderNavigationLinks: {},
+  const renderSubMenu = () => selectedCategory.children && (
+    <div className={`$nav__submenu-container nav__submenu-container--level-${level}`}>
+      <SubMenu {...props} categories={selectedCategory.children} prefix={[...prefix, selectedCategory.name]} level={level + 1} />
+    </div>
+  );
+
+  return (
+    <div className={`nav__sub nav__sub--level-${level}`}>
+      <ul className={`nav__item-list nav__item-list--level-${level}`}>
+        {props.categories.map(subCat => (
+          <li
+            key={subCat.name}
+            className={`nav__item nav__item--level-${level} ${subCat === selectedCategory ? 'nav__item--selected' : ''}`}
+          >
+            <Link
+              className={`nav__item-link nav__item-link--level-${level} ${(subCat.children && subCat.children.length > 0) ? 'nav__item-link--has-children' : ''}`}
+              to={`/category/${subCat.name}`}
+              onClick={e => props.onCategorySelected(e, prefix, subCat)}
+              title={subCat.displayName}
+            >
+              {subCat.displayName}
+            </Link>
+            {props.subMenuPlacement === 'within' && subCat === selectedCategory && renderSubMenu()}
+          </li>
+        ))}
+      </ul>
+      {props.subMenuPlacement === 'after' && selectedCategory && renderSubMenu()}
+    </div>
+  );
+};
+
+const AppHeaderNavigationMain: React.FC<AppHeaderNavigationMainProps> = (props) => {
+  const ref = React.useRef(null);
+  const [selectedNames, setSelectedNames] = useState<string[]>([]);
+  const fetchCategoriesResult = useFetchCategories();
+  const fetchedCategories = fetchCategoriesResult.categories || [];
+
+  const categories: CategoryResult[] = Config.b2b.enable
+    ? [
+      { name: 'home', displayName: 'Home', children: [] },
+      { name: 'company', displayName: 'Company', children: [] },
+      { name: 'products', displayName: 'Products', children: fetchedCategories },
+      { name: 'industries', displayName: 'Industries', children: [] },
+      { name: 'services', displayName: 'Services', children: [] },
+      { name: 'support', displayName: 'Support', children: [] },
+    ]
+    : (fetchedCategories || []);
+
+  useOnClickOutside(ref, () => {
+    setSelectedNames([]);
+  });
+
+  const handleCategorySelected = (e: React.MouseEvent, prefix: string[], category: CategoryResult) => {
+    if (category.children && category.children.length > 0) {
+      setSelectedNames([...prefix, category.name]);
+      e.preventDefault();
+    } else {
+      setSelectedNames([]);
+    }
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      navigations: {},
-      /* eslint-disable react/no-unused-state */
-      originalMinimizedNav: {},
-      topMenuData: [{ name: 'home', uri: '/' }, { name: 'company', uri: '/company' }, { name: 'products' }, { name: 'industries', uri: '/industries' }, { name: 'services', uri: '/services' }, { name: 'support', uri: '/support' }],
-      showProducts: false,
-    };
-    this.dropdownB2b = React.createRef();
-    this.clickListener = this.clickListener.bind(this);
-    this.handleCloseB2bMenu = this.handleCloseB2bMenu.bind(this);
-  }
-
-  componentWillMount() {
-    const { isOffline, isOfflineCheck } = this.props;
-    if (!navigator.onLine && !isOffline && isOffline !== undefined) {
-      isOfflineCheck(true);
-    } else if (navigator.onLine && isOffline) {
-      isOfflineCheck(false);
-    }
-    this.fetchNavigationData();
-  }
-
-  componentWillReceiveProps() {
-    const { isOffline, isOfflineCheck, checkedLocation } = this.props;
-    const { navigations } = this.state;
-    if (!navigator.onLine && !isOffline && isOffline !== undefined) {
-      isOfflineCheck(true);
-    } else if (navigator.onLine && isOffline) {
-      isOfflineCheck(false);
-    }
-    if (navigations.length === 0 && checkedLocation) {
-      this.fetchNavigationData();
-    }
-  }
-
-  getDropDownNavigationState(navigations) {
-    const dropDownNavigation = {};
-
-    navigations.forEach((category) => {
-      const displayName = category['display-name'];
-      const { name } = category;
-      const show = false;
-
-      const categoryChildren = category._child;
-      let children;
-
-      if (categoryChildren) {
-        children = this.getDropDownNavigationState(categoryChildren);
-      }
-
-      dropDownNavigation[displayName] = {
-        show,
-        name,
-        ...children,
-      };
-    });
-    return dropDownNavigation;
-  }
-
-  static getListOfPathsToAlterShow(path) {
-    const loPathsToChange = [];
-    let currentPathToAddToArray = path;
-
-    do {
-      const indexOfLastDot = currentPathToAddToArray.lastIndexOf('.');
-      currentPathToAddToArray = currentPathToAddToArray.substring(0, indexOfLastDot);
-
-      loPathsToChange.push(currentPathToAddToArray);
-    } while (currentPathToAddToArray.indexOf('.') > -1);
-
-    return loPathsToChange;
-  }
-
-  fetchNavigationData() {
-    login()
-      .then(() => cortexFetch(`/?zoom=${zoomArray.join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        }))
-      .then(res => res.json())
-      .then((res) => {
-        if (res && res._navigations) {
-          const cortexNavigations = res._navigations[0]._element;
-          const navigations = this.getDropDownNavigationState(cortexNavigations);
-          this.setState({
-            navigations,
-            /* eslint-disable react/no-unused-state */
-            originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
-          });
-        }
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
-  }
-
-  toggleShowForCategory(category, path) {
-    const { isMobileView } = this.props;
-
-    if (isMobileView) {
-      this.setState((state) => {
-        const {
-          navigations,
-          originalMinimizedNav,
-        } = state;
-
-        const returnNav = JSON.parse(JSON.stringify(originalMinimizedNav));
-
-        const loPathsToChange = AppHeaderNavigationMain.getListOfPathsToAlterShow(path);
-
-        loPathsToChange.forEach((pathToChange) => {
-          set(returnNav, `${pathToChange}.show`, true);
-        });
-
-        const lowestCategoryInPathVal = !get(navigations, `${path}.show`, '');
-        set(returnNav, `${path}.show`, lowestCategoryInPathVal);
-
-        return { navigations: returnNav };
-      });
-    }
-  }
-
-  renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling, categoryLevel) {
-    const { navigations } = this.state;
-    const currentCategoryLevel = categoryLevel + 1;
-    return (
-      <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} key={`${path}`}>
-        {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
-        <Link className={`dropdown-item dropdown-toggle ${get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id={`navbarDropdownMenuLink&${subcategoryChildKeyName}`} onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}`)} aria-haspopup="true" aria-expanded="false">
-          {subcategoryChildKeyName}
-        </Link>
-        <ul className={`dropdown-menu sub-category-dropdown-menu ${nestedChildObj.show ? 'show' : ''} nestedCategory${currentCategoryLevel}`} aria-labelledby="navbar dropdown menu">
-          {this.renderSubCategories(subcategoryChildKeyName, path, !isLeftDropDownStyling, currentCategoryLevel)}
-        </ul>
-      </li>
-    );
-  }
-
-  renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj, path) {
-    const { appHeaderNavigationLinks } = this.props;
-
-    if (subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
-      return (
-        <li key={`${path}`}>
-          <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} id={`header_navbar_sub_category_button_${nestedChildObj.name}`} title={subcategoryChildKeyName} to={appHeaderNavigationLinks.categories + nestedChildObj.name} onClick={this.handleCloseB2bMenu}>
-            <div>{subcategoryChildKeyName}</div>
-          </Link>
-        </li>
-      );
-    }
-    return null;
-  }
-
-  renderSubCategories(category, path, isLeftDropDownStyling, categoryLevel) {
-    const { navigations } = this.state;
-    const childObj = get(navigations, path, '');
-    const subCategoryChildArray = Object.keys(childObj);
-
-    return subCategoryChildArray.map((subcategoryChildKeyName) => {
-      const nestedChildObj = childObj[subcategoryChildKeyName];
-      const currentPath = `${path}.${subcategoryChildKeyName}`;
-      if (subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
-        if (Object.keys(nestedChildObj).length > 2) {
-          return this.renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, currentPath, isLeftDropDownStyling, categoryLevel);
-        }
-        return this.renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj, currentPath);
-      }
-      return null;
-    });
-  }
-
-  renderCategoriesWithNoChildren(categoryKey, path) {
-    const { navigations } = this.state;
-    const { appHeaderNavigationLinks } = this.props;
-    if (categoryKey) {
-      return (
-        <li className="nav-item" key={`${path}`} data-name={categoryKey} data-el-container="category-nav-item-container">
-          <Link className="nav-link" to={appHeaderNavigationLinks.categories + navigations[categoryKey].name} id={`navbarMenuLink${categoryKey}`} onClick={this.handleCloseB2bMenu}>
-            <div>{categoryKey}</div>
-          </Link>
-        </li>
-      );
-    }
-    return null;
-  }
-
-  renderCategoriesWithChildren(category, path, isLeftDropDownStyling, categoryLevel) {
-    const { navigations } = this.state;
-    return (
-      <li className="nav-item" key={`${path}`} data-name={category} data-el-container="category-nav-item-container">
-        {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
-        <Link className={`nav-link dropdown-toggle ${get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id={`navbarDropdownMenuLink${category}`} title={category} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {category}
-        </Link>
-        <ul className={`dropdown-menu sub-category-dropdown-menu ${get(navigations, `${path}.show`, '') ? 'show' : ''} nestedCategory${categoryLevel}`} aria-labelledby="navbar dropdown menu">
-          {this.renderSubCategories(category, path, isLeftDropDownStyling, categoryLevel)}
-        </ul>
-      </li>
-    );
-  }
-
-  renderCategories() {
-    const { navigations } = this.state;
-    const firstLevelKeys = Object.keys(navigations);
-
-    return firstLevelKeys.map((category) => {
-      const categoryObj = navigations[category];
-      const path = category;
-      if (Object.keys(categoryObj).length > 2) {
-        const categoryLevel = 0;
-        return this.renderCategoriesWithChildren(category, path, true, categoryLevel);
-      }
-      return this.renderCategoriesWithNoChildren(category, path);
-    });
-  }
-
-  toggleShowProducts(e) {
-    this.setState({
-      showProducts: true,
-    });
-
-    document.addEventListener('click', this.clickListener);
-
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  clickListener(e) {
-    if (!this.dropdownB2b.current.contains(e.target)) {
-      this.setState({ showProducts: false });
-      document.removeEventListener('click', this.clickListener);
-    }
-  }
-
-  handleCloseB2bMenu() {
-    const { showProducts } = this.state;
-
-    if (showProducts) {
-      this.setState({ showProducts: false });
-      document.removeEventListener('click', this.clickListener);
-    }
-  }
-
-  renderB2BMenuItem(item) {
-    const { showProducts } = this.state;
-    return (
-      <li className="nav-item" key={`${item.name}`} data-name={item.name} data-el-container="category-nav-item-container">
-        {(item.name === 'products') ? (
-          <div className="nav-item">
-            <button type="button" className={`nav-link product-btn dropdown-toggle ${showProducts ? 'rotateCaret' : ''}`} onClick={e => this.toggleShowProducts(e)}>
-              {intl.get(item.name)}
-            </button>
-            <ul className={`b2b-dropdown-menu ${!showProducts ? 'hidden' : ''}`} ref={this.dropdownB2b}>
-              {this.renderCategories()}
-            </ul>
-          </div>
-        ) : (
-          <div className="nav-item" data-name={item.name} data-el-container="category-nav-item-container">
-            <Link className="nav-link" to={item.uri} title={intl.get(item.name)}>
-              <div data-toggle="collapse" data-target=".collapsable-container">{intl.get(item.name)}</div>
-            </Link>
-          </div>
-        )}
-      </li>
-    );
-  }
-
-  renderB2BMenu() {
-    const { topMenuData } = this.state;
-    return topMenuData.map(item => this.renderB2BMenuItem(item));
-  }
-
-  render() {
-    const { isMobileView } = this.props;
-
-    return (
-      <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
-        <nav className="navbar navbar-expand hover-menu" role="navigation" aria-label="left navigation">
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            {Config.b2b.enable ? (
-              <ul className="navbar-nav">
-                {this.renderB2BMenu()}
-              </ul>
-            ) : (
-              <ul className="navbar-nav">
-                {this.renderCategories()}
-              </ul>
-            )}
-          </div>
-        </nav>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={`app-header-navigation-component ${props.isMobileView ? 'app-header-navigation-component--mobile-view' : 'app-header-navigation-component--desktop-view'}`} ref={ref}>
+      <SubMenu
+        categories={categories}
+        selectedKeys={selectedNames}
+        onCategorySelected={handleCategorySelected}
+        subMenuPlacement={props.isMobileView ? 'within' : 'after'}
+      />
+    </div>
+  );
+};
 
 export default AppHeaderNavigationMain;
