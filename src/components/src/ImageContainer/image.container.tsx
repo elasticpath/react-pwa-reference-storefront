@@ -19,9 +19,10 @@
  *
  */
 
-import React from 'react';
+import React, {
+  useState,
+} from 'react';
 import Config from '../../../ep.config.json';
-
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 
 interface ImageContainerProps {
@@ -42,12 +43,14 @@ interface ImageContainerProps {
   /** Should it use the srcSet and create  */
   createSrcSet?: boolean;
   /** alt to be passed to img element */
-  alt?: string
+  alt?: string,
+  /** The onLoadData */
+  onLoadData?: any,
 }
 
 function ImageContainer(props: ImageContainerProps) {
   const {
-    imgUrl, pictureClassName, imgClassName, isSkuImage, imageFileTypes, sizes, fileName, alt,
+    imgUrl, pictureClassName, imgClassName, isSkuImage, imageFileTypes, sizes, fileName, alt, onLoadData,
   } = props;
 
   const imageSizes = sizes === undefined ? Config.imageFileTypes.sizes : sizes;
@@ -61,30 +64,38 @@ function ImageContainer(props: ImageContainerProps) {
     imgPrefix = Config.siteImagesUrl;
   }
 
+
+  const [error, setError] = useState(false);
+
+  const handleError = (e, defaultImgUrl) => {
+    e.currentTarget.src = isSkuImage ? imgPlaceholder : defaultImgUrl;
+    setError(true);
+  };
+
   const generateSrcSet = type => imageSizes.reduce((acc, imageSize) => {
-    // console.log('inside the img prefix');
-    // console.log(imgPrefix);
     if (acc === '') {
       return `${acc}${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`;
     }
     return `${acc}, ${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`;
   }, '');
 
-  if (imageFileTypes.length > 0) {
+  if (imageFileTypes.length > 0 && !error) {
     return (
       <picture className={pictureClassName} key={fileName}>
-        {imageFileTypes.map(type => <source key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
-        <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} />
+        {imageFileTypes.map(type => <source onError={e => handleError(e, imgUrl)} key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
+        <img className={imgClassName} alt={imgAlt} src={imgPlaceholder} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
       </picture>
     );
   }
 
-  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} />);
+  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />);
 }
 
 ImageContainer.defaultProps = {
-  className: '',
+  imgClassName: '',
+  pictureClassName: '',
   isSkuImage: false,
+  imageFileTypes: [],
   onLoadData: () => {},
 };
 

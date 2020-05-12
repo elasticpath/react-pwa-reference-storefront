@@ -524,7 +524,13 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
             : ('')
           }
           <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
-            <ImageContainer className="cart-lineitem-thumbnail" isSkuImage fileName={itemCodeString} imgUrl={Config.skuImagesUrl.replace('%sku%', itemCodeString)} />
+            <ImageContainer
+              imgClassName="cart-lineitem-thumbnail"
+              isSkuImage
+              fileName={itemCodeString}
+              imageFileTypes={['webp', 'jp2', 'jpg']}
+              imgUrl={Config.skuImagesUrl.replace('%fileName%', `jpg/${itemCodeString}.jpg`)}
+            />
           </Link>
         </div>
         <div className="title-options-col">

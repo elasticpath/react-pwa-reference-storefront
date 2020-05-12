@@ -34,5 +34,5 @@ storiesOf('Components|ImageContainer', module)
   .add('ImageContainer', () => {
     const homeEspotParallax1FileName = 'hero-banner-0.jpg';
 
-    return (<ImageContainer className="parallax-image" fileName={homeEspotParallax1FileName} imgUrl={homeEspotParallax1} />);
+    return (<ImageContainer imgClassName="parallax-image" fileName={homeEspotParallax1FileName} imgUrl={homeEspotParallax1} />);
   });

@@ -346,7 +346,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   imgClassName="itemdetail-main-img"
                   isSkuImage
                   fileName={productData._code[0].code}
-                  imageFileTypes={['webp', 'jp2', 'jpg', 'png']}
+                  imageFileTypes={['webp', 'jp2', 'jpg']}
                   imgUrl={Config.skuImagesUrl.replace('%fileName%', `jpg/${productData._code[0].code}.jpg`)}
                 />
               </div>
