@@ -55,7 +55,6 @@ function ImageContainer(props: ImageContainerProps) {
   const imageSizes = sizes === undefined ? Config.ImageContainerSrcs.sizes : sizes;
   const imageTypes = types === undefined ? Config.ImageContainerSrcs.types : types;
   let imgPrefix = '';
-  const imgAlt = alt != null ? alt : '';
 
   if (isSkuImage) {
     imgPrefix = Config.skuImagesUrl;
