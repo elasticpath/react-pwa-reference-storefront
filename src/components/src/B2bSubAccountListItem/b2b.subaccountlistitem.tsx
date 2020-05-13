@@ -182,9 +182,9 @@ class B2bSubAccountListItem extends Component<B2bSubAccountListItemProps, B2bSub
           onClick={() => this.handleAccountData(accountData)}
           onKeyPress={() => this.handleAccountData(accountData)}
         >
-          <div className="name">
+          <p className="name">
             {accountData.name}
-          </div>
+          </p>
           {isLoading
             ? (
               <div className="loader-container">

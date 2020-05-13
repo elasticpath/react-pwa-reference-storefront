@@ -66,12 +66,13 @@ class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
     const currentSideMenuItems = sideMenuItems.filter(el => el.to === location.pathname);
 
     return (
-      <div className="side-menu-component">
+      <div className="side-menu-component" role="navigation">
         <button
           className="side-menu-component-title"
           onClick={e => this.handleSwitcherClicked(e)}
           defaultChecked={isLoading}
           type="button"
+          aria-label="navigation menu"
         >
           {currentSideMenuItems.length > 0 && intl.get(currentSideMenuItems[0].children)}
         </button>
@@ -80,7 +81,7 @@ class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
             <div className={`side-menu-component-dropdown ${isOpen ? '' : 'hidden'}`}>
               {sideMenuItems.map(elem => (
                 <div key={elem.children}>
-                  <Link className={`menu-item ${location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
+                  <Link className={`menu-item ${location.pathname === elem.to ? 'selected' : ''}`} title={intl.get(elem.children)} to={elem.to}>
                     {intl.get(elem.children)}
                   </Link>
                 </div>

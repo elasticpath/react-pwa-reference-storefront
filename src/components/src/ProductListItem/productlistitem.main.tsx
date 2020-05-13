@@ -161,14 +161,14 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
           </div>
           <div className="category-item-title-container">
             <div className="category-item-title" id={`category_item_title_link_${productData._code[0].code}`}>
-              <Link className="category-item-link" to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
+              <Link className="category-item-link" to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`} title={productData._definition[0]['display-name']}>
                 {productData._definition[0]['display-name']}
               </Link>
             </div>
             {(Config.b2b.enable) && (
-              <h4 className="category-item-title-sku" id={`category_item_title_sku_${productData._code[0].code}`}>
+              <p className="category-item-title-sku" id={`category_item_title_sku_${productData._code[0].code}`}>
                 {productData._code[0].code}
-              </h4>
+              </p>
             )}
           </div>
           {(featuredProductAttribute)

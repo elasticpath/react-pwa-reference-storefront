@@ -11,10 +11,12 @@
     }
 
     .quantity-selector-container {
-        height: 40px;
+        width: 138px;
+        height: 34px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-radius: 4px;
 
         .form-control-quantity {
           display: block;
@@ -37,6 +39,50 @@
           -moz-appearance:textfield;
         }
       }
+
+      .quantity-right-plus,
+      .quantity-left-minus {
+        padding: 0;
+        border-radius: 50%;
+        background-color: white;
+        position: relative;
+        color: $firstComplimentColor;
+        border: 1px solid $firstBorderColor;
+        vertical-align: -webkit-baseline-middle;
+
+        span {
+          display: block;
+          position: relative;
+          top: 0;
+          left: 0;
+          height: 16px;
+          width: 16px;
+          min-width: 16px;
+          font-size: 22px;
+          line-height: 18px;
+          border-radius: 50%;
+          text-align: center;
+          margin: 0 auto;
+          vertical-align: -webkit-baseline-middle;
+        }
+
+        &:hover {
+          border-color: $firstComplimentColor;
+          background-color: $firstComplimentColor;
+          color: $mainBackgroundColor;
+
+          &:before {
+            color: $mainBackgroundColor;
+          }
+        }
+      }
+
+    .quantity-left-minus {
+      span {
+        position: relative;
+        top: -2px;
+      }
+    }
 
     .form-content {
       float: right;

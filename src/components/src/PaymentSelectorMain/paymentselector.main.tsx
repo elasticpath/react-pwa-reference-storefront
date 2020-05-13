@@ -29,6 +29,7 @@ import PaymentMethodContainer from '../PaymentMethodContainer/paymentmethod.cont
 import Config from '../../../ep.config.json';
 
 import './paymentselector.main.scss';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 
 interface PaymentSelectorMainProps {
@@ -350,13 +351,16 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
                 {intl.get('add-new-payment-method')}
               </button>
               <div className={`${isLoading} ? 'miniLoader' : ''`} />
-              <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>
+              <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal} showCloseIcon={false}>
                 <div className="modal-lg new-payment-modal">
                   <div className="modal-content">
                     <div className="modal-header">
                       <h2 className="modal-title">
                         {intl.get('new-payment-method')}
                       </h2>
+                      <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleCloseNewPaymentModal}>
+                        <CloseIcon />
+                      </button>
                     </div>
                     <div className="modal-body">
                       <PaymentFormMain

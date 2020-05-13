@@ -132,9 +132,9 @@ class B2bAccountList extends Component<B2bAccountMainProps, B2bAccountMainState>
               </p>
             </div>
             <div className="account-tree-container" role="presentation" onClick={getAccountData}>
-              <div className="name">
+              <h2 className="name">
                 {accountListData.mainAccountName}
-              </div>
+              </h2>
               <span className="status">
                 {(accountListData.status.toLowerCase() === 'enabled') ? <EnabledStatusIcon className="icons-status" /> : <DisabledStatusIcon className="icons-status" /> }
                 {intl.get(accountListData.status.toLowerCase())}

@@ -178,47 +178,52 @@ const Root = () => {
   const { error } = React.useContext(ErrorContext);
   const locationPathName = window.location.origin;
 
-  return [
-    <VersionContainer key="version-container" appVersion={packageJson.version} />,
-    <Suspense fallback={<div />}>
-      {Config.facebook.enable && <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />}
-    </Suspense>,
-    <AppHeaderMain
-      key="app-header"
-      onSearchPage={keywords => redirectToProfilePage(keywords)}
-      redirectToMainPage={redirectToMainPage}
-      checkedLocation={handlePathName()}
-      handleResetPassword={handleResetPassword}
-      onCurrencyChange={handleCurrencyChange}
-      onLocaleChange={handleLocaleChange}
-      onContinueCart={handleContinueCart}
-      onGoBack={handleGoBack}
-      locationSearchData={locationData}
-      locationPathName={locationPathName}
-      isInStandaloneMode={isInStandaloneMode}
-      appHeaderLinks={appHeaderLinks}
-      appHeaderLoginLinks={appHeaderLoginLinks}
-      appHeaderNavigationLinks={appHeaderNavigationLinks}
-      appHeaderTopLinks={appHeaderTopLinks}
-      appModalLoginLinks={appModalLoginLinks}
-    />,
-    <Messagecontainer key="message-container" message={error} />,
-    <div key="app-content" className="app-content">
-      <Switch>
-        {routes.map(route => (
-          <RouteWithSubRoutes key={route.path} {...route} />
-        ))}
+  return (
+    <>
+      <VersionContainer appVersion={packageJson.version} />
+      {Config.facebook.enable && (
         <Suspense fallback={<div />}>
-          <AdditionalRoutes />
+          <FacebookChat config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />
         </Suspense>
-      </Switch>
-    </div>,
-    <AppFooterMain key="app-footer" appFooterLinks={appFooterLinks} />,
-    <Suspense fallback={<div />}>
-      {Config.chatbot.enable && <ChatComponent key="chat-component" />}
-    </Suspense>,
-    complianceSupportModal,
-  ];
+      )}
+      <AppHeaderMain
+        onSearchPage={keywords => redirectToProfilePage(keywords)}
+        redirectToMainPage={redirectToMainPage}
+        checkedLocation={handlePathName()}
+        handleResetPassword={handleResetPassword}
+        onCurrencyChange={handleCurrencyChange}
+        onLocaleChange={handleLocaleChange}
+        onContinueCart={handleContinueCart}
+        onGoBack={handleGoBack}
+        locationSearchData={locationData}
+        locationPathName={locationPathName}
+        isInStandaloneMode={isInStandaloneMode}
+        appHeaderLinks={appHeaderLinks}
+        appHeaderLoginLinks={appHeaderLoginLinks}
+        appHeaderNavigationLinks={appHeaderNavigationLinks}
+        appHeaderTopLinks={appHeaderTopLinks}
+        appModalLoginLinks={appModalLoginLinks}
+      />
+      <main className="app-content" role="main">
+        <Messagecontainer key="message-container" message={error} />
+        <Switch>
+          {routes.map(route => (
+            <RouteWithSubRoutes key={route.path} {...route} />
+          ))}
+          <Suspense fallback={<div />}>
+            <AdditionalRoutes />
+          </Suspense>
+        </Switch>
+        {complianceSupportModal}
+      </main>
+      <AppFooterMain appFooterLinks={appFooterLinks} />
+      {Config.chatbot.enable && (
+        <Suspense fallback={<div />}>
+          <ChatComponent />
+        </Suspense>
+      )}
+    </>
+  );
 };
 
 const withTracker = (WrappedComponent) => {

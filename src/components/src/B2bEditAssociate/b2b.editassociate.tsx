@@ -25,6 +25,7 @@ import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 import './b2b.editassociate.scss';
 
@@ -249,14 +250,23 @@ class B2bEditAssociate extends Component<B2bEditAssociateProps, B2bEditAssociate
       <Modal
         open={isOpen}
         onClose={this.handleModalClose}
-        classNames={{ modal: 'b2b-edit-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
+        classNames={{ modal: 'b2b-edit-associate-dialog' }}
+        showCloseIcon={false}
       >
-        <div className="dialog-header">{isAddAssociateOpen ? intl.get('add-associate') : intl.get('edit-associate')}</div>
+        <div className="modal-header">
+          <h2 className="modal-title">
+            {isAddAssociateOpen ? intl.get('add-associate') : intl.get('edit-associate')}
+          </h2>
+          <button type="button" aria-label="close" className="close-modal-btn b2b-dialog-close-btn" onClick={this.handleModalClose}>
+            <CloseIcon />
+          </button>
+        </div>
         <div className="dialog-content">
           <div className="am-columns">
             <div className="am-field-editor">
-              <div className="associate-email-title">{intl.get('associate-email')}</div>
+              <label htmlFor="associate_email" className="associate-email-title">{intl.get('associate-email')}</label>
               <input
+                id="associate_email"
                 className={`field-editor-input ${(emailErrorMessage || !validEmail) ? 'input-code-error' : ''}`}
                 type="text"
                 onChange={event => this.handleChange(event)}

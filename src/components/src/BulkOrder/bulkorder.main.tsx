@@ -423,13 +423,12 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
         <span className="form-content-submit">
           <button
             className="ep-btn primary small btn-itemdetail-addtocart"
-            id="add_to_cart_quick_order_button"
             disabled={disabled}
             type="submit"
             onClick={() => { this.addAllToCart(itemsData, isQuickOrder, onCountChange); }}
           >
             {showLoader ? (
-              <span className="circularLoader" />
+              <span className="circularLoader" aria-label="Loading" />
             ) : (
               intl.get('add-all-to-cart')
             )}
@@ -444,93 +443,96 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
         isDisabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton}
         btnTxt={intl.get('add-all-to-cart')}
         showLoader={isLoading}
+        itemIndex={isQuickOrder ? 1 : 2}
       />
     );
     return (
-      <div className={`bulk-order-component ${(!isBulkModalOpened) ? 'hideModal' : ''}`}>
-        <div role="presentation" className="bulk-order-close-button" onClick={() => { handleClose(); }}>
-          <p className="bulk-order-hide">{intl.get('hide')}</p>
-        </div>
-        <div className="bulk-modal">
-          <p className="view-title">{intl.get('order-form')}</p>
-          <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
-            <li className="nav-item">
-              <a className="nav-link active" id="quick-order-tab" data-toggle="tab" href="#quick-order" role="tab" aria-selected="true">
-                {intl.get('quick-order-title')}
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" id="bulk-order-tab" data-toggle="tab" href="#bulk-order" role="tab" aria-selected="false">
-                {intl.get('bulk-order-title')}
-              </a>
-            </li>
-          </ul>
-          <div className="tab-content">
-            <div className="tab-pane fade show active" id="quick-order" role="tabpanel" aria-labelledby="quick-order-tab">
-              <div className="form-content form-content-submit col-sm-offset-4">
-                {multiCartData && multiCartData._carts ? (
-                  <SelectCartButton isQuickOrder />
-                ) : (
-                  <AddToCart isDisabled={quickOrderDisabledButton} itemsData={items} isQuickOrder showLoader={isLoading} />
-                )}
-                {
-                  (navigator && navigator.mediaDevices)
-                  && (
-                    <button
-                      className="ep-btn primary small btn-itemdetail-addtocart barcode-scanner"
-                      type="button"
-                      disabled={isBarcodeScannerLoading}
-                      onClick={this.handleBarcodeClick}
-                    >
-                      {
-                        (isBarcodeScannerLoading)
-                          ? <span className="circularLoader" />
-                          : (
-                            <div>
-                              <span className="scan-barcode-title">{intl.get('scan-barcode')}</span>
-                              <span className="glyphicon glyphicon-barcode" />
-                            </div>
-                          )
-                      }
-                    </button>
-                  )
-                }
-                {barcodeScannerError && <div className="bulk-order-error-message">{barcodeScannerError}</div>}
+      <div>
+        {isBulkModalOpened && (
+        <div className="bulk-order-component">
+          <div>
+            <div role="presentation" className="bulk-order-close-button" onClick={() => { handleClose(); }}>
+              <p className="bulk-order-hide">{intl.get('hide')}</p>
+            </div>
+            <div className="bulk-modal">
+              <p className="view-title">{intl.get('order-form')}</p>
+              <div className="nav nav-tabs itemdetail-tabs" role="tablist">
+                <a className="nav-link active" id="quick-order-tab" data-toggle="tab" href="#quick-order" aria-controls="quick-order" role="tab" aria-selected="true">
+                  {intl.get('quick-order-title')}
+                </a>
+                <a className="nav-link" id="bulk-order-tab" data-toggle="tab" href="#bulk-order" aria-controls="bulk-order" role="tab" aria-selected="false">
+                  {intl.get('bulk-order-title')}
+                </a>
               </div>
-              <div className="quickOrderRegion" data-region="quickOrderRegion">
-                {items.map((item, i) => (
-                  <QuickOrderForm item={item} key={item.key} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
-                ))}
+              <div className="tab-content">
+                <div className="tab-pane fade show active" id="quick-order" role="tabpanel" aria-labelledby="quick order tab">
+                  <div className="form-content form-content-submit col-sm-offset-4">
+                    {multiCartData && multiCartData._carts ? (
+                      <SelectCartButton isQuickOrder />
+                    ) : (
+                      <AddToCart isDisabled={quickOrderDisabledButton} itemsData={items} isQuickOrder showLoader={isLoading} />
+                    )}
+                    {
+                      (navigator && navigator.mediaDevices)
+                      && (
+                        <button
+                          className="ep-btn primary small btn-itemdetail-addtocart barcode-scanner"
+                          type="button"
+                          disabled={isBarcodeScannerLoading}
+                          onClick={this.handleBarcodeClick}
+                        >
+                          {
+                            (isBarcodeScannerLoading)
+                              ? <span className="circularLoader" aria-label="Loading" />
+                              : (
+                                <div>
+                                  <span className="scan-barcode-title">{intl.get('scan-barcode')}</span>
+                                  <span className="glyphicon glyphicon-barcode" />
+                                </div>
+                              )
+                          }
+                        </button>
+                      )
+                    }
+                    {barcodeScannerError && <div className="bulk-order-error-message">{barcodeScannerError}</div>}
+                  </div>
+                  <div className="quickOrderRegion" data-region="quickOrderRegion">
+                    {items.map((item, i) => (
+                      <QuickOrderForm item={item} key={item.key} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
+                    ))}
+                  </div>
+                </div>
+                <div className="tab-pane fade" id="bulk-order" role="tabpanel" aria-labelledby="bulk order tab">
+                  <div className="form-content form-content-submit col-sm-offset-4">
+                    {multiCartData && multiCartData._carts ? (
+                      <SelectCartButton isQuickOrder={false} />
+                    ) : (
+                      <AddToCart isDisabled={bulkOrderDisabledButton} itemsData={bulkOrderItems} showLoader={isLoading} />
+                    )}
+                  </div>
+                  {
+                    (bulkOrderDuplicatedErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{bulkOrderDuplicatedErrorMessage}</p></div>) : ''
+                  }
+                  <div className="tab-bulk-order" id="bulkOrderRegion" data-region="bulkOrderRegion">
+                    <p>{intl.get('enter-product-sku-and-quantity')}</p>
+                    <p>{intl.get('item-#1-qty')}</p>
+                    <p>{intl.get('item-#2-qty')}</p>
+                    <p className="bulk-text-area-title"><b>{intl.get('enter-product-sku-and-quantity-in-input')}</b></p>
+                    <textarea className="bulk-csv" rows={5} value={csvText} onChange={e => this.handleCsvChange(e.target.value)} />
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="tab-pane fade" id="bulk-order" role="tabpanel" aria-labelledby="bulk-order-tab">
-              <div className="form-content form-content-submit col-sm-offset-4">
-                {multiCartData && multiCartData._carts ? (
-                  <SelectCartButton isQuickOrder={false} />
-                ) : (
-                  <AddToCart isDisabled={bulkOrderDisabledButton} itemsData={bulkOrderItems} showLoader={isLoading} />
-                )}
-              </div>
-              {
-                (bulkOrderDuplicatedErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{bulkOrderDuplicatedErrorMessage}</p></div>) : ''
-              }
-              <div className="tab-bulk-order" id="bulkOrderRegion" data-region="bulkOrderRegion">
-                <p>{intl.get('enter-product-sku-and-quantity')}</p>
-                <p>{intl.get('item-#1-qty')}</p>
-                <p>{intl.get('item-#2-qty')}</p>
-                <p className="bulk-text-area-title"><b>{intl.get('enter-product-sku-and-quantity-in-input')}</b></p>
-                <textarea className="bulk-csv" rows={5} value={csvText} onChange={e => this.handleCsvChange(e.target.value)} />
-              </div>
-            </div>
+            {isBarcodeScannerOpen
+            && (
+              <Suspense fallback={<div />}>
+                <BarcodeScanner isModalOpen={isBarcodeScannerOpen} handleModalClose={this.handleBarcodeModalClose} handleCodeFound={this.handleBarcodeScanned} />
+              </Suspense>
+            )
+            }
           </div>
         </div>
-        {isBarcodeScannerOpen
-          && (
-            <Suspense fallback={<div />}>
-              <BarcodeScanner isModalOpen={isBarcodeScannerOpen} handleModalClose={this.handleBarcodeModalClose} handleCodeFound={this.handleBarcodeScanned} />
-            </Suspense>
-          )
-        }
+        )}
       </div>
     );
   }

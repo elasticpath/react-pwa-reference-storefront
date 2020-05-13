@@ -130,7 +130,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
   }
 
   setCountry(event) {
-    this.setState({ country: event.target.value });
+    this.setState({ country: event.target.value, subCountry: '' });
   }
 
   setSubCountry(event) {
@@ -353,7 +353,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
         </div>
         <form className="form-horizontal" onSubmit={this.submitAddress}>
           <div className="form-group">
-            <label htmlFor="FirstName" data-el-label="addressForm.firstName" className="control-label">
+            <label htmlFor="registration_form_firstName" data-el-label="addressForm.firstName" className="control-label">
               <span className="required-label">
               *
               </span>
@@ -366,7 +366,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="LastName" data-el-label="addressForm.lastName" className="control-label">
+            <label htmlFor="registration_form_lastName" data-el-label="addressForm.lastName" className="control-label">
               <span className="required-label">
               *
               </span>

@@ -25,6 +25,7 @@ import Modal from 'react-responsive-modal';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
+import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
 import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.svg';
 import * as Config from '../../ep.config.json';
 import { login } from '../../components/src/utils/AuthService';
@@ -245,7 +246,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
           <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditRequisition(index)}>{intl.get('cancel')}</button>
           <button type="button" className="ep-btn ok-btn" disabled={element.removeCartLoading} onClick={() => this.handleDeleteRequisition(element)}>
             {element.removeCartLoading ? (
-              <div className="circularLoader" />
+              <div className="circularLoader" aria-label="Loading" />
             ) : (
               <span>
                 {intl.get('ok')}
@@ -332,12 +333,15 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         <div className="create-requisition-list">
           <p>{intl.get('requisition-lists-description')}</p>
           <button type="button" className="ep-btn primary create-list-btn" disabled={isLoading} onClick={this.handleModalOpen}>{intl.get('create-list')}</button>
-          <Modal open={openModal} onClose={this.handleModalClose}>
+          <Modal open={openModal} onClose={this.handleModalClose} showCloseIcon={false}>
             <div className="modal-lg create-list-modal">
-              <div className="dialog-header">
+              <div className="modal-header">
                 <h2 className="modal-title">
                   {intl.get('create-list')}
                 </h2>
+                <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleModalClose}>
+                  <CloseIcon />
+                </button>
               </div>
               <div className="dialog-content">
                 <div className="create-list-form">

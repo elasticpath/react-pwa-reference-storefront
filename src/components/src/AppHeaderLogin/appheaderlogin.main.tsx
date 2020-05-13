@@ -373,7 +373,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
           <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
             {showRequisitionListsLink ? (<RequisitionListsLink />) : ('')}
             <div className="auth-container dropdown">
-              <button className="dropdown-toggle btn-auth-menu" type="button" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button className="dropdown-toggle btn-auth-menu" type="button" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} aria-label="toggle profile menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {(isMobileView)
                   ? (
                     intl.get('account-logged-in')
@@ -381,7 +381,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     <AccountIcon className="account-icon" />
                   )}
               </button>
-              <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
+              <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header navbar login button ">
                 <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
                   {Config.b2b.enable ? (
                     <li className="dropdown-item shop-for">

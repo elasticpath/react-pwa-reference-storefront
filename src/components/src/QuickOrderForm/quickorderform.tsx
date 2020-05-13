@@ -233,18 +233,18 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
       <div key={item.code} className="bulk-item-wrap">
         <div className="bulk-item">
           <div className="bulk-item-col quick-order-sku-wrap">
-            <label htmlFor="item_sku_label" className="control-label">
+            <label htmlFor={item.key} className="control-label">
               {intl.get('quick-order-sku-title')}
             </label>
             <div className="sku-field-wrap">
               <form className={`form-horizontal ${isAddProducts ? 'add-product-input' : ''}`} onSubmit={this.handleSubmit}>
-                <input className={`sku-input ${skuErrorMessage ? 'input-code-error' : ''}`} type="text" value={code} name="code" onChange={this.handleChange} onBlur={this.handleSubmit} />
+                <input className={`sku-input ${skuErrorMessage ? 'input-code-error' : ''}`} type="text" value={code} name="code" id={item.key} onChange={this.handleChange} onBlur={this.handleSubmit} />
                 <span role="presentation" className={`clear-field-btn ${code === '' ? 'hide' : ''} ${(skuErrorMessage !== '') ? 'input-error-icon' : ''}`} onClick={this.handleRemoveSku} />
               </form>
             </div>
           </div>
           <div className={`bulk-item-col product-quantity-wrap ${isAddProducts ? 'add-product-input' : ''}`}>
-            <label htmlFor="product_display_item_quantity_label" className="control-label control-quantity-label">
+            <label htmlFor={`quantity-${item.key}`} className="control-label control-quantity-label">
               {intl.get('quantity-abbr')}
             </label>
             <div className="input-group-btn">
@@ -261,7 +261,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                 <span>–</span>
               </button>
               <div className="quantity-col form-content form-content-quantity">
-                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="0" tabIndex={-1} value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
+                <input className="product-display-item-quantity-select form-control form-control-quantity" id={`quantity-${item.key}`} type="number" step="1" min="0" tabIndex={-1} value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
               </div>
               <button
                 type="button"

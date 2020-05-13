@@ -39,9 +39,9 @@ const PurchaseReceiptPage = (props: RouteComponentProps<{}, {}, any>) => {
     <div>
       <div className="app-main">
         <div className="container purchase-receipt-container">
-          <h2>
+          <h1>
             {intl.get('order-processed-message')}
-          </h2>
+          </h1>
           <PurchaseDetailsMain data={location.state.data} onReorderAllProducts={handleReorderAllProducts} itemDetailLink={itemDetailLink} />
         </div>
       </div>

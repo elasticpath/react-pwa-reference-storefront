@@ -107,24 +107,24 @@ describe('Purchase feature', () => {
         timeout: 30000,
         waitUntil: 'domcontentloaded'
       });
-  
+
       await page.waitFor(3000);
       await page.waitForSelector(LOGIN_MODAL_ITEM);
       await page.click(LOGIN_MODAL_ITEM);
-  
+
       await page.waitForSelector(LOGIN_MODAL_REGISTER_BUTTON);
       await page.click(LOGIN_MODAL_REGISTER_BUTTON);
-      
+
       await page.waitFor(2000);
       await registerUser(page, purchaseTestUser);
       await page.waitFor(2000);
-  
+
       await page.waitForSelector(DROPDOWN_LOGGED_IN_BUTTON);
       await page.click(DROPDOWN_LOGGED_IN_BUTTON);
 
       await page.waitForSelector(MY_PROFILE);
       await page.click(MY_PROFILE);
-  
+
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
 
@@ -132,7 +132,7 @@ describe('Purchase feature', () => {
       await page.waitForSelector(PROFILE_ADDRESS_ITEM);
       await page.waitFor(3000);
       await page.click(ADD_NEW_PAYMENT_CSS);
-  
+
       const paymentMethod = {
         cardType: 'Visa',
         cardHolderName: 'Test User',
@@ -141,19 +141,19 @@ describe('Purchase feature', () => {
         expiryYear: '2025',
         securityCode: '123',
       };
-  
+
       await addPaymentMethodToOrder(page, paymentMethod);
-  
+
       const CREATED_PAYMENT_METHOD_DATA = 'span[data-el-value="payment.token"]';
       await page.waitForSelector(CREATED_PAYMENT_METHOD_DATA);
       const element = await page.$(CREATED_PAYMENT_METHOD_DATA);
       const text = await page.evaluate(el => el.textContent, element);
       const lastDigits = text.substr(text.length - 4);
       await browser.close();
-      
+
       expect(lastDigits).toEqual('1111');
-    }, 60000);
-    
+    }, 80000);
+
   test('Purchase physical item as a new shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
@@ -260,7 +260,7 @@ describe('Purchase feature', () => {
     await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
     await page.waitFor(2000);
     await page.click(ADD_NEW_ADDRESS_CSS);
-    
+
     await addAddress(page, address);
     await page.waitForSelector(CREATED_ADDRESS_METHOD);
     await page.waitFor(3000);
@@ -314,7 +314,7 @@ describe('Purchase feature', () => {
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
-    
+
     await loginUserRegister(page, purchaseTestUser);
 
     await page.waitForSelector(CART_LINK_CSS);
@@ -449,7 +449,7 @@ describe('Purchase feature', () => {
 
     await page.waitForSelector(LOGIN_BUTTON_CSS);
     await page.click(LOGIN_BUTTON_CSS);
-  
+
     await page.waitForSelector(PURCHASE_HISTORY_ITEM);
     await page.click(PURCHASE_HISTORY_ITEM);
 
@@ -579,7 +579,7 @@ describe('Purchase feature', () => {
     await page.click(CART_LINK_CSS);
 
     expect(await getChartItems(page)).toEqual(expectedChartItems);
-    
+
     await addProductToCart(page, products[4]);
     expectedChartItems.push(products[4].name);
 
@@ -679,7 +679,7 @@ describe('Purchase feature', () => {
     await page.waitForSelector(ORDER_MAIN_CONTAINER_CSS);
     await page.waitForSelector(COMPLETE_ORDER_BUTTON_CSS);
     await page.click(COMPLETE_ORDER_BUTTON_CSS);
-  
+
     await page.waitForSelector(PURCHASE_NUMBER_ORDER_CSS);
     const element = await page.$(PURCHASE_NUMBER_ORDER_CSS);
     const purchaseNumber = await page.evaluate(el => el.textContent, element);

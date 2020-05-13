@@ -40,6 +40,7 @@ import { ReactComponent as GearIcon } from '../../images/icons/round-settings-20
 import './AccountMain.scss';
 import { ReactComponent as AddCircleIcon } from '../../images/icons/outline-add_circle_outline-14px.svg';
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
+import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
 
 const accountZoomArray = [
   'accountmetadata',
@@ -383,9 +384,9 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                   </div>
                   {intl.get('back')}
                 </Link>
-                <div className="name">
+                <h1 className="name">
                   {accountName}
-                </div>
+                </h1>
                 {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                 <div className="settings" onClick={this.handleAccountSettingsClicked}>
                   <div className="setting-icons">
@@ -444,10 +445,10 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                             {associate.roles._roles.length && associate.roles._roles[0]._element ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
                           </td>
                           <td className="action">
-                            <button type="button" className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)}>
+                            <button type="button" className="edit-associate" aria-label={intl.get('edit')} onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)}>
                               <EditIcon />
                             </button>
-                            <button type="button" className="delete-associate" onClick={() => this.handleDeleteModalOpen(associate.self.uri)}>
+                            <button type="button" className="delete-associate" aria-label={intl.get('delete')} onClick={() => this.handleDeleteModalOpen(associate.self.uri)}>
                               <TrashIcon />
                             </button>
                           </td>
@@ -461,9 +462,17 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
               <Modal
                 open={isDeleteAssociateOpen}
                 onClose={this.handleDeleteModalClose}
-                classNames={{ modal: 'b2b-delete-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
+                classNames={{ modal: 'b2b-delete-associate-dialog' }}
+                showCloseIcon={false}
               >
-                <div className="dialog-header">{intl.get('remove-associate')}</div>
+                <div className="modal-header">
+                  <h2 className="modal-title">
+                    {intl.get('remove-associate')}
+                  </h2>
+                  <button type="button" aria-label="close" className="close-modal-btn b2b-dialog-close-btn" onClick={this.handleDeleteModalClose}>
+                    <CloseIcon />
+                  </button>
+                </div>
                 <div className="dialog-content">
                   <p>
                     {intl.get('confirm-delete-associate')}

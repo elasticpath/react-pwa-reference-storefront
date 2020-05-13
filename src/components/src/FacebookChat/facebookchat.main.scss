@@ -19,12 +19,8 @@
  *
  */
 
- @import './../theme/common.scss';
+@import './../../../theme/common.scss';
 
-.purchase-receipt-container {
-  h1 {
-    font-size: 30px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
+:export {
+  themeColor: $mainColor
 }

@@ -28,22 +28,18 @@ import Review from './chatbot.review';
 import Config from '../../../ep.config.json';
 
 // @ts-ignore
-// eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved,import/no-duplicates
-import * as styles from '!!../utils/less-var-loader!./chatbot.scss';
-// eslint-disable-next-line import/no-duplicates
-import './chatbot.scss';
-
+import * as styles from './chatbot.scss';
 
 const theme = {
-  background: styles['@chatBackground'],
-  fontFamily: styles['@chatFontFamily'],
-  headerBgColor: styles['@chatHeaderBgColor'],
-  headerFontColor: styles['@chatHeaderFontColor'],
-  headerFontSize: styles['@chatHeaderFontSize'],
-  botBubbleColor: styles['@chatBotBubbleColor'],
-  botFontColor: styles['@chatBotFontColor'],
-  userBubbleColor: styles['@chatUserBubbleColor'],
-  userFontColor: styles['@chatUserFontColor'],
+  background: styles.chatBackground,
+  fontFamily: styles.chatFontFamily,
+  headerBgColor: styles.chatHeaderBgColor,
+  headerFontColor: styles.chatHeaderFontColor,
+  headerFontSize: styles.chatHeaderFontSize,
+  botBubbleColor: styles.chatBotBubbleColor,
+  botFontColor: styles.chatBotFontColor,
+  userBubbleColor: styles.chatUserBubbleColor,
+  userFontColor: styles.chatUserFontColor,
 };
 
 interface ChatComponentState {

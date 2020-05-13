@@ -78,7 +78,7 @@ class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, Purc
     return (
       <div className="purchase-history-page">
         <div className="b2b-header">
-          <div className="page-title">{intl.get('purchase-history')}</div>
+          <h1 className="page-title">{intl.get('purchase-history')}</h1>
         </div>
         {
           isLoading

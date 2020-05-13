@@ -33,7 +33,7 @@ const B2BHomePage: React.FunctionComponent = () => (
       <ImageContainer alt="main banner image" imgClassName="main-banner-image" fileName={heroBannerFileName} imgUrl={heroBanner} />
       <div className="main-banner-title-wrap">
         <div className="container">
-          <h2 className="goods-heading">{intl.get('main-banner-heading')}</h2>
+          <h1 className="goods-heading">{intl.get('main-banner-heading')}</h1>
           <div className="main-banner-txt">
             <p className="goods-description">
               {intl.get('main-banner-txt')}
@@ -50,18 +50,18 @@ const B2BHomePage: React.FunctionComponent = () => (
       <div className="main-goods">
         <ul className="main-goods__grid">
           <li className="main-goods__cell">
-            <h5 className="goods-title-small">{intl.get('products')}</h5>
-            <h3 className="goods-title">{intl.get('product1-heading')}</h3>
+            <p className="goods-title-small">{intl.get('products')}</p>
+            <p className="goods-title">{intl.get('product1-heading')}</p>
             <p className="goods-description">{intl.get('product1-description')}</p>
           </li>
           <li className="main-goods__cell">
-            <h5 className="goods-title-small">{intl.get('products')}</h5>
-            <h3 className="goods-title">{intl.get('product2-heading')}</h3>
+            <p className="goods-title-small">{intl.get('products')}</p>
+            <p className="goods-title">{intl.get('product2-heading')}</p>
             <p className="goods-description">{intl.get('product2-description')}</p>
           </li>
           <li className="main-goods__cell">
-            <h5 className="goods-title-small">{intl.get('products')}</h5>
-            <h3 className="goods-title">{intl.get('product3-heading')}</h3>
+            <p className="goods-title-small">{intl.get('products')}</p>
+            <p className="goods-title">{intl.get('product3-heading')}</p>
             <p className="goods-description">
               {intl.get('product3-description')}
             </p>
@@ -69,8 +69,8 @@ const B2BHomePage: React.FunctionComponent = () => (
         </ul>
 
         <div className="main-goods__cell main-goods__block">
-          <h5 className="goods-title-small">{intl.get('services')}</h5>
-          <h3 className="goods-title">{intl.get('service-heading')}</h3>
+          <p className="goods-title-small">{intl.get('services')}</p>
+          <p className="goods-title">{intl.get('service-heading')}</p>
           <p className="goods-description">
             {intl.get('service-description')}
           </p>

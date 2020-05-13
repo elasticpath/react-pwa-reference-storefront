@@ -23,6 +23,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
+import { ReactComponent as CloseIcon } from '../images/icons/ic_close.svg';
 
 import ProfileInfoMain from '../components/src/ProfileInfo/profileInfo.main';
 import ProfileemailinfoMain from '../components/src/ProfileEmailInfo/profileemailinfo.main';
@@ -177,7 +178,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     const { openAddressModal, addressUrl } = this.state;
     const newOrEdit = (addressUrl && addressUrl.address) ? intl.get('edit') : intl.get('new');
     return (
-      <Modal open={openAddressModal} onClose={this.handleCloseAddressModal}>
+      <Modal open={openAddressModal} onClose={this.handleCloseAddressModal} showCloseIcon={false}>
         <div className="modal-lg new-address-modal">
           <div className="modal-content">
             <div className="modal-header">
@@ -186,6 +187,9 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 {' '}
                 {intl.get('address')}
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleCloseAddressModal}>
+                <CloseIcon />
+              </button>
             </div>
             <div className="modal-body">
               <AddressFormMain onCloseModal={this.handleCloseAddressModal} fetchData={this.fetchProfileData} addressData={addressUrl} />
@@ -253,16 +257,16 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
       <div>
         <div className="container profile-container">
           <div className="b2b-header" data-region="profileTitleRegion">
-            <div className="page-title">
+            <h1 className="page-title">
               {intl.get(isB2B ? 'my-account' : 'my-profile')}
-            </div>
+            </h1>
           </div>
           {profileData ? (
-            <div className="profile-data">
+            <div className="profile-data" role="region">
               <div className="profile-info-container">
-                <h3 className="profile-info-container-title">
+                <h2 className="profile-info-container-title">
                   {intl.get('general')}
-                </h3>
+                </h2>
                 <div className="profile-info-col">
                   <div className="profile-info-block">
                     <h2>
@@ -279,9 +283,9 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 </div>
               </div>
               <div className="profile-info-container">
-                <h3 className="profile-info-container-title">
+                <h2 className="profile-info-container-title">
                   {intl.get('shipping')}
-                </h3>
+                </h2>
                 <div className="profile-info-block">
                   {(profileData._addresses) ? (
                     <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
@@ -290,16 +294,16 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 </div>
               </div>
               <div className="profile-info-container">
-                <h3 className="profile-info-container-title">
+                <h2 className="profile-info-container-title">
                   {intl.get('payment')}
-                </h3>
+                </h2>
                 {this.renderPayments()}
               </div>
               {(Config.Compliance.enable) ? (
                 <div className="profile-info-container">
-                  <h3 className="profile-info-container-title">
+                  <h2 className="profile-info-container-title">
                     {intl.get('compliance')}
-                  </h3>
+                  </h2>
                   <div className="profile-info-col">
                     <div className="profile-info-block">
                       {(dataPolicyData && dataPolicyData._element) ? (

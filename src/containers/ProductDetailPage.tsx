@@ -28,7 +28,7 @@ interface ProductDetailRouterProps {
 }
 
 function ProductDetailPage(props: RouteComponentProps<ProductDetailRouterProps>) {
-  const { history, location } = props;
+  const { history, location, match } = props;
 
   function handleAddToCart() {
     history.push('/mycart');
@@ -56,8 +56,18 @@ function ProductDetailPage(props: RouteComponentProps<ProductDetailRouterProps>)
 
   return (
     <div>
-      {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} onChangeProductFeature={handleChangeProductFeature} onAddToCart={handleAddToCart} onRequisitionPage={handleAddToRequisitionList} onAddToWishList={handleAddToWishList} productLink={handleProductLink} isInStandaloneMode={isInStandaloneMode} itemDetailLink="/itemdetail" onReloadPage={onReloadPage} />
+      <ProductDisplayItemMain
+        key={match.params.url}
+        productId={decodeURIComponent(match.params.url)}
+        onChangeProductFeature={handleChangeProductFeature}
+        onAddToCart={handleAddToCart}
+        onRequisitionPage={handleAddToRequisitionList}
+        onAddToWishList={handleAddToWishList}
+        productLink={handleProductLink}
+        isInStandaloneMode={isInStandaloneMode}
+        itemDetailLink="/itemdetail"
+        onReloadPage={onReloadPage}
+      />
     </div>
   );
 }

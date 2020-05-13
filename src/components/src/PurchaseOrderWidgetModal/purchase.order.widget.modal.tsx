@@ -25,6 +25,7 @@ import _ from 'lodash';
 import Modal from 'react-responsive-modal';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 import './purchase.order.widget.modal.scss';
 
@@ -119,13 +120,16 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
     const { inputTextValue } = this.state;
 
     return (
-      <Modal open={openModal} onClose={handleCloseModal}>
+      <Modal open={openModal} onClose={handleCloseModal} showCloseIcon={false}>
         <div className="modal-lg po-modal-container">
           <div className="po-modal-content">
             <div className="modal-header">
               <h2 className="modal-title">
                 Add Purchase Order
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={handleCloseModal}>
+                <CloseIcon />
+              </button>
             </div>
             <div className="modal-body">
               <form id="po_modal_form">

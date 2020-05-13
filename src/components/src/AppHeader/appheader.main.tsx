@@ -157,18 +157,18 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
   }
 
   componentWillReceiveProps() {
+    const { isOffline } = this.state;
+    if (!navigator.onLine && !isOffline) {
+      this.setState({ isOffline: true });
+    } else if (navigator.onLine && isOffline) {
+      this.setState({ isOffline: false });
+    }
     this.fetchCartData();
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updatePredicate);
   }
-
-  handleIsOffline = (isOfflineValue) => {
-    this.setState({
-      isOffline: isOfflineValue,
-    });
-  };
 
   handleInputFocus = () => {
     this.setState({
@@ -284,7 +284,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
     };
 
     return [
-      <header key="app-header" className="app-header">
+      <header key="app-header" className="app-header" role="banner">
         {
           impersonating ? (
             <div className="impersonation-notification">
@@ -297,6 +297,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
           <div className="main-container-col">
             <div className="logo-container">
+<<<<<<< HEAD
               <Link to={appHeaderLinks.mainPage} className="logo">
                 <ImageContainer
                   alt="logo image"
@@ -305,6 +306,10 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
                   types={['svg']}
                   imgUrl={headerLogo}
                 />
+=======
+              <Link to={appHeaderLinks.mainPage} className="logo" aria-label="logo image">
+                <ImageContainer className="logo-image" fileName={headerLogoFileName} imgUrl={headerLogo} />
+>>>>>>> master
               </Link>
             </div>
 
@@ -409,16 +414,9 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
         <div className="central-container">
           <div className="horizontal-menu">
-            {isDesktop && (!isOffline && !isLoading) ? (
-              <AppHeaderNavigationMain
-                isOfflineCheck={this.handleIsOffline}
-                isOffline={isOffline}
-                isMobileView={false}
-                onFetchNavigationError={redirectToMainPage}
-                checkedLocation={checkedLocation}
-                appHeaderNavigationLinks={appHeaderNavigationLinks}
-              />
-            ) : ('')}
+            {isDesktop && !isOffline && !isLoading && (
+              <AppHeaderNavigationMain isMobileView={false} />
+            )}
           </div>
         </div>
 
@@ -457,15 +455,9 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
           <hr className="mobile-navigation-separator" />
 
           <div className="mobile-navigation-container">
-            {!isDesktop && (!isOffline && !isLoading) ? (
-              <AppHeaderNavigationMain
-                isOfflineCheck={this.handleIsOffline}
-                isMobileView
-                onFetchNavigationError={redirectToMainPage}
-                checkedLocation={checkedLocation}
-                appHeaderNavigationLinks={appHeaderNavigationLinks}
-              />
-            ) : ('')}
+            {!isDesktop && !isOffline && !isLoading && (
+              <AppHeaderNavigationMain isMobileView />
+            )}
           </div>
           {/* <hr className="mobile-navigation-separator" />
           <div className="mobile-login-container">

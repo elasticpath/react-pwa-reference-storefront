@@ -117,27 +117,26 @@
         margin-bottom: 0;
       }
 
-      .nav-item {
-        .nav-link {
-          padding: 5px 20px;
-          font-size: 16px;
+      .nav-link {
+        padding: 5px 20px;
+        font-size: 16px;
+        color: $mainTextColor;
+        border: none;
+
+        &:hover {
+          border-color: transparent;
           color: $mainTextColor;
+        }
 
-          &:hover {
-            border-color: transparent;
-            color: $mainTextColor;
-          }
+        &.active {
+          color: $mainTextColor;
+          font-weight: bold;
+          border-bottom: 3px solid $firstComplimentColor;
+        }
 
-          &.active {
-            color: $mainTextColor;
-            font-weight: bold;
-            border-bottom: 3px solid $firstComplimentColor;
-          }
-
-          &.disabled {
-            cursor: default;
-            color: $mainTextColor;
-          }
+        &.disabled {
+          cursor: default;
+          color: $mainTextColor;
         }
       }
     }

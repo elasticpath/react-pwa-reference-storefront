@@ -26,6 +26,7 @@ import CartLineItem from '../CartLineItem/cart.lineitem';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import './quickorder.main.scss';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 interface QuickOrderMainProps {
   /** buy it again */
@@ -39,7 +40,9 @@ interface QuickOrderMainProps {
   /** handle move to cart */
   onMoveToCart?: (...args: any[]) => any,
   /** handle configurator add to cart */
-  onConfiguratorAddToCart?: (...args: any[]) => any
+  onConfiguratorAddToCart?: (...args: any[]) => any,
+  /** item Name */
+  itemName?: (...args: any[]) => any
 }
 
 interface QuickOrderMainState {
@@ -65,6 +68,7 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
     itemDetailLink: '',
     onMoveToCart: () => {},
     onConfiguratorAddToCart: () => {},
+    itemName: '',
   };
 
   constructor(props) {
@@ -160,16 +164,19 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
       showFailedMessage,
     } = this.state;
     const {
-      isBuyItAgain, itemDetailLink, onMoveToCart, onConfiguratorAddToCart,
+      isBuyItAgain, itemDetailLink, onMoveToCart, onConfiguratorAddToCart, itemName,
     } = this.props;
     const orderModal = data => (
-      <Modal open={openModal || false} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }}>
+      <Modal open={openModal || false} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }} showCloseIcon={false}>
         <div id="buy-it-again-modal">
           <div className="modal-content" id="simplemodal-container">
             <div className="modal-header">
               <h2 className="modal-title">
                 {intl.get('buy-it-again')}
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleModalClose}>
+                <CloseIcon />
+              </button>
             </div>
             <CartLineItem
               key={Math.floor(Math.random() * 1000000001)}
@@ -195,7 +202,7 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
             </button>
           </div>
           {orderModal(productDataInfo)}
-          <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
+          <div className="auth-feedback-container" id={`product_display_item_add_to_cart_feedback_container${itemName}`} data-i18n="">
             {addToCartFailedMessage}
           </div>
           {

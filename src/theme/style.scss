@@ -372,6 +372,15 @@
    margin: auto;
  }
 
+.close-modal-btn {
+  padding: 0;
+  background: transparent;
+  border: none;
+  &:focus {
+    outline: 0 auto transparent;
+  }
+}
+
 .back-link {
   position: relative;
   display: inline-block;

@@ -36,6 +36,8 @@ interface QuantityDetailsMainProps {
   isLoading: any,
   /** The quantity number to show */
   itemQuantity: any,
+  /** index of item */
+  itemIndex?: number,
 }
 
 function QuantitySelector(props: QuantityDetailsMainProps) {
@@ -45,11 +47,12 @@ function QuantitySelector(props: QuantityDetailsMainProps) {
     handleQuantityChange,
     isLoading,
     itemQuantity,
+    itemIndex,
   } = props;
 
   return (
     <div className="form-group quantity-picker-group">
-      <label htmlFor="product_display_item_quantity_label" className="control-label">
+      <label htmlFor={`product_display_quantity_field${itemIndex || ''}`} className="control-label">
         {intl.get('quantity')}
       </label>
       <div className="quantity-selector-container input-group-btn">
@@ -58,7 +61,7 @@ function QuantitySelector(props: QuantityDetailsMainProps) {
         </button>
         <div className="quantity-col form-content-quantity">
           <input
-            id="product_display_quantity_field"
+            id={`product_display_quantity_field${itemIndex || ''}`}
             className="product-display-item-quantity-select form-control form-control-quantity"
             type="number"
             step="1"
@@ -82,6 +85,7 @@ function QuantitySelector(props: QuantityDetailsMainProps) {
 QuantitySelector.defaultProps = {
   handleQuantityIncrement: () => {},
   handleQuantityDecrement: () => {},
+  itemIndex: 0,
 };
 
 export default QuantitySelector;
