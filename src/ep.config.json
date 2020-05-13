@@ -1,6 +1,6 @@
 {
   "cortexApi": {
-    "path": "https://reference.elasticpath.com/cortex",
+    "path": "https://reference80.epdemos.com/cortex",
     "scope": "sageUK"
   },
   "supportedLocales": [
@@ -25,8 +25,8 @@
     }
   ],
   "defaultCurrencyValue": "CAD",
-  "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%filename%",
-  "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
+  "skuImagesUrl": "https://ep-demo-assets.s3-us-west-2.amazonaws.com/BELLEVIE/skuImages/%fileName%",
+  "siteImagesUrl": "https://ep-demo-assets.s3-us-west-2.amazonaws.com/BELLEVIE/siteImages/%fileName%",
   "enableOfflineMode": false,
   "ImageContainerSrcs": {
     "types": ["webp", "jp2", "jpg"],
