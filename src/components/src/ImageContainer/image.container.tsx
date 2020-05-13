@@ -24,6 +24,7 @@ import React, {
 } from 'react';
 import Config from '../../../ep.config.json';
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
+import './image.container.scss';
 
 interface ImageContainerProps {
   /** prefix name of the file in s3 with this form ${fileName}-${size}.${type} */
@@ -80,12 +81,12 @@ function ImageContainer(props: ImageContainerProps) {
     return (
       <picture className={pictureClassName} key={fileName}>
         {imageTypes.map(type => <source onError={e => handleError(e, imgUrl)} key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
-        <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
+        <img className={imgClassName} alt="" src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
       </picture>
     );
   }
 
-  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />);
+  return (<img className={imgClassName} alt="" src={imgUrl} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />);
 }
 
 ImageContainer.defaultProps = {
