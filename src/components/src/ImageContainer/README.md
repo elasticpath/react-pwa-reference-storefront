@@ -25,7 +25,7 @@ import ImageContainer from '../ImageContainer/image.container';
     pictureClassName="main-banner-image" 
     fileName={bannerFileName1} 
     imgUrl={bannerImage1} 
-    imageFileTypes={['jp2', 'webp', 'jpg']} 
+    ImageContainerSrcs={['jp2', 'webp', 'jpg']} 
 />
 ```
 

@@ -52,8 +52,8 @@ function ImageContainer(props: ImageContainerProps) {
     imgUrl, pictureClassName, imgClassName, isSkuImage, types, sizes, fileName, alt, onLoadData,
   } = props;
 
-  const imageSizes = sizes === undefined ? Config.imageFileTypes.sizes : sizes;
-  const imageTypes = types === undefined ? Config.imageFileTypes.types : types;
+  const imageSizes = sizes === undefined ? Config.ImageContainerSrcs.sizes : sizes;
+  const imageTypes = types === undefined ? Config.ImageContainerSrcs.types : types;
   let imgPrefix = '';
   const imgAlt = alt != null ? alt : '';
 
@@ -93,7 +93,7 @@ ImageContainer.defaultProps = {
   imgClassName: '',
   pictureClassName: '',
   isSkuImage: false,
-  imageFileTypes: [],
+  ImageContainerSrcs: [],
   onLoadData: () => {},
 };
 
