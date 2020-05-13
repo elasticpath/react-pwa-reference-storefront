@@ -74,7 +74,7 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
   if (!error) {
     return (
       <picture className={pictureClassName} key={fileName}>
-        {imageTypes.map(type => <source onError={e => handleError(e, imgUrl)} key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
+        {imageTypes.map(type => <source key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
         <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
       </picture>
     );
