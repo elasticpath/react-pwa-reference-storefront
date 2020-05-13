@@ -299,7 +299,6 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             <div className="logo-container">
               <Link to={appHeaderLinks.mainPage} className="logo">
                 <ImageContainer
-                  alt="logo image"
                   imgClassName="logo-image"
                   fileName={headerLogoFileName}
                   types={['svg']}

@@ -525,7 +525,6 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           }
           <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
             <ImageContainer
-              alt={`cart line item image of: ${itemCodeString}`}
               imgClassName="cart-lineitem-thumbnail"
               isSkuImage
               fileName={itemCodeString}

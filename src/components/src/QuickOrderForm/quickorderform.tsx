@@ -290,7 +290,6 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
           <div className="show-product">
             <div className="product-image">
               <ImageContainer
-                alt={`quick order product preview of ${code}`}
                 imgClassName="cart-lineitem-thumbnail"
                 isSkuImage
                 fileName={product._code[0].code}

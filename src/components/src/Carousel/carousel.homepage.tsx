@@ -46,7 +46,7 @@ const Carousel: React.FunctionComponent = () => {
     customPaging(i) {
       return (
         <div className="">
-          <ImageContainer alt={`carousel banner ${i}`} fileName={carouselBanerNameArray[i]} imgUrl={carouselBanerArray[i]} />
+          <ImageContainer fileName={carouselBanerNameArray[i]} imgUrl={carouselBanerArray[i]} />
         </div>
       );
     },
@@ -74,16 +74,16 @@ const Carousel: React.FunctionComponent = () => {
       </div>
       <Slider {...settings}>
         <div>
-          <ImageContainer alt="carousel banner 1" fileName={carouselBaner1FileName} imgUrl={carouselBaner1} />
+          <ImageContainer fileName={carouselBaner1FileName} imgUrl={carouselBaner1} />
         </div>
         <div>
-          <ImageContainer alt="carousel banner 2" fileName={carouselBaner2FileName} imgUrl={carouselBaner2} />
+          <ImageContainer fileName={carouselBaner2FileName} imgUrl={carouselBaner2} />
         </div>
         <div>
-          <ImageContainer alt="carousel banner 3" fileName={carouselBaner3FileName} imgUrl={carouselBaner3} />
+          <ImageContainer fileName={carouselBaner3FileName} imgUrl={carouselBaner3} />
         </div>
         <div>
-          <ImageContainer alt="carousel banner 4" fileName={carouselBaner4FileName} imgUrl={carouselBaner4} />
+          <ImageContainer fileName={carouselBaner4FileName} imgUrl={carouselBaner4} />
         </div>
       </Slider>
     </div>

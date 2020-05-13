@@ -42,7 +42,7 @@ interface ImageContainerProps {
   /** width breakpoints to serve different images */
   sizes?: string[];
   /** alt to be passed to img element */
-  alt: string,
+  alt?: string,
   /** The onLoadData */
   onLoadData?: any,
 }
@@ -54,13 +54,8 @@ function ImageContainer(props: ImageContainerProps) {
 
   const imageSizes = sizes === undefined ? Config.ImageContainerSrcs.sizes : sizes;
   const imageTypes = types === undefined ? Config.ImageContainerSrcs.types : types;
-  let imgPrefix = '';
-
-  if (isSkuImage) {
-    imgPrefix = Config.skuImagesUrl;
-  } else {
-    imgPrefix = Config.siteImagesUrl;
-  }
+  const imgAlt = alt != null ? alt : '';
+  const imgPrefix = isSkuImage ? Config.skuImagesUrl : Config.siteImagesUrl;
 
   const [error, setError] = useState(false);
 
@@ -80,19 +75,18 @@ function ImageContainer(props: ImageContainerProps) {
     return (
       <picture className={pictureClassName} key={fileName}>
         {imageTypes.map(type => <source onError={e => handleError(e, imgUrl)} key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
-        <img className={imgClassName} alt="" src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
+        <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
       </picture>
     );
   }
 
-  return (<img className={imgClassName} alt="" src={imgUrl} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />);
+  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />);
 }
 
 ImageContainer.defaultProps = {
   imgClassName: '',
   pictureClassName: '',
   isSkuImage: false,
-  ImageContainerSrcs: [],
   onLoadData: () => {},
 };
 

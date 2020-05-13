@@ -57,7 +57,6 @@ function MaintenancePage() {
                 <div className="static-container dog-container">
                   <div className="container">
                     <ImageContainer
-                      alt="Maintenance page image"
                       fileName={dogeFileName}
                       imgUrl={doge}
                     />

@@ -149,7 +149,6 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
           <div className={`category-item-thumbnail-container ${imageStatus === 'loaded' ? 'loaded' : ''}`}>
             <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
               <ImageContainer
-                alt={`category item thumbnail image for ${productData._code[0].code}`}
                 imgClassName="category-item-thumbnail img-responsive"
                 isSkuImage
                 fileName={productData._code[0].code}
