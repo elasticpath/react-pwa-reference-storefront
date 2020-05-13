@@ -18,17 +18,17 @@
  *
  *
  */
+@import './../../../theme/common.scss';
 
-
-$chatBackground: #f5f8fb;
+$chatBackground: $mainBackgroundColor;
 $chatFontFamily: Helvetica Neue;
-$chatHeaderBgColor: #197C93;
-$chatHeaderFontColor: #fff;
+$chatHeaderBgColor: $mainColor;
+$chatHeaderFontColor: $mainBackgroundColor;
 $chatHeaderFontSize: 15px;
-$chatBotBubbleColor: #197C93;
-$chatBotFontColor: #fff;
-$chatUserBubbleColor: #fff;
-$chatUserFontColor: #4a4a4a;
+$chatBotBubbleColor: $mainColor;
+$chatBotFontColor: $mainBackgroundColor;
+$chatUserBubbleColor: $firstComplimentBackground;
+$chatUserFontColor: $mainTextColor;
 
 :export {
   chatBackground: $chatBackground;
