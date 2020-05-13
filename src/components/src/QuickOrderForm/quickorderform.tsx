@@ -294,7 +294,6 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                 imgClassName="cart-lineitem-thumbnail"
                 isSkuImage
                 fileName={product._code[0].code}
-                imageFileTypes={['webp', 'jp2', 'jpg']}
                 imgUrl={Config.skuImagesUrl.replace('%fileName%', `jpg/${product._code[0].code}.jpg`)}
               />
             </div>
