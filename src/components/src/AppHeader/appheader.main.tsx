@@ -297,7 +297,6 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
           <div className="main-container-col">
             <div className="logo-container">
-<<<<<<< HEAD
               <Link to={appHeaderLinks.mainPage} className="logo">
                 <ImageContainer
                   alt="logo image"
@@ -306,10 +305,6 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
                   types={['svg']}
                   imgUrl={headerLogo}
                 />
-=======
-              <Link to={appHeaderLinks.mainPage} className="logo" aria-label="logo image">
-                <ImageContainer className="logo-image" fileName={headerLogoFileName} imgUrl={headerLogo} />
->>>>>>> master
               </Link>
             </div>
 
