@@ -30,7 +30,7 @@ const heroBannerFileName = 'hero-banner-0.jpg';
 const B2BHomePage: React.FunctionComponent = () => (
   <div className="home-page-b2b">
     <section className="main-banner">
-      <ImageContainer alt="main banner image" imgClassName="main-banner-image" fileName={heroBannerFileName} imgUrl={heroBanner} />
+      <ImageContainer imgClassName="main-banner-image" fileName={heroBannerFileName} imgUrl={heroBanner} />
       <div className="main-banner-title-wrap">
         <div className="container">
           <h1 className="goods-heading">{intl.get('main-banner-heading')}</h1>
