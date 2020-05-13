@@ -47,7 +47,7 @@ interface ImageContainerProps {
   onLoadData?: any,
 }
 
-function ImageContainer(props: ImageContainerProps) {
+const ImageContainer: React.FC<ImageContainerProps> = (props) => {
   const {
     imgUrl, pictureClassName, imgClassName, isSkuImage, types, sizes, fileName, alt, onLoadData,
   } = props;
@@ -81,7 +81,7 @@ function ImageContainer(props: ImageContainerProps) {
   }
 
   return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />);
-}
+};
 
 ImageContainer.defaultProps = {
   imgClassName: '',
