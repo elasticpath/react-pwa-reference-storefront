@@ -6,7 +6,7 @@ The image container is meant to abstract the Picture html 5 element: https://dev
 
 When given a list of image type extensions and sizes the component will generate the necessary `<source/>` child elements under `<picture/>` for responsive
 
-image file types and sizes.  If not specified as a prop in the component it will default to what is specified in the ep.config.json file.
+image file types and sizes.  If types and sizes are not specified as a prop in the component it will default to what is specified in the ep.config.json file.
 
 Look in ref-store application for example usage.
 
