@@ -32,7 +32,7 @@ storiesOf('Components|ImageContainer', module)
       sidebar: Readme,
     },
   })
-  .add('Failure to find sizes and types - fallback to imgUrl', () => {
+  .add('Failure to find matching srcSet in Picture element - fallback to imgUrl', () => {
     const homeEspotParallax1FileName = 'hero-banner-0.jpg';
     return (<ImageContainer
       imgClassName="parallax-image"

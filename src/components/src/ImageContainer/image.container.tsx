@@ -58,13 +58,18 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
   const imgPrefix = isSkuImage ? Config.skuImagesUrl : Config.siteImagesUrl;
 
   const [error, setError] = useState(false);
+  const [fallbackImgUrl, setFallbackImgUrl] = useState(imgUrl);
 
   const handlePictureError = (e) => {
     setError(true);
   };
 
   const handleImgError = (e) => {
-    e.currentTarget.src = isSkuImage ? imgPlaceholder : '';
+    if (isSkuImage) {
+      setFallbackImgUrl(imgPlaceholder);
+    } else {
+      setFallbackImgUrl('');
+    }
   };
 
   if (!error) {
@@ -77,12 +82,16 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
             type={`image/${type}`}
           />
         ))}
-        <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handlePictureError(e)} />
+        <img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} key={fileName} onLoad={onLoadData} onError={e => handlePictureError(e)} />
       </picture>
     );
   }
 
-  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} onError={e => handleImgError(e)} />);
+  if (fallbackImgUrl) {
+    return (<img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} onLoad={onLoadData} onError={e => handleImgError(e)} />);
+  }
+
+  return null;
 };
 
 ImageContainer.defaultProps = {
