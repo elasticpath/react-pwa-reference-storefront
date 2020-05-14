@@ -4,11 +4,27 @@
 
 The image container is meant to abstract the Picture html 5 element: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
 
-When given a list of image type extensions and sizes the component will generate the necessary `<source/>` child elements under `<picture/>` for responsive
+When given a filename and a list of image type extensions and sizes the component will generate the necessary `<source>` and `<img>` elements necessary for the `<picture>` element.  Depending if you set `isSkuImage` to either true or false the src prefix's will be either `Config.siteImagesUrl` or `Config.skuImagesUrl`.  If types and sizes are not specified as a prop in the component it will default to what is specified in `Config.ImageContainerSrcs.types` and `Config.ImageContainerSrcs.sizes`.  
 
-image file types and sizes.  If types and sizes are not specified as a prop in the component it will default to what is specified in the ep.config.json file.
+Example of the ImageContainer configs here:  
 
-Look in ref-store application for example usage.
+```
+ "ImageContainerSrcs": {
+    "types": ["webp", "jp2", "jpg"],
+    "sizes": ["768", "1092", "2800"]
+  }
+```
+
+and of ImageContainer source prefix configs here:
+
+```
+"skuImagesUrl": "https://ep-demo-assets.s3-us-west-2.amazonaws.com/BELLEVIE/skuImages/%fileName%",
+"siteImagesUrl": "https://ep-demo-assets.s3-us-west-2.amazonaws.com/BELLEVIE/siteImages/%fileName%",
+```
+
+If the component cannot find a valid source through the generated `<picture>` element it will fallback and show the source that is specified in the `imgUrl` parameter.  If even that source is invalid, the component will show its own 'image not found' fallback image when `isSkuImage` is set to true, else nothing will show.
+
+Look in ref-store application and stories for more example usage.
 
 #### Usage
 

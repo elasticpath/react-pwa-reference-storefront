@@ -80,7 +80,7 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
     );
   }
 
-  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />);
+  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} />);
 };
 
 ImageContainer.defaultProps = {
