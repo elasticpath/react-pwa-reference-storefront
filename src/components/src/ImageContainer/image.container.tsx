@@ -59,11 +59,11 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
 
   const [error, setError] = useState(false);
 
-  const handleError = (e) => {
+  const handlePictureError = (e) => {
     setError(true);
   };
 
-  const handlePictureError = (e) => {
+  const handleImgError = (e) => {
     e.currentTarget.src = isSkuImage ? imgPlaceholder : '';
   };
 
@@ -77,12 +77,12 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
             type={`image/${type}`}
           />
         ))}
-        <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e)} />
+        <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handlePictureError(e)} />
       </picture>
     );
   }
 
-  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} onError={e => handlePictureError(e)} />);
+  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} onError={e => handleImgError(e)} />);
 };
 
 ImageContainer.defaultProps = {
