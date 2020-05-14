@@ -338,9 +338,15 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           }
           <Slider {...settings}>
             {multiImages.length > 0 ? (
-              multiImages.map(el => (
+              multiImages.map((el, idx) => (
                 <div key={el}>
-                  <img src={el} alt={intl.get('none-available')} className="itemdetail-main-img" />
+                  <ImageContainer
+                    imgClassName="itemdetail-main-img"
+                    isSkuImage
+                    fileName={`${productData._code[0].code}_${idx}`}
+                    alt={intl.get('none-available')}
+                    imgUrl={el}
+                  />
                 </div>
               ))
             ) : (
@@ -349,7 +355,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   imgClassName="itemdetail-main-img"
                   isSkuImage
                   fileName={productData._code[0].code}
-                  imgUrl={Config.skuImagesUrl.replace('%fileName%', `jpg/${productData._code[0].code}.jpg`)}
+                  imgUrl={Config.skuImagesUrl.replace('%fileName%', `${productData._code[0].cod0e}.png`)}
                 />
               </div>
             )}
