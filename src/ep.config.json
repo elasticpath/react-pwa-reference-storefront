@@ -1,7 +1,9 @@
 {
   "cortexApi": {
-    "path": "https://reference80.epdemos.com/cortex",
-    "scope": "sageUK"
+    "path": "/cortex",
+    "scope": "vestri",
+    "pathForProxy": "http://localhost:9080",
+    "reqTimeout": "30000"
   },
   "supportedLocales": [
     {

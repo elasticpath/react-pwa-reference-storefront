@@ -152,7 +152,7 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
                 imgClassName="category-item-thumbnail img-responsive"
                 isSkuImage
                 fileName={productData._code[0].code}
-                imgUrl={Config.skuImagesUrl.replace('%fileName%', `jpg/${productData._code[0].code}.jpg`)}
+                imgUrl={Config.skuImagesUrl.replace('%fileName%', `${productData._code[0].code}.png`)}
                 onLoadData={() => { this.handleImageLoaded(); }}
               />
             </Link>

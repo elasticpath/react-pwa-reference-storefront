@@ -192,7 +192,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
       const imgIndexArr = Array.from(new Array(5), (val, index) => index);
 
-      const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%fileName%', `${productId}_${i}`),
+      const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%fileName%', `${productId}_${i}.png`),
         { method: 'GET' }));
 
       const result = await Promise.all(promises);
@@ -355,7 +355,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   imgClassName="itemdetail-main-img"
                   isSkuImage
                   fileName={productData._code[0].code}
-                  imgUrl={Config.skuImagesUrl.replace('%fileName%', `${productData._code[0].cod0e}.png`)}
+                  imgUrl={Config.skuImagesUrl.replace('%fileName%', `${productData._code[0].code}.png`)}
                 />
               </div>
             )}

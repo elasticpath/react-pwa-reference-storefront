@@ -528,7 +528,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
               imgClassName="cart-lineitem-thumbnail"
               isSkuImage
               fileName={itemCodeString}
-              imgUrl={Config.skuImagesUrl.replace('%fileName%', `jpg/${itemCodeString}.jpg`)}
+              imgUrl={Config.skuImagesUrl.replace('%fileName%', `${itemCodeString}.png`)}
             />
           </Link>
         </div>
