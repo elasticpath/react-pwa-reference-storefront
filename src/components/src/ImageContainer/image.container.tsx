@@ -64,17 +64,17 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
     setError(true);
   };
 
-  const generateSrcSet = type => imageSizes.reduce((acc, imageSize) => {
-    if (acc === '') {
-      return `${acc}${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`;
-    }
-    return `${acc}, ${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`;
-  }, '');
-
   if (!error) {
     return (
       <picture className={pictureClassName} key={fileName}>
-        {imageTypes.map(type => <source key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
+        {imageTypes.map(type => (
+          <source
+            onError={e => handleError(e, imgUrl)}
+            key={`fileName${type}`}
+            srcSet={imageSizes.map(imageSize => `${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`).join(', ')}
+            type={`image/${type}`}
+          />
+        ))}
         <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
       </picture>
     );
