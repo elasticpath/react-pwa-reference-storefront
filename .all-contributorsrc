@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "shaunmaharaj",
+      "name": "Shaun Maharaj",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/39800563?v=4",
+      "profile": "https://github.com/shaunmaharaj",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "react-pwa-reference-storefront",
+  "projectOwner": "elasticpath",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
