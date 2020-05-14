@@ -59,9 +59,12 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
 
   const [error, setError] = useState(false);
 
-  const handleError = (e, defaultImgUrl) => {
-    e.currentTarget.src = isSkuImage ? imgPlaceholder : defaultImgUrl;
+  const handleError = (e) => {
     setError(true);
+  };
+
+  const handlePictureError = (e) => {
+    e.currentTarget.src = isSkuImage ? imgPlaceholder : '';
   };
 
   if (!error) {
@@ -69,18 +72,17 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
       <picture className={pictureClassName} key={fileName}>
         {imageTypes.map(type => (
           <source
-            onError={e => handleError(e, imgUrl)}
             key={`fileName${type}`}
             srcSet={imageSizes.map(imageSize => `${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`).join(', ')}
             type={`image/${type}`}
           />
         ))}
-        <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
+        <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e)} />
       </picture>
     );
   }
 
-  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} />);
+  return (<img className={imgClassName} alt={imgAlt} src={imgUrl} onLoad={onLoadData} onError={e => handlePictureError(e)} />);
 };
 
 ImageContainer.defaultProps = {

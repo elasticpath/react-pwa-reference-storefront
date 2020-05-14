@@ -27,8 +27,8 @@
     }
   ],
   "defaultCurrencyValue": "CAD",
-  "skuImagesUrl": "https://ep-demo-assets.s3-us-west-2.amazonaws.com/BELLEVIE/skuImages/%fileName%",
-  "siteImagesUrl": "https://ep-demo-assets.s3-us-west-2.amazonaws.com/BELLEVIE/siteImages/%fileName%",
+  "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
+  "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
   "enableOfflineMode": false,
   "ImageContainerSrcs": {
     "types": ["webp", "jp2", "jpg"],
