@@ -72,7 +72,7 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
     }
   };
 
-  if (!error) {
+  if (!error && fileName) {
     return (
       <picture className={pictureClassName} key={fileName}>
         {imageTypes.map(type => (

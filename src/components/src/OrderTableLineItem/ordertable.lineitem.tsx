@@ -110,7 +110,7 @@ function OrderTableLineItem(props: OrderTableLineItemProps) {
           imgClassName="thumbnail"
           isSkuImage
           fileName={code}
-          imgUrl={Config.skuImagesUrl.replace('%fileName%', `jpg/${code}.jpg`)}
+          imgUrl={Config.skuImagesUrl.replace('%fileName%', `${code}.png`)}
         />
       </td>
       <td className="title-col">

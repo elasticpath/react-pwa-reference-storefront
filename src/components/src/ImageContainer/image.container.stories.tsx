@@ -40,27 +40,25 @@ storiesOf('Components|ImageContainer', module)
       imgUrl={homeEspotParallax1}
     />);
   })
-  .add('Use configs for sizing and typing', () => {
-    const bannerFileName3 = 'b2c-banner-3';
-    return (<ImageContainer
+  .add('Use configs for sizing and typing', () => (
+    <ImageContainer
       imgClassName="main-banner-image"
+      isSkuImage
       pictureClassName="main-banner-image"
-      fileName={bannerFileName3}
+      fileName="KIDS_SS_HANLEY"
       imgUrl={bannerImage3}
-    />);
-  })
-  .add('Override sizing breakpoint and different possible types for image', () => {
-    const bannerFileName3 = 'b2c-banner-3';
-    return (<ImageContainer
+    />))
+  .add('Override sizing breakpoint and different possible types for image', () => (
+    <ImageContainer
       imgClassName="main-banner-image"
       pictureClassName="main-banner-image"
+      isSkuImage
       sizes={['1092', '2800']}
       types={['jp2', 'webp']}
-      fileName={bannerFileName3}
+      fileName="KIDS_SS_HANLEY"
       imgUrl={bannerImage3}
     />
-    );
-  })
+  ))
   .add('Component showing its own fallback image when it cannot find the fallback img specified', () => {
     const bannerFileName3 = 'b2c-banner-3';
     return (<ImageContainer
