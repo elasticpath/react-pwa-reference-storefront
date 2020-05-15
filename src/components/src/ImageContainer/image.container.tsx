@@ -19,68 +19,84 @@
  *
  */
 
-import React from 'react';
+import React, {
+  useState,
+} from 'react';
 import Config from '../../../ep.config.json';
-
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
-
+import './image.container.scss';
 
 interface ImageContainerProps {
-  /** name of file */
-  fileName: string;
-  /** image URL */
+  /** prefix name of the file in s3 with this form ${fileName}-${size}.${type} */
+  fileName?: string;
+  /** image URL that will be used as a fallback if no types are supported or sent into the parameter */
   imgUrl: string;
-  /** class name */
-  className?: string;
-  /** is a sku image */
+  /** picture element class name */
+  pictureClassName?: string;
+  /** img element class name */
+  imgClassName?: string;
+  /** is a sku image, determines whether to use `skuImagesUrl` or `siteImagesUrl` in ep.config.json as url prefix in srcSet */
   isSkuImage?: boolean;
-  /** loading data */
-  onLoadData?: (...args: any[]) => any;
+  /** Types to use for srcSet */
+  types?: string[];
+  /** width breakpoints to serve different images */
+  sizes?: string[];
+  /** alt to be passed to img element */
+  alt?: string,
+  /** The onLoadData */
+  onLoadData?: any,
 }
 
-function ImageContainer(props: ImageContainerProps) {
+const ImageContainer: React.FC<ImageContainerProps> = (props) => {
   const {
-    fileName, imgUrl, className, isSkuImage, onLoadData,
+    imgUrl, pictureClassName, imgClassName, isSkuImage, types, sizes, fileName, alt, onLoadData,
   } = props;
 
-  const imageSource = isSkuImage ? Config.skuImagesUrl.replace('%sku%', fileName) : Config.siteImagesUrl.replace('%fileName%', fileName);
+  const imageSizes = sizes === undefined ? Config.ImageContainerSrcs.sizes : sizes;
+  const imageTypes = types === undefined ? Config.ImageContainerSrcs.types : types;
+  const imgAlt = alt != null ? alt : '';
+  const imgPrefix = isSkuImage ? Config.skuImagesUrl : Config.siteImagesUrl;
 
-  const handleError = (e, defaultImgUrl) => {
-    const { src } = e.target;
-    if (Config.imageFileTypes && Config.imageFileTypes.enable && e.target['data-source'] !== 'default') {
-      const fallbackTypes = Config.imageFileTypes.types;
-      const initType = imgUrl.replace(/.*(?=\.)/g, '');
-      const types = (fallbackTypes && fallbackTypes.length > 0) ? [
-        initType,
-        ...fallbackTypes.filter(fileType => fileType !== initType),
-      ] : [];
-      const currentType = src.replace(/.*(?=\.)/g, '');
-      const i = types.indexOf(currentType);
-      if (types[i + 1]) {
-        e.target.src = src.replace(currentType, types[i + 1]);
-      } else {
-        e.target.src = isSkuImage ? imgPlaceholder : defaultImgUrl;
-        e.target['data-source'] = 'default';
-      }
-    } else if (e.target['data-source'] !== 'default') {
-      e.target.src = isSkuImage ? imgPlaceholder : defaultImgUrl;
-      e.target['data-source'] = 'default';
+  const [error, setError] = useState(false);
+  const [fallbackImgUrl, setFallbackImgUrl] = useState(imgUrl);
+
+  const handlePictureError = (e) => {
+    setError(true);
+  };
+
+  const handleImgError = (e) => {
+    if (isSkuImage) {
+      setFallbackImgUrl(imgPlaceholder);
+    } else {
+      setFallbackImgUrl('');
     }
   };
 
-  return (
-    <img
-      className={className}
-      alt=""
-      src={imageSource}
-      onError={e => handleError(e, imgUrl)}
-      onLoad={onLoadData}
-    />
-  );
-}
+  if (!error && fileName) {
+    return (
+      <picture className={pictureClassName} key={fileName}>
+        {imageTypes.map(type => (
+          <source
+            key={`fileName${type}`}
+            srcSet={imageSizes.map(imageSize => `${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`).join(', ')}
+            type={`image/${type}`}
+          />
+        ))}
+        <img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} key={fileName} onLoad={onLoadData} onError={e => handlePictureError(e)} />
+      </picture>
+    );
+  }
+
+  if (fallbackImgUrl) {
+    return (<img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} onLoad={onLoadData} onError={e => handleImgError(e)} />);
+  }
+
+  return null;
+};
 
 ImageContainer.defaultProps = {
-  className: '',
+  imgClassName: '',
+  pictureClassName: '',
   isSkuImage: false,
   onLoadData: () => {},
 };

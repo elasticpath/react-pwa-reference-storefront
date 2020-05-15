@@ -105,7 +105,13 @@ function OrderTableLineItem(props: OrderTableLineItemProps) {
   return (
     <tr className="order-lineitem-row">
       <td className="thumbnail-col">
-        <ImageContainer className="thumbnail" isSkuImage fileName={code} imgUrl={Config.skuImagesUrl.replace('%sku%', code)} />
+        <ImageContainer
+          pictureClassName="thumbnail"
+          imgClassName="thumbnail"
+          isSkuImage
+          fileName={code}
+          imgUrl={Config.skuImagesUrl.replace('%fileName%', `${code}.png`)}
+        />
       </td>
       <td className="title-col">
         <Link to={`${itemDetailLink}/${encodeURIComponent(code)}`}>

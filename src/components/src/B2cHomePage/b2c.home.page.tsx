@@ -39,16 +39,16 @@ import productImage6 from '../../../images/site-images/b2c-product-6.png';
 import productImage7 from '../../../images/site-images/b2c-product-7.png';
 
 
-const bannerFileName1 = 'b2c-banner-1.png';
-const bannerFileName2 = 'b2c-banner-2.png';
-const bannerFileName3 = 'b2c-banner-3.png';
-const productFileName1 = 'b2c-product-1.png';
-const productFileName2 = 'b2c-product-2.png';
-const productFileName3 = 'b2c-product-3.png';
-const productFileName4 = 'b2c-product-4.png';
-const productFileName5 = 'b2c-product-5.png';
-const productFileName6 = 'b2c-product-6.png';
-const productFileName7 = 'b2c-product-7.png';
+const bannerFileName1 = 'b2c-banner-1';
+const bannerFileName2 = 'b2c-banner-2';
+const bannerFileName3 = 'b2c-banner-3';
+const productFileName1 = 'b2c-product-1';
+const productFileName2 = 'b2c-product-2';
+const productFileName3 = 'b2c-product-3';
+const productFileName4 = 'b2c-product-4';
+const productFileName5 = 'b2c-product-5';
+const productFileName6 = 'b2c-product-6';
+const productFileName7 = 'b2c-product-7';
 
 const B2CHomePage: React.FunctionComponent = () => {
   // Set the language-specific configuration for indi integration
@@ -59,7 +59,7 @@ const B2CHomePage: React.FunctionComponent = () => {
   return (
     <div className="home-page-b2c">
       <section className="main-banner">
-        <ImageContainer className="main-banner-image" fileName={bannerFileName1} imgUrl={bannerImage1} />
+        <ImageContainer imgClassName="main-banner-image" pictureClassName="main-banner-image" fileName={bannerFileName1} imgUrl={bannerImage1} />
         <div className="main-banner-title-wrap">
           <div className="container">
             <h1 className="goods-heading">{intl.get('b2c-main-banner-heading')}</h1>
@@ -90,7 +90,7 @@ const B2CHomePage: React.FunctionComponent = () => {
                       <button type="button" className="ep-btn primary learn-more-btn">{intl.get('learn-more')}</button>
                     </div>
                   </div>
-                  <ImageContainer className="main-goods-image" fileName={productFileName1} imgUrl={productImage1} />
+                  <ImageContainer imgClassName="main-goods-image" pictureClassName="main-goods-picture" fileName={productFileName1} imgUrl={productImage1} />
                 </div>
               </li>
               <li className="main-goods__cell">
@@ -101,7 +101,7 @@ const B2CHomePage: React.FunctionComponent = () => {
                     <p className="goods-description">{intl.get('b2c-product2-description')}</p>
                     <button type="button" className="ep-btn primary learn-more-btn">{intl.get('add-to-cart-2')}</button>
                   </div>
-                  <ImageContainer className="main-goods-image" fileName={productFileName2} imgUrl={productImage2} />
+                  <ImageContainer imgClassName="main-goods-image" pictureClassName="main-goods-picture" fileName={productFileName2} imgUrl={productImage2} />
                 </div>
               </li>
               <li className="main-goods__cell">
@@ -114,7 +114,7 @@ const B2CHomePage: React.FunctionComponent = () => {
                     </p>
                     <button type="button" className="ep-btn primary learn-more-btn">{intl.get('b2c-product3-label')}</button>
                   </div>
-                  <ImageContainer className="main-goods-image" fileName={productFileName3} imgUrl={productImage3} />
+                  <ImageContainer pictureClassName="main-goods-picture" imgClassName="main-goods-image" fileName={productFileName3} imgUrl={productImage3} />
                 </div>
               </li>
               <li className="main-goods__cell">
@@ -126,7 +126,7 @@ const B2CHomePage: React.FunctionComponent = () => {
                       {intl.get('b2c-product4-description')}
                     </p>
                   </div>
-                  <ImageContainer className="main-goods-image" fileName={productFileName4} imgUrl={productImage4} />
+                  <ImageContainer imgClassName="main-goods-image" pictureClassName="main-goods-picture" fileName={productFileName4} imgUrl={productImage4} />
                 </div>
               </li>
               <li className="main-goods__cell">
@@ -137,7 +137,7 @@ const B2CHomePage: React.FunctionComponent = () => {
                       {intl.get('b2c-product5-heading')}
                     </p>
                   </div>
-                  <ImageContainer className="main-goods-image" fileName={productFileName5} imgUrl={productImage5} />
+                  <ImageContainer imgClassName="main-goods-image" pictureClassName="main-goods-picture" fileName={productFileName5} imgUrl={productImage5} />
                 </div>
               </li>
             </ul>
@@ -146,7 +146,7 @@ const B2CHomePage: React.FunctionComponent = () => {
       </section>
 
       <section className="main-banner banner-section-2">
-        <ImageContainer className="main-banner-image" fileName={bannerFileName2} imgUrl={bannerImage2} />
+        <ImageContainer imgClassName="main-banner-image" pictureClassName="main-banner-image" fileName={bannerFileName2} imgUrl={bannerImage2} />
         <div className="main-banner-title-wrap">
           <div className="container">
             <h2 className="goods-heading">{intl.get('b2c-main-banner-heading2')}</h2>
@@ -174,7 +174,7 @@ const B2CHomePage: React.FunctionComponent = () => {
                     <p className="goods-title">{intl.get('b2c-product6-heading')}</p>
                     <p className="goods-description">{intl.get('b2c-product6-description')}</p>
                   </div>
-                  <ImageContainer className="main-goods-image" fileName={productFileName6} imgUrl={productImage6} />
+                  <ImageContainer imgClassName="main-goods-image" pictureClassName="main-goods-picture" fileName={productFileName6} imgUrl={productImage6} />
                 </div>
               </li>
               <li className="main-goods__cell">
@@ -184,7 +184,7 @@ const B2CHomePage: React.FunctionComponent = () => {
                     <p className="goods-title">{intl.get('b2c-product7-heading')}</p>
                     <p className="goods-description">{intl.get('b2c-product7-description')}</p>
                   </div>
-                  <ImageContainer className="main-goods-image" fileName={productFileName7} imgUrl={productImage7} />
+                  <ImageContainer imgClassName="main-goods-image" pictureClassName="main-goods-picture" fileName={productFileName7} imgUrl={productImage7} />
                 </div>
               </li>
             </ul>
@@ -193,7 +193,7 @@ const B2CHomePage: React.FunctionComponent = () => {
       </section>
 
       <section className="main-banner banner-section-3">
-        <ImageContainer className="main-banner-image" fileName={bannerFileName3} imgUrl={bannerImage3} />
+        <ImageContainer imgClassName="main-banner-image" pictureClassName="main-banner-image" fileName={bannerFileName3} imgUrl={bannerImage3} />
         <div className="main-banner-title-wrap">
           <div className="container">
             <h2 className="goods-heading">{intl.get('b2c-main-banner-heading3')}</h2>

@@ -289,7 +289,12 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
         {(code && product._definition) ? (
           <div className="show-product">
             <div className="product-image">
-              <ImageContainer className="cart-lineitem-thumbnail" isSkuImage fileName={product._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', product._code[0].code)} />
+              <ImageContainer
+                imgClassName="cart-lineitem-thumbnail"
+                isSkuImage
+                fileName={product._code[0].code}
+                imgUrl={Config.skuImagesUrl.replace('%fileName%', `${product._code[0].code}.png`)}
+              />
             </div>
             <div className="title-col" data-el-value="lineItem.displayName">
               <p>

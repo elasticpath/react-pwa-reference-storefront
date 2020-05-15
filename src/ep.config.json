@@ -27,12 +27,12 @@
     }
   ],
   "defaultCurrencyValue": "CAD",
-  "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%sku%.png",
+  "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
   "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
   "enableOfflineMode": false,
-  "imageFileTypes": {
-    "enable": true,
-    "types": [".png" ,".jpg", ".svg"]
+  "ImageContainerSrcs": {
+    "types": ["webp", "jp2", "jpg"],
+    "sizes": ["768", "1092", "2800"]
   },
   "b2b": {
     "enable": false,
