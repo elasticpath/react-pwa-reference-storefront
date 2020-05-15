@@ -22,25 +22,11 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Interactions } from 'aws-amplify';
-import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
 import Config from '../../../ep.config.json';
 
-// @ts-ignore
-import * as styles from './chatbot.scss';
-
-const theme = {
-  background: styles.chatBackground,
-  fontFamily: styles.chatFontFamily,
-  headerBgColor: styles.chatHeaderBgColor,
-  headerFontColor: styles.chatHeaderFontColor,
-  headerFontSize: styles.chatHeaderFontSize,
-  botBubbleColor: styles.chatBotBubbleColor,
-  botFontColor: styles.chatBotFontColor,
-  userBubbleColor: styles.chatUserBubbleColor,
-  userFontColor: styles.chatUserFontColor,
-};
+import './chatbot.scss';
 
 interface ChatComponentState {
   opened: boolean,
@@ -113,14 +99,12 @@ class ChatComponent extends React.Component<{}, ChatComponentState> {
     if (isLoggedInUser && botEnable) {
       return (
         <div className="rsc-wrapper">
-          <ThemeProvider theme={theme}>
-            <ChatBot
-              steps={steps}
-              floating
-              opened={opened}
-              toggleFloating={this.toggleFloating}
-            />
-          </ThemeProvider>
+          <ChatBot
+            steps={steps}
+            floating
+            opened={opened}
+            toggleFloating={this.toggleFloating}
+          />
         </div>
       );
     }

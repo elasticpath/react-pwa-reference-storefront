@@ -30,14 +30,26 @@ $chatBotFontColor: $mainBackgroundColor;
 $chatUserBubbleColor: $firstComplimentBackground;
 $chatUserFontColor: $mainTextColor;
 
-:export {
-  chatBackground: $chatBackground;
-  chatFontFamily: $chatFontFamily;
-  chatHeaderBgColor: $chatHeaderBgColor;
-  chatHeaderFontColor: $chatHeaderFontColor;
-  chatHeaderFontSize: $chatHeaderFontSize;
-  chatBotBubbleColor: $chatBotBubbleColor;
-  chatBotFontColor: $chatBotFontColor;
-  chatUserBubbleColor: $chatUserBubbleColor;
-  chatUserFontColor: $chatUserFontColor;
+
+.rsc-wrapper {
+  .rsc-float-button {
+    background: $chatHeaderBgColor;
+  }
+  .rsc-container {
+    font-family: $chatFontFamily;
+    background: $chatBackground;
+  }
+  .rsc-header {
+    background: $chatHeaderBgColor;
+    font-size: $chatHeaderFontSize;
+    color: $chatHeaderFontColor;
+  }
+  .rsc-ts-bot .rsc-ts-bubble {
+    background: $chatBotBubbleColor;
+    color: $chatBotFontColor;
+  }
+  .rsc-ts-user .rsc-ts-bubble {
+    background: $chatUserBubbleColor;
+    color: $chatUserFontColor;
+  }
 }
