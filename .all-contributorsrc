@@ -71,7 +71,7 @@
     {
       "login": "BonnieEP",
       "name": "Bonnie Bishop",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/58435007?v=4",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/49495842?v=4",
       "profile": "https://github.com/BonnieEP",
       "contributions": [
         "design"
@@ -93,6 +93,114 @@
       "profile": "https://github.com/maennis-ep",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "plundaahl-ep",
+      "name": "plundaahl-ep",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/54957521?v=4",
+      "profile": "https://github.com/plundaahl-ep",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mwan-ep",
+      "name": "Michelle Wan",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/54115904?v=4",
+      "profile": "https://github.com/mwan-ep",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "long-wan-ep",
+      "name": "long-wan-ep",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/50891790?v=4",
+      "profile": "https://github.com/long-wan-ep",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "zilkerdev",
+      "name": "zilkerdev",
+      "avatar_url": "https://pbs.twimg.com/profile_images/718119294282784768/1NHeGDIl_400x400.jpg",
+      "profile": "https://github.com/zilkerdev",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "CPinelli",
+      "name": "Christophe PINELLI",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11885569?v=4",
+      "profile": "https://github.com/CPinelli",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "asmurthwaite",
+      "name": "asmurthwaite",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/43140694?v=4",
+      "profile": "https://github.com/asmurthwaite",
+      "contributions": [
+        "docs"
+      ]
+    },
+    {
+      "login": "sminnath",
+      "name": "sminnath",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/37632222?v=4",
+      "profile": "https://github.com/sminnath",
+      "contributions": [
+        "docs"
+      ]
+    },
+    {
+      "login": "jatinbehlEP",
+      "name": "Jatin Behl",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/41068897?v=4",
+      "profile": "https://github.com/jatinbehlEP",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "epmkelly",
+      "name": "Matthew Kelly",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/40244217?v=4",
+      "profile": "https://github.com/epmkelly",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "elasticSzyszko",
+      "name": "Michael Szyszko",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/43071842?v=4",
+      "profile": "https://github.com/elasticSzyszko",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "steve-r-west",
+      "name": "steve-r-west",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/49958178?v=4",
+      "profile": "https://github.com/steve-r-west",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "andyNewman42",
+      "name": "Andy Newman",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4326549?v=4",
+      "profile": "https://github.com/andyNewman42",
+      "contributions": [
+        "data"
       ]
     }
   ],
