@@ -147,7 +147,7 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
       return (
         <div className="category-item-inner">
           <div className={`category-item-thumbnail-container ${imageStatus === 'loaded' ? 'loaded' : ''}`}>
-            <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
+            <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`} title={productData._definition[0]['display-name']}>
               <ImageContainer
                 imgClassName="category-item-thumbnail img-responsive"
                 isSkuImage
