@@ -3,7 +3,8 @@
   "rules": {
     "react/jsx-wrap-multilines": ["off"],
     "react/destructuring-assignment": ["off"],
-    "react/jsx-boolean-value": ["off"]
+    "react/jsx-boolean-value": ["off"],
+    "no-param-reassign": ["off"]
   },
   "settings": {
     "import/resolver": {

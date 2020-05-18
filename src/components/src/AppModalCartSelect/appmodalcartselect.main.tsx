@@ -116,6 +116,7 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
           body: JSON.stringify({}),
         }).then(res => res.json());
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${data.token}`);
+        window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${data.token}`, file: 'appmodalcartselect.main.1' } }));
         await handleModalClose;
         onContinueCart();
       } catch (error) {

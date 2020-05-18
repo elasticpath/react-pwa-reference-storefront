@@ -285,6 +285,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         login().then(() => {
           getAccessToken(params.token).then((res) => {
             localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${res['access-token']}`);
+            window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${res['access-token']}`, file: 'appheaderlogin.main.1' } }));
             localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, params.role);
             localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserId`, params.userId);
             localStorage.setItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`, params.token);

@@ -124,6 +124,7 @@ export function cortexFetch(input, init): any {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
+        window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: null, file: 'Cortex.1' } }));
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
         localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
@@ -171,6 +172,7 @@ export function adminFetch(input, init): any {
       if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
+        window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: null, file: 'Cortex.2' } }));
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
         localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
