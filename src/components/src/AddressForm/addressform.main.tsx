@@ -306,7 +306,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
                 {intl.get('province')}
               </label>
               <div className="form-input activity-indicator-loading-region">
-                <select id="Region" name="Region" className="form-control" value={subCountry} onChange={this.setSubCountry}>
+                <select id="Region" name="Region" className="form-control" value={subCountry} onChange={this.setSubCountry} onBlur={this.setSubCountry}>
                   <option value="" />
                   {sortedRegions.map(region => (
                     <option key={region.name} value={region.name}>
@@ -332,7 +332,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
             {intl.get('province')}
           </label>
           <div className="form-input activity-indicator-loading-region">
-            <select id="Region" name="Region" className="form-control" value={subCountry} onChange={this.setSubCountry}>
+            <select id="Region" name="Region" className="form-control" value={subCountry} onChange={this.setSubCountry} onBlur={this.setSubCountry}>
               <option value="" />
             </select>
           </div>
@@ -420,7 +420,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
               {intl.get('country')}
             </label>
             <div className="form-input">
-              <select id="Country" name="Country" className="form-control" value={country} onChange={this.setCountry}>
+              <select id="Country" name="Country" className="form-control" value={country} onChange={this.setCountry} onBlur={this.setCountry}>
                 <option value="" />
                 {this.renderCountries()}
               </select>

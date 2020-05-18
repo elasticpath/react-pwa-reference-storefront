@@ -1,12 +1,14 @@
 {
   "extends": [
-    "airbnb"
+    "airbnb",
+    "plugin:jsx-a11y/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
     "header",
-    "react-hooks"
+    "react-hooks",
+    "jsx-a11y"
   ],
   "settings": {
     "import/extensions": [
