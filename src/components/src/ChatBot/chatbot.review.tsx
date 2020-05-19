@@ -20,7 +20,8 @@
  */
 
 import React, { Component } from 'react';
-import Amplify, { Interactions } from 'aws-amplify';
+import Amplify from '@aws-amplify/core';
+import Interactions from '@aws-amplify/interactions';
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
 import awsmobile from '../../../aws-exports';
