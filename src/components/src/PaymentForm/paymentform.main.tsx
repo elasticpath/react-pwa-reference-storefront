@@ -542,7 +542,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
               {intl.get('card-type')}
             </label>
             <div className="form-input">
-              <select id="CardType" name="CardType" className="form-control" value={cardType} onChange={this.setCardType}>
+              <select id="CardType" name="CardType" className="form-control" value={cardType} onChange={this.setCardType} onBlur={this.setCardType}>
                 <option value="003">
                   {intl.get('american-express')}
                 </option>
@@ -568,7 +568,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
               {intl.get('expiry-date')}
             </label>
             <div className="form-input form-inline">
-              <select id="ExpiryMonth" name="ExpiryMonth" className="form-control expiry-date" value={expiryMonth} onChange={this.setExpiryMonth}>
+              <select id="ExpiryMonth" name="ExpiryMonth" className="form-control expiry-date" value={expiryMonth} onChange={this.setExpiryMonth} onBlur={this.setExpiryMonth}>
                 <option value="1">
                   1
                 </option>
@@ -609,7 +609,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
               <label htmlFor="ExpiryYear">
                 &nbsp;/&nbsp;
               </label>
-              <select id="ExpiryYear" name="ExpiryYear" className="form-control expiry-date" value={expiryYear} onChange={this.setExpiryYear}>
+              <select id="ExpiryYear" name="ExpiryYear" className="form-control expiry-date" value={expiryYear} onChange={this.setExpiryYear} onBlur={this.setExpiryYear}>
                 {PaymentFormMain.renderYears()}
               </select>
             </div>
