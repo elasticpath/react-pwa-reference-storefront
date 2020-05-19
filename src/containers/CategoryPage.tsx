@@ -24,13 +24,25 @@ import { RouteComponentProps } from 'react-router-dom';
 import CategoryItemsMain from '../components/src/CategoryItems/categoryitems.main';
 
 function CategoryPage(props: RouteComponentProps) {
+  const { history } = props;
   function handleProductFacetSelection(offerSearch, title) {
-    const { history } = props;
     if (window.location.pathname.includes('category')) {
       history.push(`/category/${title}${offerSearch._offersearchresult[0].self.uri}`);
     } else {
       history.push(`/search/${title}${offerSearch._offersearchresult[0].self.uri}`);
     }
+  }
+
+  function handleAddToCart() {
+    history.push('/mycart');
+  }
+
+  function handleAddToWishList() {
+    history.push('/account/wishlists');
+  }
+
+  function handleAddToRequisitionList() {
+    history.push('/b2b/requisition-list-item');
   }
 
   const productLinks = {
@@ -47,6 +59,9 @@ function CategoryPage(props: RouteComponentProps) {
         categoryProps={props}
         onProductFacetSelection={handleProductFacetSelection}
         productLinks={productLinks}
+        onAddToCart={handleAddToCart}
+        onRequisitionPage={handleAddToRequisitionList}
+        onAddToWishList={handleAddToWishList}
       />
     </div>
   );

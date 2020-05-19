@@ -32,6 +32,8 @@ export interface ProductDisplayDetailsProps {
     onAddToCart?: (...args: any[]) => any,
     /** index of item */
     itemIndex?: number,
+    /** is quick view */
+    isQuickView?: boolean,
 }
 
 export interface ProductDisplayItemMainState {

@@ -478,6 +478,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
       requisitionListData,
       onAddToCart,
       itemIndex,
+      isQuickView,
     } = this.props;
     const { availability, availabilityString, productLink } = ProductDisplayItemDetails.extractAvailabilityParams(productData);
     const { listPrice, itemPrice } = ProductDisplayItemDetails.extractPrice(productData);
@@ -645,12 +646,14 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
               ) : ('')
                 }
             </div>
-            <SocialNetworkSharing
-              productLink={productLink}
-              productImage={productImage}
-              productDescriptionValue={productDescriptionValue}
-              productTitle={productTitle}
-            />
+            {!isQuickView && (
+              <SocialNetworkSharing
+                productLink={productLink}
+                productImage={productImage}
+                productDescriptionValue={productDescriptionValue}
+                productTitle={productTitle}
+              />
+            )}
           </div>
           <PowerReview productData={productData} itemIndex={itemIndex} />
         </div>

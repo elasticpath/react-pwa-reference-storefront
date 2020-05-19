@@ -1,0 +1,150 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.scss';
+
+.quick-view-modal {
+  width: calc(100vw - 4.8rem);
+
+  @media screen and (min-width: $mobileWidth) {
+    width: 680px;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 760px;
+  }
+
+  .modal-body {
+    padding: 0 10px;
+  }
+
+  .modal-content {
+    border: none;
+  }
+
+  .product-item-container {
+    min-height: 400px;
+
+    .loader {
+      width: 100px;
+      height: 100px !important;
+      border-width: 10px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -50px 0 0 -50px;
+    }
+  }
+
+  .itemdetail-component {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .itemdetail-assets {
+    width: 50%;
+    margin-top: 0;
+  }
+
+  .itemdetail-details {
+    padding-top: 0;
+  }
+
+
+  @media (min-width: $tabletWidth) {
+    .product-image-carousel {
+      &-wrap {
+        padding-left: 0;
+
+        &:not(.single-image-slider) {
+
+          .slick-slider {
+            padding-bottom: 110px;
+          }
+        }
+      }
+
+      .slick-thumb {
+        width: 100%;
+        top: auto;
+        left: 0;
+
+        &-item {
+          height: 86px;
+        }
+
+        li {
+          display: none;
+          width: 140px;
+          height: 96px;
+
+          &.slick-active,
+          &.slick-active + li {
+            display: inline-block;
+          }
+        }
+
+        img {
+          height: 86px;
+        }
+      }
+
+      .slick-arrow {
+        height: 18px;
+        width: 18px;
+        top: auto;
+        bottom: 39px;
+        transform: none;
+        z-index: 3;
+
+        &:before {
+          width: 6px;
+          height: 6px;
+          top: 5px;
+        }
+      }
+
+      .slick-next {
+        right: 0;
+
+        &:before {
+          right: 5px;
+        }
+      }
+
+      .slick-prev {
+        left: 0;
+
+        &:before {
+          left: 5px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $mobileWidth - 100px) {
+    .itemdetail-assets {
+      width: 100%;
+    }
+  }
+}

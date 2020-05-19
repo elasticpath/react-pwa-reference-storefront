@@ -74,6 +74,7 @@ export interface ProductDisplayItemMainProps {
   featuredProductAttribute?: boolean,
   /** is product compare page */
   itemIndex?: number,
+  isQuickView?: boolean,
 }
 
 export interface ProductDisplayItemMainState {
@@ -113,6 +114,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     itemDetailLink: '',
     featuredProductAttribute: false,
     itemIndex: 0,
+    isQuickView: false,
   };
 
   constructor(props) {
@@ -145,13 +147,13 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    const { productId } = this.props;
+    const { productId, isQuickView } = this.props;
     if (prevProps.productId !== productId) {
       try {
         await login();
 
         await cortexFetchItemLookupForm();
-        const itemLookupRes:any = await itemLookup(productId);
+        const itemLookupRes:any = !isQuickView ? await itemLookup(productId) : await itemLookup(productId, false, false);
         let arFileExists = false;
         let backgroundVRImageExists = false;
         let meshVRImageExists = false;
@@ -183,7 +185,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   async fetchProductData() {
-    const { productId } = this.props;
+    const { productId, isQuickView } = this.props;
 
     try {
       await login();
@@ -198,7 +200,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       const result = await Promise.all(promises);
       const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
 
-      const itemLookupRes:any = await itemLookup(productId, false);
+      const itemLookupRes:any = !isQuickView ? await itemLookup(productId, false) : await itemLookup(productId, false, false);
       let arFileExists = false;
       let backgroundVRImageExists = false;
       let meshVRImageExists = false;
@@ -401,7 +403,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     } = this.state;
 
     const {
-      featuredProductAttribute, itemDetailLink, onAddToWishList, onChangeProductFeature, onAddToCart, itemIndex,
+      featuredProductAttribute, itemDetailLink, onAddToWishList, onChangeProductFeature, onAddToCart, itemIndex, isQuickView,
     } = this.props;
     if (productData) {
       // Set the language-specific configuration for indi integration
@@ -433,34 +435,38 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 </div>
               </div>
             </div>
-            <ProductDisplayItemDetails itemIndex={itemIndex} productData={productData} requisitionListData={requisitionListData} onAddToWishList={onAddToWishList} onChangeProductFeature={onChangeProductFeature} onAddToCart={onAddToCart} />
+            <ProductDisplayItemDetails itemIndex={itemIndex} productData={productData} requisitionListData={requisitionListData} onAddToWishList={onAddToWishList} onChangeProductFeature={onChangeProductFeature} onAddToCart={onAddToCart} isQuickView={isQuickView} />
           </div>
-          <div className="itemdetail-tabs-wrap">
-            {(Config.PowerReviews.enable) ? (
-              <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
-                <li className="nav-item" role="tab">
-                  <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
-                    {intl.get('summary')}
-                  </a>
-                </li>
-                <li className="nav-item" role="tab">
-                  <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
-                    {intl.get('reviews')}
-                  </a>
-                </li>
-                <li className="nav-item" role="tab">
-                  <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
-                    {intl.get('questions')}
-                  </a>
-                </li>
-              </ul>
-            ) : ('')
-            }
-            <ProductDisplayAttributes itemIndex={itemIndex} handleDetailAttribute={this.handleDetailAttribute} detailsProductData={detailsProductData} />
-          </div>
-          <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
-          <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
-          <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
+          {!isQuickView && (
+            <React.Fragment>
+              <div className="itemdetail-tabs-wrap">
+                {(Config.PowerReviews.enable) ? (
+                  <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
+                    <li className="nav-item" role="tab">
+                      <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
+                        {intl.get('summary')}
+                      </a>
+                    </li>
+                    <li className="nav-item" role="tab">
+                      <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
+                        {intl.get('reviews')}
+                      </a>
+                    </li>
+                    <li className="nav-item" role="tab">
+                      <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
+                        {intl.get('questions')}
+                      </a>
+                    </li>
+                  </ul>
+                ) : ('')
+                }
+                <ProductDisplayAttributes itemIndex={itemIndex} handleDetailAttribute={this.handleDetailAttribute} detailsProductData={detailsProductData} />
+              </div>
+              <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
+              <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
+              <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
+            </React.Fragment>
+          )}
         </div>
       );
     }

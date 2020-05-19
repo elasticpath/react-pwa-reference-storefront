@@ -158,6 +158,29 @@ const itemFormZoomArray = [
   'code',
 ];
 
+// Array of zoom parameters to pass to Cortex for itemDetails with no recommendations
+const itemFormZoomArray2 = [
+  'availability',
+  'addtocartform',
+  'addtocartforms:element:addtocartaction',
+  'addtocartforms:element:target:descriptor',
+  'addtowishlistform',
+  'price',
+  'definition',
+  'definition:assets:element',
+  'definition:options:element',
+  'definition:options:element:value',
+  'definition:options:element:selector:choice',
+  'definition:options:element:selector:chosen',
+  'definition:options:element:selector:choice:description',
+  'definition:options:element:selector:chosen:description',
+  'definition:options:element:selector:choice:selector',
+  'definition:options:element:selector:chosen:selector',
+  'definition:options:element:selector:choice:selectaction',
+  'definition:options:element:selector:chosen:selectaction',
+  'code',
+];
+
 // Array of zoom parameters to pass to Cortex for purchaseDetails
 const purchaseFormZoomArray = [
   'paymentmeans:element',
@@ -445,10 +468,10 @@ export function navigationLookup(navigationLookupCode) {
   }));
 }
 
-export function itemLookup(itemLookupCode, reload = true) {
+export function itemLookup(itemLookupCode, reload = true, getRecommendations = true) {
   return new Promise(((resolve, reject) => {
     // eslint-disable-next-line no-template-curly-in-string
-    cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`)}?zoom=${itemFormZoomArray.join()}&followlocation=true`,
+    cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`)}?zoom=${getRecommendations ? itemFormZoomArray.join() : itemFormZoomArray2.join()}&followlocation=true`,
       {
         method: 'post',
         headers: {

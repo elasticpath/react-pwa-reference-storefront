@@ -82,6 +82,12 @@ interface CategoryItemsMainProps {
   productLinks?: {
     [key: string]: any
   },
+  /** handle add to cart */
+  onAddToCart?: (...args: any[]) => any,
+  /** handle add to wishlist */
+  onAddToWishList?: (...args: any[]) => any,
+  /** handle add to requisition list */
+  onRequisitionPage?: (...args: any[]) => any,
 }
 
 interface CategoryItemsMainState {
@@ -102,6 +108,9 @@ class CategoryItemsMain extends Component<CategoryItemsMainProps, CategoryItemsM
       productSearch: '',
       productCategory: '',
     },
+    onAddToCart: () => {},
+    onAddToWishList: () => {},
+    onRequisitionPage: () => {},
   };
 
   constructor(props) {
@@ -243,7 +252,9 @@ class CategoryItemsMain extends Component<CategoryItemsMainProps, CategoryItemsM
     const {
       isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName, loadSortedProduct,
     } = this.state;
-    const { productLinks } = this.props;
+    const {
+      productLinks, onAddToCart, onAddToWishList, onRequisitionPage,
+    } = this.props;
     let products: { [key: string]: any } = {};
     let productList = '';
     let noProducts = true;
@@ -300,7 +311,14 @@ class CategoryItemsMain extends Component<CategoryItemsMainProps, CategoryItemsM
                   <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop productListPaginationLinks={productLinks} />
                   <div className={`${loadSortedProduct ? 'loading-product' : ''}`}>
                     <div className={`${loadSortedProduct ? 'sort-product-loader' : ''}`} />
-                    <ProductListMain productData={productList} productListLinks={productLinks} showCompareButton={propCompareButton} />
+                    <ProductListMain
+                      productData={productList}
+                      productListLinks={productLinks}
+                      showCompareButton={propCompareButton}
+                      onAddToCart={onAddToCart}
+                      onAddToWishList={onAddToWishList}
+                      onRequisitionPage={onRequisitionPage}
+                    />
                   </div>
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={navigationLookup} />
                 </div>
