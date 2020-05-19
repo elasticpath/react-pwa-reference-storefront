@@ -74,6 +74,7 @@ export function login() {
           }
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${res.access_token}`);
+          window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${res.access_token}`, file: 'AuthService.1' } }));
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, publicUserDetails.username);
           resolve(res);
         })
@@ -126,6 +127,7 @@ export function loginRegistered(username, password) {
         }
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${res.access_token}`);
+        window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${res.access_token}`, file: 'AuthService.2' } }));
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, registeredUserDetails.username);
         resolve(200);
       }).catch((error) => {
@@ -192,6 +194,7 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
+      window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: null, file: 'AuthService.3' } }));
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
       localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);

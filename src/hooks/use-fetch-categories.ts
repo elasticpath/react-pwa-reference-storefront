@@ -20,6 +20,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { useAuthHeader, useUserTraits } from './store';
 import Config from '../ep.config.json';
 
 
@@ -45,11 +46,12 @@ function parseCategory(e: any): CategoryResult {
   };
 }
 
-async function fetchCategories(): Promise<CategoryResult[]> {
-  const response = await fetch(`/cortex/?zoom=${zoom.join(',')}`, {
+export async function fetchCategories(authHeader: string, userTraits: string): Promise<CategoryResult[]> {
+  const response = await fetch(`${Config.cortexApi.path}/?zoom=${zoom.join(',')}`, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      Authorization: authHeader,
+      'x-ep-user-traits': userTraits,
     },
   });
 
@@ -58,7 +60,6 @@ async function fetchCategories(): Promise<CategoryResult[]> {
 
   return categories;
 }
-
 
 export interface UseFetchCategoriesResult {
   isLoading: boolean;
@@ -73,27 +74,32 @@ export function useFetchCategories() {
     categories: null,
   });
 
+  const authHeader = useAuthHeader();
+  const userTraits = useUserTraits();
+
   useEffect(() => {
     let isCurrent = true;
 
-    setResult(r => ({ ...r, isLoading: true }));
+    setResult({ isLoading: true, error: null, categories: null });
 
-    fetchCategories()
-      .then((categoriesResult) => {
-        if (isCurrent) {
-          setResult({ isLoading: false, error: null, categories: categoriesResult });
-        }
-      })
-      .catch((err) => {
-        if (isCurrent) {
-          setResult(r => ({ ...r, isLoading: false, error: err }));
-        }
-      });
+    if (authHeader) {
+      fetchCategories(authHeader, userTraits)
+        .then((categoriesResult) => {
+          if (isCurrent) {
+            setResult({ isLoading: false, error: null, categories: categoriesResult });
+          }
+        })
+        .catch((err) => {
+          if (isCurrent) {
+            setResult({ isLoading: false, error: err, categories: null });
+          }
+        });
+    }
 
     return () => {
       isCurrent = false;
     };
-  }, []);
+  }, [authHeader, userTraits]);
 
   return result;
 }

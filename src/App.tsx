@@ -24,6 +24,7 @@ import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
 import intl from 'react-intl-universal';
+import { EpStore } from './hooks/store';
 
 import AppHeaderMain from './components/src/AppHeader/appheader.main';
 import AppFooterMain from './components/src/AppFooterMain/appfooter.main';
@@ -247,14 +248,16 @@ const AppWithRouter = (props) => {
   return (
     <Router>
       <ErrorDisplayBoundary>
-        <CountProvider>
-          <RequisitionListCountProvider>
-            <Switch>
-              <Route path="/loggedin" exact component={LoginRedirectPage} />
-              <Route path="/" exact={false} render={passedProps => <App {...passedProps} componentsData={componentsData} />} />
-            </Switch>
-          </RequisitionListCountProvider>
-        </CountProvider>
+        <EpStore>
+          <CountProvider>
+            <RequisitionListCountProvider>
+              <Switch>
+                <Route path="/loggedin" exact component={LoginRedirectPage} />
+                <Route path="/" exact={false} render={passedProps => <App {...passedProps} componentsData={componentsData} />} />
+              </Switch>
+            </RequisitionListCountProvider>
+          </CountProvider>
+        </EpStore>
       </ErrorDisplayBoundary>
     </Router>
   );
