@@ -78,7 +78,9 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
         {imageTypes.map(type => (
           <source
             key={`fileName${type}`}
-            srcSet={imageSizes.map(imageSize => `${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`).join(', ')}
+            srcSet={(imageSizes === undefined || imageSizes.length === 0)
+              ? `${imgPrefix.replace('%fileName%', `${type}/${fileName}.${type}`)}`
+              : imageSizes.map(imageSize => `${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`).join(', ')}
             type={`image/${type}`}
           />
         ))}
