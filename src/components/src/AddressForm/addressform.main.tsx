@@ -398,7 +398,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     const {
       failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode,
     } = this.state;
-    const { chosenShipping, chosenBilling } = this.props;
+    const { chosenShipping, chosenBilling, addressData } = this.props;
 
     return (
       <div className="address-form-component container" data-region="appMain">
@@ -501,14 +501,14 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
           </div>
           <div className="checkbox-wrap">
             <label htmlFor="shipping_address" className="checkbox-label">
-              <input type="checkbox" id="shipping_address" defaultChecked={chosenShipping} disabled={chosenShipping} onChange={this.setAsShippingAddress} />
-              <span className={`${chosenShipping ? 'disabled' : ''} apply-balance-txt`}>
+              <input type="checkbox" id="shipping_address" defaultChecked={chosenShipping} disabled={chosenShipping || !addressData} onChange={this.setAsShippingAddress} />
+              <span className={`${chosenShipping || !addressData ? 'disabled' : ''} apply-balance-txt`}>
                 {intl.get('shipping-address')}
               </span>
             </label>
             <label htmlFor="billing_address">
-              <input type="checkbox" id="billing_address" defaultChecked={chosenBilling} disabled={chosenBilling} onChange={this.setAsBillingAddress} />
-              <span className={`${chosenBilling ? 'disabled' : ''} apply-balance-txt`}>
+              <input type="checkbox" id="billing_address" defaultChecked={chosenBilling} disabled={chosenBilling || !addressData} onChange={this.setAsBillingAddress} />
+              <span className={`${chosenBilling || !addressData ? 'disabled' : ''} apply-balance-txt`}>
                 {intl.get('billing-address')}
               </span>
             </label>

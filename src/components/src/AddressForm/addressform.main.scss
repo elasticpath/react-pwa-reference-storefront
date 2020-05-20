@@ -185,6 +185,12 @@
       }
     }
 
+    + .disabled {
+      &:before {
+        border-color: $mainBorderColor;
+      }
+    }
+
     &:checked {
       + span {
         &:before {
