@@ -1,0 +1,101 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../theme/common.scss';
+
+.address-book-page {
+  margin-bottom: 200px;
+}
+.profile-addresses-listing {
+  margin-bottom: 40px;
+  padding-right: 10px;
+  width: 50%;
+}
+
+.profile-address-container {
+  .style-radio + label  {
+    position: absolute;
+    top: 2px;
+    left: 0;
+  }
+
+  .delete-address-btn {
+    text-transform: capitalize;
+
+    + .edit-address-btn {
+      text-transform: capitalize;
+      position: relative;
+      margin-left: 10px;
+
+      &:before {
+        content: '';
+        height: 14px;
+        width: 2px;
+        border-left: 1px solid $thirdComplimentColor;
+        position: absolute;
+        top: 2px;
+        left: -10px;
+      }
+    }
+  }
+
+}
+@media (max-width: $mobileWidth) {
+  .profile-addresses-listing {
+    margin-bottom: 20px;
+  }
+}
+
+.select-address-title {
+  margin-bottom: 25px;
+}
+
+.delete-address-dialog {
+  padding: 15px 30px;
+
+  @media (min-width: $mobileWidth) {
+    min-width: 500px;
+  }
+
+  .dialog-content {
+    padding: 25px 0 50px;
+  }
+
+  .cancel {
+    outline: 0 auto transparent;
+  }
+
+  .dialog-footer {
+    .upload {
+      background-color: $buttonActiveColor;
+
+      &:hover {
+        background-color: $fourthComplimentTextColor;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .dialog-footer button {
+      width: 100px;
+    }
+  }
+}

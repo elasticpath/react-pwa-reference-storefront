@@ -71,9 +71,9 @@ function AddressContainer(props: AddressContainerProps) {
           {address['country-name']}
                     &nbsp;
         </span>
-        <span className="address-postal-code">
-          {address['postal-code']}
-        </span>
+      </li>
+      <li className="address-postal-code">
+        {address['postal-code']}
       </li>
     </ul>
   );

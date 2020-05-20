@@ -153,3 +153,70 @@
     }
   }
 }
+
+
+.checkbox-wrap {
+  margin-bottom: 5px;
+  width: 100%;
+
+  .checkbox-label {
+    margin-right: 30px;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+
+    + span {
+      position: relative;
+      padding-left: 25px;
+      font-size: 13px;
+      line-height: 18px;
+      color: $firstComplimentTextColor;
+
+      &:before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        border: 2px solid $buttonActiveColor;
+        border-radius: 2px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    + .disabled {
+      &:before {
+        border-color: $mainBorderColor;
+      }
+    }
+
+    &:checked {
+      + span {
+        &:before {
+          border-color: $firstComplimentColor;
+          background-color: $firstComplimentColor;
+        }
+
+        &:after {
+          content: "";
+          position: absolute;
+          top: 3px;
+          left: 1px;
+          width: 12px;
+          height: 7px;
+          border: solid 2px $mainBackgroundColor;
+          border-right: none;
+          border-top: none;
+          transform: translate(2px, 1px) rotate(-45deg);
+        }
+      }
+      + .disabled {
+        &:before {
+          background-color: $buttonFocusColor;
+          border-color: $buttonFocusColor;
+        }
+      }
+    }
+  }
+}

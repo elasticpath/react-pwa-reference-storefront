@@ -21,16 +21,13 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { RouteComponentProps } from 'react-router-dom';
-import Modal from 'react-responsive-modal';
-import { ReactComponent as CloseIcon } from '../images/icons/ic_close.svg';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
 import ProfileInfoMain from '../components/src/ProfileInfo/profileInfo.main';
 import ProfileemailinfoMain from '../components/src/ProfileEmailInfo/profileemailinfo.main';
-import ProfileAddressesMain from '../components/src/ProfileAddresses/profileaddresses.main';
 import PaymentSelectorMain from '../components/src/PaymentSelectorMain/paymentselector.main';
-import AddressFormMain from '../components/src/AddressForm/addressform.main';
 import ProfileComplianceMain from '../components/src/ProfileCompliance/profilecompliance.main';
+import AddressContainer from '../components/src/AddressContainer/address.container';
 
 import { login } from '../components/src/utils/AuthService';
 import { cortexFetch } from '../components/src/utils/Cortex';
@@ -52,7 +49,18 @@ const zoomArray = [
   'defaultprofile:emails:emailform',
   'defaultprofile:emails:profile',
   'defaultprofile:addresses:element',
+  'defaultprofile:addresses:billingaddresses',
   'defaultprofile:addresses:billingaddresses:default',
+  'defaultprofile:addresses:billingaddresses:selector',
+  'defaultprofile:addresses:billingaddresses:selector:chosen',
+  'defaultprofile:addresses:billingaddresses:selector:chosen:description',
+  'defaultprofile:addresses:billingaddresses:selector:chosen:selectaction',
+  'defaultprofile:addresses:shippingaddresses',
+  'defaultprofile:addresses:shippingaddresses:default',
+  'defaultprofile:addresses:shippingaddresses:selector',
+  'defaultprofile:addresses:shippingaddresses:selector:chosen',
+  'defaultprofile:addresses:shippingaddresses:selector:chosen:description',
+  'defaultprofile:addresses:shippingaddresses:selector:chosen:selectaction',
 
   'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods',
@@ -77,8 +85,6 @@ interface ProfilePageState {
     dataPolicyData: any,
     invalidPermission: boolean,
     showResetPasswordButton: boolean,
-    openAddressModal: boolean,
-    addressUrl: any,
 }
 
 class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState> {
@@ -89,14 +95,9 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
       dataPolicyData: undefined,
       invalidPermission: false,
       showResetPasswordButton: false,
-      openAddressModal: false,
-      addressUrl: undefined,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
     this.changePassword = this.changePassword.bind(this);
-    this.handleNewAddress = this.handleNewAddress.bind(this);
-    this.handleEditAddress = this.handleEditAddress.bind(this);
-    this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
     this.renderPayments = this.renderPayments.bind(this);
   }
 
@@ -156,47 +157,63 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     history.push('/password_change', { returnPage: '/profile' });
   }
 
-  handleNewAddress() {
-    this.setState({
-      openAddressModal: true,
-      addressUrl: undefined,
-    });
-  }
-
-  handleEditAddress(addressLink) {
-    this.setState({
-      openAddressModal: true,
-      addressUrl: { address: addressLink },
-    });
-  }
-
-  handleCloseAddressModal() {
-    this.setState({ openAddressModal: false });
-  }
-
-  renderNewAddressModal() {
-    const { openAddressModal, addressUrl } = this.state;
-    const newOrEdit = (addressUrl && addressUrl.address) ? intl.get('edit') : intl.get('new');
-    return (
-      <Modal open={openAddressModal} onClose={this.handleCloseAddressModal} showCloseIcon={false}>
-        <div className="modal-lg new-address-modal">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h2 className="modal-title">
-                {newOrEdit}
-                {' '}
-                {intl.get('address')}
-              </h2>
-              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleCloseAddressModal}>
-                <CloseIcon />
-              </button>
-            </div>
-            <div className="modal-body">
-              <AddressFormMain onCloseModal={this.handleCloseAddressModal} fetchData={this.fetchProfileData} addressData={addressUrl} />
+  renderShippingAddress() {
+    const { profileData } = this.state;
+    if (profileData && profileData._addresses[0]._shippingaddresses && profileData._addresses[0]._shippingaddresses[0]._selector[0]._chosen) {
+      const selectedAddress = profileData._addresses[0]._shippingaddresses[0]._selector[0]._chosen[0]._description[0].address;
+      const selectedAddressName = profileData._addresses[0]._shippingaddresses[0]._selector[0]._chosen[0]._description[0].name;
+      return (
+        <div className="address-book-content">
+          <h2>
+            {intl.get('ship-to')}
+          </h2>
+          <p>
+            {intl.get('your-account-shipping-default')}
+          </p>
+          <div className="selected-address-container">
+            <div data-region="checkoutAddressRegion">
+              <AddressContainer name={selectedAddressName} address={selectedAddress} />
             </div>
           </div>
         </div>
-      </Modal>
+      );
+    }
+    return (
+      <div>
+        <p>
+          {intl.get('no-shipping-address-message')}
+        </p>
+      </div>
+    );
+  }
+
+  renderBillingAddress() {
+    const { profileData } = this.state;
+    if (profileData && profileData._addresses[0]._billingaddresses && profileData._addresses[0]._billingaddresses[0]._selector[0]._chosen) {
+      const selectedAddress = profileData._addresses[0]._billingaddresses[0]._selector[0]._chosen[0]._description[0].address;
+      const selectedAddressName = profileData._addresses[0]._billingaddresses[0]._selector[0]._chosen[0]._description[0].name;
+      return (
+        <div className="address-book-content">
+          <h2>
+            {intl.get('bill-to')}
+          </h2>
+          <p>
+            {intl.get('your-account-billing-default')}
+          </p>
+          <div className="selected-address-container">
+            <div data-region="checkoutAddressRegion">
+              <AddressContainer name={selectedAddressName} address={selectedAddress} />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <p>
+          {intl.get('no-billing-address-message')}
+        </p>
+      </div>
     );
   }
 
@@ -283,14 +300,21 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 </div>
               </div>
               <div className="profile-info-container">
-                <h2 className="profile-info-container-title">
-                  {intl.get('shipping')}
-                </h2>
-                <div className="profile-info-block">
-                  {(profileData._addresses) ? (
-                    <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
-                  ) : ('')}
-                  {this.renderNewAddressModal()}
+                <div className="address-info-container title">
+                  <h2 className="profile-info-container-title">
+                    {intl.get('account-defaults')}
+                  </h2>
+                  <Link to="/account/address-book">
+                    <button className="ep-btn primary edit-addresses-btn wide" type="button">{intl.get('edit-addresses')}</button>
+                  </Link>
+                </div>
+                <div className="address-info-container profile-info-block">
+                  <div className="checkout-shipping-container">
+                    {this.renderBillingAddress()}
+                  </div>
+                  <div className="checkout-billing-container">
+                    {this.renderShippingAddress()}
+                  </div>
                 </div>
               </div>
               <div className="profile-info-container">

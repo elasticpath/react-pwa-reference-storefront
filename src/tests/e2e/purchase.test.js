@@ -62,6 +62,8 @@ const HOME_PAGE_CSS = 'div.home-page-component';
 const REGISTER_BUTTON_CSS = "div[data-region='checkoutAutRegisterOptionRegion'] button.checkout-auth-option-register-btn";
 const CHECKOUT_BUTTON_CSS = "button[class='ep-btn primary btn-cmd-checkout']";
 const ADD_NEW_ADDRESS_CSS = 'button[data-region="billingAddressButtonRegion"]';
+const EDIT_NEW_ADDRESS = '.edit-addresses-btn';
+const LINK_TO_PROFILE_PAGE = 'a[data-region="my-profile"]';
 const ADD_NEW_PAYMENT_CSS = 'button[class="ep-btn primary wide new-payment-btn"]';
 const ANONYMOUS_EMAIL_INPUT_CSS = 'div[data-region="anonymousCheckoutFeedbackRegion"] ~div input[id="Email"]';
 const CHECKOUT_AUTH_BUTTON_CSS = 'button[class="ep-btn primary wide checkout-auth-option-anonymous-checkout-btn"]';
@@ -124,13 +126,16 @@ describe('Purchase feature', () => {
 
       await page.waitForSelector(MY_PROFILE);
       await page.click(MY_PROFILE);
-
+      await page.waitForSelector(EDIT_NEW_ADDRESS);
+      await page.click(EDIT_NEW_ADDRESS);
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
 
       await addAddress(page, address);
       await page.waitForSelector(PROFILE_ADDRESS_ITEM);
-      await page.waitFor(3000);
+      await page.waitForSelector(LINK_TO_PROFILE_PAGE);
+      await page.click(LINK_TO_PROFILE_PAGE);
+      await page.waitForSelector(ADD_NEW_PAYMENT_CSS);
       await page.click(ADD_NEW_PAYMENT_CSS);
 
       const paymentMethod = {
