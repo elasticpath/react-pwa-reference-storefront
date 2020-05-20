@@ -49,6 +49,7 @@ import ServicesPage from '../ServicesPage';
 import SupportPage from '../SupportPage';
 import PrivacyPoliciesPage from '../PrivacyPoliciesPage';
 import PurchaseHistoryPage from '../b2b/PurchaseHistoryPage';
+import AddressBookPage from '../b2b/AddressBookPage';
 
 const router = [{
   path: '/mycart',
@@ -158,7 +159,7 @@ const router = [{
     },
     {
       path: '/account/address-book',
-      render: () => 'Address Book',
+      component: AddressBookPage,
     },
     {
       path: '/account/orders',

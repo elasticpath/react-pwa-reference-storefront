@@ -37,6 +37,14 @@ interface AddressFormMainProps {
   onCloseModal?: (...args: any[]) => any,
   /** Retrieves the saved address. */
   fetchData?: (...args: any[]) => any,
+  /** Chosen shipping address. */
+  chosenShipping?: boolean,
+  /** Chosen billing address. */
+  chosenBilling?: boolean,
+  /** Selectaction shipping URI. */
+  selectactionShippingUri?: string,
+  /** Selectaction billing URI. */
+  selectactionBillingUri?: string,
 }
 
 interface AddressFormMainState {
@@ -49,6 +57,8 @@ interface AddressFormMainState {
     country: string,
     subCountry: string,
     postalCode: string,
+    isShippingAddress: boolean,
+    isBillingAddress: boolean,
     failedSubmit: boolean,
     addressForm: any,
 }
@@ -68,6 +78,10 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     onCloseModal: () => {},
     fetchData: () => {},
     addressData: undefined,
+    chosenBilling: '',
+    chosenShipping: '',
+    selectactionBillingUri: '',
+    selectactionShippingUri: '',
   };
 
   constructor(props) {
@@ -83,6 +97,8 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
       country: '',
       subCountry: '',
       postalCode: '',
+      isShippingAddress: false,
+      isBillingAddress: false,
       failedSubmit: false,
       addressForm: undefined,
     };
@@ -95,6 +111,8 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     this.setCountry = this.setCountry.bind(this);
     this.setSubCountry = this.setSubCountry.bind(this);
     this.setPostalCode = this.setPostalCode.bind(this);
+    this.setAsShippingAddress = this.setAsShippingAddress.bind(this);
+    this.setAsBillingAddress = this.setAsBillingAddress.bind(this);
     this.submitAddress = this.submitAddress.bind(this);
     this.cancel = this.cancel.bind(this);
   }
@@ -102,8 +120,8 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
   componentDidMount() {
     this.fetchGeoData();
     const { addressData } = this.props;
-    if (addressData && addressData.address) {
-      this.fetchAddressData(addressData.address);
+    if (addressData && addressData.addressUri) {
+      this.fetchAddressData(addressData.addressUri);
     } else {
       this.fetchAddressForm();
     }
@@ -141,23 +159,38 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     this.setState({ postalCode: event.target.value });
   }
 
-  submitAddress(event) {
+  setAsBillingAddress() {
+    const { isBillingAddress } = this.state;
+    this.setState({ isBillingAddress: !isBillingAddress });
+  }
+
+  setAsShippingAddress() {
+    const { isShippingAddress } = this.state;
+    this.setState({ isShippingAddress: !isShippingAddress });
+  }
+
+  async submitAddress(event) {
     event.preventDefault();
-    const { addressData, fetchData, onCloseModal } = this.props;
     const {
-      addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode,
+      addressData, fetchData, onCloseModal, chosenShipping, selectactionShippingUri, selectactionBillingUri,
+    } = this.props;
+    const {
+      addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode, isShippingAddress, isBillingAddress,
     } = this.state;
+
     let link;
     let methodType;
-    if (addressData && addressData.address) {
-      link = addressData.address;
+    if (addressData && addressData.addressUri) {
+      link = addressData.addressUri;
       methodType = 'put';
     } else {
       link = addressForm;
       methodType = 'post';
     }
-    login().then(() => {
-      cortexFetch(link, {
+
+    try {
+      await login();
+      const res = await cortexFetch(link, {
         method: methodType,
         headers: {
           'Content-Type': 'application/json',
@@ -177,20 +210,40 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
             'postal-code': postalCode,
           },
         }),
-      }).then((res) => {
-        if (res.status === 400) {
-          this.setState({ failedSubmit: true });
-        } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-          this.setState({ failedSubmit: false }, () => {
-            fetchData();
-            onCloseModal();
-          });
-        }
-      }).catch((error) => {
-      // eslint-disable-next-line no-console
-        console.error(error.message);
       });
-    });
+      if (res.status === 400) {
+        this.setState({ failedSubmit: true });
+      } else if (res.status === 201 || res.status === 200 || res.status === 204) {
+        if (isShippingAddress) {
+          await cortexFetch(selectactionShippingUri,
+            {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+              body: JSON.stringify({}),
+            });
+        }
+        if (isBillingAddress) {
+          await cortexFetch(selectactionBillingUri,
+            {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+              body: JSON.stringify({}),
+            });
+        }
+        this.setState({ failedSubmit: false });
+        await fetchData();
+        await onCloseModal();
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+    }
   }
 
   fetchGeoData() {
@@ -345,6 +398,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     const {
       failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode,
     } = this.state;
+    const { chosenShipping, chosenBilling } = this.props;
 
     return (
       <div className="address-form-component container" data-region="appMain">
@@ -439,6 +493,27 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
               <input id="PostalCode" name="PostalCode" className="form-control" type="text" value={postalCode} onChange={this.setPostalCode} />
             </div>
           </div>
+          <div>
+            <p>
+              {intl.get('set-as-default')}
+              <br />
+            </p>
+          </div>
+          <div className="checkbox-wrap">
+            <label htmlFor="shipping_address" className="checkbox-label">
+              <input type="checkbox" id="shipping_address" defaultChecked={chosenShipping} disabled={chosenShipping} onChange={this.setAsShippingAddress} />
+              <span className="apply-balance-txt">
+                {intl.get('shipping-address')}
+              </span>
+            </label>
+            <label htmlFor="billing_address">
+              <input type="checkbox" id="billing_address" defaultChecked={chosenBilling} disabled={chosenBilling} onChange={this.setAsBillingAddress} />
+              <span className="apply-balance-txt">
+                {intl.get('billing-address')}
+              </span>
+            </label>
+          </div>
+
           <div className="form-group form-btn-group">
             <div className="control-label" />
             <div className="form-input btn-container">

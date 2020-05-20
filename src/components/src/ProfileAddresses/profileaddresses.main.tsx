@@ -38,10 +38,19 @@ interface ProfileAddressesMainProps {
   /** handle add new address */
   onAddNewAddress: () => void,
   /** handle edit address */
-  onEditAddress: (address: string) => void
+  onEditAddress: (address: string) => void,
+  /** chosen Billing Address URI */
+  chosenBillingUri?: string,
+  /** chosen Shipping Address URI */
+  chosenShippingUri?: string,
 }
 
 class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
+  static defaultProps = {
+    chosenBillingUri: '',
+    chosenShippingUri: '',
+  };
+
   handleDelete(link) {
     login().then(() => {
       cortexFetch(link, {
@@ -61,13 +70,24 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
   }
 
   renderAddresses() {
-    const { addresses, onEditAddress } = this.props;
+    const {
+      addresses, onEditAddress, chosenBillingUri, chosenShippingUri,
+    } = this.props;
     if (addresses._element) {
       return (
         addresses._element.map((addressElement) => {
           const {
-            name, address,
+            name, address, self,
           } = addressElement;
+          let selectedAddress = '';
+
+          if (self.uri === chosenShippingUri && self.uri === chosenBillingUri) {
+            selectedAddress = 'Default shipping/billing';
+          } else if (self.uri === chosenBillingUri) {
+            selectedAddress = 'Default billing';
+          } else if (self.uri === chosenShippingUri) {
+            selectedAddress = 'Default shipping';
+          }
           return (
             <ul key={`profile_address_${Math.random().toString(36).substr(2, 9)}`} className="profile-addresses-listing" data-el-container="profile.addresses">
               <li className="profile-address-container" data-region="profileAddressContainer">
@@ -94,11 +114,19 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
                       <span className="address-country" data-el-value="address.country">
                         {`${address['country-name']}, `}
                       </span>
-                      <span className="address-postal-code" data-el-value="address.postalCode">
+                      <div className="address-postal-code" data-el-value="address.postalCode">
                         {address['postal-code']}
-                      </span>
+                      </div>
                     </li>
                   </ul>
+                  {selectedAddress.length ? (
+                    <div className="default-shipping-address">
+                      <div className="check-icon" />
+                      <span className="check-title">
+                        {selectedAddress}
+                      </span>
+                    </div>
+                  ) : ''}
                 </div>
                 <button className="ep-btn small edit-address-btn" type="button" onClick={() => { onEditAddress(addressElement.self.uri); }}>
                   {intl.get('edit')}
@@ -126,14 +154,17 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
     const {
       addresses, onAddNewAddress,
     } = this.props;
-    const isDisabled = !addresses._addressform;
+
     if (addresses) {
+      const isDisabled = !addresses._addressform;
       return (
         <div className="profile-addresses-container" data-region="profileAddressesRegion">
           <div>
-            <h2>
-              {intl.get('addresses')}
-            </h2>
+            {addresses._element && (
+              <p className="manage-address-title">
+                {intl.get('manage-your-account-addresses')}
+              </p>
+            )}
             <div className="profile-addresses-wrapper">
               {this.renderAddresses()}
             </div>
