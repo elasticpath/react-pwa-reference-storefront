@@ -96,12 +96,12 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
 
     this.state = {
       itemQuantity: 1,
-      isLoading: false,
       itemConfiguration: {},
       selectionValue: '',
       addToCartLoading: false,
       addToRequisitionListLoading: false,
       requisitionListData: undefined,
+      isAdded: false,
     };
 
     this.addToWishList = this.addToWishList.bind(this);
@@ -223,11 +223,9 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
   }
 
   handleSkuSelection(event) {
-    const { onChangeProductFeature } = this.props;
+    const { onChangeProductFeature, handleLoading } = this.props;
     const selfUri = event.target.value;
-    this.setState({
-      isLoading: true,
-    });
+    handleLoading();
     login().then(() => {
       cortexFetch(`${selfUri}?followlocation=true&zoom=${ZOOM.sort().join()}`,
         {
@@ -240,9 +238,6 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
         })
         .then(res => res.json())
         .then((res) => {
-          this.setState({
-            isLoading: false,
-          });
           onChangeProductFeature(res._code[0].code);
         })
         .catch((error) => {
@@ -274,6 +269,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
 
   addToSelectedCart(cart, onCountChange) {
     const { itemQuantity, itemConfiguration } = this.state;
+    const { isQuickView } = this.props;
     this.setState({ addToCartLoading: true });
 
     const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
@@ -295,6 +291,9 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           onCountChange(cartName, itemQuantity);
+          if (isQuickView) {
+            this.setState({ isAdded: true });
+          }
         }
         this.setState({ addToCartLoading: false });
       })
@@ -306,8 +305,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
   }
 
   renderConfiguration() {
-    const { isLoading } = this.state;
-    const { productData } = this.props;
+    const { productData, isLoading } = this.props;
     if (productData._addtocartform && productData._addtocartform[0].configuration) {
       const keys = Object.keys(productData._addtocartform[0].configuration);
       return keys.map(key => (
@@ -480,10 +478,10 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
   render() {
     const {
       addToCartLoading,
-      isLoading,
       addToRequisitionListLoading,
       itemQuantity,
       itemConfiguration,
+      isAdded,
     } = this.state;
     const {
       productData,
@@ -491,12 +489,13 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
       onAddToCart,
       itemIndex,
       isQuickView,
+      isLoading,
     } = this.props;
     const { availability, availabilityString, productLink } = ProductDisplayItemDetails.extractAvailabilityParams(productData);
     const { listPrice, itemPrice } = ProductDisplayItemDetails.extractPrice(productData);
     const multiCartData = ((productData && productData._addtocartforms) || []).flatMap(addtocartforms => addtocartforms._element);
     const SelectCartButton = () => (
-      <DropdownCartSelection itemIndex={itemIndex} multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={intl.get('add-to-cart')} />
+      <DropdownCartSelection itemIndex={itemIndex} multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={!isAdded ? intl.get('add-to-cart') : intl.get('added')} />
     );
     const isMultiCartEnabled = (productData._addtocartforms || []).flatMap(forms => forms._element).length > 0;
     const {

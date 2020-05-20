@@ -34,14 +34,18 @@ export interface ProductDisplayDetailsProps {
     itemIndex?: number,
     /** is quick view */
     isQuickView?: boolean,
+    /** is loading */
+    isLoading?: boolean,
+    /** handle loading */
+    handleLoading?: (...args: any[]) => any,
 }
 
 export interface ProductDisplayItemMainState {
     requisitionListData: any,
     itemQuantity: number,
-    isLoading: boolean,
     itemConfiguration: { [key: string]: any },
     selectionValue: string,
     addToCartLoading: boolean,
     addToRequisitionListLoading: boolean,
+    isAdded: boolean,
   }

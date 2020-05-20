@@ -74,6 +74,7 @@ export interface ProductDisplayItemMainProps {
   featuredProductAttribute?: boolean,
   /** is product compare page */
   itemIndex?: number,
+  /** is quick view */
   isQuickView?: boolean,
 }
 
@@ -87,6 +88,7 @@ export interface ProductDisplayItemMainState {
   multiImages: any,
   meshVRImageExists: boolean,
   backgroundVRImageExists: boolean,
+  isLoading: boolean,
 }
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -130,6 +132,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       detailsProductData: [],
       vrMode: false,
       multiImages: [],
+      isLoading: false,
     };
 
     this.renderProductImage = this.renderProductImage.bind(this);
@@ -139,6 +142,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.getVRBackgroundImg = this.getVRBackgroundImg.bind(this);
     this.handleArLinkClick = this.handleArLinkClick.bind(this);
     this.getVRMesh = this.getVRMesh.bind(this);
+    this.handleLoading = this.handleLoading.bind(this);
   }
 
   componentDidMount() {
@@ -174,6 +178,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           arFileExists,
           backgroundVRImageExists,
           meshVRImageExists,
+          isLoading: false,
         });
       } catch (err) {
         // eslint-disable-next-line no-console
@@ -221,6 +226,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         arFileExists,
         backgroundVRImageExists,
         meshVRImageExists,
+        isLoading: false,
       });
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -249,6 +255,10 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           console.error(error.message);
         });
     });
+  }
+
+  handleLoading() {
+    this.setState({ isLoading: true });
   }
 
   handleDetailAttribute(index) {
@@ -399,7 +409,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   render() {
     const {
-      productData, requisitionListData, vrMode, detailsProductData,
+      productData, requisitionListData, vrMode, detailsProductData, isLoading,
     } = this.state;
 
     const {
@@ -435,7 +445,17 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 </div>
               </div>
             </div>
-            <ProductDisplayItemDetails itemIndex={itemIndex} productData={productData} requisitionListData={requisitionListData} onAddToWishList={onAddToWishList} onChangeProductFeature={onChangeProductFeature} onAddToCart={onAddToCart} isQuickView={isQuickView} />
+            <ProductDisplayItemDetails
+              itemIndex={itemIndex}
+              productData={productData}
+              requisitionListData={requisitionListData}
+              onAddToWishList={onAddToWishList}
+              onChangeProductFeature={onChangeProductFeature}
+              onAddToCart={onAddToCart}
+              isQuickView={isQuickView}
+              isLoading={isLoading}
+              handleLoading={this.handleLoading}
+            />
           </div>
           {!isQuickView && (
             <React.Fragment>
