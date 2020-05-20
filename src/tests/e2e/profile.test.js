@@ -71,6 +71,8 @@ const EDIT_FIRST_NAME = 'input[id="registration_form_firstName"]';
 const EDIT_LAST_NAME = 'input[id="registration_form_lastName"]';
 const SAVE_PERSONAL_INFO_BUTTON = 'button[data-el-label="addressForm.save"]';
 const CHECKING_FIRST_NAME = 'span[id="profile_personal_info_givenName"]';
+const EDIT_NEW_ADDRESS = '.edit-addresses-btn';
+const LINK_TO_PROFILE_PAGE = 'a[data-region="my-profile"]';
 const ADD_NEW_ADDRESS = '.profile-new-address-btn';
 const ADD_NEW_PAYMENT_METHOD = '.new-payment-btn';
 const FORM_EMAIL_USER_NAME = '#registration_form_emailUsername';
@@ -92,13 +94,12 @@ const EXPIRY_MONTH = "#ExpiryMonth";
 const EXPIRY_YEAR = "#ExpiryYear";
 const SECURITY_CODE = "#SecurityCode";
 const CONTINUE_BUTTON = "button.payment-save-btn";
-const ADDRESS_NAME = ".address-name";
+const ADDRESS_STREET_NAME = ".address-street-address";
 const CREATED_PAYMENT_METHOD = "ul.profile-payment-methods-listing:nth-child(1)";
 const CREATED_ADDRESS_METHOD = "ul.profile-addresses-listing:nth-child(1)";
 const PURCHASE_HISTORY_ITEM = "#header_navbar_login_menu_purchase_history_link";
 
-const EXPECTED_FIRST_NAME = 'john2';
-const EXPECTED_ADDRESS_NAME= 'Test User';
+const EXPECTED_STREET_NAME= "555 Main Street";
 
 describe('Profile', () => {
   test('Navigate Profile', async () => {
@@ -225,6 +226,8 @@ describe('Profile', () => {
     await page.click(MY_PROFILE);
 
     // And I click to add address
+    await page.waitForSelector(EDIT_NEW_ADDRESS);
+    await page.click(EDIT_NEW_ADDRESS);
     await page.waitForSelector(ADD_NEW_ADDRESS);
     await page.click(ADD_NEW_ADDRESS);
 
@@ -242,7 +245,9 @@ describe('Profile', () => {
 
     // And I click to add payment method
     await page.waitForSelector(CREATED_ADDRESS_METHOD);
-    await page.waitFor(3000);
+    await page.waitForSelector(LINK_TO_PROFILE_PAGE);
+    await page.click(LINK_TO_PROFILE_PAGE);
+    await page.waitForSelector(ADD_NEW_PAYMENT_METHOD);
     await page.click(ADD_NEW_PAYMENT_METHOD);
 
     await page.waitForSelector(CARD_TYPE);
@@ -262,10 +267,10 @@ describe('Profile', () => {
     await page.click(MY_PROFILE);
 
     // Then I can see my addresses
-    await page.waitForSelector(ADDRESS_NAME);
-    const element = await page.$(ADDRESS_NAME);
+    await page.waitForSelector(ADDRESS_STREET_NAME);
+    const element = await page.$(ADDRESS_STREET_NAME);
     const text = await page.evaluate(el => el.textContent, element);
-    expect(text).toEqual(EXPECTED_ADDRESS_NAME);
+    expect(text).toEqual(EXPECTED_STREET_NAME);
 
     await browser.close();
   }, 500000);

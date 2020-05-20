@@ -24,6 +24,11 @@
 .address-book-page {
   margin-bottom: 200px;
 }
+.profile-addresses-listing {
+  margin-bottom: 40px;
+  padding-right: 10px;
+  width: 50%;
+}
 
 .profile-address-container {
   .style-radio + label  {
@@ -53,10 +58,9 @@
   }
 
 }
-@media (min-width: $mobileWidth) {
+@media (max-width: $mobileWidth) {
   .profile-addresses-listing {
-    width: 50%;
-    padding-right: 10px;
+    margin-bottom: 20px;
   }
 }
 

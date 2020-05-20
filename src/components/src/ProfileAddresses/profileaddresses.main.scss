@@ -140,3 +140,61 @@
 .check-title {
   margin-left: 20px;
 }
+
+.delete-address-dialog {
+  padding: 15px 30px;
+
+  @media (min-width: $mobileWidth) {
+    min-width: 550px;
+  }
+
+  .dialog-header {
+    font-size: 20px;
+  }
+
+  .dialog-content {
+    padding: 40px 0 20px;
+  }
+
+  .dialog-footer {
+    flex: 0 0 auto;
+    text-align: right;
+    padding-bottom: 10px;
+
+    .cancel {
+      border: none;
+      text-transform: capitalize;
+
+      &:hover {
+        background-color: unset;
+        color: $firstComplimentColor;
+      }
+    }
+    .upload {
+      text-transform: capitalize;
+      background-color: $buttonActiveColor;
+
+      &:hover {
+        background-color: $buttonActiveColor;
+      }
+    }
+  }
+
+  .loader-wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255,255,255,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 480px) {
+    .dialog-footer button {
+      width: 100px;
+    }
+  }
+}

@@ -205,6 +205,12 @@
           transform: translate(2px, 1px) rotate(-45deg);
         }
       }
+      + .disabled {
+        &:before {
+          background-color: $buttonFocusColor;
+          border-color: $buttonFocusColor;
+        }
+      }
     }
   }
 }

@@ -21,6 +21,7 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
+import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
@@ -44,16 +45,44 @@ interface ProfileAddressesMainProps {
   /** chosen Shipping Address URI */
   chosenShippingUri?: string,
 }
+interface ProfileAddressesMainState {
+  isDeleteAddressOpen: boolean,
+  selectedUri: boolean,
+  isLoading: boolean,
+}
 
-class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
+class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileAddressesMainState> {
   static defaultProps = {
     chosenBillingUri: '',
     chosenShippingUri: '',
   };
 
-  handleDelete(link) {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isDeleteAddressOpen: false,
+      selectedUri: false,
+      isLoading: false,
+    };
+    this.handleDeleteModalOpen = this.handleDeleteModalOpen.bind(this);
+    this.handleDeleteModalClose = this.handleDeleteModalClose.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDeleteModalOpen(selectedUri) {
+    this.setState({ isDeleteAddressOpen: true, selectedUri });
+  }
+
+  handleDeleteModalClose() {
+    this.setState({ isDeleteAddressOpen: false });
+  }
+
+  handleDelete() {
+    const { selectedUri } = this.state;
+    this.setState({ isLoading: true });
     login().then(() => {
-      cortexFetch(link, {
+      cortexFetch(selectedUri, {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json',
@@ -62,6 +91,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
       }).then(() => {
         const { onChange } = this.props;
         onChange();
+        this.setState({ isLoading: false, isDeleteAddressOpen: false });
       }).catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
@@ -131,7 +161,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
                 <button className="ep-btn small edit-address-btn" type="button" onClick={() => { onEditAddress(addressElement.self.uri); }}>
                   {intl.get('edit')}
                 </button>
-                <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
+                <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDeleteModalOpen(addressElement.self.uri); }} data-actionlink="">
                   {intl.get('delete')}
                 </button>
               </li>
@@ -154,7 +184,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
     const {
       addresses, onAddNewAddress,
     } = this.props;
-
+    const { isDeleteAddressOpen, isLoading } = this.state;
     if (addresses) {
       const isDisabled = !addresses._addressform;
       return (
@@ -171,6 +201,29 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
             <button className="ep-btn primary wide profile-new-address-btn" type="button" disabled={isDisabled} onClick={onAddNewAddress} data-region="billingAddressButtonRegion">
               {intl.get('add-new-address')}
             </button>
+            <Modal
+              open={isDeleteAddressOpen}
+              onClose={this.handleDeleteModalClose}
+              classNames={{ modal: 'delete-address-dialog' }}
+            >
+              <div className="dialog-header">{intl.get('delete-address')}</div>
+              <div className="dialog-content">
+                <p>
+                  {intl.get('confirm-delete-address')}
+                </p>
+              </div>
+              <div className="dialog-footer btn-container">
+                <button className="ep-btn cancel" type="button" onClick={this.handleDeleteModalClose}>{intl.get('cancel')}</button>
+                <button className="ep-btn primary upload" type="button" onClick={this.handleDelete}>
+                  {intl.get('delete')}
+                </button>
+              </div>
+              {isLoading ? (
+                <div className="loader-wrapper">
+                  <div className="miniLoader" />
+                </div>
+              ) : ''}
+            </Modal>
           </div>
         </div>
       );

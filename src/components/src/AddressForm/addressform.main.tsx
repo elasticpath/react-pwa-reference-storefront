@@ -502,13 +502,13 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
           <div className="checkbox-wrap">
             <label htmlFor="shipping_address" className="checkbox-label">
               <input type="checkbox" id="shipping_address" defaultChecked={chosenShipping} disabled={chosenShipping} onChange={this.setAsShippingAddress} />
-              <span className="apply-balance-txt">
+              <span className={`${chosenShipping ? 'disabled' : ''} apply-balance-txt`}>
                 {intl.get('shipping-address')}
               </span>
             </label>
             <label htmlFor="billing_address">
               <input type="checkbox" id="billing_address" defaultChecked={chosenBilling} disabled={chosenBilling} onChange={this.setAsBillingAddress} />
-              <span className="apply-balance-txt">
+              <span className={`${chosenBilling ? 'disabled' : ''} apply-balance-txt`}>
                 {intl.get('billing-address')}
               </span>
             </label>
