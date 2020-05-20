@@ -328,7 +328,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     const { productData, itemIndex } = this.props;
     const { selectionValue } = this.state;
     const productKindsSelection = [];
-
+    const sizes = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large'];
     if (productData._definition[0]._options) {
       productData._definition[0]._options[0]._element.map((ChoiceElement, index) => {
         const arraySelectors = [];
@@ -341,15 +341,27 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
           ));
         }
         arraySelectors.unshift(chosenItem);
-        arraySelectors.sort((a, b) => {
-          if (a._description[0]['display-name'] < b._description[0]['display-name']) {
-            return -1;
-          }
-          if (a._description[0]['display-name'] > b._description[0]['display-name']) {
-            return 1;
-          }
-          return 0;
-        });
+        if (selectorTitle === 'Size') {
+          arraySelectors.sort((a, b) => {
+            if (sizes.indexOf(a._description[0]['display-name']) < sizes.indexOf(b._description[0]['display-name'])) {
+              return -1;
+            }
+            if (sizes.indexOf(a._description[0]['display-name']) > sizes.indexOf(b._description[0]['display-name'])) {
+              return 1;
+            }
+            return 0;
+          });
+        } else {
+          arraySelectors.sort((a, b) => {
+            if (a._description[0]['display-name'] < b._description[0]['display-name']) {
+              return -1;
+            }
+            if (a._description[0]['display-name'] > b._description[0]['display-name']) {
+              return 1;
+            }
+            return 0;
+          });
+        }
         productKindsSelection.push(arraySelectors);
         productKindsSelection[index].displayName = selectorTitle;
         productKindsSelection[index].defaultChousen = chosenItem._description[0]['display-name'];
