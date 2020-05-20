@@ -23,6 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
+import QuickView from '../QuickView/quickview.main';
 
 import './productlist.main.scss';
 
@@ -37,6 +38,12 @@ interface ProductListMainProps {
   productListLinks?: {
     [key: string]: any
   },
+  /** handle add to cart */
+  onAddToCart?: (...args: any[]) => any,
+  /** handle add to wishlist */
+  onAddToWishList?: (...args: any[]) => any,
+  /** handle add to requisition list */
+  onRequisitionPage?: (...args: any[]) => any,
 }
 
 interface ProductListMainState {
@@ -44,6 +51,9 @@ interface ProductListMainState {
   compareLink: string,
   categoryModel: any,
   compareList: any,
+  openQuickViewModal: boolean,
+  selectedProductData: any,
+  selectedProductSku: string,
 }
 
 class ProductListMain extends Component<ProductListMainProps, ProductListMainState> {
@@ -53,6 +63,9 @@ class ProductListMain extends Component<ProductListMainProps, ProductListMainSta
       itemDetail: '',
       productsCompare: '',
     },
+    onAddToCart: () => {},
+    onAddToWishList: () => {},
+    onRequisitionPage: () => {},
   };
 
   constructor(props) {
@@ -65,13 +78,31 @@ class ProductListMain extends Component<ProductListMainProps, ProductListMainSta
       compareLink: '',
       categoryModel: productData,
       compareList: [],
+      openQuickViewModal: false,
+      selectedProductData: undefined,
+      selectedProductSku: '',
     };
     this.handleCompareToggle = this.handleCompareToggle.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleChoseProduct = this.handleChoseProduct.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     const { productData } = nextProps;
     this.setState({ categoryModel: productData });
+  }
+
+  handleOpenModal() {
+    this.setState({ openQuickViewModal: true });
+  }
+
+  handleCloseModal() {
+    this.setState({ openQuickViewModal: false });
+  }
+
+  handleChoseProduct(productData, productSku) {
+    this.setState({ openQuickViewModal: true, selectedProductData: productData, selectedProductSku: productSku });
   }
 
   handleCompare(event) {
@@ -133,7 +164,7 @@ class ProductListMain extends Component<ProductListMainProps, ProductListMainSta
       if (product.self.type === 'offers.offer') {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
-            <ProductListItemMain offerData={product} itemDetailLink={productListLinks.itemDetail} />
+            <ProductListItemMain offerData={product} itemDetailLink={productListLinks.itemDetail} handleChoseProduct={this.handleChoseProduct} />
             {(showCompareButton) ? (
               this.checkComparison(product)
             ) : ('')}
@@ -143,7 +174,7 @@ class ProductListMain extends Component<ProductListMainProps, ProductListMainSta
       if (product._code) {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
-            <ProductListItemMain productElement={product} itemDetailLink={productListLinks.itemDetail} />
+            <ProductListItemMain productElement={product} itemDetailLink={productListLinks.itemDetail} handleChoseProduct={this.handleChoseProduct} />
             {this.checkComparison(product)}
           </li>
         );
@@ -158,8 +189,13 @@ class ProductListMain extends Component<ProductListMainProps, ProductListMainSta
       isCompare,
       compareList,
       compareLink,
+      openQuickViewModal,
+      selectedProductData,
+      selectedProductSku,
     } = this.state;
-    const { showCompareButton } = this.props;
+    const {
+      showCompareButton, onAddToCart, onAddToWishList, onRequisitionPage,
+    } = this.props;
     if (categoryModel._element && categoryModel._element.length > 0) {
       return (
         <div className="product-list-container" data-region="categoryBrowseRegion">
@@ -175,6 +211,15 @@ class ProductListMain extends Component<ProductListMainProps, ProductListMainSta
           <ul className="category-items-listing equalize" id="category_items_listing">
             {this.renderProducts()}
           </ul>
+          <QuickView
+            isOpen={openQuickViewModal}
+            handleClose={this.handleCloseModal}
+            productData={selectedProductData}
+            productSku={selectedProductSku}
+            onAddToCart={onAddToCart}
+            onAddToWishList={onAddToWishList}
+            onRequisitionPage={onRequisitionPage}
+          />
         </div>
       );
     }

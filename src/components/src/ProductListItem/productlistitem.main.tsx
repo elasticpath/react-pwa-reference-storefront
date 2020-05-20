@@ -45,6 +45,7 @@ interface ProductListItemMainProps {
   featuredProductAttribute?: boolean,
   /** item detail link */
   itemDetailLink?: string,
+  handleChoseProduct: (...args: any[]) => any,
 }
 
 interface ProductListItemMainState {
@@ -59,6 +60,7 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
     productElement: {},
     featuredProductAttribute: false,
     itemDetailLink: '',
+    handleChoseProduct: () => {},
   };
 
   constructor(props) {
@@ -77,7 +79,7 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
     if (productId !== '') {
       login().then(() => {
         cortexFetchItemLookupForm()
-          .then(() => itemLookup(productId)
+          .then(() => itemLookup(productId, false)
             .then((res) => {
               this.setState({
                 productData: res,
@@ -108,7 +110,7 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
   render() {
     const { productData, imageStatus } = this.state;
     const {
-      offerData, featuredProductAttribute, itemDetailLink,
+      offerData, featuredProductAttribute, itemDetailLink, handleChoseProduct,
     } = this.props;
     if (productData) {
       let listPrice = 'n/a';
@@ -231,6 +233,9 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
               </li>
             </ul>
           </div>
+          <button type="button" className="quick-view-btn" onClick={() => { handleChoseProduct(productData, productData._code[0].code); }}>
+            {intl.get('quick-view')}
+          </button>
         </div>
       );
     }

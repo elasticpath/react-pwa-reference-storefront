@@ -187,14 +187,15 @@
   }
 
   .guide {
-    margin:8px 0 20px;
+    margin:8px 0 10px;
 
     .select-wrap {
       display: inline-block;
-      margin-right: 10px;
+      margin: 0 10px 12px 0;
 
       label {
         cursor: pointer;
+        margin-bottom: 0;
       }
     }
     .color-wrap{
