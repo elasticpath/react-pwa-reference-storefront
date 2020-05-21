@@ -189,7 +189,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   renderBillingAddress() {
     const { profileData } = this.state;
-    if (profileData && profileData._addresses[0]._billingaddresses && profileData._addresses[0]._billingaddresses[0]._selector[0]._chosen) {
+    if (profileData && profileData._addresses && profileData._addresses[0]._billingaddresses && profileData._addresses[0]._billingaddresses[0]._selector[0]._chosen) {
       const selectedAddress = profileData._addresses[0]._billingaddresses[0]._selector[0]._chosen[0]._description[0].address;
       const selectedAddressName = profileData._addresses[0]._billingaddresses[0]._selector[0]._chosen[0]._description[0].name;
       return (
