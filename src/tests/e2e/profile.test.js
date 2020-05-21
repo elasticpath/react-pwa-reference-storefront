@@ -269,6 +269,9 @@ describe('Profile', () => {
     await page.click(MY_PROFILE);
 
     // Then I can see my addresses
+    await page.waitFor(3000);
+    await page.waitForSelector(EDIT_ADDRESS_BUTTON);
+    await page.click(EDIT_ADDRESS_BUTTON);
     await page.waitForSelector(ADDRESS_STREET_NAME);
     const element = await page.$(ADDRESS_STREET_NAME);
     const text = await page.evaluate(el => el.textContent, element);

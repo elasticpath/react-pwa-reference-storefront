@@ -101,8 +101,8 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
       const profileData = await res.json();
       if (profileData && profileData._defaultprofile) {
         const addressData = profileData._defaultprofile[0]._addresses[0];
-        const chosenBillingAddress = addressData._billingaddresses[0]._selector[0]._chosen && addressData._billingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
-        const chosenShippingAddress = addressData._shippingaddresses[0]._selector[0]._chosen && addressData._shippingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
+        const chosenBillingAddress = addressData._billingaddresses[0]._selector && addressData._billingaddresses[0]._selector[0]._chosen && addressData._billingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
+        const chosenShippingAddress = addressData._shippingaddresses[0]._selector && addressData._shippingaddresses[0]._selector[0]._chosen && addressData._shippingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
         this.setState({
           profileData: addressData,
           chosenBillingUri: chosenBillingAddress,
@@ -141,9 +141,9 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
     const newOrEdit = (addressData && addressData.addressUri) ? intl.get('edit') : intl.get('new');
     const isChosenBilling = chosenBillingUri === (addressData && addressData.addressUri);
     const isChosenShipping = chosenShippingUri === (addressData && addressData.addressUri);
-    let selectactionShippingUri = addressData && profileData._shippingaddresses[0]._selector[0]._choice
+    let selectactionShippingUri = addressData && profileData._shippingaddresses[0]._selector && profileData._shippingaddresses[0]._selector[0]._choice
       && profileData._shippingaddresses[0]._selector[0]._choice.find(el => addressData.addressUri === el._description[0].self.uri);
-    let selectactionBillingUri = addressData && profileData._billingaddresses[0]._selector[0]._choice
+    let selectactionBillingUri = addressData && profileData._billingaddresses[0]._selector && profileData._billingaddresses[0]._selector[0]._choice
       && profileData._billingaddresses[0]._selector[0]._choice.find(el => addressData.addressUri === el._description[0].self.uri);
     selectactionShippingUri = selectactionShippingUri && selectactionShippingUri._selectaction[0].self.uri;
     selectactionBillingUri = selectactionBillingUri && selectactionBillingUri._selectaction[0].self.uri;
