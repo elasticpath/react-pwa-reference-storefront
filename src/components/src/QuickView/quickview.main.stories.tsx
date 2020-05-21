@@ -27,10 +27,7 @@ import Readme from './README.md';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
 
 import {
-  mockProductDisplayItemMainPlain,
   mockProductDisplayItemMainColorAndSize,
-  mockProductDisplayItemMainInput,
-  mockProductDisplayItemMainMultiCart,
 } from '../ProductDisplayItem/productdisplayitem.main.api.mocks';
 
 import QuickView from './quickview.main';
