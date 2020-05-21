@@ -21,6 +21,8 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import { ReactComponent as MinusIcon } from '../../../images/icons/ic_minus.svg';
+import { ReactComponent as PlusIcon } from '../../../images/icons/ic_more.svg';
 
 import './quantitySelector.scss';
 
@@ -57,7 +59,7 @@ function QuantitySelector(props: QuantityDetailsMainProps) {
       </label>
       <div className="quantity-selector-container input-group-btn">
         <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={handleQuantityDecrement}>
-          <span>–</span>
+          <MinusIcon />
         </button>
         <div className="quantity-col form-content-quantity">
           <input
@@ -72,7 +74,7 @@ function QuantitySelector(props: QuantityDetailsMainProps) {
           />
         </div>
         <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={handleQuantityIncrement}>
-          <span>+</span>
+          <PlusIcon />
         </button>
       </div>
       {
