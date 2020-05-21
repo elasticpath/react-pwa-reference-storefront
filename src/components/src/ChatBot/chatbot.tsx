@@ -21,7 +21,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import Interactions from '@aws-amplify/interactions';
+import { Interactions } from 'aws-amplify';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
