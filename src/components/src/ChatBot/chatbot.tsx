@@ -26,7 +26,6 @@ import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
 import Config from '../../../ep.config.json';
-import '@aws-amplify/auth';
 
 // @ts-ignore
 import * as styles from './chatbot.scss';

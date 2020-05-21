@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@aws-amplify/auth": "^3.2.7",
     "@aws-amplify/core": "^3.2.7",
     "@aws-amplify/interactions": "^3.1.10",
     "@babel/core": "^7.7.7",
