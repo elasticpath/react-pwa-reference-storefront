@@ -26,6 +26,8 @@ import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
 import ImageContainer from '../ImageContainer/image.container';
 import Config from '../../../ep.config.json';
+import { ReactComponent as MinusIcon } from '../../../images/icons/ic_minus.svg';
+import { ReactComponent as PlusIcon } from '../../../images/icons/ic_more.svg';
 
 import './quickorderform.scss';
 
@@ -258,7 +260,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                   this.handleQuantityDecrement();
                 }}
               >
-                <span>–</span>
+                <MinusIcon />
               </button>
               <div className="quantity-col form-content form-content-quantity">
                 <input className="product-display-item-quantity-select form-control form-control-quantity" id={`quantity-${item.key}`} type="number" step="1" min="0" tabIndex={-1} value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
@@ -273,7 +275,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                   this.handleQuantityIncrement();
                 }}
               >
-                <span>+</span>
+                <PlusIcon />
               </button>
             </div>
           </div>
