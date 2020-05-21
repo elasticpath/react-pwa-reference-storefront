@@ -58,11 +58,10 @@ async function getChartItems(page) {
 }
 
 const CART_LINK_CSS = '.cart-link-container .cart-link';
-const HOME_PAGE_CSS = 'div.home-page-component';
 const REGISTER_BUTTON_CSS = "div[data-region='checkoutAutRegisterOptionRegion'] button.checkout-auth-option-register-btn";
 const CHECKOUT_BUTTON_CSS = "button[class='ep-btn primary btn-cmd-checkout']";
 const ADD_NEW_ADDRESS_CSS = 'button[data-region="billingAddressButtonRegion"]';
-const EDIT_NEW_ADDRESS = '.edit-addresses-btn';
+const EDIT_ADDRESS_BUTTON = '.edit-addresses-btn';
 const LINK_TO_PROFILE_PAGE = 'a[data-region="my-profile"]';
 const ADD_NEW_PAYMENT_CSS = 'button[class="ep-btn primary wide new-payment-btn"]';
 const ANONYMOUS_EMAIL_INPUT_CSS = 'div[data-region="anonymousCheckoutFeedbackRegion"] ~div input[id="Email"]';
@@ -126,8 +125,9 @@ describe('Purchase feature', () => {
 
       await page.waitForSelector(MY_PROFILE);
       await page.click(MY_PROFILE);
-      await page.waitForSelector(EDIT_NEW_ADDRESS);
-      await page.click(EDIT_NEW_ADDRESS);
+      await page.waitFor(3000);
+      await page.waitForSelector(EDIT_ADDRESS_BUTTON);
+      await page.click(EDIT_ADDRESS_BUTTON);
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
 
@@ -157,7 +157,7 @@ describe('Purchase feature', () => {
       await browser.close();
 
       expect(lastDigits).toEqual('1111');
-    }, 80000);
+    }, 90000);
 
   test('Purchase physical item as a new shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
