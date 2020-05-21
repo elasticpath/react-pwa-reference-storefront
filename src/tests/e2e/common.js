@@ -152,7 +152,7 @@ async function registerUser(page, userInfo) {
   await page.click(FORM_SUBMIT_BUTTON);
 }
 
-async function  addPaymentMethodToOrder(page, paymentMethod) {
+async function addPaymentMethodToOrder(page, paymentMethod) {
   const CARD_TYPE = '#CardType';
   const CARD_HOLDER_NAME = '#CardHolderName';
   const CARD_NUMBER = '#CardNumber';

@@ -71,7 +71,7 @@ const EDIT_FIRST_NAME = 'input[id="registration_form_firstName"]';
 const EDIT_LAST_NAME = 'input[id="registration_form_lastName"]';
 const SAVE_PERSONAL_INFO_BUTTON = 'button[data-el-label="addressForm.save"]';
 const CHECKING_FIRST_NAME = 'span[id="profile_personal_info_givenName"]';
-const EDIT_NEW_ADDRESS = '.edit-addresses-btn';
+const EDIT_ADDRESS_BUTTON = '.edit-addresses-btn';
 const LINK_TO_PROFILE_PAGE = 'a[data-region="my-profile"]';
 const ADD_NEW_ADDRESS = '.profile-new-address-btn';
 const ADD_NEW_PAYMENT_METHOD = '.new-payment-btn';
@@ -161,6 +161,7 @@ describe('Profile', () => {
     await page.click(MY_PROFILE);
 
     // And I click the edit personal info button
+    await page.waitFor(3000);
     await page.waitForSelector(EDIT_PERSONAL_INFO_BUTTON);
     await page.click(EDIT_PERSONAL_INFO_BUTTON);
 
@@ -180,7 +181,7 @@ describe('Profile', () => {
     const text = await page.evaluate(el => el.textContent, element);
 
     await browser.close();
-  }, 50000);
+  }, 60000);
 
   test('Create new user with Address and Payment Method', async () => {
     const browser = await puppeteer.launch({
@@ -226,8 +227,9 @@ describe('Profile', () => {
     await page.click(MY_PROFILE);
 
     // And I click to add address
-    await page.waitForSelector(EDIT_NEW_ADDRESS);
-    await page.click(EDIT_NEW_ADDRESS);
+    await page.waitFor(3000);
+    await page.waitForSelector(EDIT_ADDRESS_BUTTON);
+    await page.click(EDIT_ADDRESS_BUTTON);
     await page.waitForSelector(ADD_NEW_ADDRESS);
     await page.click(ADD_NEW_ADDRESS);
 
@@ -273,5 +275,5 @@ describe('Profile', () => {
     expect(text).toEqual(EXPECTED_STREET_NAME);
 
     await browser.close();
-  }, 500000);
+  }, 120000);
 });
