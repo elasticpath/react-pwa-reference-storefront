@@ -106,10 +106,6 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
     const arrayItems = dataItems
       .filter(item => item.code !== '')
       .map(item => ({ code: item.code, quantity: item.quantity }));
-    let totalQuantity = 0;
-    arrayItems.forEach((item) => {
-      totalQuantity += item.quantity;
-    });
     login().then(() => {
       const body: { [key: string]: any } = {};
       if (arrayItems) {

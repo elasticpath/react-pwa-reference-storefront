@@ -467,7 +467,6 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
   }
 
   handleQuantityChange(event) {
-    const { itemQuantity } = this.state;
     if (event.target.value === '') {
       this.setState({ itemQuantity: 1 });
     } else {

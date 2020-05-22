@@ -147,7 +147,7 @@ class B2bEditAccount extends Component<B2bEditAccountProps, B2bEditAccountState>
           handleUpdate();
           this.setState({ isLoading: false });
         })
-        .catch((err) => {
+        .catch(() => {
           this.setState({ isLoading: false });
         });
     });

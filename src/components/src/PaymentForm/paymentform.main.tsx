@@ -173,7 +173,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     }
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps) {
     const { defaultPostSelection } = this.props;
 
     if (defaultPostSelection !== prevProps.defaultPostSelection) {

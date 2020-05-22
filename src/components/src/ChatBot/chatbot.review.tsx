@@ -49,7 +49,7 @@ async function InvokeIntent(utterance) {
   return response;
 }
 
-const handleCompleteIntent = (err, confirmation) => {
+const handleCompleteIntent = (err) => {
   if (err) {
     // eslint-disable-next-line no-console
     console.error('Conversation failed...');

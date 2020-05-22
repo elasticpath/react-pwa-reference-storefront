@@ -56,7 +56,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
   }
 
   // eslint-disable-next-line consistent-return
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(props) {
     const { orderPaymentData } = props;
 
     const chosen = PurchaseOrderWidget.getChosenFromOrderData(orderPaymentData);

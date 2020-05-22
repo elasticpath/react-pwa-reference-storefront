@@ -41,9 +41,9 @@ enum MessageType {
 
 interface AccountsState {
   admins: any;
-  defaultBillingAddress: any;
+  /* defaultBillingAddress: any;
   defaultShippingAddress: any;
-  recentOrders: any;
+  recentOrders: any; */
   accounts: any;
   searchAccounts: string;
   isLoading: boolean;
@@ -89,7 +89,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
       isLoading: true,
       noSearchResults: false,
       showSearchLoader: false,
-      defaultBillingAddress: {
+      /* defaultBillingAddress: {
         name: 'Inez Larson',
         address: '198 Bendar Knoll',
         city: 'East Nicklaus',
@@ -134,7 +134,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
           orderTotal: '$2934.03',
           status: 'Processing',
         },
-      ],
+      ], */
       accounts: [],
       admins: [],
       searchAccounts: '',
@@ -330,13 +330,13 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
           }
 
           return result.json()
-            .catch(_ => Promise.reject(new Error(intl.get('general-upload-error'))))
+            .catch(() => Promise.reject(new Error(intl.get('general-upload-error'))))
             .then((parsedJson) => {
               const errorMsg = parsedJson.messages.map(m => intl.get(`backend-message-${m.id}`) || m['debug-message']).join(' ');
               return Promise.reject(new Error(errorMsg));
             });
         },
-        _ => Promise.reject(new Error(intl.get('general-upload-error'))),
+        () => Promise.reject(new Error(intl.get('general-upload-error'))),
       );
   }
 
@@ -358,9 +358,9 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
   render() {
     const {
       admins,
-      defaultBillingAddress,
+      /* defaultBillingAddress,
       defaultShippingAddress,
-      recentOrders,
+      recentOrders, */
       accounts,
       isLoading,
       searchAccounts,

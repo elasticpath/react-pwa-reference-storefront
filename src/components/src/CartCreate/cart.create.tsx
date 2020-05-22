@@ -173,7 +173,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
         body: JSON.stringify({ descriptor: { name: cartName } }),
       })
         .then(res => res.json())
-        .then((res) => {
+        .then(() => {
           this.fetchCartData(-1);
           handleCartsUpdate();
         })
@@ -347,7 +347,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
         </p>
         <div className="btn-wrap">
           <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index, 0)}>{intl.get('cancel')}</button>
-          <button type="button" className="ep-btn ok-btn" onClick={event => this.handleDeleteCart(element, index)}>
+          <button type="button" className="ep-btn ok-btn" onClick={() => this.handleDeleteCart(element, index)}>
             {element.removeCartLoading ? (
               <div className="circularLoader" aria-label="Loading" />
             ) : (
