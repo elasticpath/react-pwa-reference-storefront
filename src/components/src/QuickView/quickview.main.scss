@@ -41,7 +41,7 @@
   }
 
   .product-item-container {
-    min-height: 400px;
+    min-height: 360px;
 
     .loader {
       width: 100px;
@@ -58,7 +58,7 @@
     width: 100%;
     padding-right: 0;
     padding-left: 0;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .itemdetail-assets {
@@ -139,6 +139,10 @@
           left: 5px;
         }
       }
+    }
+
+    .itemdetail-details {
+      width: 50%;
     }
   }
 

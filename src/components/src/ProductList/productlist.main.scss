@@ -61,12 +61,12 @@
       position: relative;
       display: inline-block;
       width: 25%;
-      padding: 0 10px 30px 10px;
+      padding: 0 10px 35px 10px;
       vertical-align: top;
 
       .compare-checkbox{
         position: absolute;
-        left: 10px;
+        left: 15px;
         bottom: 10px;
       }
 
@@ -106,5 +106,6 @@
     background: none;
     border: none;
     color: $firstComplimentColor;
+    margin-bottom: 5px;
   }
 }
