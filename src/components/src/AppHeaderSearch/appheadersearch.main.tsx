@@ -57,7 +57,7 @@ class AppHeaderSearchMain extends Component<AppHeaderSearchMainProps, AppHeaderS
     this.search = this.search.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     const { isFocused } = this.props;
 
     if (isFocused === true) {

@@ -60,11 +60,11 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
   const [error, setError] = useState(false);
   const [fallbackImgUrl, setFallbackImgUrl] = useState(imgUrl);
 
-  const handlePictureError = (e) => {
+  const handlePictureError = () => {
     setError(true);
   };
 
-  const handleImgError = (e) => {
+  const handleImgError = () => {
     if (isSkuImage) {
       setFallbackImgUrl(imgPlaceholder);
     } else {
@@ -84,13 +84,13 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
             type={`image/${type}`}
           />
         ))}
-        <img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} key={fileName} onLoad={onLoadData} onError={e => handlePictureError(e)} />
+        <img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} key={fileName} onLoad={onLoadData} onError={() => handlePictureError()} />
       </picture>
     );
   }
 
   if (fallbackImgUrl) {
-    return (<img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} onLoad={onLoadData} onError={e => handleImgError(e)} />);
+    return (<img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} onLoad={onLoadData} onError={() => handleImgError()} />);
   }
 
   return null;

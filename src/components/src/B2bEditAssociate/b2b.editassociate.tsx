@@ -80,7 +80,7 @@ class B2bEditAssociate extends Component<B2bEditAssociateProps, B2bEditAssociate
   }
 
   renderRoleSelection() {
-    const { rolesSelector, isSelf } = this.props;
+    const { rolesSelector } = this.props;
 
     const allAssociateRoles = [];
     if (rolesSelector) {

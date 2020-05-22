@@ -294,7 +294,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
           },
           body: JSON.stringify({ lineitems }),
         })
-        .then((res) => {
+        .then(() => {
           this.setState({
             multiSelectMode: false,
             selectedProducts: [],
@@ -364,7 +364,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     });
   }
 
-  clearListNameField(event) {
+  clearListNameField() {
     this.setState({
       listName: '',
     });

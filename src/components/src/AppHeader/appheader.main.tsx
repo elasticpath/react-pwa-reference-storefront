@@ -243,7 +243,6 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
       isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened, isDesktop, isLoggedInUser, multiCartData, totalQuantity,
     } = this.state;
     const {
-      checkedLocation,
       handleResetPassword,
       onCurrencyChange,
       onLocaleChange,
@@ -255,8 +254,6 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
       redirectToMainPage,
       appHeaderLinks,
       appHeaderLoginLinks,
-      appHeaderNavigationLinks,
-      appHeaderTopLinks,
       appModalLoginLinks,
     } = this.props;
     const availability = Boolean(cartData || multiCartData);

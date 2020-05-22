@@ -21,9 +21,7 @@
 import React from 'react';
 import './VRPanelContent.scss';
 
-interface VRPanelContentMainProps {}
-
-function VRPanelContent(props: VRPanelContentMainProps) {
+function VRPanelContent() {
   return (
     <div className="outer-html-texture">
       <div id="boxHTML" className="inner-html-texture">

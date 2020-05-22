@@ -19,7 +19,7 @@
  *
  */
 
-import React, { FormEvent, SyntheticEvent, Component } from 'react';
+import React, { SyntheticEvent, Component } from 'react';
 import { bloomreachSuggestionSearch } from '../utils/BloomreachSearchService';
 import './bloomreach.headersearch.main.scss';
 import { ReactComponent as SearchIcon } from '../../../images/header-icons/magnifying-glass.svg';
@@ -95,7 +95,7 @@ class BloomreachHeaderSearchMain extends Component<BloomreachHeaderSearchMainPro
     this.handleOnTouchEndOnSuggestionLiElement = this.handleOnTouchEndOnSuggestionLiElement.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     const { isFocused } = this.props;
 
     if (isFocused === true) {
@@ -189,7 +189,7 @@ class BloomreachHeaderSearchMain extends Component<BloomreachHeaderSearchMainPro
         onKeyDown={this.liHandleKeyDown}
         onMouseUp={(e) => { this.search(e, suggestion.q); }}
         onTouchEnd={(e) => { this.handleOnTouchEndOnSuggestionLiElement(e, suggestion.q); }}
-        onTouchMove={(e) => { this.isTouchMoveEvent = true; }}
+        onTouchMove={() => { this.isTouchMoveEvent = true; }}
       >
         {suggestion.dq}
       </li>

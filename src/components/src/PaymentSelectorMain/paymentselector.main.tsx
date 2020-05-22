@@ -332,7 +332,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
   render() {
     const { openNewPaymentModal, isLoading } = this.state;
     const {
-      onChange, disableAddPayment, shouldPostToProfile, showSaveToProfileOption, paymentInstrumentSelector,
+      onChange, disableAddPayment, shouldPostToProfile, showSaveToProfileOption,
     } = this.props;
 
     return (

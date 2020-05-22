@@ -21,7 +21,6 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import _ from 'lodash';
 import Modal from 'react-responsive-modal';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';

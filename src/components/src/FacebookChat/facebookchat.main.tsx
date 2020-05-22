@@ -74,7 +74,6 @@ class FacebookChat extends Component<FacebookChatProps, {}> {
   }
 
   render() {
-    const { config } = this.props;
     return (
       <div>
         <div id="fb-root" />

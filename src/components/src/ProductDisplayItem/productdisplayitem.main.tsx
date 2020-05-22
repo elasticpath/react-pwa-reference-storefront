@@ -150,7 +150,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.fetchRequisitionListsData();
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps) {
     const { productId, isQuickView } = this.props;
     if (prevProps.productId !== productId) {
       try {

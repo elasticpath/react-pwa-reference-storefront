@@ -34,7 +34,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     return (/Safari/i).test(userAgent) && !(/Chrome/i).test(userAgent);
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps() {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       return {
         isMobile: true,

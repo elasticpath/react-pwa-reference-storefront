@@ -55,9 +55,6 @@ interface QuickOrderMainState {
   },
   showFailedMessage: boolean,
   failedSubmit: boolean,
-  productDataInfo: {
-    [key: string]: any
-  },
   addToCartFailedMessage: string
 }
 
@@ -79,7 +76,6 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
     this.state = {
       failedSubmit: false,
       productId: '',
-      productDataInfo: {},
       itemQuantity: 1,
       addToCartFailedMessage: '',
       isLoading: false,
@@ -159,14 +155,13 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
       productId,
       itemQuantity,
       openModal,
-      productDataInfo,
       productItemInfo,
       showFailedMessage,
     } = this.state;
     const {
       isBuyItAgain, itemDetailLink, onMoveToCart, onConfiguratorAddToCart, itemName,
     } = this.props;
-    const orderModal = data => (
+    const orderModal = () => (
       <Modal open={openModal || false} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }} showCloseIcon={false}>
         <div id="buy-it-again-modal">
           <div className="modal-content" id="simplemodal-container">
@@ -201,7 +196,7 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
               {intl.get('buy-it-again')}
             </button>
           </div>
-          {orderModal(productDataInfo)}
+          {orderModal()}
           <div className="auth-feedback-container" id={`product_display_item_add_to_cart_feedback_container${itemName}`} data-i18n="">
             {addToCartFailedMessage}
           </div>
@@ -239,7 +234,7 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
               </button>
             </div>
           </form>
-          {productItemInfo && orderModal(productItemInfo)}
+          {productItemInfo && orderModal()}
           <div className="auth-feedback-container failed-message" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
             {showFailedMessage && intl.get('incorrect-sku')}
           </div>

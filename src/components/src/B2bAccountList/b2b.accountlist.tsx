@@ -95,7 +95,6 @@ class B2bAccountList extends Component<B2bAccountMainProps, B2bAccountMainState>
         accountListData,
         accountName,
         registrationNumber,
-        getSubAccountData,
       } = this.props;
 
       const { showAccountsMobileMenu } = this.state;

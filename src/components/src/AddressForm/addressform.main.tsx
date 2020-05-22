@@ -172,7 +172,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
   async submitAddress(event) {
     event.preventDefault();
     const {
-      addressData, fetchData, onCloseModal, chosenShipping, selectactionShippingUri, selectactionBillingUri,
+      addressData, fetchData, onCloseModal, selectactionShippingUri, selectactionBillingUri,
     } = this.props;
     const {
       addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode, isShippingAddress, isBillingAddress,
