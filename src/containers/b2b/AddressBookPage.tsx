@@ -30,6 +30,7 @@ import Config from '../../ep.config.json';
 import './AddressBookPage.scss';
 import AddressFormMain from '../../components/src/AddressForm/addressform.main';
 import ProfileAddressesMain from '../../components/src/ProfileAddresses/profileaddresses.main';
+import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
 
 const zoomArray = [
   'defaultprofile',
@@ -149,7 +150,7 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
     selectactionBillingUri = selectactionBillingUri && selectactionBillingUri._selectaction[0].self.uri;
 
     return (
-      <Modal open={openAddressModal} onClose={this.handleCloseAddressModal}>
+      <Modal open={openAddressModal} onClose={this.handleCloseAddressModal} showCloseIcon={false}>
         <div className="modal-lg new-address-modal">
           <div className="modal-content">
             <div className="modal-header">
@@ -158,6 +159,9 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
                 {' '}
                 {intl.get('address')}
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleCloseAddressModal}>
+                <CloseIcon />
+              </button>
             </div>
             <div className="modal-body">
               <AddressFormMain
@@ -187,9 +191,9 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
       <div className="address-book-page">
         <div className="address-book-container">
           <div className="b2b-header">
-            <div className="page-title">
+            <h1 className="page-title">
               {intl.get('address-book')}
-            </div>
+            </h1>
           </div>
           <div>
             <p className="address-info-container-title">

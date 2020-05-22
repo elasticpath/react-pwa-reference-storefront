@@ -553,7 +553,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                     listPrice !== itemPrice
                       ? (
                         <li className="itemdetail-purchase-price">
-                          <p className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
+                          <p className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${!isQuickView ? productData._code[0].code : ''}`}>
                             {itemPrice}
                           </p>
                           <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData._code[0].code}`}>
@@ -591,11 +591,11 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                 </label>
               </li>
               <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
+                <label htmlFor={`category_item_release_date_${!isQuickView ? productData._code[0].code : ''}`} className="itemdetail-release-date-label">
                   {intl.get('expected-release-date')}
                     :&nbsp;
                 </label>
-                <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
+                <span className="itemdetail-release-date-value" id={`category_item_release_date_${!isQuickView ? productData._code[0].code : ''}`}>
                   {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
                 </span>
               </li>

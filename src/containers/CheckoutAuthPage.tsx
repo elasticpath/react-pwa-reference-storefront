@@ -162,7 +162,7 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
                     </div>
 
                     <div className="form-group checkout-auth-form-group">
-                      <label htmlFor="OAuthUserName" data-el-label="checkoutAuthOption.username" className="control-label">
+                      <label htmlFor="registration_form_emailUsername" data-el-label="checkoutAuthOption.username" className="control-label">
                         <span className="required-label">
                           *
                         </span>
@@ -173,7 +173,7 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
                       <input className="form-control" id="registration_form_emailUsername" name="OAuthUserName" type="email" onChange={this.setUsername} />
                     </div>
                     <div className="form-group checkout-auth-form-group">
-                      <label htmlFor="OAuthPassword" data-el-label="checkoutAuthOption.password" className="control-label">
+                      <label htmlFor="registration_form_password" data-el-label="checkoutAuthOption.password" className="control-label">
                         <span className="required-label">
                           *
                         </span>

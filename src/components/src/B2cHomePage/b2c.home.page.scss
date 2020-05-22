@@ -297,6 +297,10 @@
           .goods-info {
             position: relative;
             z-index: 1;
+
+            @media (min-width: 481px) {
+              width: 50%;
+            }
           }
 
           @media (min-width: 481px) {

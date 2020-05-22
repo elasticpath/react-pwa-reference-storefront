@@ -44,6 +44,10 @@
     min-height: 44px;
     background: $mainBackgroundColor;
 
+    &:hover {
+      background-color: $firstComplimentColor;
+    }
+
     @media screen and (min-width: 681px) {
       min-width: 315px;
     }

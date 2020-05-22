@@ -259,6 +259,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                 onClick={() => {
                   this.handleQuantityDecrement();
                 }}
+                aria-label="Remove one item"
               >
                 <MinusIcon />
               </button>
@@ -274,6 +275,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                 onClick={() => {
                   this.handleQuantityIncrement();
                 }}
+                aria-label="Add another item"
               >
                 <PlusIcon />
               </button>

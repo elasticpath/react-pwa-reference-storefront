@@ -525,7 +525,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
             )
             : ('')
           }
-          <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
+          <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`} title={itemDisplayName}>
             <ImageContainer
               imgClassName="cart-lineitem-thumbnail"
               isSkuImage
@@ -613,13 +613,13 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           {(quantity !== undefined) && (
             <>
               <span className="input-group-btn" key="quantity-buttons">
-                <button type="button" key="quantity-button-minus" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
+                <button type="button" key="quantity-button-minus" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" aria-label="Remove one item" onClick={this.handleQuantityDecrement}>
                   <MinusIcon />
                 </button>
                 <div className="quantity-col form-content form-content-quantity">
                   <input className="product-display-item-quantity-select form-control form-control-quantity" aria-label="product quantity" type="number" step="1" min="1" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
                 </div>
-                <button type="button" key="quantity-button-plus" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
+                <button type="button" key="quantity-button-plus" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" aria-label="Add another item" onClick={this.handleQuantityIncrement}>
                   <PlusIcon />
                 </button>
               </span>

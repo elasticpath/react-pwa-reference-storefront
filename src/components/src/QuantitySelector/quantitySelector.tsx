@@ -58,7 +58,7 @@ function QuantitySelector(props: QuantityDetailsMainProps) {
         {intl.get('quantity')}
       </label>
       <div className="quantity-selector-container input-group-btn">
-        <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={handleQuantityDecrement}>
+        <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" aria-label="Remove one item" onClick={handleQuantityDecrement}>
           <MinusIcon />
         </button>
         <div className="quantity-col form-content-quantity">
@@ -73,7 +73,7 @@ function QuantitySelector(props: QuantityDetailsMainProps) {
             onChange={handleQuantityChange}
           />
         </div>
-        <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={handleQuantityIncrement}>
+        <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" aria-label="Add another item" onClick={handleQuantityIncrement}>
           <PlusIcon />
         </button>
       </div>
