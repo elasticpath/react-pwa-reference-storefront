@@ -24,7 +24,6 @@ import ReactDOM from 'react-dom';
 import intl from 'react-intl-universal';
 import App from './App';
 import './theme/index.scss';
-import epConfig from './ep.config.json';
 import * as UserPrefs from './components/src/utils/UserPrefs';
 
 import './theme/reset.scss';
@@ -40,15 +39,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 const locales = {};
 const currentlang = UserPrefs.getSelectedLocaleValue();
-epConfig.supportedLocales.forEach((locale) => {
-  if (currentlang === locale.value) {
-    // eslint-disable-next-line import/no-dynamic-require, global-require
-    const localeMessages = require(`./localization/${currentlang}.json`);
-    // eslint-disable-next-line import/no-dynamic-require, global-require
-    const debugMessages = require(`./localization/messages-${currentlang}.json`);
-    locales[locale.value] = { ...localeMessages, ...debugMessages };
-  }
-});
+// eslint-disable-next-line import/no-dynamic-require, global-require
+const localeMessages = require(`./localization/${currentlang}.json`);
+// eslint-disable-next-line import/no-dynamic-require, global-require
+const debugMessages = require(`./localization/messages-${currentlang}.json`);
+locales[currentlang] = { ...localeMessages, ...debugMessages };
+
 // localisation init
 intl.init({
   currentLocale: currentlang,
