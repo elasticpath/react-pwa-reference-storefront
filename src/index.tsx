@@ -24,7 +24,6 @@ import ReactDOM from 'react-dom';
 import intl from 'react-intl-universal';
 import App from './App';
 import './theme/index.scss';
-import epConfig from './ep.config.json';
 import * as UserPrefs from './components/src/utils/UserPrefs';
 
 import './theme/reset.scss';
@@ -32,23 +31,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './theme/style.scss';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-const locales = {};
-epConfig.supportedLocales.forEach((locale) => {
-  // eslint-disable-next-line import/no-dynamic-require, global-require
-  const localeMessages = require(`./localization/${locale.value}.json`);
-  // eslint-disable-next-line import/no-dynamic-require, global-require
-  const debugMessages = require(`./localization/messages-${locale.value}.json`);
-  locales[locale.value] = { ...localeMessages, ...debugMessages };
-});
-
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line global-require
   const axe = require('react-axe');
   axe(React, ReactDOM, 1000);
 }
+
+const locales = {};
+const currentlang = UserPrefs.getSelectedLocaleValue();
+// eslint-disable-next-line import/no-dynamic-require, global-require
+const localeMessages = require(`./localization/${currentlang}.json`);
+// eslint-disable-next-line import/no-dynamic-require, global-require
+const debugMessages = require(`./localization/messages-${currentlang}.json`);
+locales[currentlang] = { ...localeMessages, ...debugMessages };
+
 // localisation init
 intl.init({
-  currentLocale: UserPrefs.getSelectedLocaleValue(),
+  currentLocale: currentlang,
   locales,
 })
   .then(() => {
