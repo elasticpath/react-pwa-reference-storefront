@@ -21,14 +21,18 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { Interactions } from 'aws-amplify';
+import Interactions from '@aws-amplify/interactions';
+import Auth from '@aws-amplify/auth';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
 import Config from '../../../ep.config.json';
+import awsmobile from '../../../aws-exports';
 
 // @ts-ignore
 import * as styles from './chatbot.scss';
+
+Auth.configure(awsmobile);
 
 const theme = {
   background: styles.chatBackground,
