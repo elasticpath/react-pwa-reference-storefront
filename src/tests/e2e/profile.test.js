@@ -151,6 +151,8 @@ describe('Profile', () => {
       waitUntil: 'domcontentloaded'
     });
 
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+
     // When I login as following registered shopper
     await loginUser(page, userData);
 
