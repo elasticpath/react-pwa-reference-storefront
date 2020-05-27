@@ -133,7 +133,7 @@ describe('Profile', () => {
     await page.waitForSelector(PURCHASE_HISTORY);
 
     await browser.close();
-  }, 50000);
+  }, 60000);
 
   test('Update Personal Info', async () => {
     const browser = await puppeteer.launch({
@@ -150,6 +150,8 @@ describe('Profile', () => {
       timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
+
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
 
     // When I login as following registered shopper
     await loginUser(page, userData);
