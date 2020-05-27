@@ -25,6 +25,7 @@ import React, {
 import Config from '../../../ep.config.json';
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 import './image.container.scss';
+import LazyImage from '../LazyImageContainer/lazy.image.container';
 
 interface ImageContainerProps {
   /** prefix name of the file in s3 with this form ${fileName}-${size}.${type} */
@@ -84,13 +85,13 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
             type={`image/${type}`}
           />
         ))}
-        <img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} key={fileName} onLoad={onLoadData} onError={() => handlePictureError()} />
+        <LazyImage className={imgClassName} alt={imgAlt} src={fallbackImgUrl} key={fileName} onLoad={onLoadData} onError={() => handlePictureError()} />
       </picture>
     );
   }
 
   if (fallbackImgUrl) {
-    return (<img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} onLoad={onLoadData} onError={() => handleImgError()} />);
+    return (<LazyImage className={imgClassName} alt={imgAlt} src={fallbackImgUrl} onLoad={onLoadData} onError={() => handleImgError()} />);
   }
 
   return null;
