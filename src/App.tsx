@@ -53,7 +53,8 @@ const routes: any [] = baseRoutes;
 let AdditionalRoutes: any;
 
 let ChatComponent;
-if (Config.chatbot.enable) {
+const isLoggedInUser = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED';
+if (Config.chatbot.enable && isLoggedInUser) {
   const ChatComponentImport = import(/* webpackChunkName: "chatbot" */ './components/src/ChatBot/chatbot');
   ChatComponent = lazy(() => ChatComponentImport);
 }
@@ -218,7 +219,7 @@ const Root = () => {
         {complianceSupportModal}
       </main>
       <AppFooterMain appFooterLinks={appFooterLinks} />
-      {Config.chatbot.enable && (
+      {Config.chatbot.enable && isLoggedInUser && (
         <Suspense fallback={<div />}>
           <ChatComponent />
         </Suspense>
