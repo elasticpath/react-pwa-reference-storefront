@@ -31,7 +31,7 @@
   "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
   "enableOfflineMode": false,
   "ImageContainerSrcs": {
-    "types": ["webp", "jp2", "jpg"],
+    "types": ["webp", "jp2", "jpg", "jxr"],
     "sizes": ["768", "1092", "2800"]
   },
   "b2b": {
