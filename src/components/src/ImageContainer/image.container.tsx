@@ -59,8 +59,8 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
   const imgPrefix = isSkuImage ? Config.skuImagesUrl : Config.siteImagesUrl;
 
   const [error, setError] = useState(false);
-  const [imageSrc, setImageSrc] = useState();
-  const [imageRef, setImageRef] = useState();
+  const [imageSrc, setImageSrc] = useState<string>();
+  const [imageRef, setImageRef] = useState<any>();
 
   useEffect(
     () => {
