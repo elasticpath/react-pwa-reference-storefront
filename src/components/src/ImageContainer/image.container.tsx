@@ -96,7 +96,7 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
         }
       };
     },
-    [imageSrc, imageRef],
+    [imgUrl, imageSrc, imageRef],
   );
 
   const handlePictureError = () => {
