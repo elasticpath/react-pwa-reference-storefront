@@ -53,7 +53,7 @@ storiesOf('Components|ImageContainer', module)
       imgClassName="main-banner-image"
       pictureClassName="main-banner-image"
       isSkuImage
-      sizes={['1092', '2800']}
+      sizes={[['1092', '490x490'], ['2800', '450x450']]}
       types={['jp2', 'webp']}
       fileName="KIDS_SS_HANLEY"
       imgUrl={bannerImage3}

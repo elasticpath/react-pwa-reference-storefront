@@ -1,19 +1,31 @@
 #!/bin/bash
 
-arr1=( "${@:2:$1}" ); shift "$(( $1 + 1 ))"
-arr2=( "${@:2:$1}" ); shift "$(( $1 + 1 ))"
+images=( "${@:2:$1}" ); shift "$(( $1 + 1 ))"
 
-for i in "${arr1[@]}";
+screenBreakpoints=()
+while read i; do
+  screenBreakpoints+=($i)
+done <<<$(jq -c '.ImageContainerSrcs.sizes[][0]' src/ep.config.json | tr -d \")
+
+imageSizes=()
+while read i; do
+  imageSizes+=($i)
+done <<<$(jq -c '.ImageContainerSrcs.sizes[][1]' src/ep.config.json | tr -d \")
+
+imageTypes=()
+while read i; do
+  imageTypes+=($i)
+done <<<$(jq -c '.ImageContainerSrcs.types[]' src/ep.config.json | tr -d \")
+
+for i in "${images[@]}";
   do
 
     mkdir ./$i/converted
     mkdir ./$i/converted/Placeholders
 
-    for format in "${arr2[@]}";
+    for format in "${imageTypes[@]}";
       do
-        if [[ $format == webp || jp2 || jpg || jxr ]]; then
-          mkdir ./$i/converted/$format
-        fi
+        mkdir ./$i/converted/$format
       done
 
     # Go into Image directory for easier understanding
@@ -37,26 +49,24 @@ for i in "${arr1[@]}";
           convert $file -strip -quality 20 -resize 16384@ ./converted/png/$fileName.jpg
         fi
 
-        # TODO: Need to make images smaller too...
+        # Conversion to Next Gen formats, using solely imageMagick defaults.
 
-        # Conversion to Next Gen formats, using solely imageMagick defaults
-
-        ## We need to downsize every single file...
-
-        for format in "${arr2[@]}";
+        for format in "${imageTypes[@]}";
           do
             if [[ $format == webp ]]; then
               # resize and convert to webp
-              convert $file -quality 100 -resize 620x620 ./converted/webp/$fileName-768w.webp
-              convert $file -quality 100 -resize 490x490 ./converted/webp/$fileName-1092w.webp
-              convert $file -quality 100 -resize 450x450 ./converted/webp/$fileName-2800w.webp
+              i=0
+              while [ $i -lt ${#imageSizes[*]} ]; do
+                convert $file -quality 100 -resize ${imageSizes[$i]} ./converted/webp/$fileName-${screenBreakpoints[$i]}w.webp
+                i=$(( $i + 1));
+              done
             else
-              if [[ $format == jp2 || jpg || jxr ]]; then
-                # resize and convert to $format
-                convert $file -resize 620x620 ./converted/$format/$fileName-768w.$format
-                convert $file -resize 490x490 ./converted/$format/$fileName-1092w.$format
-                convert $file -resize 450x450 ./converted/$format/$fileName-2800w.$format
-              fi
+              # resize and convert to $format
+              i=0
+              while [ $i -lt ${#imageSizes[*]} ]; do
+                convert $file -resize ${imageSizes[$i]} ./converted/$format/$fileName-${screenBreakpoints[$i]}w.$format
+                i=$(( $i + 1));
+              done
             fi
           done
       fi

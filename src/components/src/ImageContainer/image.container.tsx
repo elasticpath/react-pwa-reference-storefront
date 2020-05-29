@@ -40,7 +40,7 @@ interface ImageContainerProps {
   /** Types to use for srcSet */
   types?: string[];
   /** width breakpoints to serve different images */
-  sizes?: string[];
+  sizes?: any;
   /** alt to be passed to img element */
   alt?: string,
   /** The onLoadData */
@@ -80,7 +80,7 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
             key={`fileName${type}`}
             srcSet={(imageSizes === undefined || imageSizes.length === 0)
               ? `${imgPrefix.replace('%fileName%', `${type}/${fileName}.${type}`)}`
-              : imageSizes.map(imageSize => `${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`).join(', ')}
+              : imageSizes.map(imageSize => `${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize[0]}w.${type} ${imageSize[0]}w`)}`).join(', ')}
             type={`image/${type}`}
           />
         ))}
