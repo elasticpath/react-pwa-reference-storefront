@@ -20,6 +20,7 @@
  */
 
 import React, {
+  useEffect,
   useState,
 } from 'react';
 import Config from '../../../ep.config.json';
@@ -58,7 +59,45 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
   const imgPrefix = isSkuImage ? Config.skuImagesUrl : Config.siteImagesUrl;
 
   const [error, setError] = useState(false);
-  const [fallbackImgUrl, setFallbackImgUrl] = useState(imgUrl);
+  const [imageSrc, setImageSrc] = useState<string>();
+  const [imageRef, setImageRef] = useState<any>();
+
+  useEffect(
+    () => {
+      let observer;
+      let didCancel = false;
+      if (imageRef && imageSrc !== imgUrl && imageSrc !== imgPlaceholder) {
+        if (IntersectionObserver) {
+          observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (
+                  !didCancel
+                  && (entry.intersectionRatio > 0 || entry.isIntersecting)
+                ) {
+                  setImageSrc(imgUrl);
+                  observer.unobserve(imageRef);
+                }
+              });
+            },
+            {
+              threshold: 0,
+            },
+          );
+          observer.observe(imageRef);
+        } else {
+          setImageSrc(imgUrl);
+        }
+      }
+      return () => {
+        didCancel = true;
+        if (observer && observer.unobserve) {
+          observer.unobserve(imageRef);
+        }
+      };
+    },
+    [imgUrl, imageSrc, imageRef],
+  );
 
   const handlePictureError = () => {
     setError(true);
@@ -66,16 +105,16 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
 
   const handleImgError = () => {
     if (isSkuImage) {
-      setFallbackImgUrl(imgPlaceholder);
+      setImageSrc(imgPlaceholder);
     } else {
-      setFallbackImgUrl('');
+      setImageSrc('');
     }
   };
 
   if (!error && fileName) {
     return (
       <picture className={pictureClassName} key={fileName}>
-        {imageTypes.map(type => (
+        { imageSrc && imageTypes.map(type => (
           <source
             key={`fileName${type}`}
             srcSet={(imageSizes === undefined || imageSizes.length === 0)
@@ -84,13 +123,13 @@ const ImageContainer: React.FC<ImageContainerProps> = (props) => {
             type={`image/${type}`}
           />
         ))}
-        <img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} key={fileName} onLoad={onLoadData} onError={() => handlePictureError()} />
+        <img className={imgClassName} ref={setImageRef} alt={imgAlt} src={imageSrc} key={fileName} onLoad={onLoadData} onError={() => handlePictureError()} />
       </picture>
     );
   }
 
-  if (fallbackImgUrl) {
-    return (<img className={imgClassName} alt={imgAlt} src={fallbackImgUrl} onLoad={onLoadData} onError={() => handleImgError()} />);
+  if (imageSrc) {
+    return (<img className={imgClassName} ref={setImageRef} alt={imgAlt} src={imageSrc} onLoad={onLoadData} onError={() => handleImgError()} />);
   }
 
   return null;
