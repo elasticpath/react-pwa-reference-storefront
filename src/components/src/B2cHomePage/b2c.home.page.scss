@@ -336,7 +336,9 @@
           }
 
           .goods-description {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            max-height: 180px;
+            overflow: auto;
             color: $mainBackgroundColor;
           }
 
