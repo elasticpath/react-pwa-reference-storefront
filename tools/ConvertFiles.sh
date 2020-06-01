@@ -1,21 +1,24 @@
 #!/bin/bash
 
-images=( "${@:2:$1}" ); shift "$(( $1 + 1 ))"
+images=()
+while read i; do
+  images+=($i)
+done <<<$(jq -c '.imageSrc[]' tools/converter.config.json | tr -d \")
 
 screenBreakpoints=()
 while read i; do
   screenBreakpoints+=($i)
-done <<<$(jq -c '.ImageContainerSrcs.sizes[][0]' src/ep.config.json | tr -d \")
+done <<<$(jq -c '.imageSizes[][0]' tools/converter.config.json | tr -d \")
 
 imageSizes=()
 while read i; do
   imageSizes+=($i)
-done <<<$(jq -c '.ImageContainerSrcs.sizes[][1]' src/ep.config.json | tr -d \")
+done <<<$(jq -c '.imageSizes[][1]' tools/converter.config.json | tr -d \")
 
 imageTypes=()
 while read i; do
   imageTypes+=($i)
-done <<<$(jq -c '.ImageContainerSrcs.types[]' src/ep.config.json | tr -d \")
+done <<<$(jq -c '.imageTypes[]' tools/converter.config.json | tr -d \")
 
 for i in "${images[@]}";
   do
@@ -29,9 +32,9 @@ for i in "${images[@]}";
       mkdir $placeholdersFolder
     fi
 
-    placeholdersFolder=./$i/converted/png
-    if [ ! -d "$placeholdersFolder" ]; then
-      mkdir $placeholdersFolder
+    placeholdersFolderJpg=./$i/converted/PlaceholdersJpg
+    if [ ! -d "$placeholdersFolderJpg" ]; then
+      mkdir $placeholdersFolderJpg
     fi
 
     for format in "${imageTypes[@]}";
@@ -60,7 +63,7 @@ for i in "${images[@]}";
           convert $file -strip -quality 1 -colors 255 -resize 4096@ ./converted/Placeholders/$fileName.png
         else
           if [[ $file == *.jpg ]]; then
-            convert $file -strip -quality 20 -resize 16384@ ./converted/png/$fileName.jpg
+            convert $file -strip -quality 20 -resize 16384@ ./converted/PlaceholdersJpg/$fileName.jpg
           fi
         fi
 

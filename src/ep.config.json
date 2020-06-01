@@ -32,7 +32,7 @@
   "enableOfflineMode": false,
   "ImageContainerSrcs": {
     "types": ["webp", "jp2", "jpg", "jxr"],
-    "sizes": [["768", "620x620"], ["1092", "490x490"], ["2800", "450x450"]]
+    "sizes": ["768", "1092", "2800"]
   },
   "b2b": {
     "enable": false,
