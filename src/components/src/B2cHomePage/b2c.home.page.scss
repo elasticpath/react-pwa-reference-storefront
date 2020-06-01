@@ -338,8 +338,9 @@
           .goods-description {
             margin-bottom: 20px;
             max-height: 180px;
-            overflow: auto;
             color: $mainBackgroundColor;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
 
           .learn-more-btn {
