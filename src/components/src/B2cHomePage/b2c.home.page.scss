@@ -336,8 +336,11 @@
           }
 
           .goods-description {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            max-height: 180px;
             color: $mainBackgroundColor;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
 
           .learn-more-btn {
