@@ -1,0 +1,5 @@
+{
+  "imageSrc": ["src/images/site-images"],
+  "imageTypes": ["webp", "jp2", "jpg", "jxr"],
+  "imageSizes": [["768", "620x620"], ["1092", "490x490"], ["2800", "450x450"]]
+}
