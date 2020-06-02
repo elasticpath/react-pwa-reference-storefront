@@ -27,7 +27,7 @@ for i in "${images[@]}";
       mkdir $convertedFolder
     fi
 
-    placeholdersFolder=./$i/converted/Placeholders
+    placeholdersFolder=./$i/converted/PlaceholdersPng
     if [ ! -d "$placeholdersFolder" ]; then
       mkdir $placeholdersFolder
     fi
@@ -60,7 +60,7 @@ for i in "${images[@]}";
           # -strip gets rid unnecessary metadata
           # -quality 1 - 100, specifies image quality
           # -resize creates thumbnail like images 4096@ = 64x64 16384@ 128x128
-          convert $file -strip -quality 1 -colors 255 -resize 4096@ ./converted/Placeholders/$fileName.png
+          convert $file -strip -quality 1 -colors 255 -resize 4096@ ./converted/PlaceholdersPng/$fileName.png
         else
           if [[ $file == *.jpg ]]; then
             convert $file -strip -quality 20 -resize 16384@ ./converted/PlaceholdersJpg/$fileName.jpg
@@ -82,7 +82,7 @@ for i in "${images[@]}";
               # resize and convert to $format
               i=0
               while [ $i -lt ${#imageSizes[*]} ]; do
-                convert $file -resize ${imageSizes[$i]} ./converted/$format/$fileName-${screenBreakpoints[$i]}w.$format
+                convert $file -resize ${imageSizes[$i]} ./converted/$format/$fileName-${screenBreakpoints[$i]}w.$format > /dev/null
                 i=$(( $i + 1));
               done
             fi
