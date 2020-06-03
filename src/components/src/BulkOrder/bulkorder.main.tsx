@@ -30,6 +30,8 @@ import './bulkorder.main.scss';
 import { useCountDispatch } from '../cart-count-context';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 
+import { ReactComponent as BarcodeIcon } from '../../../images/icons/ic_barcode.svg';
+
 const multiCartZoomArray = [
   'carts',
   'carts:element',
@@ -487,7 +489,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
                               : (
                                 <div>
                                   <span className="scan-barcode-title">{intl.get('scan-barcode')}</span>
-                                  <span className="glyphicon glyphicon-barcode" />
+                                  <BarcodeIcon className="barcode-icon" />
                                 </div>
                               )
                           }

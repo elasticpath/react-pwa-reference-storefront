@@ -38,6 +38,8 @@ import './appheader.main.scss';
 
 import { ReactComponent as CartIcon } from '../../../images/header-icons/cart-icon.svg';
 import { ReactComponent as BulkCart } from '../../../images/header-icons/bulk-cart.svg';
+import { ReactComponent as MenuIcon } from '../../../images/icons/ic_menu.svg';
+import { ReactComponent as ArrowIcon } from '../../../images/icons/arrow_left.svg';
 import headerLogo from '../../../images/site-images/Company-Logo-v3.svg';
 
 
@@ -377,7 +379,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             <div className="toggle-btn-container">
               {(isInStandaloneMode) ? (
                 <button className="back-btn" aria-label="back button" type="button" onClick={this.goBack}>
-                  <span className="icon glyphicon glyphicon-chevron-left" />
+                  <ArrowIcon className="arrow-icon" />
                 </button>
               ) : ('')
               }
@@ -389,7 +391,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span className="icon glyphicon glyphicon-align-justify" />
+                <MenuIcon className="menu-icon" />
               </button>
             </div>
             <div className="locale-container">

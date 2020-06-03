@@ -40,16 +40,6 @@
           font-weight: 500;
           display: inline-block;
           width: 100%;
-          .glyphicon {
-            display: inline-block;
-            height: 12px;
-            width: 16px;
-            margin-right:10px;
-
-            svg {
-              fill: $firstComplimentColor;
-            }
-          }
 
           &:hover {
             text-decoration: none;
@@ -57,6 +47,11 @@
             cursor: pointer;
           }
         }
+      }
+
+      .filter-icon {
+        fill: $firstComplimentColor;
+        margin-right: 5px;
       }
 
       .facet-value {

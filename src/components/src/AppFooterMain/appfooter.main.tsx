@@ -22,6 +22,9 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
+import { ReactComponent as FacebookIcon } from '../../../images/icons/ic_facebook.svg';
+import { ReactComponent as InstagramIcon } from '../../../images/icons/ic_instagram.svg';
+import { ReactComponent as TwitterIcon } from '../../../images/icons/ic_twitter.svg';
 
 import './appfooter.main.scss';
 
@@ -72,15 +75,15 @@ function AppFooterMain(props: AppFooterMainProps) {
           </div>
           <div className="content">
             <Link to={linkTo.shareFacebook} aria-label="share facebook">
-              <span className="share-icon facebook" />
+              <FacebookIcon className="share-icon" />
               {intl.get('facebook')}
             </Link>
             <Link to={linkTo.shareTwitter} aria-label="share twitter">
-              <span className="share-icon twitter" />
+              <TwitterIcon className="share-icon" />
               {intl.get('twitter')}
             </Link>
             <Link to={linkTo.shareInstagram} aria-label="share instagram">
-              <span className="share-icon instagram" />
+              <InstagramIcon className="share-icon" />
               {intl.get('instagram')}
             </Link>
           </div>
@@ -91,13 +94,13 @@ function AppFooterMain(props: AppFooterMainProps) {
           {intl.get('find-us-online')}
         </div>
         <Link to={linkTo.shareFacebook} aria-label="share facebook">
-          <span className="share-icon facebook" />
+          <FacebookIcon className="share-icon" />
         </Link>
         <Link to={linkTo.shareTwitter} aria-label="share twitter">
-          <span className="share-icon twitter" />
+          <TwitterIcon className="share-icon" />
         </Link>
         <Link to={linkTo.shareInstagram} aria-label="share instagram">
-          <span className="share-icon instagram" />
+          <InstagramIcon className="share-icon" />
         </Link>
       </div>
     </footer>

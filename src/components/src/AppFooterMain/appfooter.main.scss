@@ -28,24 +28,11 @@
   padding: 30px 30px 40px;
 
   .share-icon {
-    position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Font Awesome 5 Brands';
-    font-size: 18px;
-    margin-right: 10px;
-
-    &.facebook:before {
-      content: "\f082";
-    }
-
-    &.twitter:before {
-      content: "\f081";
-    }
-
-    &.instagram:before {
-      content: "\f16d";
-    }
+    width: 16px;
+    height: 18px;
+    fill: $mainBackgroundColor;
+    margin: 0 10px 7px 0;
+    vertical-align: top;
   }
 
   .title {
@@ -92,8 +79,9 @@
       padding-top: 20px;
 
       .share-icon {
-        font-size: 24px;
-        color: $mainNavigationColor;
+        width: 21px;
+        height: 24px;
+        fill: $mainNavigationColor;
         margin: 0 20px;
       }
     }

@@ -97,6 +97,13 @@
 
         .scan-barcode-title {
           margin-right: 5px;
+          vertical-align: middle;
+        }
+
+        .barcode-icon {
+          height: 17px;
+          width: 17px;
+          fill: $mainBackgroundColor;
         }
 
         .cart-selection-dropdown,
