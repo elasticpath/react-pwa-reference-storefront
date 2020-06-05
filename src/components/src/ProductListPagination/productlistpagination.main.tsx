@@ -24,6 +24,8 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
+import { ReactComponent as ArrowIcon } from '../../../images/icons/arrow_left.svg';
+
 import './productlistpagination.scss';
 
 let paginationPreviousLinkVar = '';
@@ -145,7 +147,7 @@ class ProductListPagination extends Component<ProductListPaginationProps, Produc
                 {paginationPreviousLink !== ''
                   ? (
                     <Link to={`${urlPrefix}/${titleString}${paginationPreviousLink}`} className="btn-pagination prev" role="button">
-                      <span className="icon" />
+                      <ArrowIcon className="arrow-icon" />
                       {intl.get('previous')}
                     </Link>
                   )
@@ -173,7 +175,7 @@ class ProductListPagination extends Component<ProductListPaginationProps, Produc
                   ? (
                     <Link to={`${urlPrefix}/${titleString}${paginationNextLink}`} className="btn-pagination next" role="button">
                       {intl.get('next')}
-                      <span className="icon" />
+                      <ArrowIcon className="arrow-icon" />
                     </Link>
                   )
                   : (

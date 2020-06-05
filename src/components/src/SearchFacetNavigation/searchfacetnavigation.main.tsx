@@ -139,9 +139,7 @@ class SearchFacetNavigationMain extends Component<SearchFacetNavigationMainProps
             <div className="card-header">
               <p className="card-title">
                 <a className="facet" data-toggle="collapse" href={`#${facetDisplayNameId}_facet_values`}>
-                  <span className="glyphicon">
-                    <FilterIcon />
-                  </span>
+                  <FilterIcon className="filter-icon" />
                   {facet['display-name']}
                 </a>
               </p>

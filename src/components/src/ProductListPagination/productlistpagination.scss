@@ -49,11 +49,12 @@
     position: relative;
     text-align: center;
 
-    .icon {
+    .arrow-icon {
+      height: 25px;
+      width: 25px;
+      fill: $firstComplimentColor;
       position: relative;
-      top: 1px;
-      display: inline-block;
-      font-family: 'Glyphicons Halflings';
+      top: -1px;
     }
 
     &.prev {
@@ -62,13 +63,6 @@
       font-size: 14px;
       font-weight: 600;
       color: $firstComplimentColor;
-
-      .icon {
-        &:before {
-          margin-right: 5px;
-          content: "\e079";
-        }
-      }
     }
 
     &.next {
@@ -78,16 +72,17 @@
       font-weight: 600;
       color: $firstComplimentColor;
 
-      .icon {
-        &:before {
-          margin-left: 5px;
-          content: "\e080";
-        }
+      .arrow-icon {
+        transform: rotate(180deg);
       }
     }
 
     &:hover, &:focus {
       color: $mainTextColor;
+
+      .arrow-icon {
+        fill: $mainTextColor;
+      }
     }
 
     &.hide {

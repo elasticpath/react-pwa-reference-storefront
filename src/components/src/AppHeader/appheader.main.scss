@@ -55,15 +55,27 @@
     }
 
     .toggle-btn-container {
+      .menu-icon {
+        height: 28px;
+        width: 28px;
+      }
+
       .back-btn {
+        position: relative;
+        width: 40px;
+        min-height: 50px;
         border: 0;
         background-color: transparent;
         padding: 16px 10px 10px;
         cursor: pointer;
 
-        .icon {
-          color: $mainColor;
-          font-size: 20px;
+        .arrow-icon {
+          height: 35px;
+          width: 35px;
+          fill: $mainColor;
+          position: absolute;
+          top: 12px;
+          left: 0;
         }
       }
     }
@@ -152,7 +164,7 @@
       .toggle-btn {
         border: 0;
         background-color: transparent;
-        padding: 16px 10px 10px;
+        padding: 16px 5px 10px;
         cursor: pointer;
 
         .icon {
