@@ -137,3 +137,14 @@ export function useUserTraits(): string {
   const userTraits = typedHooks.useStoreState(state => state.userTraits);
   return userTraits;
 }
+
+export function checkLogin(): Promise<void> {
+  return new Promise((resolve) => {
+    const state = store.getState();
+    if (state.authHeader) resolve();
+    store.subscribe(() => {
+      const updatedState = store.getState();
+      if (updatedState.authHeader) resolve();
+    });
+  });
+}

@@ -27,6 +27,7 @@ import queryString from 'query-string';
 import AppModalLoginMain from '../AppModalLogin/appmodallogin.main';
 import CountInfoPopUp from '../CountInfoPopUp/countinfopopup';
 import AppModalCartSelectMain from '../AppModalCartSelect/appmodalcartselect.main';
+import { checkLogin } from '../../../hooks/store';
 import { useRequisitionListCountState } from '../requisition-list-count-context';
 import {
   login, logout, logoutAccountManagementUser, getAccessToken,
@@ -257,7 +258,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
     }
 
     fetchProfileData() {
-      login().then(() => {
+      checkLogin().then(() => {
         cortexFetch('/?zoom=defaultprofile', {
           headers: {
             'Content-Type': 'application/json',

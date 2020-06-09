@@ -27,6 +27,7 @@ import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 import './bulkorder.main.scss';
+import { checkLogin } from '../../../hooks/store';
 import { useCountDispatch } from '../cart-count-context';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 
@@ -196,7 +197,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
   }
 
   fetchMultiCartData() {
-    login().then(() => {
+    checkLogin().then(() => {
       cortexFetch(`?zoom=${multiCartZoomArray.sort().join()}`, {
         headers: {
           'Content-Type': 'application/json',
