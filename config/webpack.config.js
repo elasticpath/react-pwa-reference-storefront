@@ -480,19 +480,6 @@ module.exports = function (webpackEnv) {
                 getLocalIdent: getCSSModuleLocalIdent,
               }),
             },
-            {
-              test: /\.scss$/,
-              use: [{
-                loader: 'style-loader',
-              }, {
-                loader: 'css-loader',
-              }, {
-                loader: 'sass-loader',
-                options: {
-                  javascriptEnabled: true,
-                },
-              }],
-            },
             // Opt-in support for SASS (using .scss or .sass extensions).
             // By default we support SASS Modules with the
             // extensions .module.scss or .module.sass
