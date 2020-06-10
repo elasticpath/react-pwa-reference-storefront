@@ -645,10 +645,12 @@ module.exports = function (webpackEnv) {
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
       new WorkboxPlugin.GenerateSW({
+        exclude: [/\.(?:png|jpg|svg|json|ico|jpeg|js|css|html)$/],
+        maximumFileSizeToCacheInBytes: 6000000,
         runtimeCaching: [
           {
             urlPattern: /\.(?:jpg|png|json|ico|jpeg)$/,
-            handler: 'StaleWhileRevalidate',
+            handler: 'CacheFirst',
           },
           {
             urlPattern: /\.(?:woff|woff2)$/,
