@@ -645,6 +645,8 @@ module.exports = function (webpackEnv) {
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
       new WorkboxPlugin.GenerateSW({
+        exclude: [/\.(?:png|jpg|svg|json|ico|jpeg|js|css|html|map)$/],
+        maximumFileSizeToCacheInBytes: 6000000,
         runtimeCaching: [
           {
             urlPattern: /\.(?:jpg|png|json|ico|jpeg)$/,
