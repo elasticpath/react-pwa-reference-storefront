@@ -21,12 +21,12 @@
 
 import React, { Component, lazy, Suspense } from 'react';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup, searchLookup } from '../utils/CortexLookup';
 import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 import './bulkorder.main.scss';
+import { login } from '../../../hooks/store';
 import { useCountDispatch } from '../cart-count-context';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 

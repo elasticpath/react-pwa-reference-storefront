@@ -27,9 +27,10 @@ import queryString from 'query-string';
 import AppModalLoginMain from '../AppModalLogin/appmodallogin.main';
 import CountInfoPopUp from '../CountInfoPopUp/countinfopopup';
 import AppModalCartSelectMain from '../AppModalCartSelect/appmodalcartselect.main';
+import { login } from '../../../hooks/store';
 import { useRequisitionListCountState } from '../requisition-list-count-context';
 import {
-  login, logout, logoutAccountManagementUser, getAccessToken,
+  logout, logoutAccountManagementUser, getAccessToken,
 } from '../utils/AuthService';
 import { cortexFetch, adminFetch } from '../utils/Cortex';
 import { ReactComponent as AccountIcon } from '../../../images/header-icons/account-icon.svg';

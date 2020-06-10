@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { cortexFetch } from '../utils/Cortex';
-import { login } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import Config from '../../../ep.config.json';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 

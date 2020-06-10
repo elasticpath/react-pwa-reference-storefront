@@ -23,7 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import copy from 'copy-to-clipboard';
-import { login } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import { adminFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 

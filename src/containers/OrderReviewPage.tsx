@@ -29,7 +29,7 @@ import ShippingOptionContainer from '../components/src/ShippingOption/shippingop
 import CheckoutSummaryList from '../components/src/CheckoutSummaryList/checkout.summarylist';
 import AddressContainer from '../components/src/AddressContainer/address.container';
 
-import { login } from '../components/src/utils/AuthService';
+import { login } from '../hooks/store';
 import {
   isAnalyticsConfigured, trackAddItemAnalytics, trackAddTransactionAnalytics, sendAnalytics,
 } from '../utils/Analytics';

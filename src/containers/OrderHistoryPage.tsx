@@ -23,7 +23,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import PurchaseDetailsMain from '../components/src/PurchaseDetails/purchasedetails.main';
-import { login } from '../components/src/utils/AuthService';
+import { login } from '../hooks/store';
 import { purchaseLookup, cortexFetchPurchaseLookupForm } from '../components/src/utils/CortexLookup';
 import { cortexFetch } from '../components/src/utils/Cortex';
 import Config from '../ep.config.json';

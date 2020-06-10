@@ -22,7 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
-import { login } from '../components/src/utils/AuthService';
+import { login } from '../hooks/store';
 import { cortexFetch } from '../components/src/utils/Cortex';
 import WishListMain from '../components/src/WishList/wishlist.main';
 import './WishListsPage.scss';

@@ -23,7 +23,7 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { cortexFetch } from '../components/src/utils/Cortex';
-import { login } from '../components/src/utils/AuthService';
+import { login } from '../hooks/store';
 
 import * as Config from '../ep.config.json';
 

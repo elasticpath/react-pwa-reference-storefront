@@ -30,7 +30,7 @@ import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.
 import CountInfoPopUp from '../CountInfoPopUp/countinfopopup';
 import { useCountState } from '../cart-count-context';
 import { cortexFetch } from '../utils/Cortex';
-import { login } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import ImageContainer from '../ImageContainer/image.container';
 import Config from '../../../ep.config.json';
 

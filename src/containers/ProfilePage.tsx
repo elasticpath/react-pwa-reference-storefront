@@ -29,7 +29,7 @@ import PaymentSelectorMain from '../components/src/PaymentSelectorMain/paymentse
 import ProfileComplianceMain from '../components/src/ProfileCompliance/profilecompliance.main';
 import AddressContainer from '../components/src/AddressContainer/address.container';
 
-import { login } from '../components/src/utils/AuthService';
+import { login } from '../hooks/store';
 import { cortexFetch } from '../components/src/utils/Cortex';
 import Config from '../ep.config.json';
 

@@ -24,7 +24,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 // eslint-disable-next-line import/no-cycle
 import SubAccountList from '../B2bSubAccountList/b2b.subaccountlist';
-import { login } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import { adminFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
