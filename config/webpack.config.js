@@ -650,7 +650,7 @@ module.exports = function (webpackEnv) {
         runtimeCaching: [
           {
             urlPattern: /\.(?:jpg|png|json|ico|jpeg)$/,
-            handler: 'CacheFirst',
+            handler: 'StaleWhileRevalidate',
           },
           {
             urlPattern: /\.(?:woff|woff2)$/,
