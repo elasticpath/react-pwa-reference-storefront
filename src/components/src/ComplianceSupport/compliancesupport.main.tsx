@@ -23,7 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import { login } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';

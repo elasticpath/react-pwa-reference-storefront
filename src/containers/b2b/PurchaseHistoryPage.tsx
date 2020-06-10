@@ -24,7 +24,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import OrderHistoryMain from '../../components/src/OrderHistory/orderhistory.main';
 import { cortexFetch } from '../../components/src/utils/Cortex';
-import { login } from '../../components/src/utils/AuthService';
+import { login } from '../../hooks/store';
 import Config from '../../ep.config.json';
 
 import './PurchaseHistoryPage.scss';

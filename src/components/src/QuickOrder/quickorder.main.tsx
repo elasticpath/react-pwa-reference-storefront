@@ -23,7 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import CartLineItem from '../CartLineItem/cart.lineitem';
-import { login } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import './quickorder.main.scss';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';

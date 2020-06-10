@@ -22,8 +22,9 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import {
-  login, loginRegistered, registerUser, getRegistrationForm,
+  loginRegistered, registerUser, getRegistrationForm,
 } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import Config from '../../../ep.config.json';
 
 import './registrationform.main.scss';

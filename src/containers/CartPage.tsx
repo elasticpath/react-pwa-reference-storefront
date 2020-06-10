@@ -31,7 +31,7 @@ import CheckoutSummaryList from '../components/src/CheckoutSummaryList/checkout.
 import CartMain from '../components/src/CartMain/cart.main';
 
 import Config from '../ep.config.json';
-import { login } from '../components/src/utils/AuthService';
+import { login } from '../hooks/store';
 import { cortexFetch } from '../components/src/utils/Cortex';
 import './CartPage.scss';
 

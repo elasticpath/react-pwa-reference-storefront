@@ -22,7 +22,7 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
 import ImageContainer from '../ImageContainer/image.container';
 import Config from '../../../ep.config.json';

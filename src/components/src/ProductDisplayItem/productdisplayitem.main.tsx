@@ -22,7 +22,7 @@
 import React, { Component, Suspense, lazy } from 'react';
 import intl from 'react-intl-universal';
 import Slider from 'react-slick';
-import { login } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import transparentImg from '../../../images/icons/transparent.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';

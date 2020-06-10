@@ -23,7 +23,7 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { login } from '../../components/src/utils/AuthService';
+import { login } from '../../hooks/store';
 import { cortexFetch } from '../../components/src/utils/Cortex';
 import Config from '../../ep.config.json';
 

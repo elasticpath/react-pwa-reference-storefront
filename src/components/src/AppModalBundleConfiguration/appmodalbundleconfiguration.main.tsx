@@ -25,7 +25,7 @@ import Modal from 'react-responsive-modal';
 import Config from '../../../ep.config.json';
 /* eslint-disable-next-line import/no-cycle */
 import CartLineItem from '../CartLineItem/cart.lineitem';
-import { login } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import { cortexFetch } from '../utils/Cortex';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 

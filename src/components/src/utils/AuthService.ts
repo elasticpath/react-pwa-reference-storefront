@@ -46,49 +46,6 @@ function generateFormBody(userDetails) {
   userFormBodyString = userFormBody.join('&');
 }
 
-export function login() {
-  return new Promise(((resolve, reject) => {
-    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
-      userFormBodyString = '';
-      userFormBody = [];
-      let publicUserDetails:PublicUserDetailsInterface = {};
-      publicUserDetails = {
-        username: '',
-        password: '',
-        grant_type: 'password',
-        role: 'PUBLIC',
-        scope: Config.cortexApi.scope,
-      };
-
-      generateFormBody(publicUserDetails);
-      cortexFetch('/oauth2/tokens', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-        },
-        body: userFormBodyString,
-      }).then(res => res.json())
-        .then((res) => {
-          if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
-            localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
-          }
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${res.access_token}`);
-          window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${res.access_token}`, file: 'AuthService.1' } }));
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, publicUserDetails.username);
-          resolve(res);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-          reject(error);
-        });
-    } else {
-      resolve(userFormBodyString);
-    }
-  }));
-}
-
 export function loginRegistered(username, password) {
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) != null) {

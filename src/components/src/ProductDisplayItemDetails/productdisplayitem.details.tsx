@@ -21,7 +21,8 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Config from '../../../ep.config.json';
-import { login, isLoggedIn } from '../utils/AuthService';
+import { isLoggedIn } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import { cortexFetch } from '../utils/Cortex';
 import PowerReview from '../PowerReview/powerreview.main';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';

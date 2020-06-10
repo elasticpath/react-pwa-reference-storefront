@@ -98,7 +98,14 @@ const storeModel: StoreModel = {
       if (result.token_type === 'bearer' && result.access_token) {
         const newAuthHeader = `Bearer ${result.access_token}`;
         actions.setAuthHeader(newAuthHeader);
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, result.scope);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, newAuthHeader);
+        window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${result.access_token}`, file: 'AuthService.1' } }));
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, publicUserDetails.username);
+      }
+
+      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.role);
       }
     } catch (err) {
       actions.setNetworkError(err);
@@ -138,7 +145,7 @@ export function useUserTraits(): string {
   return userTraits;
 }
 
-export function checkLogin(): Promise<void> {
+export function login(): Promise<void> {
   return new Promise((resolve) => {
     const state = store.getState();
     if (state.authHeader) resolve();

@@ -21,7 +21,7 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
+import { login } from '../../../hooks/store';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
