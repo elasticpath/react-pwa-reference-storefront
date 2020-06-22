@@ -52,7 +52,7 @@
 			"uri": "/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/descriptor",
 			"href": "https://reference.epdemos.com/cortex/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/descriptor"
 		},
-		"P2G-cart-transfer-url": "https://connect.procurement.com/gateway/link/return/id/AH5e39b48e23f3d",
+		"cart-transfer-url": "https://connect.procurement.com/gateway/link/return/id/AH5e39b48e23f3d",
 		"messages": [],
 		"links": [],
 		"default": "true"
