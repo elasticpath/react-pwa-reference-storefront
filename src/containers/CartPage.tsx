@@ -28,6 +28,7 @@ import CartClear from '../components/src/CartClear/cartclear';
 import CartCreate from '../components/src/CartCreate/cart.create';
 import AddPromotionContainer from '../components/src/AddPromotionContainer/add.promotion.container';
 import CheckoutSummaryList from '../components/src/CheckoutSummaryList/checkout.summarylist';
+import CartCheckoutButton from '../components/src/CartCheckoutButton/cart.checkout.btn';
 import CartMain from '../components/src/CartMain/cart.main';
 
 import Config from '../ep.config.json';
@@ -40,6 +41,7 @@ const zoomArray = [
   'defaultcart',
   'defaultcart:total',
   'defaultcart:discount',
+  'defaultcart:descriptor',
   'defaultcart:appliedpromotions:element',
   'defaultcart:order:couponinfo:coupon',
   'defaultcart:order:couponinfo:couponform',
@@ -335,11 +337,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                     </p>
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container">
-                    <div>
-                      <button className="ep-btn primary btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
-                        {intl.get('proceed-to-checkout')}
-                      </button>
-                    </div>
+                    <CartCheckoutButton cartData={cartData} checkoutCallback={() => { this.checkout(); }} />
                   </div>
                 </div>
               </div>

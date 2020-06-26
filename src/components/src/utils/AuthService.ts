@@ -48,6 +48,7 @@ function generateFormBody(userDetails) {
 
 export function loginRegistered(username, password) {
   return new Promise(((resolve, reject) => {
+    console.log('loginRegistered');
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) != null) {
       userFormBodyString = '';
       userFormBody = [];
