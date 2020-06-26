@@ -145,7 +145,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
         .then(res => res.json())
         .then((res) => {
           if (res._carts) {
-            const defaultCart = selectedCartNumber >= 0 ? res._carts[0]._element[selectedCartNumber] : res._carts[0]._element.find(cart => cart._descriptor[0].default === 'true');
+            const defaultCart = selectedCartNumber >= 0 ? res._carts[0]._element[selectedCartNumber] : res._defaultcart[0];
             this.setState({
               cartsData: res._carts[0],
               cartData: defaultCart,
