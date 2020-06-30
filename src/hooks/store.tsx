@@ -93,7 +93,7 @@ const storeModel: StoreModel = {
     }
 
     if (Cookies.get('Authorization')) {
-      const newAuthHeader = `${Cookies.get('Authorization')}`;
+      const newAuthHeader = `Bearer ${Cookies.get('Authorization')}`;
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, newAuthHeader);
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
