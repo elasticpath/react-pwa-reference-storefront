@@ -113,18 +113,16 @@ const storeModel: StoreModel = {
     }
   }),
   init: thunk(async (actions, _payload, { getState }) => {
+    // Condition for procurement punchout flow.  Set localStorage through Cookie.
     if (Cookies.get('Authorization')) {
       const newAuthHeader = `Bearer ${Cookies.get('Authorization')}`;
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, newAuthHeader);
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, 'PROCUREMENT');
-    }
-
-    if (!getState().authHeader) {
+    } else if (!getState().authHeader) {
       await actions.fetchAuthHeader();
     }
-
     // Listen to the events emitted by the legacy code
     // Once legacy code is refactored, this should be removed
     window.addEventListener('authHeaderChanged', (e: CustomEvent) => {
