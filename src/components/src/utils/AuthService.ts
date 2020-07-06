@@ -21,9 +21,9 @@
 
 // @ts-check
 
+import Cookies from 'js-cookie';
 import { cortexFetch, adminFetch } from './Cortex';
 import Config from '../../../ep.config.json';
-import Cookies from 'js-cookie';
 
 let userFormBody = [];
 let userFormBodyString = '';

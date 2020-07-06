@@ -22,6 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import './cartcheckoutbutton.less';
+import Cookies from 'js-cookie';
 
 interface CartCheckoutButtonProps {
   /** The checkout */
@@ -43,6 +44,7 @@ function CartCheckoutButton(props: CartCheckoutButtonProps) {
   function checkout() {
     if (getDescriptorUri()) {
       window.location.href = cartData._descriptor[0]['cart-transfer-url'];
+      Cookies.remove('Authorization');
     } else {
       checkoutCallback();
     }
