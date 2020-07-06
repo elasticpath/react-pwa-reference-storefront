@@ -88,39 +88,39 @@ const storeModel: StoreModel = {
 
   fetchAuthHeader: thunk(async (actions, _payload, { getState }) => {
     // If cookie contains token set by punch out procurement system.
+
     if (getState().authHeader) {
       return;
     }
+    try {
+      const result = await fetchAuthToken();
 
+      // If legacy code set the token while we were fetching ours abort and use their token
+      // Once legacy code is refactored, this should be removed
+      if (result.token_type === 'bearer' && result.access_token) {
+        const newAuthHeader = `Bearer ${result.access_token}`;
+        actions.setAuthHeader(newAuthHeader);
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, result.scope);
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, newAuthHeader);
+        window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${result.access_token}`, file: 'AuthService.1' } }));
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, publicUserDetails.username);
+      }
+      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.role);
+      }
+    } catch (err) {
+      actions.setNetworkError(err);
+    }
+  }),
+  init: thunk(async (actions, _payload, { getState }) => {
     if (Cookies.get('Authorization')) {
       const newAuthHeader = `Bearer ${Cookies.get('Authorization')}`;
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, newAuthHeader);
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, 'PROCUREMENT');
-    } else {
-      try {
-        const result = await fetchAuthToken();
-
-        // If legacy code set the token while we were fetching ours abort and use their token
-        // Once legacy code is refactored, this should be removed
-        if (result.token_type === 'bearer' && result.access_token) {
-          const newAuthHeader = `Bearer ${result.access_token}`;
-          actions.setAuthHeader(newAuthHeader);
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, result.scope);
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, newAuthHeader);
-          window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${result.access_token}`, file: 'AuthService.1' } }));
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, publicUserDetails.username);
-        }
-        if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.role);
-        }
-      } catch (err) {
-        actions.setNetworkError(err);
-      }
     }
-  }),
-  init: thunk(async (actions, _payload, { getState }) => {
+
     if (!getState().authHeader) {
       await actions.fetchAuthHeader();
     }
