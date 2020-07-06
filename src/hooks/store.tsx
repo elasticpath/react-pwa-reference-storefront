@@ -116,6 +116,7 @@ const storeModel: StoreModel = {
     // Condition for procurement punchout flow.  Set localStorage through Cookie.
     if (Cookies.get('Authorization')) {
       const newAuthHeader = `Bearer ${Cookies.get('Authorization')}`;
+      actions.setAuthHeader(newAuthHeader);
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, newAuthHeader);
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
