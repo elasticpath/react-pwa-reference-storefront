@@ -88,10 +88,10 @@ const storeModel: StoreModel = {
 
   fetchAuthHeader: thunk(async (actions, _payload, { getState }) => {
     // If cookie contains token set by punch out procurement system.
-
     if (getState().authHeader) {
       return;
     }
+
     try {
       const result = await fetchAuthToken();
 
