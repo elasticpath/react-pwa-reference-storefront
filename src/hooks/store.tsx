@@ -29,6 +29,7 @@ import {
   Thunk,
   thunk,
 } from 'easy-peasy';
+import Cookies from 'js-cookie';
 import * as UserPrefs from '../components/src/utils/UserPrefs';
 import Config from '../ep.config.json';
 
@@ -86,15 +87,16 @@ const storeModel: StoreModel = {
   setLookupForms: action((state, lookupForms: LookupForms) => { state.lookupForms = lookupForms; }),
 
   fetchAuthHeader: thunk(async (actions, _payload, { getState }) => {
+    // If cookie contains token set by punch out procurement system.
+
+    if (getState().authHeader) {
+      return;
+    }
     try {
       const result = await fetchAuthToken();
 
       // If legacy code set the token while we were fetching ours abort and use their token
       // Once legacy code is refactored, this should be removed
-      if (getState().authHeader) {
-        return;
-      }
-
       if (result.token_type === 'bearer' && result.access_token) {
         const newAuthHeader = `Bearer ${result.access_token}`;
         actions.setAuthHeader(newAuthHeader);
@@ -103,7 +105,6 @@ const storeModel: StoreModel = {
         window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${result.access_token}`, file: 'AuthService.1' } }));
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, publicUserDetails.username);
       }
-
       if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.role);
       }
@@ -112,10 +113,17 @@ const storeModel: StoreModel = {
     }
   }),
   init: thunk(async (actions, _payload, { getState }) => {
-    if (!getState().authHeader) {
+    // Condition for procurement punchout flow.  Set localStorage through Cookie.
+    if (Cookies.get('Authorization')) {
+      const newAuthHeader = `Bearer ${Cookies.get('Authorization')}`;
+      actions.setAuthHeader(newAuthHeader);
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, newAuthHeader);
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, 'PROCUREMENT');
+    } else if (!getState().authHeader) {
       await actions.fetchAuthHeader();
     }
-
     // Listen to the events emitted by the legacy code
     // Once legacy code is refactored, this should be removed
     window.addEventListener('authHeaderChanged', (e: CustomEvent) => {

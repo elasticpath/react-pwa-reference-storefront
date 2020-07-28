@@ -1,7 +1,7 @@
 {
   "cortexApi": {
-    "path": "/cortex",
-    "scope": "vestri",
+    "path": "https://dev1-cortex-gw.ep-dev.aws.punchout2go-test.com/cortex",
+    "scope": "mobee",
     "pathForProxy": "http://localhost:9080",
     "reqTimeout": "30000"
   },
