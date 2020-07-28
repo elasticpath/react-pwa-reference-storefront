@@ -38,12 +38,12 @@ function CartCheckoutButton(props: CartCheckoutButtonProps) {
   } = props;
 
   function getDescriptorUri() {
-    return cartData._descriptor[0]['cart-transfer-url'];
+    return cartData._descriptor?.[0]?.['cart-transfer-url'];
   }
 
   function checkout() {
     if (getDescriptorUri()) {
-      window.location.href = cartData._descriptor[0]['cart-transfer-url'];
+      window.location.href = cartData._descriptor?.[0]?.['cart-transfer-url'];
       Cookies.remove('Authorization');
     } else {
       checkoutCallback();
