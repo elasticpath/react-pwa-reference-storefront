@@ -21,6 +21,7 @@
 
 // @ts-check
 
+import Cookies from 'js-cookie';
 import { cortexFetch, adminFetch } from './Cortex';
 import Config from '../../../ep.config.json';
 
@@ -148,6 +149,7 @@ export function logout() {
     cortexFetch('/oauth2/tokens', {
       method: 'delete',
     }).then((res) => {
+      Cookies.remove('Authorization');
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
