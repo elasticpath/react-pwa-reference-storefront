@@ -223,7 +223,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
 
     fetchProfileData() {
       login().then(() => {
-        cortexFetch('/?zoom=defaultprofile,defaultprofile:accounts,defaultprofile:accounts:element,defaultprofile:accounts:element:identifier', {
+        cortexFetch('/?zoom=defaultprofile', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),

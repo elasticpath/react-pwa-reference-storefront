@@ -23,17 +23,15 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
-import { adminFetch } from '../utils/Cortex';
+import { adminFetch, cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
 import './appmodalcartselect.main.scss';
 
-
 const zoomArray = [
-  'authorizationcontexts',
-  'authorizationcontexts:element',
-  'authorizationcontexts:element:element',
-  'authorizationcontexts:element:element:accesstokenform',
+  'element',
+  'element:attributes',
+  'element:identifier',
 ];
 
 interface AppModalCartSelectMainProps {
@@ -77,17 +75,16 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
   }
 
   fetchOrganizationData() {
-    adminFetch(`/?zoom=${zoomArray.join()}`, {
+    cortexFetch(`/accounts/${Config.cortexApi.scope}/?zoom=${zoomArray.join()}`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
       },
     })
       .then(res => res.json())
       .then((res) => {
-        const orgAuthServiceData = res._authorizationcontexts[0]._element.find(element => element.name.toUpperCase() === Config.cortexApi.scope.toUpperCase());
         this.setState({
-          orgAuthServiceData,
+          orgAuthServiceData: res,
         });
       })
       .catch((error) => {
@@ -105,7 +102,7 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
 
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
       const selectedCartData = orgAuthServiceData._element[selectedCart];
-      localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData.name);
+      localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData['business-name']);
       try {
         const data = await adminFetch(`${selectedCartData._accesstokenform[0].self.uri}/?followlocation=true`, {
           method: 'post',
@@ -149,11 +146,11 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
       return orgAuthServiceData._element.map((division, index) => {
         if (division) {
           return (
-            <div className="radio" key={division.name}>
+            <div className="radio" key={division['business-name']}>
               <label htmlFor={`cart-selection-option${index}`} className="custom-radio-button">
-                <input id={`cart-selection-option${index}`} type="radio" value={index} checked={(selectedCartName.length === 0 && !isCheckedCartName) ? checkedCartName === division.name : selectedCart === `${index}`} onChange={event => this.handleCartChange(event, division.name)} />
+                <input id={`cart-selection-option${index}`} type="radio" value={index} checked={(selectedCartName.length === 0 && !isCheckedCartName) ? checkedCartName === division['business-name'] : selectedCart === `${index}`} onChange={event => this.handleCartChange(event, division['business-name'])} />
                 <span className="helping-el" />
-                <span className="label-text">{division.name}</span>
+                <span className="label-text">{division['business-name']}</span>
               </label>
             </div>
           );
@@ -173,7 +170,7 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
   render() {
     const { selectedCart, orgAuthServiceData } = this.state;
     const { handleModalClose, openModal } = this.props;
-    const selectedCartName = orgAuthServiceData && orgAuthServiceData._element ? orgAuthServiceData._element[selectedCart].name : '';
+    const selectedCartName = orgAuthServiceData && orgAuthServiceData._element ? orgAuthServiceData._element[selectedCart]['business-name'] : '';
 
     return (
       <Modal open={openModal} onClose={this.onModalClose} classNames={{ modal: 'cart-selection-modal-content' }} showCloseIcon={false}>
