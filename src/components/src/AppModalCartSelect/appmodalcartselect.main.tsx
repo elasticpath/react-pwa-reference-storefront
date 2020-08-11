@@ -23,7 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
-import { adminFetch, cortexFetch } from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
 import './appmodalcartselect.main.scss';
@@ -98,28 +98,13 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
       selectedCart,
       orgAuthServiceData,
     } = this.state;
-    const { handleModalClose, onContinueCart } = this.props;
+    const { handleModalClose } = this.props;
 
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
       const selectedCartData = orgAuthServiceData._element[selectedCart];
       localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData['business-name']);
-      try {
-        const data = await adminFetch(`${selectedCartData._accesstokenform[0].self.uri}/?followlocation=true`, {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-          },
-          body: JSON.stringify({}),
-        }).then(res => res.json());
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${data.token}`);
-        window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${data.token}`, file: 'appmodalcartselect.main.1' } }));
-        await handleModalClose;
-        onContinueCart();
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      }
+      localStorage.setItem(`${Config.cortexApi.scope}_b2bSharedId`, orgAuthServiceData._element[selectedCart]._identifier[0]['shared-id']);
+      handleModalClose();
     }
   }
 

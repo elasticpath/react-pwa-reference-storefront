@@ -46,6 +46,9 @@ export function cortexFetch(input, init): any {
       requestInit.headers['x-ep-user-roles'] = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`);
       requestInit.headers['x-ep-user-scopes'] = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
     }
+    if (localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`)) {
+      requestInit.headers['x-ep-account-shared-id'] = localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`);
+    }
   }
 
   if (Config.enableOfflineMode) {
@@ -127,6 +130,7 @@ export function cortexFetch(input, init): any {
         window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: null, file: 'Cortex.1' } }));
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
         localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
+        localStorage.removeItem(`${Config.cortexApi.scope}_b2bSharedId`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
         localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
         localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
@@ -176,6 +180,7 @@ export function adminFetch(input, init): any {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
         localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
+        localStorage.removeItem(`${Config.cortexApi.scope}_b2bSharedId`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
         localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
         localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);

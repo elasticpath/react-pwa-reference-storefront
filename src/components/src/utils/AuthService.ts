@@ -156,6 +156,7 @@ export function logout() {
       window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: null, file: 'AuthService.3' } }));
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
       localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_b2bSharedId`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
       localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
       localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
