@@ -43,9 +43,6 @@ function AppFooterMain(props: AppFooterMainProps) {
     <footer className="app-footer" role="contentinfo">
       <div className="first-row">
         <div className="footer-column">
-          <div className="title">
-            {intl.get('bellevie')}
-          </div>
           <div className="content">
             {intl.get('store-description-message')}
           </div>

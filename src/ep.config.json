@@ -1,6 +1,6 @@
 {
   "cortexApi": {
-    "path": "/cortex",
+    "path": "http://10.11.12.22:8080/cortex",
     "scope": "vestri",
     "pathForProxy": "http://localhost:9080",
     "reqTimeout": "30000"
