@@ -481,6 +481,8 @@
   "my-account": "My Account",
   "quick-view": "Quick view",
   "added": "Added",
+  "your-account-shipping-default": "Your selected default shipping address is below",
+  "your-account-billing-default": "Your selected default billing address is below",
   "profile-tooltip-text": "Your personal defaults will be applied automatically at Checkout.",
   "address-book-tooltip-text": "Select your personal defaults, they will be applied automatically at Checkout."
 }
