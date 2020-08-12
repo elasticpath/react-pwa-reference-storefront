@@ -6,7 +6,6 @@ set -e
 export CI=true
 
 yarn cache clean --force
-yarn rebuild
 yarn build
 
 cp ./_redirects build/
