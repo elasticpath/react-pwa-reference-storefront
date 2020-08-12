@@ -5,12 +5,7 @@ set -e
 
 export CI=true
 
-npm cache clean --force
-
-npm rebuild
-
-rm -rf node_modules
-
+node --stack-size=2000
 yarn build
 
 cp ./_redirects build/
