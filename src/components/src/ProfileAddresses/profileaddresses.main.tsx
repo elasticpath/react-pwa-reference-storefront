@@ -192,7 +192,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
           <div>
             {addresses._element && (
               <p className="manage-address-title">
-                {intl.get('manage-your-account-addresses')}
+                {intl.get('manage-your-personal-addresses')}
               </p>
             )}
             <div className="profile-addresses-wrapper">

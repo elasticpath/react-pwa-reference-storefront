@@ -28,6 +28,7 @@ import ProfileemailinfoMain from '../components/src/ProfileEmailInfo/profileemai
 import PaymentSelectorMain from '../components/src/PaymentSelectorMain/paymentselector.main';
 import ProfileComplianceMain from '../components/src/ProfileCompliance/profilecompliance.main';
 import AddressContainer from '../components/src/AddressContainer/address.container';
+import { ReactComponent as InfoIcon } from '../images/icons/info-icon.svg';
 
 import { login } from '../hooks/store';
 import { cortexFetch } from '../components/src/utils/Cortex';
@@ -165,7 +166,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
       return (
         <div className="address-book-content">
           <h2>
-            {intl.get('ship-to')}
+            {intl.get('shipping')}
           </h2>
           <p>
             {intl.get('your-account-shipping-default')}
@@ -195,7 +196,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
       return (
         <div className="address-book-content">
           <h2>
-            {intl.get('bill-to')}
+            {intl.get('billing')}
           </h2>
           <p>
             {intl.get('your-account-billing-default')}
@@ -275,7 +276,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
         <div className="container profile-container">
           <div className="b2b-header" data-region="profileTitleRegion">
             <h1 className="page-title">
-              {intl.get(isB2B ? 'my-account' : 'my-profile')}
+              {intl.get('my-profile')}
             </h1>
           </div>
           {profileData ? (
@@ -302,7 +303,13 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
               <div className="profile-info-container">
                 <div className="address-info-container title">
                   <h2 className="profile-info-container-title">
-                    {intl.get('account-defaults')}
+                    {intl.get('personal-defaults')}
+                    <div className="ep-tooltip">
+                      <InfoIcon className="info-icon" />
+                      <span className="tooltiptext">
+                        {intl.get('profile-tooltip-text')}
+                      </span>
+                    </div>
                   </h2>
                   <Link to="/account/address-book">
                     <button className="ep-btn primary edit-addresses-btn wide" type="button">{intl.get('edit-addresses')}</button>
@@ -319,7 +326,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
               </div>
               <div className="profile-info-container">
                 <h2 className="profile-info-container-title">
-                  {intl.get('payment')}
+                  {intl.get('personal-payment')}
                 </h2>
                 {this.renderPayments()}
               </div>
