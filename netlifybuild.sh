@@ -5,6 +5,7 @@ set -e
 
 export CI=true
 
+node --stack-size=2000
 yarn build
 
 cp ./_redirects build/
