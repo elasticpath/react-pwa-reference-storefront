@@ -22,7 +22,7 @@
 import React from 'react';
 import B2bSideMenu from '../components/src/B2bSideMenu/b2b.sidemenu';
 import RouteWithSubRoutes from './RouteContainers/RouteWithSubRoutes';
-import { cortexFetch, adminFetch } from '../components/src/utils/Cortex';
+import { cortexFetch } from '../components/src/utils/Cortex';
 import * as Config from '../ep.config.json';
 
 import './MyAccountMain.scss';
@@ -37,7 +37,7 @@ interface MyAccountMainProps {
 }
 
 interface MyAccountMainState {
-  associatesFormUrl?: string;
+  showAssociatesLink?: boolean;
   showRequisitionListsLink: boolean;
   isLocationLoading: boolean;
 }
@@ -47,7 +47,7 @@ export default class MyAccountMain extends React.Component<MyAccountMainProps, M
     super(props);
 
     this.state = {
-      associatesFormUrl: undefined,
+      showAssociatesLink: false,
       showRequisitionListsLink: false,
       isLocationLoading: false,
     };
@@ -58,23 +58,19 @@ export default class MyAccountMain extends React.Component<MyAccountMainProps, M
     try {
       await this.fetchRequisitionListsData();
       if (Config.b2b.enable) {
-        const result = await adminFetch('/?zoom=accounts,accounts:addassociatesform,', {
+        const result = await cortexFetch(`/accounts/${Config.cortexApi.scope}/?zoom=element`, {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
         })
           .then(r => r.json());
 
         if (result
-          && result._accounts instanceof Array
-          && result._accounts.length > 0
-          && result._accounts[0]._addassociatesform instanceof Array
-          && result._accounts[0]._addassociatesform[0]
-          && result._accounts[0]._addassociatesform[0].self
+          && result._element
+          && result._element.length > 0
         ) {
-          const associatesFormUrl = `${Config.b2b.authServiceAPI.path}${result._accounts[0]._addassociatesform[0].self.uri}`;
-          this.setState({ associatesFormUrl });
+          this.setState({ showAssociatesLink: true });
         }
       }
 
@@ -106,7 +102,7 @@ export default class MyAccountMain extends React.Component<MyAccountMainProps, M
   render() {
     const { routes } = this.props;
     const {
-      associatesFormUrl,
+      showAssociatesLink,
       showRequisitionListsLink,
       isLocationLoading,
     } = this.state;
@@ -121,7 +117,7 @@ export default class MyAccountMain extends React.Component<MyAccountMainProps, M
       { to: '/account/address-book', children: 'address-book', id: 'address-book_item' },
     );
 
-    if (associatesFormUrl) {
+    if (showAssociatesLink) {
       sideMenuItems.push({ to: '/account/accounts', children: 'accounts' });
     }
 

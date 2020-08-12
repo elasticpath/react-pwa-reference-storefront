@@ -144,6 +144,9 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         this.getAccountData();
         this.fetchRequisitionListsData();
       }
+      if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED' && !localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`)) {
+        this.setState({ openCartModal: true });
+      }
     }
 
     static async discoverOIDCParameters() {
@@ -206,10 +209,10 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       if (Config.b2b.enable) {
         try {
           await login();
-          const account = await adminFetch('/?zoom=accounts,myprofile,myprofile:primaryemail', {
+          const account = await cortexFetch(`/accounts/${Config.cortexApi.scope}/?zoom=element`, {
             headers: {
               'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
             },
           });
           const accountJson = await account.json();
@@ -406,7 +409,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                       </Link>
                     </li>
                   )}
-                  {(Config.b2b.enable && accountData && accountData._accounts) ? (
+                  {(Config.b2b.enable && accountData && accountData._element && accountData._element.length > 0) ? (
                     <li className="dropdown-item">
                       <Link to={appHeaderLoginLinks.accounts} className="dashboard-link">
                         <div>
