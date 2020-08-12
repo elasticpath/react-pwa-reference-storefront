@@ -5,7 +5,12 @@ set -e
 
 export CI=true
 
-yarn cache clean --force
+npm cache clean --force
+
+npm rebuild
+
+rm -rf node_modules
+
 yarn build
 
 cp ./_redirects build/
