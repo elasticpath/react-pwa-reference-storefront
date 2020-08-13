@@ -22,7 +22,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { cortexFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../hooks/store';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
@@ -37,117 +37,46 @@ enum MessageType {
 
 interface AccountsState {
   admins: any;
-  /* defaultBillingAddress: any;
-  defaultShippingAddress: any;
-  recentOrders: any; */
   accounts: any;
-  searchAccounts: string;
   isLoading: boolean;
-  showSearchLoader: boolean;
   noSearchResults: boolean;
   isSellerAdmin: boolean;
   messages: { type: MessageType; text: string; }[];
 }
 
-const zoomArray = [
-  'element',
-  'element:attributes',
-  'element:identifier',
-];
-
 export default class Accounts extends React.Component<RouteComponentProps, AccountsState> {
+  fileInputRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
       noSearchResults: false,
-      showSearchLoader: false,
-      /* defaultBillingAddress: {
-        name: 'Inez Larson',
-        address: '198 Bendar Knoll',
-        city: 'East Nicklaus',
-        state: 'Michigan',
-        zip: '48002',
-        country: 'United States',
-      },
-      defaultShippingAddress: {
-        name: 'Max Wilkerson',
-        address: '198 Bendar Knoll',
-        city: 'East Nicklaus',
-        state: 'Michigan',
-        zip: '48002',
-        country: 'United States',
-      },
-      recentOrders: [
-        {
-          orderId: '170-05-3731',
-          date: '03 May 2019',
-          shipTo: 'Max Wilkerson',
-          orderTotal: '$4628.77',
-          status: 'Complete',
-        },
-        {
-          orderId: '170-05-3730',
-          date: '01 May 2019',
-          shipTo: 'Max Wilkerson',
-          orderTotal: '$4308.32',
-          status: 'Complete',
-        },
-        {
-          orderId: '170-05-3729',
-          date: '27 Apr 2019',
-          shipTo: 'Max Wilkerson',
-          orderTotal: '$3182.27',
-          status: 'Processing',
-        },
-        {
-          orderId: '170-05-3728',
-          date: '26 Apr 2019',
-          shipTo: 'Christopher Bryan',
-          orderTotal: '$2934.03',
-          status: 'Processing',
-        },
-      ], */
       accounts: [],
       admins: [],
-      searchAccounts: '',
       isSellerAdmin: false,
       messages: [],
     };
     this.getAdminData();
-    this.setSearchAccounts = this.setSearchAccounts.bind(this);
-    this.getSearchAccounts = this.getSearchAccounts.bind(this);
-    this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
-  }
-
-  setSearchAccounts(event) {
-    this.setState({ searchAccounts: event.target.value });
+    this.fileInputRef = React.createRef<HTMLInputElement>();
   }
 
   async getAdminData() {
     await login();
-    const res = await cortexFetch(`/accounts/${Config.cortexApi.scope}/?zoom=${zoomArray.join()}`, {
+    const result = await cortexFetch(`/accounts/${Config.cortexApi.scope}/?zoom=element,element:identifier,element:attributes`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
       },
-    })
-      .then(result => result.json());
-    if (res && res._element) {
-      this.setState({
-        accounts: res, isLoading: false,
-      });
-    }
+    }).then(r => r.json());
+    this.setState({
+      accounts: result._element, isLoading: false,
+    });
   }
 
-  getSearchAccounts() {
-    this.setState({ showSearchLoader: true });
-  }
-
-  handleEnterKeyPress(e) {
-    if (e.keyCode === 13) {
-      this.getSearchAccounts();
-    }
+  handleAccountClicked(account: any) {
+    const { history } = this.props;
+    history.push(`/account-item/${account.uri}`);
   }
 
   render() {
@@ -155,8 +84,6 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
       admins,
       accounts,
       isLoading,
-      searchAccounts,
-      showSearchLoader,
       noSearchResults,
       isSellerAdmin,
       messages,
@@ -182,12 +109,11 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
         <div className="account-description">{intl.get('buyer-admin-has-the-capability')}</div>
         {!isLoading ? (
           <div>
-            <div className="accounts-search">
-              <input type="text" placeholder={intl.get('search-accounts')} aria-label={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
-              {showSearchLoader && <div className="circularLoader" />}
-            </div>
             <div className="admin-address-book">
               <div className="b2b-section section-1 admin-section">
+                <div className="section-header">
+                  <div className="section-title">{intl.get('admins')}</div>
+                </div>
                 <div className="section-content">
                   {admins.slice(0, 2).map(admin => (
                     <div key={admin.email} className="user-info">
@@ -200,96 +126,12 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                   ))}
                 </div>
               </div>
-              <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }}>
-                {/* <div className="section-header"> */}
-                {/* <div className="section-title">{intl.get('addresses')}</div> */}
-                {/* <div className="section-header-right"> */}
-                {/* /!*<Link to="/">{intl.get('edit')}</Link>*!/ */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* <div className="section-content"> */}
-                {/* <div className="address default-billing"> */}
-                {/* <div className="address-title">{intl.get('default-billing')}</div> */}
-                {/* <div className="address-content"> */}
-                {/* <div className="name-line">{defaultBillingAddress.name}</div> */}
-                {/* <div className="address-line">{defaultBillingAddress.address}</div> */}
-                {/* <div className="state-line"> */}
-                {/* {defaultBillingAddress.city} */}
-                {/* ,&nbsp; */}
-                {/* {defaultBillingAddress.state} */}
-                {/* ,&nbsp; */}
-                {/* {defaultBillingAddress.zip} */}
-                {/* </div> */}
-                {/* <div className="country-line">{defaultBillingAddress.country}</div> */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* <div className="address default-shipping"> */}
-                {/* <div className="address-title">{intl.get('default-shipping')}</div> */}
-                {/* <div className="address-content"> */}
-                {/* <div className="name-line">{defaultShippingAddress.name}</div> */}
-                {/* <div className="address-line">{defaultShippingAddress.address}</div> */}
-                {/* <div className="state-line"> */}
-                {/* {defaultShippingAddress.city} */}
-                {/* ,&nbsp; */}
-                {/* {defaultShippingAddress.state} */}
-                {/* ,&nbsp; */}
-                {/* {defaultShippingAddress.zip} */}
-                {/* </div> */}
-                {/* <div className="country-line">{defaultShippingAddress.country}</div> */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* </div> */}
-              </div>
+              <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }} />
             </div>
-            {/* <div className="b2b-section recent-orders"> */}
-            {/* <div className="section-header"> */}
-            {/* <div className="section-title">{intl.get('recent-orders')}</div> */}
-            {/* <div className="section-header-right"> */}
-            {/* /!*<Link to="/">{intl.get('view-all')}</Link>*!/ */}
-            {/* </div> */}
-            {/* </div> */}
-            {/* <div className="section-content"> */}
-            {/* <table className="b2b-table recent-orders-table"> */}
-            {/* <thead> */}
-            {/* <tr> */}
-            {/* <th className="order-id"> */}
-            {/* {intl.get('order')} */}
-            {/* <span className="mobile-table-title"> */}
-            {/* {' '} */}
-            {/* & */}
-            {/* {' '} */}
-            {/* {intl.get('date')} */}
-            {/* </span> */}
-            {/* </th> */}
-            {/* <th className="date">{intl.get('date')}</th> */}
-            {/* <th className="ship-to"> */}
-            {/* {intl.get('ship-to')} */}
-            {/* <span className="mobile-table-title"> */}
-            {/* {' '} */}
-            {/* & */}
-            {/* {' '} */}
-            {/* {intl.get('order-total')} */}
-            {/* </span> */}
-            {/* </th> */}
-            {/* <th className="order-total">{intl.get('order-total')}</th> */}
-            {/* <th className="status">{intl.get('status')}</th> */}
-            {/* </tr> */}
-            {/* </thead> */}
-            {/* <tbody> */}
-            {/* {recentOrders.map(order => ( */}
-            {/* <tr key={order.orderId}> */}
-            {/* <td className="order-id">{order.orderId}</td> */}
-            {/* <td className="date">{order.date}</td> */}
-            {/* <td className="ship-to">{order.shipTo}</td> */}
-            {/* <td className="order-total">{order.orderTotal}</td> */}
-            {/* <td className="status">{order.status}</td> */}
-            {/* </tr> */}
-            {/* ))} */}
-            {/* </tbody> */}
-            {/* </table> */}
-            {/* </div> */}
-            {/* </div> */}
             <div className="b2b-section accounts">
+              <div className="section-header">
+                <div className="section-title">{intl.get('accounts')}</div>
+              </div>
               <div className="section-content">
                 { !noSearchResults ? (
                   <table className="b2b-table accounts-table">
@@ -306,22 +148,22 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                             </span>
                           )}
                         </th>
-                        <th className="external-id">{intl.get('external-id')}</th>
+                        {isSellerAdmin && <th className="external-id">{intl.get('external-id')}</th>}
                         <th className="status">{intl.get('status')}</th>
                         <th className="arrow" />
                       </tr>
                     </thead>
                     <tbody>
-                      {accounts._element.map(account => (
-                        <tr key={account.self.uri} className="account-list-rows">
+                      {accounts.map(account => (
+                        <tr key={account.self.uri} onClick={() => this.handleAccountClicked(account)} className="account-list-rows">
                           <td className="name">{account['business-name']}</td>
-                          <td className="external-id">{account['business-number']}</td>
+                          {isSellerAdmin && <td className="external-id">{account._identifier[0]['shared-id']}</td>}
                           <td className="status">
                             <i className="icons-status enabled" />
                             {intl.get('enabled')}
                           </td>
                           <td className="arrow">
-                            <span className="arrow-btn" />
+                            <Link to={`/b2b/account/${account.self.uri}`} title={account['business-name']} className="arrow-btn" />
                           </td>
                         </tr>
                       ))}
