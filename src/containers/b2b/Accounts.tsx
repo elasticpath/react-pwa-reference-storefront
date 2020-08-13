@@ -26,8 +26,9 @@ import { RouteComponentProps } from 'react-router-dom';
 import { cortexFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../hooks/store';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
-import Config from '../../ep.config.json';
+import { ReactComponent as InfoIcon } from '../../images/icons/info-icon.svg';
 
+import Config from '../../ep.config.json';
 import './Accounts.scss';
 
 enum MessageType {
@@ -128,7 +129,15 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
           ))}
         </div>
         <div className="b2b-header">
-          <h1 className="page-title">{intl.get('business-account')}</h1>
+          <h1 className="page-title">
+            {intl.get('accounts')}
+            <div className="ep-tooltip">
+              <InfoIcon className="info-icon" />
+              <span className="tooltiptext">
+                {intl.get('account-tooltip-text')}
+              </span>
+            </div>
+          </h1>
         </div>
         <div className="account-description">{intl.get('buyer-admin-has-the-capability')}</div>
         {!isLoading ? (

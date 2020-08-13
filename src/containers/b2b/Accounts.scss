@@ -207,4 +207,28 @@
       padding: 0;
     }
   }
+
+  .info-icon {
+    fill: $firstComplimentColor;
+    width: 20px;
+    margin-left: 5px;
+    margin-top: 6px;
+  }
+
+  .ep-tooltip {
+    vertical-align: bottom;
+  }
+
+  .ep-tooltip .tooltiptext {
+    padding: 10px 5px;
+    width: 260px;
+    bottom: -10px;
+    margin-left: 4px;
+  }
+
+  .ep-tooltip .tooltiptext::after {
+    top: 45%;
+    left: -5px;
+    transform: rotate(90deg);
+  }
 }
