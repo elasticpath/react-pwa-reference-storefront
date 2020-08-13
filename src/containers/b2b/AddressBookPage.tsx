@@ -31,6 +31,7 @@ import './AddressBookPage.scss';
 import AddressFormMain from '../../components/src/AddressForm/addressform.main';
 import ProfileAddressesMain from '../../components/src/ProfileAddresses/profileaddresses.main';
 import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
+import { ReactComponent as InfoIcon } from '../../images/icons/info-icon.svg';
 
 const zoomArray = [
   'defaultprofile',
@@ -193,6 +194,12 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
           <div className="b2b-header">
             <h1 className="page-title">
               {intl.get('address-book')}
+              <div className="ep-tooltip">
+                <InfoIcon className="info-icon" />
+                <span className="tooltiptext">
+                  {intl.get('address-book-tooltip-text')}
+                </span>
+              </div>
             </h1>
           </div>
           <div>

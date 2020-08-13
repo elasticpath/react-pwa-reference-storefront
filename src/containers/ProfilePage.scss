@@ -77,6 +77,12 @@
     }
   }
 
+  .info-icon {
+    fill: $firstComplimentColor;
+    width: 20px;
+    margin-left: 5px;
+  }
+
   .profile-info-save-btn {
     background-color: $firstComplimentColor;
     font-weight: bold;
@@ -259,11 +265,18 @@
   margin-bottom: 32px;
 
   .profile-info-container-title {
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: bold;
+    font-size: 22px;
+    text-transform: none;
   }
 
-    .edit-addresses-btn {
-      width: 200px;
-    }
+  .edit-addresses-btn {
+    width: 200px;
+  }
+}
+
+.address-book-content {
+  p {
+    margin-bottom: 20px;
+  }
 }

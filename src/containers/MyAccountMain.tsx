@@ -108,10 +108,9 @@ export default class MyAccountMain extends React.Component<MyAccountMainProps, M
     } = this.state;
 
     const sideMenuItems = [];
-    const profileName = Config.b2b.enable ? 'my-account' : 'my-profile';
 
     sideMenuItems.push(
-      { to: '/account', children: profileName },
+      { to: '/account', children: 'my-profile' },
       { to: '/account/purchase-history', children: 'purchase-history' },
       { to: '/account/wishlists', children: 'wishlists' },
       { to: '/account/address-book', children: 'address-book', id: 'address-book_item' },
