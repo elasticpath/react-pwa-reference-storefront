@@ -22,7 +22,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { cortexFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../hooks/store';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
@@ -38,52 +38,76 @@ enum MessageType {
 interface AccountsState {
   admins: any;
   accounts: any;
+  // searchAccounts: string;
   isLoading: boolean;
+  // showSearchLoader: boolean;
   noSearchResults: boolean;
   isSellerAdmin: boolean;
   messages: { type: MessageType; text: string; }[];
 }
 
-export default class Accounts extends React.Component<RouteComponentProps, AccountsState> {
-  fileInputRef: React.RefObject<HTMLInputElement>;
+const zoomArray = [
+  'element',
+  'element:attributes',
+  'element:identifier',
+];
 
+export default class Accounts extends React.Component<RouteComponentProps, AccountsState> {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
       noSearchResults: false,
+      // showSearchLoader: false,
       accounts: [],
       admins: [],
+      // searchAccounts: '',
       isSellerAdmin: false,
       messages: [],
     };
     this.getAdminData();
-    this.fileInputRef = React.createRef<HTMLInputElement>();
+    // this.setSearchAccounts = this.setSearchAccounts.bind(this);
+    // this.getSearchAccounts = this.getSearchAccounts.bind(this);
+    // this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
   }
+
+  // setSearchAccounts(event) {
+  //   this.setState({ searchAccounts: event.target.value });
+  // }
 
   async getAdminData() {
     await login();
-    const result = await cortexFetch(`/accounts/${Config.cortexApi.scope}/?zoom=element,element:identifier,element:attributes`, {
+    const res = await cortexFetch(`/accounts/${Config.cortexApi.scope}/?zoom=${zoomArray.join()}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
       },
-    }).then(r => r.json());
-    this.setState({
-      accounts: result._element, isLoading: false,
-    });
+    })
+      .then(result => result.json());
+    if (res && res._element) {
+      this.setState({
+        accounts: res, isLoading: false,
+      });
+    }
   }
 
-  handleAccountClicked(account: any) {
-    const { history } = this.props;
-    history.push(`/account-item/${account.uri}`);
-  }
+  // getSearchAccounts() {
+  //   this.setState({ showSearchLoader: true });
+  // }
+  //
+  // handleEnterKeyPress(e) {
+  //   if (e.keyCode === 13) {
+  //     this.getSearchAccounts();
+  //   }
+  // }
 
   render() {
     const {
       admins,
       accounts,
       isLoading,
+      // searchAccounts,
+      // showSearchLoader,
       noSearchResults,
       isSellerAdmin,
       messages,
@@ -109,11 +133,12 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
         <div className="account-description">{intl.get('buyer-admin-has-the-capability')}</div>
         {!isLoading ? (
           <div>
+            {/* <div className="accounts-search">
+              <input type="text" placeholder={intl.get('search-accounts')} aria-label={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
+              {showSearchLoader && <div className="circularLoader" />}
+            </div> */}
             <div className="admin-address-book">
               <div className="b2b-section section-1 admin-section">
-                <div className="section-header">
-                  <div className="section-title">{intl.get('admins')}</div>
-                </div>
                 <div className="section-content">
                   {admins.slice(0, 2).map(admin => (
                     <div key={admin.email} className="user-info">
@@ -129,9 +154,6 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
               <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }} />
             </div>
             <div className="b2b-section accounts">
-              <div className="section-header">
-                <div className="section-title">{intl.get('accounts')}</div>
-              </div>
               <div className="section-content">
                 { !noSearchResults ? (
                   <table className="b2b-table accounts-table">
@@ -140,30 +162,30 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                         <th className="name">
                           {intl.get('name')}
                           {isSellerAdmin && (
-                            <span className="mobile-table-title">
+                          <span className="mobile-table-title">
                               {' '}
-                              &
-                              {' '}
-                              {intl.get('external-id')}
-                            </span>
+                            &
+                            {' '}
+                            {intl.get('external-id')}
+                          </span>
                           )}
                         </th>
-                        {isSellerAdmin && <th className="external-id">{intl.get('external-id')}</th>}
+                        <th className="external-id">{intl.get('external-id')}</th>
                         <th className="status">{intl.get('status')}</th>
                         <th className="arrow" />
                       </tr>
                     </thead>
                     <tbody>
-                      {accounts.map(account => (
-                        <tr key={account.self.uri} onClick={() => this.handleAccountClicked(account)} className="account-list-rows">
+                      {accounts._element.map(account => (
+                        <tr key={account.self.uri} className="account-list-rows">
                           <td className="name">{account['business-name']}</td>
-                          {isSellerAdmin && <td className="external-id">{account._identifier[0]['shared-id']}</td>}
+                          <td className="external-id">{account['business-number']}</td>
                           <td className="status">
                             <i className="icons-status enabled" />
                             {intl.get('enabled')}
                           </td>
                           <td className="arrow">
-                            <Link to={`/b2b/account/${account.self.uri}`} title={account['business-name']} className="arrow-btn" />
+                            <span className="arrow-btn" />
                           </td>
                         </tr>
                       ))}
