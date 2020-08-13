@@ -31,14 +31,11 @@ import { useRequisitionListCountState } from '../requisition-list-count-context'
 import {
   logout, getAccessToken,
 } from '../utils/AuthService';
-import { cortexFetch, adminFetch } from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import { ReactComponent as AccountIcon } from '../../../images/header-icons/account-icon.svg';
 import Config from '../../../ep.config.json';
 
 import './appheaderlogin.main.scss';
-
-
-const oidcDiscoveryEndpoint = '/.well-known/openid-configuration';
 
 interface AppHeaderLoginMainProps {
   /** is mobile view */
@@ -137,42 +134,13 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         this.impersonate(params);
       } else if (params.role && params.token) {
         this.logoutRegisteredUser();
-      } else if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) !== null && localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`) === null) {
-        this.handleCartModalOpen();
       }
-      if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) !== null) {
+      if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
         this.getAccountData();
         this.fetchRequisitionListsData();
       }
       if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED' && !localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`)) {
         this.setState({ openCartModal: true });
-      }
-    }
-
-    static async discoverOIDCParameters() {
-      try {
-        const data = await adminFetch(oidcDiscoveryEndpoint, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-          },
-        });
-        const res = await data.json();
-        return {
-          clientId: res.account_management_client_id,
-          scopes: res.account_management_required_scopes,
-          authorizationEndpoint: res.authorization_endpoint,
-          endSessionEndpoint: res.end_session_endpoint,
-        };
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        return {
-          clientId: '',
-          scopes: '',
-          authorizationEndpoint: '',
-          endSessionEndpoint: '',
-        };
       }
     }
 

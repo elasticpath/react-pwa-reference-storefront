@@ -38,7 +38,6 @@ import RouteWithSubRoutes from './containers/RouteContainers/RouteWithSubRoutes'
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 import { ErrorContext, ErrorDisplayBoundary, ErrorRemoveAll } from './components/src/utils/MessageContext';
-import { LoginRedirectPage } from './containers/LoginRedirectPage';
 import baseRoutes from './containers/RouteContainers/baseRouter';
 import './App.scss';
 
@@ -253,7 +252,6 @@ const AppWithRouter = (props) => {
           <CountProvider>
             <RequisitionListCountProvider>
               <Switch>
-                <Route path="/loggedin" exact component={LoginRedirectPage} />
                 <Route path="/" exact={false} render={passedProps => <App {...passedProps} componentsData={componentsData} />} />
               </Switch>
             </RequisitionListCountProvider>

@@ -105,9 +105,7 @@ const storeModel: StoreModel = {
         window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${result.access_token}`, file: 'AuthService.1' } }));
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, publicUserDetails.username);
       }
-      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.role);
-      }
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.role);
     } catch (err) {
       actions.setNetworkError(err);
     }

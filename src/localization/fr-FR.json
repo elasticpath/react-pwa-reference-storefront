@@ -14,6 +14,7 @@
   "shopping-cart-nav": "S-h-o-p-p-i-n-g- -C-a-r-t",
   "continue-shopping": "C-o-n-t-i-n-u-e- -S-h-o-p-p-i-n-g",
   "proceed-to-checkout": "P-r-o-c-e-e-d- -t-o- -C-h-e-c-k-o-u-t",
+  "proceed-to-procurement": "T-r-a-n-s-f-e-r- -C-a-r-t",
   "sign-in-to-proceed": "S-i-g-n- -I-n- -t-o- -p-r-o-c-e-e-d- -t-o- -c-h-e-c-k-o-u-t",
   "create-an-account": "C-r-e-a-t-e- -a-n- -a-c-c-o-u-n-t",
   "create-an-account-message": "C-r-e-a-t-e- -a-n- -a-c-c-o-u-n-t- -w-i-t-h- -u-s- -t-o- -e-n-j-o-y- -f-a-s-t- -a-n-d- -e-a-s-y- -c-h-e-c-k-o-u-t-,- -o-n-l-i-n-e- -a-d-d-r-e-s-s- -b-o-o-k-,- -p-u-r-c-h-a-s-e- -h-i-s-t-o-r-y- -a-n-d- -m-o-r-e-!",
@@ -477,5 +478,6 @@
   "account-information": "A-c-c-o-u-n-t- -I-n-f-o-r-m-a-t-i-o-n",
   "my-account": "M-y- -A-c-c-o-u-n-t",
   "quick-view": "Q-u-i-c-k- -v-i-e-w",
-  "added": "A-d-d-e-d"
+  "added": "A-d-d-e-d",
+  "search-accounts": "S-e-a-r-c-h- -A-c-c-o-u-n-t-s"
 }

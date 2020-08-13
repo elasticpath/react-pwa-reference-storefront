@@ -1,6 +1,6 @@
 {
   "cortexApi": {
-    "path": "http://10.11.12.144:8080/cortex",
+    "path": "/cortex",
     "scope": "mobee",
     "pathForProxy": "http://10.11.12.144:8080",
     "reqTimeout": "30000"
@@ -40,15 +40,6 @@
       "path": "",
       "pathForProxy": "",
       "reqTimeout": "30000"
-    },
-    "openId": {
-      "enable": true
-    },
-    "keycloak": {
-      "callbackUrl": "http://localhost:8080",
-      "loginRedirectUrl": "",
-      "logoutRedirectUrl": "",
-      "client_id": ""
     }
   },
   "gaTrackingId": "",

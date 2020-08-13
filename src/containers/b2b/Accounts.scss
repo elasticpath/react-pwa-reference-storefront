@@ -81,23 +81,6 @@
   }
   .accounts {
     margin-bottom: 100px;
-    .section-header {
-      align-items: center;
-    }
-    @media (max-width: $mobileWidth) {
-      .section-header {
-        display: flex;
-        flex-direction: column;
-        align-items: unset;
-        .section-header-right {
-          width: 100%
-        }
-
-        input {
-          width: 100%
-        }
-      }
-    }
     .section-content {
       .accounts-table {
         td.name {
@@ -229,20 +212,20 @@
   }
   .accounts-search {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     input {
       height: 32px;
-      width: 250px;
-      padding: 0 30px;
+      width: 400px;
+      padding: 0 30px 0 15px;
       font-size: 14px;
       line-height: 18px;
       color: $firstComplimentTextColor;
       border: 1px solid $firstBorderColor;
       border-radius: 4px;
-      background: $mainBackgroundColor url('../#{$imgUrl}/header-icons/search_icon.svg') no-repeat 10px center;
+      background: $mainBackgroundColor url('../#{$imgUrl}/header-icons/search_icon.svg') no-repeat calc(100% - 10px) center;
       outline: 0 auto transparent;
       @media (max-width: 480px) {
-        width: 150px;
+        width: 100%;
       }
     }
     .circularLoader {
