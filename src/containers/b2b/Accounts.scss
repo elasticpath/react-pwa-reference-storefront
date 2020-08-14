@@ -198,25 +198,16 @@
     padding: 10px 0;
     border-top: 1px solid $fifthComplimentTextColor;
   }
-  .account-description {
-    margin: 10px 0 50px;
-    padding-right: 270px;
-
-    @media (max-width: 991px) {
-      margin: 60px 0 30px;
-      padding: 0;
-    }
-  }
 
   .info-icon {
     fill: $firstComplimentColor;
     width: 20px;
     margin-left: 5px;
-    margin-top: 6px;
   }
 
   .ep-tooltip {
     vertical-align: bottom;
+    margin-bottom: 2px;
   }
 
   .ep-tooltip .tooltiptext {

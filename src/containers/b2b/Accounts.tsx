@@ -139,7 +139,6 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
             </div>
           </h1>
         </div>
-        <div className="account-description">{intl.get('buyer-admin-has-the-capability')}</div>
         {!isLoading ? (
           <div>
             {/* <div className="accounts-search">
