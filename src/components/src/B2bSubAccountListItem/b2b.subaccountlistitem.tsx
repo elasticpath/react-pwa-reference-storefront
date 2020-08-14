@@ -25,7 +25,7 @@ import intl from 'react-intl-universal';
 // eslint-disable-next-line import/no-cycle
 import SubAccountList from '../B2bSubAccountList/b2b.subaccountlist';
 import { login } from '../../../hooks/store';
-import { adminFetch } from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
 import '../B2bSubAccountList/b2b.subaccountlist.scss';
@@ -125,10 +125,10 @@ class B2bSubAccountListItem extends Component<B2bSubAccountListItemProps, B2bSub
 
     this.setState({ isLoading: true });
     login().then(() => {
-      adminFetch(`${uri}/?zoom=${zoom.join()}`, {
+      cortexFetch(`${uri}/?zoom=${zoom.join()}`, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
       })
         .then(res => res.json())

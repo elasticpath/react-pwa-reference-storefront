@@ -23,7 +23,7 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { adminFetch } from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
@@ -157,11 +157,11 @@ class B2bEditAssociate extends Component<B2bEditAssociateProps, B2bEditAssociate
     }
     this.setState({ isLoading: true });
     changedRoles.forEach((selection) => {
-      adminFetch(`${selection.selectRoleURI}?followlocation&format=standardlinks,zoom.nodatalinks`, {
+      cortexFetch(`${selection.selectRoleURI}?followlocation&format=standardlinks,zoom.nodatalinks`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
         body: JSON.stringify({}),
       })
@@ -203,11 +203,11 @@ class B2bEditAssociate extends Component<B2bEditAssociateProps, B2bEditAssociate
 
     this.setState({ isLoading: true });
     const roles = changedRoles.map(role => role.roleName.replace(' ', '_').toUpperCase());
-    adminFetch(`${addAssociateUri}?followlocation&format=standardlinks,zoom.nodatalinks`, {
+    cortexFetch(`${addAssociateUri}?followlocation&format=standardlinks,zoom.nodatalinks`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
       },
       body: JSON.stringify({ 'associate-id': newAssociateEmail, roles }),
 

@@ -105,11 +105,6 @@ module.exports = function (proxy, allowedHost) {
     ...(epConfig.cortexApi.pathForProxy !== '' ? {
       proxy: [
         {
-          context: ['/admin'],
-          target: epConfig.b2b.authServiceAPI.pathForProxy,
-          changeOrigin: true,
-        },
-        {
           context: ['/cortex'],
           target: epConfig.cortexApi.pathForProxy,
           changeOrigin: true,

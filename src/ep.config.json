@@ -35,12 +35,7 @@
     "sizes": ["768", "1092", "2800"]
   },
   "b2b": {
-    "enable": false,
-    "authServiceAPI": {
-      "path": "",
-      "pathForProxy": "",
-      "reqTimeout": "30000"
-    }
+    "enable": false
   },
   "gaTrackingId": "",
   "arKit": {

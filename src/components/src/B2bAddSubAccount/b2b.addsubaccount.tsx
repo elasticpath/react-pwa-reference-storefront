@@ -23,7 +23,7 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { adminFetch } from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import { login } from '../../../hooks/store';
 import Config from '../../../ep.config.json';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
@@ -77,11 +77,11 @@ class B2bAddSubAccount extends Component<B2bAddSubAccountProps, B2bAddSubAccount
     event.preventDefault();
     this.setState({ isLoading: true });
     login().then(() => {
-      adminFetch(`${addSubAccountUri}?followlocation&format=standardlinks,zoom.nodatalinks`, {
+      cortexFetch(`${addSubAccountUri}?followlocation&format=standardlinks,zoom.nodatalinks`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
         body: JSON.stringify({
           name,
