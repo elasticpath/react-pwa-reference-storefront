@@ -97,7 +97,12 @@ class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, Purc
       });
       const accountJson = await account.json();
       if (localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`)) {
-        const selectedAccount = accountJson._element.filter(el => el._identifier[0]['shared-id'] === localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`));
+        const selectedAccount = accountJson._element.filter((el) => {
+          if (el._identifier && el._identifier.length > 0) {
+            return el._identifier[0]['shared-id'] === localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`);
+          }
+          return false;
+        });
         if (selectedAccount && selectedAccount.length > 0 && selectedAccount[0]._purchases) {
           this.setState({ accountData: selectedAccount[0]._purchases[0], selectedAccountName: selectedAccount[0]['business-name'] });
         } else {
