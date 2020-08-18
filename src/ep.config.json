@@ -1,8 +1,8 @@
 {
   "cortexApi": {
-    "path": "http://10.11.12.250:8080/cortex",
+    "path": "/cortex",
     "scope": "mobee",
-    "pathForProxy": "http://10.11.12.250:8080/cortex",
+    "pathForProxy": "https://10.11.12.250:8080/cortex",
     "reqTimeout": "30000"
   },
   "supportedLocales": [
@@ -35,7 +35,7 @@
     "sizes": ["768", "1092", "2800"]
   },
   "b2b": {
-    "enable": true
+    "enable": false
   },
   "gaTrackingId": "",
   "arKit": {
