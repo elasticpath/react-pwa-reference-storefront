@@ -1,2 +1,2 @@
-/cortex/*   https://10.11.12.250:8080/cortex/:splat    200
+/cortex/*   https://10.11.12.250:8080/cortex:splat    200
 /*          /index.html                                      200
