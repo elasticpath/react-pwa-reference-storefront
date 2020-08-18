@@ -1,8 +1,8 @@
 {
   "cortexApi": {
     "path": "/cortex",
-    "scope": "vestri",
-    "pathForProxy": "http://localhost:9080",
+    "scope": "mobee",
+    "pathForProxy": "https://10.11.12.250:8080/cortex",
     "reqTimeout": "30000"
   },
   "supportedLocales": [
