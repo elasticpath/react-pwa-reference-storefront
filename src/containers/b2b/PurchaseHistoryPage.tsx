@@ -34,10 +34,19 @@ const zoomArray = [
   'defaultprofile:purchases:element',
 ];
 
+const zoomArrayAccounts = [
+  'element',
+  'element:identifier',
+  'element:purchases',
+  'element:purchases:element',
+];
+
 interface PurchaseHistoryPageProps extends React.Component<RouteComponentProps> {}
 interface PurchaseHistoryPageState {
   defaultProfile: any,
   isLoading: boolean,
+  accountData: any,
+  selectedAccountName: string,
 }
 
 class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, PurchaseHistoryPageState> {
@@ -46,11 +55,16 @@ class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, Purc
     this.state = {
       defaultProfile: {},
       isLoading: false,
+      accountData: undefined,
+      selectedAccountName: '',
     };
   }
 
   async componentDidMount() {
     await this.fetchPurchaseData();
+    if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
+      await this.getAccountData();
+    }
   }
 
   async fetchPurchaseData() {
@@ -72,8 +86,34 @@ class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, Purc
     }
   }
 
+  async getAccountData() {
+    try {
+      await login();
+      const account = await cortexFetch(`/accounts/${Config.cortexApi.scope}/?zoom=${zoomArrayAccounts.sort().join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      });
+      const accountJson = await account.json();
+      if (localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`)) {
+        const selectedAccount = accountJson._element.filter(el => el._identifier[0]['shared-id'] === localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`));
+        if (selectedAccount && selectedAccount.length > 0 && selectedAccount[0]._purchases) {
+          this.setState({ accountData: selectedAccount[0]._purchases[0], selectedAccountName: selectedAccount[0]['business-name'] });
+        } else {
+          this.setState({ accountData: undefined, selectedAccountName: '' });
+        }
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+    }
+  }
+
   render() {
-    const { defaultProfile, isLoading } = this.state;
+    const {
+      defaultProfile, isLoading, accountData, selectedAccountName,
+    } = this.state;
     const purchases = defaultProfile._purchases ? defaultProfile._purchases[0] : {};
     return (
       <div className="purchase-history-page">
@@ -83,7 +123,17 @@ class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, Purc
         {
           isLoading
             ? <div className="loader" />
-            : <OrderHistoryMain purchaseHistory={purchases} />
+            : (
+              <React.Fragment>
+                <OrderHistoryMain purchaseHistory={purchases} />
+                {accountData && (
+                  <div>
+                    <p>{selectedAccountName}</p>
+                    <OrderHistoryMain purchaseHistory={accountData} />
+                  </div>
+                )}
+              </React.Fragment>
+            )
         }
       </div>
     );

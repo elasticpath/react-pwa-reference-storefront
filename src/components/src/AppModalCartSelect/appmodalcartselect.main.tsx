@@ -98,13 +98,14 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
       selectedCart,
       orgAuthServiceData,
     } = this.state;
-    const { handleModalClose } = this.props;
+    const { handleModalClose, onContinueCart } = this.props;
 
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
       const selectedCartData = orgAuthServiceData._element[selectedCart];
       localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData['business-name']);
       localStorage.setItem(`${Config.cortexApi.scope}_b2bSharedId`, orgAuthServiceData._element[selectedCart]._identifier[0]['shared-id']);
-      handleModalClose();
+      await handleModalClose();
+      onContinueCart();
     }
   }
 

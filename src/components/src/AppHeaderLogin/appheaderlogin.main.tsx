@@ -77,7 +77,6 @@ interface AppHeaderLoginMainState {
   openCartModal: boolean,
   showForgotPasswordLink: boolean,
   accountData: any,
-  oidcParameters: any,
   showRequisitionListsLink: boolean,
   profileData: any,
 }
@@ -94,7 +93,7 @@ const zoomArray = [
   'passwordresetform',
 ];
 
-class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLoginMainState, OidcParameters> {
+class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLoginMainState> {
     static defaultProps = {
       isMobileView: false,
       locationSearchData: '',
@@ -105,7 +104,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       onContinueCart: () => {},
       onResetPassword: () => {},
       appHeaderLinks: {},
-    }
+    };
 
     constructor(props) {
       super(props);
@@ -115,7 +114,6 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         openCartModal: false,
         showForgotPasswordLink: false,
         accountData: undefined,
-        oidcParameters: {},
         showRequisitionListsLink: false,
         profileData: undefined,
       };
@@ -287,7 +285,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin, locationPathName,
       } = this.props;
       const {
-        openModal, openCartModal, showForgotPasswordLink, accountData, oidcParameters, showRequisitionListsLink,
+        openModal, openCartModal, showForgotPasswordLink, accountData, showRequisitionListsLink,
       } = this.state;
       const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
       const b2cUserName = this.getB2cUserName();
@@ -430,7 +428,6 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
           </button>
           <AppModalLoginMain
             key="app-modal-login-main"
-            oidcParameters={oidcParameters}
             handleModalClose={this.handleModalClose}
             openModal={openModal}
             onLogin={onLogin}
