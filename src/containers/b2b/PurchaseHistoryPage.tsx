@@ -104,7 +104,7 @@ class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, Purc
           return false;
         });
         if (selectedAccount && selectedAccount.length > 0 && selectedAccount[0]._purchases) {
-          this.setState({ accountData: selectedAccount[0]._purchases[0], selectedAccountName: selectedAccount[0]['business-name'] });
+          this.setState({ accountData: selectedAccount[0]._purchases[0], selectedAccountName: selectedAccount[0]['account-business-name'] });
         } else {
           this.setState({ accountData: undefined, selectedAccountName: '' });
         }

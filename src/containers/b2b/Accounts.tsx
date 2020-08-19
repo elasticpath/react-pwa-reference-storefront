@@ -186,8 +186,8 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                     <tbody>
                       {accounts._element.map(account => (
                         <tr key={account.self.uri} className="account-list-rows">
-                          <td className="name">{account['business-name']}</td>
-                          <td className="external-id">{account['business-number']}</td>
+                          <td className="name">{account['account-business-name']}</td>
+                          <td className="external-id">{account['account-business-number']}</td>
                           <td className="status">
                             <i className="icons-status enabled" />
                             {intl.get('enabled')}
