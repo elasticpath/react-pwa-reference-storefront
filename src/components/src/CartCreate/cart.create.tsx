@@ -172,7 +172,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
         },
         body: JSON.stringify({ descriptor: { name: cartName } }),
       })
-        // .then(res => res.json())
+        .then(res => res.json())
         .then(() => {
           this.fetchCartData(-1);
           handleCartsUpdate();
