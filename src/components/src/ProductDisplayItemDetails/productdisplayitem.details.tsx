@@ -34,7 +34,7 @@ import QuantitySelector from '../QuantitySelector/quantitySelector';
 import './productdisplayitem.details.scss';
 
 
-export const ZOOM : string[] = [
+export const ZOOM : string = [
   'availability',
   'addtocartform',
   'addtocartforms:element:addtocartaction',
@@ -88,7 +88,7 @@ export const ZOOM : string[] = [
   'recommendations:upsell:element:availability',
   'recommendations:warranty:element:availability',
   'code',
-];
+].sort().join();
 
 
 class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, ProductDisplayItemMainState> {
@@ -101,7 +101,6 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
       selectionValue: '',
       addToCartLoading: false,
       addToRequisitionListLoading: false,
-      requisitionListData: undefined,
       isAdded: false,
     };
 
@@ -112,7 +111,6 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     this.handleConfiguration = this.handleConfiguration.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
-    this.renderConfiguration = this.renderConfiguration.bind(this);
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
   }
 
@@ -128,14 +126,15 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
 
   static extractPrice(productData) {
     let listPrice = 'n/a';
-    if (productData._price) {
-      listPrice = productData._price[0]['list-price'][0].display;
-    }
     let itemPrice = 'n/a';
     if (productData._price) {
+      listPrice = productData._price[0]['list-price'][0].display;
       itemPrice = productData._price[0]['purchase-price'][0].display;
     }
-    return { listPrice, itemPrice };
+    return {
+      listPrice,
+      itemPrice,
+    };
   }
 
   static extractAvailabilityParams(productData) {
@@ -228,7 +227,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     const selfUri = event.target.value;
     handleLoading();
     login().then(() => {
-      cortexFetch(`${selfUri}?followlocation=true&zoom=${ZOOM.sort().join()}`,
+      cortexFetch(`${selfUri}?followlocation=true&zoom=${ZOOM}`,
         {
           method: 'post',
           headers: {
@@ -273,7 +272,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     const { isQuickView } = this.props;
     this.setState({ addToCartLoading: true });
 
-    const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
+    const cartName = cart._target[0]._descriptor[0].name || intl.get('default');
     const cartUrl = cart._addtocartaction[0].self.uri;
 
     login()
@@ -305,133 +304,8 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
       });
   }
 
-  renderConfiguration() {
-    const { productData, isLoading } = this.props;
-    if (productData._addtocartform && productData._addtocartform[0].configuration) {
-      const keys = Object.keys(productData._addtocartform[0].configuration);
-      return keys.map(key => (
-        <div key={key} className="form-group">
-          <label htmlFor={`product_display_item_configuration_${key}_label`} className="control-label">
-            {key}
-          </label>
-          <div className="form-content">
-            <input className="form-control form-control-text" disabled={isLoading} onChange={e => this.handleConfiguration(key, e)} id={`product_display_item_configuration_${key}_label`} value={productData._addtocartform[0].configuration.key} />
-          </div>
-        </div>
-      ));
-    }
-    return null;
-  }
-
-  renderSkuSelection() {
-    const { productData, itemIndex } = this.props;
-    const { selectionValue } = this.state;
-    const productKindsSelection = [];
-    const sizes = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large'];
-    if (productData._definition[0]._options) {
-      productData._definition[0]._options[0]._element.map((ChoiceElement, index) => {
-        const arraySelectors = [];
-        const selectorTitle = ChoiceElement['display-name'];
-        const selectorWrap = ChoiceElement._selector[0]._choice;
-        const chosenItem = ChoiceElement._selector[0]._chosen[0];
-        if (selectorWrap) {
-          selectorWrap.map(skuChoice => (
-            arraySelectors.push(skuChoice)
-          ));
-        }
-        arraySelectors.unshift(chosenItem);
-        if (selectorTitle === 'Size') {
-          arraySelectors.sort((a, b) => {
-            if (sizes.indexOf(a._description[0]['display-name']) < sizes.indexOf(b._description[0]['display-name'])) {
-              return -1;
-            }
-            if (sizes.indexOf(a._description[0]['display-name']) > sizes.indexOf(b._description[0]['display-name'])) {
-              return 1;
-            }
-            return 0;
-          });
-        } else {
-          arraySelectors.sort((a, b) => {
-            if (a._description[0]['display-name'] < b._description[0]['display-name']) {
-              return -1;
-            }
-            if (a._description[0]['display-name'] > b._description[0]['display-name']) {
-              return 1;
-            }
-            return 0;
-          });
-        }
-        productKindsSelection.push(arraySelectors);
-        productKindsSelection[index].displayName = selectorTitle;
-        productKindsSelection[index].defaultChousen = chosenItem._description[0]['display-name'];
-        return productKindsSelection;
-      });
-      return (productKindsSelection.map(ComponentEl => (
-        <fieldset onChange={this.handleSelectionChange} key={Math.random().toString(36).substr(2, 9)}>
-          <span className="selector-title">
-            {ComponentEl.displayName}
-            :&nbsp;
-            {(ComponentEl.displayName.includes('Color')) ? (
-              <span>{ComponentEl.defaultChousen}</span>
-            ) : ''}
-          </span>
-          <div className="guide" id={`${(ComponentEl.displayName.includes('Color')) ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}${itemIndex || ''}`} onChange={this.handleSkuSelection}>
-            {ComponentEl.map(Element => (
-              <div key={Element._description[0]['display-name']} className={`select-wrap ${(ComponentEl.displayName.includes('Color')) ? 'color-wrap' : ''}`}>
-                <input
-                  key={Element._description[0].name}
-                  type="radio"
-                  name={ComponentEl.displayName}
-                  id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`}
-                  value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''}
-                  defaultChecked={Element._description[0]['display-name'] === ComponentEl.defaultChousen || Element._selectaction[0].self.uri === selectionValue}
-                />
-                <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} style={{ background: Element._description[0]['display-name'] }}>
-                  {Element._description[0]['display-name']}
-                </label>
-              </div>
-            ))}
-          </div>
-        </fieldset>
-      ))
-      );
-    }
-    return null;
-  }
-
   handleSelectionChange(event) {
     this.setState({ selectionValue: event.target.value });
-  }
-
-  dropdownRequisitionListSelection() {
-    const dispatch = useRequisitionListCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
-    const { requisitionListData } = this.state;
-    if (requisitionListData) {
-      return (
-        <ul className="cart-selection-list">
-          {requisitionListData.map(list => (
-            // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-menu-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
-              {list.name ? list.name : intl.get('default')}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-    return null;
   }
 
   addToRequisitionListData(list, onCountChange) {
@@ -482,7 +356,9 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
       itemQuantity,
       itemConfiguration,
       isAdded,
+      selectionValue,
     } = this.state;
+
     const {
       productData,
       requisitionListData,
@@ -491,121 +367,63 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
       isQuickView,
       isLoading,
     } = this.props;
+
     const { availability, availabilityString, productLink } = ProductDisplayItemDetails.extractAvailabilityParams(productData);
     const { listPrice, itemPrice } = ProductDisplayItemDetails.extractPrice(productData);
     const multiCartData = ((productData && productData._addtocartforms) || []).flatMap(addtocartforms => addtocartforms._element);
-    const SelectCartButton = () => (
-      <DropdownCartSelection itemIndex={itemIndex} multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={!isAdded ? intl.get('add-to-cart') : intl.get('added')} />
-    );
     const isMultiCartEnabled = (productData._addtocartforms || []).flatMap(forms => forms._element).length > 0;
-    const {
-      productImage, productDescriptionValue, productTitle,
-    } = ProductDisplayItemDetails.extractProductDetails(productData);
-    const SelectRequisitionListButton = () => (
-      <div className="form-content form-content-submit dropdown cart-selection-dropdown">
-        <button
-          className="ep-btn btn-itemdetail-addtowishlist dropdown-toggle"
-          data-toggle="dropdown"
-          disabled={!availability || !productData._addtowishlistform}
-          type="submit"
-        >
-          {addToRequisitionListLoading ? (
-            <span className="circularLoader" aria-label="Loading" />
-          ) : (
-            <span>
-              {intl.get('add-to-requisition-list')}
-            </span>
-          )}
-        </button>
-        <div className="dropdown-menu cart-selection-menu cart-selection-list">
-          {this.dropdownRequisitionListSelection()}
-        </div>
-      </div>
-    );
+    const { productImage, productDescriptionValue, productTitle } = ProductDisplayItemDetails.extractProductDetails(productData);
 
     if (productData) {
       return (
         <div className="itemdetail-details">
-          <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
+
+          <ItemDetailTitleRegion
+            productData={productData}
+            availability={availability}
+            requisitionListData={requisitionListData}
+            addToWishList={this.addToWishList}
+          />
+
+          <ItemDetailPriceRegion
+            productData={productData}
+            listPrice={listPrice}
+            itemPrice={itemPrice}
+            isQuickView={isQuickView}
+          />
+
+          <ItemDetailAvailabilityRegion
+            productData={productData}
+            availability={availability}
+            availabilityString={availabilityString}
+            isQuickView={isQuickView}
+          />
+
+          <div
+            className="itemdetail-addtocart"
+            data-region="itemDetailAddToCartRegion"
+            style={{ display: 'block' }}
+          >
             <div>
-              <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
-                {productData._definition[0]['display-name']}
-                {requisitionListData && isLoggedIn(Config) && (
-                <button type="button" className="add-to-wish-list-link" onClick={this.addToWishList} disabled={!availability || !productData._addtowishlistform}>
-                    +
-                  {' '}
-                  {intl.get('add-to-wish-list')}
-                </button>
-                )}
-              </h1>
-              {(Config.b2b.enable) && (
-              <p className="itemdetail-title-sku" id={`category_item_sku_${productData._code[0].code}`}>
-                {productData._code[0].code}
-              </p>
-              )}
-            </div>
-          </div>
-          <div className="itemdetail-price-container itemdetail-price-wrap" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
-            <div>
-              <div data-region="itemPriceRegion" style={{ display: 'block' }}>
-                <ul className="itemdetail-price-container">
-                  {
-                    listPrice !== itemPrice
-                      ? (
-                        <li className="itemdetail-purchase-price">
-                          <p className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${!isQuickView ? productData._code[0].code : ''}`}>
-                            {itemPrice}
-                          </p>
-                          <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData._code[0].code}`}>
-                            {listPrice}
-                          </span>
-                        </li>
-                      )
-                      : (
-                        <li className="itemdetail-purchase-price">
-                          <p className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                            {itemPrice}
-                          </p>
-                        </li>
-                      )
-                    }
-                </ul>
-              </div>
-              <div data-region="itemRateRegion" />
-            </div>
-          </div>
-          <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
-            <ul className="itemdetail-availability-container">
-              <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
-                  {(availability) ? (
-                    <div>
-                      <span className="icon" />
-                      {availabilityString}
-                    </div>
-                  ) : (
-                    <div>
-                      {availabilityString}
-                    </div>
-                  )}
-                </label>
-              </li>
-              <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                <label htmlFor={`category_item_release_date_${!isQuickView ? productData._code[0].code : ''}`} className="itemdetail-release-date-label">
-                  {intl.get('expected-release-date')}
-                    :&nbsp;
-                </label>
-                <span className="itemdetail-release-date-value" id={`category_item_release_date_${!isQuickView ? productData._code[0].code : ''}`}>
-                  {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
-            <div>
-              <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { ProductDisplayItemDetails.addToCart(event, itemQuantity, itemConfiguration, productData, onAddToCart); } }}>
-                {this.renderConfiguration()}
-                {this.renderSkuSelection()}
+              <form
+                className="itemdetail-addtocart-form form-horizontal"
+                onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { ProductDisplayItemDetails.addToCart(event, itemQuantity, itemConfiguration, productData, onAddToCart); } }}
+              >
+
+                <ItemDetailConfigurationRegion
+                  productData={productData}
+                  isLoading={isLoading}
+                  handleConfiguration={this.handleConfiguration}
+                />
+
+                <ItemDetailSkuSelection
+                  productData={productData}
+                  itemIndex={itemIndex}
+                  selectionValue={selectionValue}
+                  handleSelectionChange={this.handleSelectionChange}
+                  handleSkuSelection={this.handleSkuSelection}
+                />
+
                 <QuantitySelector
                   handleQuantityDecrement={this.handleQuantityDecrement}
                   handleQuantityIncrement={this.handleQuantityIncrement}
@@ -614,9 +432,17 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                   itemQuantity={itemQuantity}
                   itemIndex={itemIndex}
                 />
+
                 <div className="form-group-submit">
                   {isMultiCartEnabled ? (
-                    <SelectCartButton />
+                    <DropdownCartSelection
+                      itemIndex={itemIndex}
+                      multiCartData={multiCartData}
+                      addToSelectedCart={this.addToSelectedCart}
+                      isDisabled={!availability || !productData._addtocartform}
+                      showLoader={addToCartLoading}
+                      btnTxt={!isAdded ? intl.get('add-to-cart') : intl.get('added')}
+                    />
                   ) : (
                     <div className="form-content form-content-submit col-sm-offset-4">
                       <button
@@ -625,9 +451,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                         id={`product_display_item_add_to_cart_button${itemIndex || ''}`}
                         type="submit"
                       >
-                        <span>
-                          {intl.get('add-to-cart')}
-                        </span>
+                        <span>{intl.get('add-to-cart')}</span>
                       </button>
                     </div>
                   )}
@@ -638,7 +462,13 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                 <form className="itemdetail-addtowishlist-form form-horizontal">
                   <div className="form-group-submit">
                     {requisitionListData ? (
-                      <SelectRequisitionListButton />
+                      <SelectRequisitionListButton
+                        addToRequisitionListData={this.addToRequisitionListData}
+                        addToRequisitionListLoading={addToRequisitionListLoading}
+                        availability={availability}
+                        productData={productData}
+                        requisitionListData={requisitionListData}
+                      />
                     ) : (
                       <div className="form-content form-content-submit col-sm-offset-4">
                         <button
@@ -676,3 +506,349 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
 }
 
 export default ProductDisplayItemDetails;
+
+function ItemDetailTitleRegion({
+  productData,
+  availability,
+  requisitionListData,
+  addToWishList,
+}) {
+  const loggedIn = isLoggedIn(Config);
+  const { code } = productData._code[0];
+  const displayName = productData._definition[0]['display-name'];
+
+  return (
+    <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
+      <div>
+        <h1 className="itemdetail-title" id={`category_item_title_${code}`}>
+          {displayName}
+          {requisitionListData && loggedIn && (
+          <button
+            type="button"
+            className="add-to-wish-list-link"
+            onClick={addToWishList}
+            disabled={!availability || !productData._addtowishlistform}
+          >
+              +
+            {' '}
+            {intl.get('add-to-wish-list')}
+          </button>
+          )}
+        </h1>
+        {(Config.b2b.enable) && (
+        <p className="itemdetail-title-sku" id={`category_item_sku_${code}`}>
+          {code}
+        </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ItemDetailPriceRegion({
+  productData,
+  listPrice,
+  itemPrice,
+  isQuickView,
+}) {
+  const { code } = productData._code[0];
+
+  return (
+    <div
+      className="itemdetail-price-container itemdetail-price-wrap"
+      data-region="itemDetailPriceRegion"
+      style={{ display: 'block' }}
+    >
+      <div>
+        <div data-region="itemPriceRegion" style={{ display: 'block' }}>
+          <ul className="itemdetail-price-container">
+            {
+              listPrice !== itemPrice
+                ? (
+                  <li className="itemdetail-purchase-price">
+                    <p
+                      className="itemdetail-purchase-price-value price-sale"
+                      id={`category_item_price_${!isQuickView ? code : ''}`}
+                    >
+                      {itemPrice}
+                    </p>
+                    <span
+                      className="itemdetail-list-price-value"
+                      data-region="itemListPriceRegion"
+                      id={`category_item_list_price_${code}`}
+                    >
+                      {listPrice}
+                    </span>
+                  </li>
+                )
+                : (
+                  <li className="itemdetail-purchase-price">
+                    <p
+                      className="itemdetail-purchase-price-value"
+                      id={`category_item_price_${code}`}
+                    >
+                      {itemPrice}
+                    </p>
+                  </li>
+                )
+              }
+          </ul>
+        </div>
+        <div data-region="itemRateRegion" />
+      </div>
+    </div>
+  );
+}
+
+function ItemDetailAvailabilityRegion({
+  productData,
+  availability,
+  availabilityString,
+  isQuickView,
+}) {
+  const { code } = productData._code[0];
+  const releaseDate = productData._availability[0]['release-date'];
+
+  return (
+    <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
+      <ul className="itemdetail-availability-container">
+        <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
+          <label htmlFor={`category_item_availability_${code}`}>
+            {(availability) ? (
+              <div>
+                <span className="icon" />
+                {availabilityString}
+              </div>
+            ) : (
+              <div>
+                {availabilityString}
+              </div>
+            )}
+          </label>
+        </li>
+        <li
+          className={`itemdetail-release-date${releaseDate ? '' : ' is-hidden'}`}
+          data-region="itemAvailabilityDescriptionRegion"
+        >
+          <label
+            htmlFor={`category_item_release_date_${!isQuickView ? code : ''}`}
+            className="itemdetail-release-date-label"
+          >
+            {intl.get('expected-release-date')}
+              :&nbsp;
+          </label>
+          <span
+            className="itemdetail-release-date-value"
+            id={`category_item_release_date_${!isQuickView ? code : ''}`}
+          >
+            {releaseDate ? ['display-value'] : ''}
+          </span>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+function ItemDetailConfigurationRegion({
+  productData,
+  isLoading,
+  handleConfiguration,
+}) {
+  const isConfigurable = Boolean(productData._addtocartform && productData._addtocartform[0].configuration);
+  if (!isConfigurable) {
+    return (<></>);
+  }
+
+  const keys = Object.keys(productData._addtocartform[0].configuration);
+  return (
+    <>
+      {keys.map(key => (
+        <div key={key} className="form-group">
+          <label
+            htmlFor={`product_display_item_configuration_${key}_label`}
+            className="control-label"
+          >
+            {key}
+          </label>
+          <div className="form-content">
+            <input
+              className="form-control form-control-text"
+              disabled={isLoading}
+              onChange={e => handleConfiguration(key, e)}
+              id={`product_display_item_configuration_${key}_label`}
+              value={productData._addtocartform[0].configuration.key}
+            />
+          </div>
+        </div>
+      ))}
+    </>
+  );
+}
+
+function ItemDetailSkuSelection({
+  productData,
+  itemIndex,
+  selectionValue,
+  handleSelectionChange,
+  handleSkuSelection,
+}) {
+  const productKindsSelection = [];
+  const sizes = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large'];
+
+  if (!productData._definition[0]._options) {
+    return null;
+  }
+
+  productData._definition[0]._options[0]._element.map((ChoiceElement, index) => {
+    const selectorTitle = ChoiceElement['display-name'];
+    const chosenItem = ChoiceElement._selector[0]._chosen[0];
+    const arraySelectors = ChoiceElement._selector[0]._choice || [];
+
+    arraySelectors.unshift(chosenItem);
+    if (selectorTitle === 'Size') {
+      arraySelectors.sort((a, b) => {
+        if (sizes.indexOf(a._description[0]['display-name']) < sizes.indexOf(b._description[0]['display-name'])) {
+          return -1;
+        }
+        if (sizes.indexOf(a._description[0]['display-name']) > sizes.indexOf(b._description[0]['display-name'])) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      arraySelectors.sort((a, b) => {
+        if (a._description[0]['display-name'] < b._description[0]['display-name']) {
+          return -1;
+        }
+        if (a._description[0]['display-name'] > b._description[0]['display-name']) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+    productKindsSelection.push(arraySelectors);
+    productKindsSelection[index].displayName = selectorTitle;
+    productKindsSelection[index].defaultChousen = chosenItem._description[0]['display-name'];
+    return productKindsSelection;
+  });
+
+  return (
+    <>
+      {productKindsSelection.map(ComponentEl => (
+        <fieldset
+          onChange={handleSelectionChange}
+          key={Math.random().toString(36).substr(2, 9)}
+        >
+          <span className="selector-title">
+            {ComponentEl.displayName}
+            :&nbsp;
+            {(ComponentEl.displayName.includes('Color')) ? (
+              <span>{ComponentEl.defaultChousen}</span>
+            ) : ''}
+          </span>
+          <div
+            className="guide"
+            id={`${(ComponentEl.displayName.includes('Color')) ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}${itemIndex || ''}`}
+            onChange={handleSkuSelection}
+          >
+            {ComponentEl.map(Element => (
+
+              <SkuSelectAxisOption
+                optionData={Element}
+                axisDisplayName={ComponentEl.displayName}
+                defaultChosen={ComponentEl.defaultChousen}
+                code={productData._code[0].code}
+                selectionValue={selectionValue}
+              />
+
+            ))}
+          </div>
+        </fieldset>
+      ))}
+    </>
+  );
+}
+
+function SkuSelectAxisOption({
+  optionData,
+  axisDisplayName,
+  defaultChosen,
+  code,
+  selectionValue,
+}) {
+  const optionName = optionData._description[0].name;
+  const optionDisplayName = optionData._description[0]['display-name'];
+  const optionSelectUri = optionData._selectaction[0].self.uri;
+  const optionDisplayNameIdString = optionDisplayName.toLowerCase().replace(/ /g, '_');
+
+  return (
+    <div
+      key={optionName}
+      className={`select-wrap ${(axisDisplayName.includes('Color')) ? 'color-wrap' : ''}`}
+    >
+      <input
+        key={optionName}
+        type="radio"
+        name={axisDisplayName}
+        id={`selectorWeight_${optionDisplayNameIdString}${code}`}
+        value={(optionData._selectaction) ? optionSelectUri : ''}
+        defaultChecked={optionDisplayName === defaultChosen || optionSelectUri === selectionValue}
+      />
+      <label
+        htmlFor={`selectorWeight_${optionDisplayNameIdString}${code}`}
+        style={{ background: optionDisplayName }}
+      >
+        {optionDisplayName}
+      </label>
+    </div>
+  );
+}
+
+function SelectRequisitionListButton({
+  addToRequisitionListData,
+  addToRequisitionListLoading,
+  availability,
+  productData,
+  requisitionListData,
+}) {
+  const dispatch = useRequisitionListCountDispatch();
+  const onCountChange = (name, count) => {
+    dispatch({
+      type: 'COUNT_SHOW',
+      payload: { count, name },
+    });
+    setTimeout(() => {
+      dispatch({ type: 'COUNT_HIDE' });
+    }, 3200);
+  };
+
+  return (
+    <div className="form-content form-content-submit dropdown cart-selection-dropdown">
+      <button
+        className="ep-btn btn-itemdetail-addtowishlist dropdown-toggle"
+        data-toggle="dropdown"
+        disabled={!availability || !productData._addtowishlistform}
+        type="submit"
+      >
+        {addToRequisitionListLoading
+          ? (<span className="circularLoader" aria-label="Loading" />)
+          : (<span>{intl.get('add-to-requisition-list')}</span>)
+        }
+      </button>
+      <div className="dropdown-menu cart-selection-menu cart-selection-list">
+        <ul className="cart-selection-list">
+          {requisitionListData.map(list => (
+            // eslint-disable-next-line
+            <li
+              className="dropdown-item cart-selection-menu-item"
+              key={list.name || intl.get('default')}
+              onClick={() => addToRequisitionListData(list, onCountChange)}
+            >
+              {list.name || intl.get('default')}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}

@@ -41,7 +41,6 @@ export interface ProductDisplayDetailsProps {
 }
 
 export interface ProductDisplayItemMainState {
-    requisitionListData: any,
     itemQuantity: number,
     itemConfiguration: { [key: string]: any },
     selectionValue: string,
