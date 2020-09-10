@@ -134,7 +134,7 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
           return (
             <div className="radio" key={division['account-business-name']}>
               <label htmlFor={`cart-selection-option${index}`} className="custom-radio-button">
-                <input id={`cart-selection-option${index}`} type="radio" value={index} checked={(selectedCartName.length === 0 && !isCheckedCartName) ? checkedCartName === division['account-business-name'] : selectedCart === `${index}`} onChange={event => this.handleCartChange(event, division['business-name'])} />
+                <input id={`cart-selection-option${index}`} type="radio" value={index} checked={(selectedCartName.length === 0 && !isCheckedCartName) ? checkedCartName === division['account-business-name'] : selectedCart === `${index}`} onChange={event => this.handleCartChange(event, division['account-business-name'])} />
                 <span className="helping-el" />
                 <span className="label-text">{division['account-business-name']}</span>
               </label>
