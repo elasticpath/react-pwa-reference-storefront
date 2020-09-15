@@ -110,7 +110,7 @@
     "build-components": "cd src/components && yarn build",
     "test": "node scripts/test.js src/test",
     "lint": "eslint ./src/**/*.js --max-warnings=0 --format=codeframe",
-    "deploy": "aws s3 sync build/ s3://ref-store-new",
+    "deploy": "aws s3 sync build/ s3://epc-b2c-ref-exp",
     "storybook": "export NODE_OPTIONS=--max_old_space_size=2048 && cd storybook && start-storybook -p 9009 -s ./../public",
     "build-storybook": "cd storybook && build-storybook"
   },
