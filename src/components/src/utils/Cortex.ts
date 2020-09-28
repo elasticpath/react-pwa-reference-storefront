@@ -46,6 +46,9 @@ export function cortexFetch(input, init): any {
       requestInit.headers['x-ep-user-roles'] = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`);
       requestInit.headers['x-ep-user-scopes'] = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
     }
+    if (localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`)) {
+      requestInit.headers['x-ep-account-shared-id'] = localStorage.getItem(`${Config.cortexApi.scope}_b2bSharedId`);
+    }
   }
 
   if (Config.enableOfflineMode) {
@@ -127,61 +130,11 @@ export function cortexFetch(input, init): any {
         window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: null, file: 'Cortex.1' } }));
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
         localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
+        localStorage.removeItem(`${Config.cortexApi.scope}_b2bSharedId`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserId`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
         window.location.pathname = '/';
         window.location.reload();
-      }
-      if (res.status >= 500) {
-        if (window.location.href.indexOf('/maintenance') === -1) {
-          window.location.pathname = '/maintenance';
-        }
-      }
-      return res;
-    })
-    .catch((error) => {
-      // eslint-disable-next-line no-console
-      console.error(error.message);
-    }))
-    .catch(() => {
-      if (window.location.href.indexOf('/maintenance') === -1) {
-        window.location.pathname = '/maintenance';
-      }
-      return new Response(new Blob(), {});
-    });
-}
-
-export function adminFetch(input, init): any {
-  const requestInit = init;
-
-  if (requestInit && requestInit.headers) {
-    requestInit.headers['x-ep-user-traits'] = `LOCALE=${UserPrefs.getSelectedLocaleValue()}, CURRENCY=${UserPrefs.getSelectedCurrencyValue()}`;
-  }
-
-  if (Config.enableOfflineMode) {
-    return mockFetch(input);
-  }
-
-  return timeout((<any>Config).b2b.authServiceAPI.reqTimeout || 30000, fetch(`${Config.b2b.authServiceAPI.path + input}`, requestInit)
-    .then((res) => {
-      if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
-        window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: null, file: 'Cortex.2' } }));
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
-        window.location.pathname = '/';
       }
       if (res.status >= 500) {
         if (window.location.href.indexOf('/maintenance') === -1) {

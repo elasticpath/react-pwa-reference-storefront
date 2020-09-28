@@ -23,8 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import queryString from 'query-string';
-import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
+import { loginRegistered } from '../utils/AuthService';
 import Config from '../../../ep.config.json';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
@@ -90,44 +89,6 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
     this.registerNewUser = this.registerNewUser.bind(this);
     this.resetPassword = this.resetPassword.bind(this);
     this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
-  }
-
-  componentWillMount() {
-    const {
-      locationSearchData, onLogin, oidcParameters, locationPathName,
-    } = this.props;
-    const url = locationSearchData;
-
-    const params = queryString.parse(url);
-    if (params.code && oidcParameters) {
-      if (Config.b2b.openId && Config.b2b.openId.enable) {
-        localStorage.setItem(`${Config.cortexApi.scope}_openIdcCode`, params.code);
-        localStorage.setItem(`${Config.cortexApi.scope}_openIdcSessionState`, params.session_state);
-        localStorage.removeItem('OidcSecret');
-      } else {
-        localStorage.setItem(`${Config.cortexApi.scope}_keycloakCode`, params.code);
-        localStorage.setItem(`${Config.cortexApi.scope}_keycloakSessionState`, params.session_state);
-      }
-      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) !== 'REGISTERED') {
-        loginRegisteredAuthService(params.code, encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? `${locationPathName}/loggedin` : Config.b2b.keycloak.callbackUrl)), encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? oidcParameters.clientId : Config.b2b.keycloak.client_id))).then((resStatus) => {
-          if (resStatus === 401) {
-            this.setState({
-              failedLogin: true,
-              isLoading: false,
-            });
-          }
-          if (resStatus === 400) {
-            this.setState({
-              failedLogin: true,
-              isLoading: false,
-            });
-          } else if (resStatus === 200) {
-            this.setState({ failedLogin: false });
-            onLogin();
-          }
-        });
-      }
-    }
   }
 
   setUsername(event) {

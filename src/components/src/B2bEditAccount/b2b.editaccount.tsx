@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import copy from 'copy-to-clipboard';
 import { login } from '../../../hooks/store';
-import { adminFetch } from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
 import './b2b.editaccount.scss';
@@ -116,11 +116,11 @@ class B2bEditAccount extends Component<B2bEditAccountProps, B2bEditAccountState>
     event.preventDefault();
     this.setState({ isLoading: true });
     login().then(() => {
-      adminFetch(`${editSubAccountUri}`, {
+      cortexFetch(`${editSubAccountUri}`, {
         method: 'put',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
         body: JSON.stringify({
           name,
@@ -130,11 +130,11 @@ class B2bEditAccount extends Component<B2bEditAccountProps, B2bEditAccountState>
       })
         .then(() => {
           if (editMetadataUri) {
-            adminFetch(`${editMetadataUri}`, {
+            cortexFetch(`${editMetadataUri}`, {
               method: 'put',
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
               },
               body: JSON.stringify({
                 'external-id': externalId,

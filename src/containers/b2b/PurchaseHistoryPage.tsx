@@ -32,12 +32,16 @@ import './PurchaseHistoryPage.scss';
 const zoomArray = [
   'defaultprofile:purchases',
   'defaultprofile:purchases:element',
+  'defaultprofile:selectedaccount',
+  'defaultprofile:selectedaccount:purchases',
+  'defaultprofile:selectedaccount:purchases:element',
 ];
 
 interface PurchaseHistoryPageProps extends React.Component<RouteComponentProps> {}
 interface PurchaseHistoryPageState {
   defaultProfile: any,
   isLoading: boolean,
+  accountData: any,
 }
 
 class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, PurchaseHistoryPageState> {
@@ -46,6 +50,7 @@ class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, Purc
     this.state = {
       defaultProfile: {},
       isLoading: false,
+      accountData: undefined,
     };
   }
 
@@ -65,6 +70,9 @@ class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, Purc
       });
       const profileData = await res.json();
       this.setState({ defaultProfile: profileData._defaultprofile[0], isLoading: false });
+      if (profileData._defaultprofile[0]._selectedaccount) {
+        this.setState({ accountData: profileData._defaultprofile[0]._selectedaccount[0] });
+      }
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error.message);
@@ -73,7 +81,9 @@ class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, Purc
   }
 
   render() {
-    const { defaultProfile, isLoading } = this.state;
+    const {
+      defaultProfile, isLoading, accountData,
+    } = this.state;
     const purchases = defaultProfile._purchases ? defaultProfile._purchases[0] : {};
     return (
       <div className="purchase-history-page">
@@ -83,7 +93,17 @@ class PurchaseHistoryPage extends React.Component<PurchaseHistoryPageProps, Purc
         {
           isLoading
             ? <div className="loader" />
-            : <OrderHistoryMain purchaseHistory={purchases} />
+            : (
+              <React.Fragment>
+                <OrderHistoryMain purchaseHistory={purchases} />
+                {accountData && (
+                  <div>
+                    <p>{accountData['account-business-name']}</p>
+                    <OrderHistoryMain purchaseHistory={accountData._purchases[0]} />
+                  </div>
+                )}
+              </React.Fragment>
+            )
         }
       </div>
     );

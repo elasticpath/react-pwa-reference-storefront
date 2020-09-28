@@ -30,7 +30,7 @@ import B2bEditAccount from '../../components/src/B2bEditAccount/b2b.editaccount'
 import B2bEditAssociate from '../../components/src/B2bEditAssociate/b2b.editassociate';
 import B2bAccountList from '../../components/src/B2bAccountList/b2b.accountlist';
 
-import { adminFetch } from '../../components/src/utils/Cortex';
+import { cortexFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../hooks/store';
 import * as Config from '../../ep.config.json';
 import { ReactComponent as TrashIcon } from '../../images/icons/baseline-delete-24px.svg';
@@ -186,17 +186,17 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
     const accountUri = match.params.uri;
     this.setState({ isLoading: true });
     login().then(() => {
-      const profilePromice = adminFetch('/?zoom=myprofile:primaryemail', {
+      const profilePromice = cortexFetch('/?zoom=myprofile:primaryemail', {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
       });
 
-      const accountsPromice = adminFetch(`/accounts/am/${accountUri}/?zoom=${accountZoomArray.join()}`, {
+      const accountsPromice = cortexFetch(`/accounts/am/${accountUri}/?zoom=${accountZoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
       });
 
@@ -241,11 +241,11 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
   handleDeleteAssociateClicked(associateUri) {
     this.setState({ isLoading: true });
     login().then(() => {
-      adminFetch(associateUri, {
+      cortexFetch(associateUri, {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
       })
         .then(() => {

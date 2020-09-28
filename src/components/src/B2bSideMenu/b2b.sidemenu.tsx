@@ -26,7 +26,7 @@ import './b2b.sidemenu.scss';
 
 interface B2bSideMenuProps {
   /** side menu items */
-    sideMenuItems: any,
+  sideMenuItems: any,
   /** location */
   location: any,
   /** is loading */

@@ -35,21 +35,7 @@
     "sizes": ["768", "1092", "2800"]
   },
   "b2b": {
-    "enable": false,
-    "authServiceAPI": {
-      "path": "",
-      "pathForProxy": "",
-      "reqTimeout": "30000"
-    },
-    "openId": {
-      "enable": true
-    },
-    "keycloak": {
-      "callbackUrl": "http://localhost:8080",
-      "loginRedirectUrl": "",
-      "logoutRedirectUrl": "",
-      "client_id": ""
-    }
+    "enable": false
   },
   "gaTrackingId": "",
   "arKit": {

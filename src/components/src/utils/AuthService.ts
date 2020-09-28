@@ -22,23 +22,13 @@
 // @ts-check
 
 import Cookies from 'js-cookie';
-import { cortexFetch, adminFetch } from './Cortex';
+import { cortexFetch } from './Cortex';
 import Config from '../../../ep.config.json';
 
 let userFormBody = [];
 let userFormBodyString = '';
 let newaccountform = '';
 
-interface PublicUserDetailsInterface {
-  username?: string,
-  password?: string,
-  'grant_type'?: string,
-  role?: string,
-  scope?: string,
-  code?: string,
-  'redirect_uri'?: string,
-  'client_id'?: string,
-}
 function generateFormBody(userDetails) {
   Object.keys(userDetails).forEach((encodedKey) => {
     const encodedValue = userDetails[encodedKey];
@@ -80,57 +70,10 @@ export function loginRegistered(username, password) {
         }
         return null;
       }).then((res) => {
-        if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
-        }
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${res.access_token}`);
         window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: `Bearer ${res.access_token}`, file: 'AuthService.2' } }));
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, registeredUserDetails.username);
-        resolve(200);
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        reject(error);
-      });
-    } else {
-      resolve(userFormBodyString);
-    }
-  }));
-}
-
-export function loginRegisteredAuthService(code, redirectUri, clientId) {
-  return new Promise(((resolve, reject) => {
-    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
-      userFormBodyString = '';
-      userFormBody = [];
-      const registeredUserDetails: any = {
-        grant_type: 'authorization_code',
-        code,
-        redirect_uri: redirectUri,
-        client_id: clientId,
-      };
-      generateFormBody(registeredUserDetails);
-      adminFetch('/oauth2/tokens', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-        },
-        body: userFormBodyString,
-      }).then((res) => {
-        if (res.status === 401) {
-          resolve(401);
-        }
-        if (res.status === 400) {
-          resolve(400);
-        } else if (res.status === 200) {
-          return res.json();
-        }
-        return null;
-      }).then((res) => {
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`, `Bearer ${res.access_token}`);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, registeredUserDetails.username);
         resolve(200);
       }).catch((error) => {
@@ -156,11 +99,7 @@ export function logout() {
       window.dispatchEvent(new CustomEvent('authHeaderChanged', { detail: { authHeader: null, file: 'AuthService.3' } }));
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
       localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_b2bSharedId`);
       localStorage.removeItem(`${Config.cortexApi.scope}_cartItemsCount`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserId`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
@@ -171,33 +110,6 @@ export function logout() {
       reject(error);
     });
   }));
-}
-
-export function logoutAccountManagementUser() {
-  if (Config.b2b.openId && Config.b2b.openId.enable) {
-    return new Promise(((resolve, reject) => {
-      adminFetch('/oauth2/tokens', {
-        method: 'delete',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => logout().then(() => resolve(res)))
-        .then(() => {
-          window.location.href = '/';
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-          reject(error);
-        });
-    }));
-  }
-  return logout().then(() => {
-    const keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
-    window.location.href = keycloakLogoutRedirectUrl;
-  });
 }
 
 export function getRegistrationForm() {

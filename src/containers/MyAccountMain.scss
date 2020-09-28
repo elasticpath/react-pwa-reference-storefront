@@ -73,11 +73,6 @@
 
   .b2b-section {
     border: 1px solid $fifthComplimentTextColor;
-    padding: 15px 15px 20px;
-
-    @media (min-width: 576px) {
-      padding: 20px 20px 30px;
-    }
 
     &.address-book-section {
       padding: 0;

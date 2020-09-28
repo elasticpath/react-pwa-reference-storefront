@@ -22,16 +22,13 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import fileDownload from 'js-file-download';
-import Modal from 'react-responsive-modal';
-import { adminFetch } from '../../components/src/utils/Cortex';
+import { RouteComponentProps } from 'react-router-dom';
+import { cortexFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../hooks/store';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
-import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
-import B2bAddAssociatesMenu from '../../components/src/B2bAddAssociatesMenu/b2b.addassociatesmenu';
-import Config from '../../ep.config.json';
+import { ReactComponent as InfoIcon } from '../../images/icons/info-icon.svg';
 
+import Config from '../../ep.config.json';
 import './Accounts.scss';
 
 enum MessageType {
@@ -41,338 +38,80 @@ enum MessageType {
 
 interface AccountsState {
   admins: any;
-  /* defaultBillingAddress: any;
-  defaultShippingAddress: any;
-  recentOrders: any; */
   accounts: any;
-  searchAccounts: string;
+  // searchAccounts: string;
   isLoading: boolean;
-  showSearchLoader: boolean;
+  // showSearchLoader: boolean;
   noSearchResults: boolean;
   isSellerAdmin: boolean;
-  associatesFormUrl?: string;
-  isImportDialogOpen: boolean;
-  exampleCsvFile: string;
-  selectedFile?: HTMLInputElement;
-  isUploading: boolean;
   messages: { type: MessageType; text: string; }[];
 }
 
-const accountsZoomArray = [
-  'accounts',
-  'accounts:addassociatesform',
-  'accounts:element',
-  'accounts:element:accountmetadata',
-  'accounts:element:selfsignupinfo',
-  'accounts:element:statusinfo',
-  'accounts:element:statusinfo:status',
-  'accounts:element:subaccounts',
-  'accounts:element:subaccounts:accountform',
-  'accounts:element:subaccounts:parentaccount',
-  'accounts:element:associateroleassignments',
-  'accounts:element:associateroleassignments:element',
-  'accounts:element:associateroleassignments:element:associateroleassignments',
-  'accounts:element:associateroleassignments:element:roleinfo',
-  'accounts:element:associateroleassignments:element:roleinfo:roles',
-  'accounts:element:associateroleassignments:element:roleinfo:roles:element',
-  'accounts:element:associateroleassignments:element:roleinfo:selector',
-  'accounts:element:associateroleassignments:element:associate',
-  'accounts:element:associateroleassignments:element:associate:primaryemail',
+const zoomArray = [
+  'element',
+  'element:attributes',
+  'element:identifier',
 ];
 
 export default class Accounts extends React.Component<RouteComponentProps, AccountsState> {
-  fileInputRef: React.RefObject<HTMLInputElement>;
-
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
       noSearchResults: false,
-      showSearchLoader: false,
-      /* defaultBillingAddress: {
-        name: 'Inez Larson',
-        address: '198 Bendar Knoll',
-        city: 'East Nicklaus',
-        state: 'Michigan',
-        zip: '48002',
-        country: 'United States',
-      },
-      defaultShippingAddress: {
-        name: 'Max Wilkerson',
-        address: '198 Bendar Knoll',
-        city: 'East Nicklaus',
-        state: 'Michigan',
-        zip: '48002',
-        country: 'United States',
-      },
-      recentOrders: [
-        {
-          orderId: '170-05-3731',
-          date: '03 May 2019',
-          shipTo: 'Max Wilkerson',
-          orderTotal: '$4628.77',
-          status: 'Complete',
-        },
-        {
-          orderId: '170-05-3730',
-          date: '01 May 2019',
-          shipTo: 'Max Wilkerson',
-          orderTotal: '$4308.32',
-          status: 'Complete',
-        },
-        {
-          orderId: '170-05-3729',
-          date: '27 Apr 2019',
-          shipTo: 'Max Wilkerson',
-          orderTotal: '$3182.27',
-          status: 'Processing',
-        },
-        {
-          orderId: '170-05-3728',
-          date: '26 Apr 2019',
-          shipTo: 'Christopher Bryan',
-          orderTotal: '$2934.03',
-          status: 'Processing',
-        },
-      ], */
+      // showSearchLoader: false,
       accounts: [],
       admins: [],
-      searchAccounts: '',
+      // searchAccounts: '',
       isSellerAdmin: false,
-      isImportDialogOpen: false,
-      exampleCsvFile: '',
-      selectedFile: undefined,
-      isUploading: false,
-      associatesFormUrl: undefined,
       messages: [],
     };
     this.getAdminData();
-    this.setSearchAccounts = this.setSearchAccounts.bind(this);
-    this.getSearchAccounts = this.getSearchAccounts.bind(this);
-    this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
-    this.handleFileChange = this.handleFileChange.bind(this);
-    this.fileInputRef = React.createRef<HTMLInputElement>();
+    // this.setSearchAccounts = this.setSearchAccounts.bind(this);
+    // this.getSearchAccounts = this.getSearchAccounts.bind(this);
+    // this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
   }
 
-  setSearchAccounts(event) {
-    this.setState({ searchAccounts: event.target.value });
-  }
+  // setSearchAccounts(event) {
+  //   this.setState({ searchAccounts: event.target.value });
+  // }
 
   async getAdminData() {
     await login();
-    const res = await adminFetch(`/?zoom=${accountsZoomArray.join()}`, {
+    const res = await cortexFetch(`/accounts/${Config.cortexApi.scope}/?zoom=${zoomArray.join()}`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
       },
     })
       .then(result => result.json());
-    if (res && res._accounts) {
-      const accounts = res._accounts[0]._element.map((account) => {
-        const uri = account.self.uri.split('/').pop();
-        return {
-          name: account.name,
-          externalId: account._accountmetadata ? account._accountmetadata[0]['external-id'] : null,
-          status: account._statusinfo[0]._status[0].status.toLowerCase(),
-          uri,
-        };
-      });
-      let isSellerAdmin = false;
-      if (res._accounts[0]._element[0]._accountmetadata) {
-        isSellerAdmin = true;
-      }
-      const map = new Map();
-      res._accounts[0]._element.reduce((accum, account) => {
-        const associates = account._associateroleassignments[0]._element;
-        if (!associates) return accum;
-
-        associates.forEach((associate) => {
-          if (associate._roleinfo[0]._roles[0]._element && associate._roleinfo[0]._roles[0]._element[0].name === 'BUYER_ADMIN') {
-            const { name } = associate._associate[0];
-            const { email } = associate._associate[0]._primaryemail[0];
-            map.set(email, { name, email });
-          }
-        });
-        return accum;
-      }, []);
-      const admins = Array.from(map.values());
-
-      const associatesFormUrl = `${Config.b2b.authServiceAPI.path}${res._accounts[0]._addassociatesform[0].self.uri}`;
-      const exampleCsvFile = await fetch(associatesFormUrl, {
-        headers: {
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-          Accept: 'text/csv',
-        },
-      })
-        .then(r => r.text());
-
-      this.setState({ associatesFormUrl, exampleCsvFile });
-
+    if (res && res._element) {
       this.setState({
-        accounts, admins, isLoading: false, noSearchResults: false, isSellerAdmin,
+        accounts: res, isLoading: false,
       });
     }
   }
 
-  getSearchAccounts() {
-    const { searchAccounts } = this.state;
-    this.setState({ showSearchLoader: true });
-    login().then(() => {
-      adminFetch('/accounts/am/search/form?followlocation&format=standardlinks,zoom.nodatalinks', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-        },
-        body: JSON.stringify({ keywords: searchAccounts, page: '1', 'page-size': '10' }),
-      })
-        .then(data => data.json())
-        .then((data) => {
-          adminFetch(`${data.self.uri}?zoom=element,element:statusinfo:status`, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-            },
-          })
-            .then(searchResult => searchResult.json())
-            .then((searchResult) => {
-              if (searchResult && searchResult._element) {
-                const accounts = searchResult._element.map((account) => {
-                  const uri = account.self.uri.split('/').pop();
-                  return {
-                    name: account.name,
-                    externalId: account._accountmetadata ? account._accountmetadata[0]['external-id'] : null,
-                    status: account._statusinfo[0]._status[0].status.toLowerCase(),
-                    uri,
-                  };
-                });
-                let isSellerAdmin = false;
-                if (data._accounts && data._accounts[0]._element[0]._accountmetadata) {
-                  isSellerAdmin = true;
-                }
-                this.setState({
-                  accounts,
-                  showSearchLoader: false,
-                  noSearchResults: false,
-                  isSellerAdmin,
-                });
-              } else {
-                this.setState({ showSearchLoader: false, noSearchResults: true });
-              }
-            })
-            .catch((error) => {
-              // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-  }
-
-  handleEnterKeyPress(e) {
-    if (e.keyCode === 13) {
-      this.getSearchAccounts();
-    }
-  }
-
-  handleAccountClicked(account: any) {
-    const { history } = this.props;
-    history.push(`/account-item/${account.uri}`);
-  }
-
-  handleSpreeadsheetClicked() {
-    this.setState({ isImportDialogOpen: true });
-  }
-
-  handleTemplateClicked() {
-    const { exampleCsvFile } = this.state;
-    fileDownload(exampleCsvFile, 'example.csv', 'text/csv');
-  }
-
-  resetDialog() {
-    this.setState({
-      isImportDialogOpen: false,
-      selectedFile: undefined,
-      isUploading: false,
-    });
-  }
-
-  handleImportDialogClose() {
-    this.resetDialog();
-  }
-
-  handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ selectedFile: event.target });
-  }
-
-  async uploadSelectedFile(): Promise<any> {
-    const formData = new FormData();
-    const fileInput = this.fileInputRef.current;
-    formData.append('associates', new Blob([fileInput.files[0]], { type: 'text/csv' }));
-
-    const options = {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-      },
-    };
-
-    const { associatesFormUrl } = this.state;
-    return fetch(associatesFormUrl, options)
-      .then(
-        (result) => {
-          if (result.status >= 200 && result.status < 300) {
-            return Promise.resolve();
-          }
-
-          return result.json()
-            .catch(() => Promise.reject(new Error(intl.get('general-upload-error'))))
-            .then((parsedJson) => {
-              const errorMsg = parsedJson.messages.map(m => intl.get(`backend-message-${m.id}`) || m['debug-message']).join(' ');
-              return Promise.reject(new Error(errorMsg));
-            });
-        },
-        () => Promise.reject(new Error(intl.get('general-upload-error'))),
-      );
-  }
-
-  async handleSubmit() {
-    const { messages } = this.state;
-    this.setState({ isUploading: true });
-
-    try {
-      await this.uploadSelectedFile();
-
-      this.setState({ messages: [...messages, { type: MessageType.success, text: intl.get('your-upload-was-successful') }] });
-    } catch (err) {
-      this.setState({ messages: [...messages, { type: MessageType.error, text: err.message }] });
-    }
-
-    this.resetDialog();
-  }
+  // getSearchAccounts() {
+  //   this.setState({ showSearchLoader: true });
+  // }
+  //
+  // handleEnterKeyPress(e) {
+  //   if (e.keyCode === 13) {
+  //     this.getSearchAccounts();
+  //   }
+  // }
 
   render() {
     const {
       admins,
-      /* defaultBillingAddress,
-      defaultShippingAddress,
-      recentOrders, */
       accounts,
       isLoading,
-      searchAccounts,
-      showSearchLoader,
+      // searchAccounts,
+      // showSearchLoader,
       noSearchResults,
       isSellerAdmin,
-      selectedFile,
-      isUploading,
-      exampleCsvFile,
-      isImportDialogOpen,
       messages,
-      associatesFormUrl,
     } = this.state;
 
     return (
@@ -390,24 +129,24 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
           ))}
         </div>
         <div className="b2b-header">
-          <h1 className="page-title">{intl.get('business-account')}</h1>
-          {associatesFormUrl && (
-            <div className="quick-menu">
-              <B2bAddAssociatesMenu
-                onSpreeadsheetClicked={() => this.handleSpreeadsheetClicked()}
-                onTemplateClicked={() => this.handleTemplateClicked()}
-              />
+          <h1 className="page-title">
+            {intl.get('accounts')}
+            <div className="ep-tooltip">
+              <InfoIcon className="info-icon" />
+              <span className="tooltiptext">
+                {intl.get('account-tooltip-text')}
+              </span>
             </div>
-          )}
+          </h1>
         </div>
-        <div className="account-description">{intl.get('buyer-admin-has-the-capability')}</div>
         {!isLoading ? (
           <div>
+            {/* <div className="accounts-search">
+              <input type="text" placeholder={intl.get('search-accounts')} aria-label={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
+              {showSearchLoader && <div className="circularLoader" />}
+            </div> */}
             <div className="admin-address-book">
               <div className="b2b-section section-1 admin-section">
-                <div className="section-header">
-                  <div className="section-title">{intl.get('admins')}</div>
-                </div>
                 <div className="section-content">
                   {admins.slice(0, 2).map(admin => (
                     <div key={admin.email} className="user-info">
@@ -420,105 +159,9 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                   ))}
                 </div>
               </div>
-              <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }}>
-                {/* <div className="section-header"> */}
-                {/* <div className="section-title">{intl.get('addresses')}</div> */}
-                {/* <div className="section-header-right"> */}
-                {/* /!*<Link to="/">{intl.get('edit')}</Link>*!/ */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* <div className="section-content"> */}
-                {/* <div className="address default-billing"> */}
-                {/* <div className="address-title">{intl.get('default-billing')}</div> */}
-                {/* <div className="address-content"> */}
-                {/* <div className="name-line">{defaultBillingAddress.name}</div> */}
-                {/* <div className="address-line">{defaultBillingAddress.address}</div> */}
-                {/* <div className="state-line"> */}
-                {/* {defaultBillingAddress.city} */}
-                {/* ,&nbsp; */}
-                {/* {defaultBillingAddress.state} */}
-                {/* ,&nbsp; */}
-                {/* {defaultBillingAddress.zip} */}
-                {/* </div> */}
-                {/* <div className="country-line">{defaultBillingAddress.country}</div> */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* <div className="address default-shipping"> */}
-                {/* <div className="address-title">{intl.get('default-shipping')}</div> */}
-                {/* <div className="address-content"> */}
-                {/* <div className="name-line">{defaultShippingAddress.name}</div> */}
-                {/* <div className="address-line">{defaultShippingAddress.address}</div> */}
-                {/* <div className="state-line"> */}
-                {/* {defaultShippingAddress.city} */}
-                {/* ,&nbsp; */}
-                {/* {defaultShippingAddress.state} */}
-                {/* ,&nbsp; */}
-                {/* {defaultShippingAddress.zip} */}
-                {/* </div> */}
-                {/* <div className="country-line">{defaultShippingAddress.country}</div> */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* </div> */}
-              </div>
+              <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }} />
             </div>
-            {/* <div className="b2b-section recent-orders"> */}
-            {/* <div className="section-header"> */}
-            {/* <div className="section-title">{intl.get('recent-orders')}</div> */}
-            {/* <div className="section-header-right"> */}
-            {/* /!*<Link to="/">{intl.get('view-all')}</Link>*!/ */}
-            {/* </div> */}
-            {/* </div> */}
-            {/* <div className="section-content"> */}
-            {/* <table className="b2b-table recent-orders-table"> */}
-            {/* <thead> */}
-            {/* <tr> */}
-            {/* <th className="order-id"> */}
-            {/* {intl.get('order')} */}
-            {/* <span className="mobile-table-title"> */}
-            {/* {' '} */}
-            {/* & */}
-            {/* {' '} */}
-            {/* {intl.get('date')} */}
-            {/* </span> */}
-            {/* </th> */}
-            {/* <th className="date">{intl.get('date')}</th> */}
-            {/* <th className="ship-to"> */}
-            {/* {intl.get('ship-to')} */}
-            {/* <span className="mobile-table-title"> */}
-            {/* {' '} */}
-            {/* & */}
-            {/* {' '} */}
-            {/* {intl.get('order-total')} */}
-            {/* </span> */}
-            {/* </th> */}
-            {/* <th className="order-total">{intl.get('order-total')}</th> */}
-            {/* <th className="status">{intl.get('status')}</th> */}
-            {/* </tr> */}
-            {/* </thead> */}
-            {/* <tbody> */}
-            {/* {recentOrders.map(order => ( */}
-            {/* <tr key={order.orderId}> */}
-            {/* <td className="order-id">{order.orderId}</td> */}
-            {/* <td className="date">{order.date}</td> */}
-            {/* <td className="ship-to">{order.shipTo}</td> */}
-            {/* <td className="order-total">{order.orderTotal}</td> */}
-            {/* <td className="status">{order.status}</td> */}
-            {/* </tr> */}
-            {/* ))} */}
-            {/* </tbody> */}
-            {/* </table> */}
-            {/* </div> */}
-            {/* </div> */}
             <div className="b2b-section accounts">
-              <div className="section-header">
-                <div className="section-title">{intl.get('accounts')}</div>
-                <div className="section-header-right">
-                  <div className="accounts-search">
-                    <input type="text" placeholder={intl.get('search')} aria-label={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
-                    {showSearchLoader && <div className="circularLoader" />}
-                  </div>
-                </div>
-              </div>
               <div className="section-content">
                 { !noSearchResults ? (
                   <table className="b2b-table accounts-table">
@@ -527,30 +170,30 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                         <th className="name">
                           {intl.get('name')}
                           {isSellerAdmin && (
-                            <span className="mobile-table-title">
+                          <span className="mobile-table-title">
                               {' '}
-                              &
-                              {' '}
-                              {intl.get('external-id')}
-                            </span>
+                            &
+                            {' '}
+                            {intl.get('external-id')}
+                          </span>
                           )}
                         </th>
-                        {isSellerAdmin && <th className="external-id">{intl.get('external-id')}</th>}
+                        <th className="external-id">{intl.get('external-id')}</th>
                         <th className="status">{intl.get('status')}</th>
                         <th className="arrow" />
                       </tr>
                     </thead>
                     <tbody>
-                      {accounts.map(account => (
-                        <tr key={account.uri} onClick={() => this.handleAccountClicked(account)} className="account-list-rows">
-                          <td className="name">{account.name}</td>
-                          {isSellerAdmin && <td className="external-id">{account.externalId}</td>}
+                      {accounts._element.map(account => (
+                        <tr key={account.self.uri} className="account-list-rows">
+                          <td className="name">{account['account-business-name']}</td>
+                          <td className="external-id">{account['account-business-number']}</td>
                           <td className="status">
-                            <i className={`icons-status ${account.status.toLowerCase()}`} />
-                            {intl.get(account.status)}
+                            <i className="icons-status enabled" />
+                            {intl.get('enabled')}
                           </td>
                           <td className="arrow">
-                            <Link to={`/b2b/account/${account.uri}`} title={account.name} className="arrow-btn" />
+                            <span className="arrow-btn" />
                           </td>
                         </tr>
                       ))}
@@ -559,39 +202,6 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                 ) : <p className="no-results">{intl.get('no-results-found')}</p>}
               </div>
             </div>
-            <Modal
-              open={isImportDialogOpen}
-              onClose={() => this.handleImportDialogClose()}
-              classNames={{ modal: 'b2b-import-associate-dialog' }}
-              showCloseIcon={false}
-            >
-              <div className="modal-header">
-                <h2 className="modal-title">
-                  {intl.get('select-your-file')}
-                </h2>
-                <button type="button" aria-label="close" className="close-modal-btn b2b-dialog-close-btn" onClick={() => this.handleImportDialogClose()}>
-                  <CloseIcon />
-                </button>
-              </div>
-              <div className="dialog-content">
-                <div className="upload-title">{intl.get('upload-associatess-csv')}</div>
-                <div className="chose-btn-container">
-                  <input id="file-upload" className="chose-btn" type="file" name="associates" ref={this.fileInputRef} onChange={this.handleFileChange} />
-                  <label className="chose-btn-label" htmlFor="file-upload">Choose file</label>
-                  <span>{selectedFile ? selectedFile.value.split('\\').pop() : intl.get('no-file-selected')}</span>
-                </div>
-                <div className="capital-or">{intl.get('capital-or')}</div>
-                <div className="download-sample">
-                  <a href={`data:text/csv;base64,${btoa(exampleCsvFile)}`} download="example.csv">{intl.get('download')}</a>
-                  {' '}
-                  {intl.get('a-sample-file')}
-                </div>
-              </div>
-              <div className="dialog-footer">
-                <button className="cancel" type="button" onClick={() => this.handleImportDialogClose()}>{intl.get('cancel')}</button>
-                <button className="upload" type="submit" disabled={!selectedFile || isUploading} onClick={() => this.handleSubmit()}>{intl.get('upload')}</button>
-              </div>
-            </Modal>
           </div>
         ) : (
           <div className="loader" />
