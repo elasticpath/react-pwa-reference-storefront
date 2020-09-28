@@ -1,6 +1,6 @@
 {
   "name": "@elasticpath/store-components",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "main": "build/cjs/index",
   "main:src": "src/index",
   "types": "build/types/components/src/index",
