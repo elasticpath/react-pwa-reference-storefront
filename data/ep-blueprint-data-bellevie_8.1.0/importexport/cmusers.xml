@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cmusers>
+<cmuser guid="200">
+    <user_name>cmuser</user_name>
+    <email>cmuser@epstore.com</email>
+    <first_name>CM</first_name>
+    <last_name>User</last_name>
+    <password>df08fd3b96ea9fb144ed8b7b11148225428d98b9</password>
+    <creation_date>2008-01-01T00:00:00-05:00</creation_date>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2011-06-10T21:33:03-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>202</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="25A5B31B-7BAE-EAE2-C9BE-7F6BBD23EF6B">
+    <user_name>configuration_user_all</user_name>
+    <email>configurationuser@allstore.com</email>
+    <first_name>Configuration</first_name>
+    <last_name>All Catalogs Stores Warehouses</last_name>
+    <password>e38ad214943daad1d64c102faec29de4afe9da3d</password>
+    <creation_date>2010-06-16T00:00:00-04:00</creation_date>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2010-06-16T07:00:00-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>false</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>202</user_role_guids>
+        <user_role_guids>7AA191A8-6979-7276-7BC8-FC2BC5845493</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="300">
+    <user_name>admin</user_name>
+    <email>admin@epstore.com</email>
+    <first_name>Admin</first_name>
+    <last_name>Store</last_name>
+    <password>df08fd3b96ea9fb144ed8b7b11148225428d98b9</password>
+    <creation_date>2007-01-01T00:00:00-05:00</creation_date>
+    <last_login>2020-02-24T16:54:11-05:00</last_login>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2020-02-24T16:54:11-05:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>201</user_role_guids>
+    </user_role_guids>
+    <price_list_guids>
+        <price_list_guid>14a33839-0ed6-441b-8361-ea1e0e993e89</price_list_guid>
+        <price_list_guid>154070ed-0959-40de-a9c5-48c4226b8c44</price_list_guid>
+        <price_list_guid>229c8d17-5d82-43c4-b449-42121e36086b</price_list_guid>
+        <price_list_guid>40aec4fc-028a-49d8-815c-000a9995385b</price_list_guid>
+        <price_list_guid>61868992-751d-4161-b940-d8adad7e275a</price_list_guid>
+        <price_list_guid>c5bf5972-96b0-467e-b2ed-e9c0f0b6fad7</price_list_guid>
+        <price_list_guid>cac7081d-237a-4fa2-af72-f382753d9d30</price_list_guid>
+        <price_list_guid>d7893e74-5383-4613-88cd-7c707292aa4d</price_list_guid>
+        <price_list_guid>d9a8863c-4195-4d4c-a830-9a627efc82d8</price_list_guid>
+        <price_list_guid>e1e79c21-5c7d-4180-a71d-736f7bf9e56e</price_list_guid>
+        <price_list_guid>f689bf5f-378b-4cd7-9356-c7d6b7e2e739</price_list_guid>
+    </price_list_guids>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="400">
+    <user_name>cmuser_import_only</user_name>
+    <email>cmuserimportonly@epstore.com</email>
+    <first_name>import</first_name>
+    <last_name>only</last_name>
+    <password>e38ad214943daad1d64c102faec29de4afe9da3d</password>
+    <creation_date>2010-06-16T00:00:00-04:00</creation_date>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2010-06-16T07:00:00-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>false</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>false</has_access_to_all_catalogs>
+    <has_access_to_all_stores>false</has_access_to_all_stores>
+    <has_access_to_all_price_lists>false</has_access_to_all_price_lists>
+    <user_role_guids/>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="44AB8E64-BB93-0B14-A3B1-1B532D56C85E">
+    <user_name>store_marketer_all</user_name>
+    <email>store_marketer@allstores.com</email>
+    <first_name>Store Marketer</first_name>
+    <last_name>All Catalogs Stores Warehouses</last_name>
+    <password>e38ad214943daad1d64c102faec29de4afe9da3d</password>
+    <creation_date>2010-06-16T00:00:00-04:00</creation_date>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2010-06-16T07:00:00-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>false</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>202</user_role_guids>
+        <user_role_guids>3503FE0F-D099-1367-4188-2A61FD5D1DA8</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="500">
+    <user_name>cs_brand</user_name>
+    <email>cs_brand@epstore.com</email>
+    <first_name>CS Brand</first_name>
+    <last_name>Admin</last_name>
+    <password>3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d</password>
+    <creation_date>2006-12-31T11:00:00-05:00</creation_date>
+    <last_login>2018-11-01T21:05:22-04:00</last_login>
+    <last_password_change>2021-12-31T23:00:00-05:00</last_password_change>
+    <last_modified>2018-11-02T16:06:13-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>201</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="501">
+    <user_name>cs_bundle</user_name>
+    <email>cs_bundle@epstore.com</email>
+    <first_name>CS Bundle</first_name>
+    <last_name>Admin</last_name>
+    <password>3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d</password>
+    <creation_date>2006-12-31T11:00:00-05:00</creation_date>
+    <last_login>2018-11-01T21:05:22-04:00</last_login>
+    <last_password_change>2021-12-31T23:00:00-05:00</last_password_change>
+    <last_modified>2018-11-02T16:06:13-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>201</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="502">
+    <user_name>cs_catalog</user_name>
+    <email>cs_catalog@epstore.com</email>
+    <first_name>CS Catalog</first_name>
+    <last_name>Admin</last_name>
+    <password>3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d</password>
+    <creation_date>2006-12-31T11:00:00-05:00</creation_date>
+    <last_login>2018-11-01T21:05:22-04:00</last_login>
+    <last_password_change>2021-12-31T23:00:00-05:00</last_password_change>
+    <last_modified>2018-11-02T16:06:13-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>201</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="503">
+    <user_name>cs_category</user_name>
+    <email>cs_category@epstore.com</email>
+    <first_name>CS Category</first_name>
+    <last_name>Admin</last_name>
+    <password>3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d</password>
+    <creation_date>2006-12-31T11:00:00-05:00</creation_date>
+    <last_login>2018-11-01T21:05:22-04:00</last_login>
+    <last_password_change>2021-12-31T23:00:00-05:00</last_password_change>
+    <last_modified>2018-11-02T16:06:13-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>201</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="504">
+    <user_name>cs_jms</user_name>
+    <email>cs_jms@epstore.com</email>
+    <first_name>CS JMS</first_name>
+    <last_name>Admin</last_name>
+    <password>3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d</password>
+    <creation_date>2006-12-31T11:00:00-05:00</creation_date>
+    <last_login>2018-11-01T21:05:22-04:00</last_login>
+    <last_password_change>2021-12-31T23:00:00-05:00</last_password_change>
+    <last_modified>2018-11-02T16:06:13-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>201</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="505">
+    <user_name>cs_priceList</user_name>
+    <email>cs_priceList@epstore.com</email>
+    <first_name>CS Price List</first_name>
+    <last_name>Admin</last_name>
+    <password>3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d</password>
+    <creation_date>2006-12-31T11:00:00-05:00</creation_date>
+    <last_login>2018-11-01T21:05:22-04:00</last_login>
+    <last_password_change>2021-12-31T23:00:00-05:00</last_password_change>
+    <last_modified>2018-11-02T16:06:13-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>201</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="506">
+    <user_name>cs_product</user_name>
+    <email>cs_product@epstore.com</email>
+    <first_name>CS Product</first_name>
+    <last_name>Admin</last_name>
+    <password>3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d</password>
+    <creation_date>2006-12-31T11:00:00-05:00</creation_date>
+    <last_login>2018-11-01T21:05:22-04:00</last_login>
+    <last_password_change>2021-12-31T23:00:00-05:00</last_password_change>
+    <last_modified>2018-11-02T16:06:13-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>201</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="507">
+    <user_name>cs_promotion</user_name>
+    <email>cs_promotion@epstore.com</email>
+    <first_name>CS Promotion</first_name>
+    <last_name>Admin</last_name>
+    <password>3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d</password>
+    <creation_date>2006-12-31T11:00:00-05:00</creation_date>
+    <last_login>2018-11-01T21:05:22-04:00</last_login>
+    <last_password_change>2021-12-31T23:00:00-05:00</last_password_change>
+    <last_modified>2018-11-02T16:06:13-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>201</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="508">
+    <user_name>cs_changeset</user_name>
+    <email>cs_changeset@epstore.com</email>
+    <first_name>CS Change Set</first_name>
+    <last_name>Admin</last_name>
+    <password>3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d</password>
+    <creation_date>2006-12-31T11:00:00-05:00</creation_date>
+    <last_login>2018-11-01T21:05:22-04:00</last_login>
+    <last_password_change>2021-12-31T23:00:00-05:00</last_password_change>
+    <last_modified>2018-11-02T16:06:13-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>201</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="AD746EDC-6DB6-60C9-DFC4-4AB559B8C2A6">
+    <user_name>query_manager_all</user_name>
+    <email>querymanager@allstores.com</email>
+    <first_name>Query Manager</first_name>
+    <last_name>All Catalogs Stores Warehouses</last_name>
+    <password>e38ad214943daad1d64c102faec29de4afe9da3d</password>
+    <creation_date>2010-06-16T00:00:00-04:00</creation_date>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2010-06-16T07:00:00-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>false</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>202</user_role_guids>
+        <user_role_guids>8BE759EB-AD95-96CA-0348-DC22CA89FB99</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="CONFIGURATION-WITHOUT-DATA-POLICY-USER">
+    <user_name>configuration_user_without_data_policy</user_name>
+    <email>configuration_without_data_policy_user@allstore.com</email>
+    <first_name>Configuration without datapolicy</first_name>
+    <last_name>All Catalogs Stores Warehouses</last_name>
+    <password>e38ad214943daad1d64c102faec29de4afe9da3d</password>
+    <creation_date>2010-06-16T00:00:00-04:00</creation_date>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2010-06-16T07:00:00-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>false</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>202</user_role_guids>
+        <user_role_guids>configuration-without-data-policies</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="CSR-USER">
+    <user_name>csruser</user_name>
+    <email>csruser@allstores.com</email>
+    <first_name>csruser</first_name>
+    <last_name>All Catalogs Stores Warehouses</last_name>
+    <password>df08fd3b96ea9fb144ed8b7b11148225428d98b9</password>
+    <creation_date>2010-06-16T00:00:00-04:00</creation_date>
+    <last_login>2020-02-05T16:29:34-05:00</last_login>
+    <last_password_change>2020-02-04T15:49:30-05:00</last_password_change>
+    <last_modified>2020-02-05T16:29:34-05:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items>
+        <user_password_history_item>
+            <oldpassword>e38ad214943daad1d64c102faec29de4afe9da3d</oldpassword>
+            <expirationdate>2020-02-04T15:47:56-05:00</expirationdate>
+        </user_password_history_item>
+    </user_password_history_items>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>202</user_role_guids>
+        <user_role_guids>90EC180C-A9F3-A426-7070-AFC0CDBCD58A</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="DATA-POLICIES-USER">
+    <user_name>datapolicyuser</user_name>
+    <email>datapolicyuser@allstores.com</email>
+    <first_name>datapolicyuser</first_name>
+    <last_name>All Catalogs Stores Warehouses</last_name>
+    <password>e38ad214943daad1d64c102faec29de4afe9da3d</password>
+    <creation_date>2010-06-16T00:00:00-04:00</creation_date>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2010-06-16T07:00:00-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>202</user_role_guids>
+        <user_role_guids>manage-data-policies</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="F0914FE8-7837-B125-304F-AF8991B81D44">
+    <user_name>reporting_user_all</user_name>
+    <email>reportinguser@allstores.com</email>
+    <first_name>Reporting</first_name>
+    <last_name>All Catalogs Stores Warehouses</last_name>
+    <password>e38ad214943daad1d64c102faec29de4afe9da3d</password>
+    <creation_date>2010-06-16T00:00:00-04:00</creation_date>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2010-06-16T07:00:00-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>false</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>202</user_role_guids>
+        <user_role_guids>696C8D33-3E65-D13E-7B3B-AB4FF6E86B6E</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="FB7DD41B-F32E-FDE7-6163-E4C25C2AA415">
+    <user_name>change_set_user_all</user_name>
+    <email>changesetuser@allstores.com</email>
+    <first_name>Change Set</first_name>
+    <last_name>All Catalogs Stores Warehouses</last_name>
+    <password>e38ad214943daad1d64c102faec29de4afe9da3d</password>
+    <creation_date>2010-06-16T00:00:00-04:00</creation_date>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2010-06-16T07:00:00-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>false</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>202</user_role_guids>
+        <user_role_guids>AAB705C2-54CF-822F-AC97-58F403B2B2F2</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+
+<cmuser guid="INTEGRATION-API-USER">
+    <user_name>apiuser</user_name>
+    <email>apiuser@allstores.com</email>
+    <first_name>apiuser</first_name>
+    <last_name>Integration API User</last_name>
+    <password>e38ad214943daad1d64c102faec29de4afe9da3d</password>
+    <creation_date>2010-06-16T00:00:00-04:00</creation_date>
+    <last_password_change>2015-06-16T00:00:00-04:00</last_password_change>
+    <last_modified>2010-06-16T07:00:00-04:00</last_modified>
+    <total_failed_login_attempts>0</total_failed_login_attempts>
+    <enabled>true</enabled>
+    <has_temporary_password>false</has_temporary_password>
+    <user_password_history_items/>
+    <has_access_to_all_warehouses>true</has_access_to_all_warehouses>
+    <has_access_to_all_catalogs>true</has_access_to_all_catalogs>
+    <has_access_to_all_stores>true</has_access_to_all_stores>
+    <has_access_to_all_price_lists>true</has_access_to_all_price_lists>
+    <user_role_guids>
+        <user_role_guids>203</user_role_guids>
+    </user_role_guids>
+    <price_list_guids/>
+    <catalog_codes/>
+    <store_codes/>
+    <warehouse_codes/>
+</cmuser>
+</cmusers>

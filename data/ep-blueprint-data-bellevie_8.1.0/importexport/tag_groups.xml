@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tag_groups>
+<tag_group code="CUSTOMER_PROFILE">
+    <displayName>
+        <value language="en">Customer Profile</value>
+    </displayName>
+    <definitions>
+        <tag code="FIRST_TIME_BUYER">
+            <type>first_time_buyer</type>
+            <name>FIRST_TIME_BUYER</name>
+            <description>The first time buyer customer. Can be registered or not</description>
+            <displayName>
+                <value language="en">are first time buyers</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="CUSTOMER_SEGMENT">
+            <type>customer_segment_set</type>
+            <name>CUSTOMER_SEGMENT</name>
+            <description>Customer segments, also known as Customer groups.</description>
+            <displayName>
+                <value language="en">are customer segment members</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="CUSTOMER_AGE_YEARS">
+            <type>age</type>
+            <name>CUSTOMER_AGE_YEARS</name>
+            <description>The customer's age in years, calculated from their date of birth in the customer profile.</description>
+            <displayName>
+                <value language="en">are of age</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="REGISTERED_CUSTOMER">
+            <type>registered</type>
+            <name>REGISTERED_CUSTOMER</name>
+            <description>The registered customer.</description>
+            <displayName>
+                <value language="en">are registered customers</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="CUSTOMER_GENDER">
+            <type>gender</type>
+            <name>CUSTOMER_GENDER</name>
+            <description>The customer's gender, represented by a single character, as represented in their customer profile.</description>
+            <displayName>
+                <value language="en">are of gender</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+    </definitions>
+</tag_group>
+
+<tag_group code="GEO_LOCATION">
+    <displayName>
+        <value language="en">Geo Location</value>
+    </displayName>
+    <definitions>
+        <tag code="GEOIP_COUNTRY_CODE">
+            <type>country_code</type>
+            <name>GEOIP_COUNTRY_CODE</name>
+            <description>Two letter country code information exctracted from user connection. ISO-3166-Alpha-2 code system.</description>
+            <displayName>
+                <value language="en">are browsing from country code</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="GEOIP_GMT_TIME_ZONE">
+            <type>time_zone</type>
+            <name>GEOIP GMT TIME ZONE</name>
+            <description>GMT time zone. Offset can be not integer, for example GMT+4.5</description>
+            <displayName>
+                <value language="en">are browsing from a time zone +/- offset from GMT</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="GEOIP_ROUTING_TYPE">
+            <type>ip_routing_type</type>
+            <name>GEOIP_ROUTING_TYPE</name>
+            <description>Routing type information exctracted from user connection. This is allows to determine if the user is behind a proxy and prevent from serving any personalized content to them.</description>
+            <displayName>
+                <value language="en">are browsing from an internet IP routing of type</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="GEOIP_ZIP_OR_POST_CODE">
+            <type>zip_code</type>
+            <name>GEOIP_ZIP_OR_POST_CODE</name>
+            <description>The Zip or Postal code information exctracted from user connection.</description>
+            <displayName>
+                <value language="en">are browsing from zip/postal code</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="GEOIP_CITY">
+            <type>city</type>
+            <name>GEOIP_CITY</name>
+            <description>City name information exctracted from user connection.</description>
+            <displayName>
+                <value language="en">are browsing from city</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="GEOIP_CONTINENT">
+            <type>continent</type>
+            <name>GEOIP CONTINENT</name>
+            <description>Continent</description>
+            <displayName>
+                <value language="en">are browsing from continent</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="GEOIP_FIRST_LEVEL_DOMAIN">
+            <type>domain_name</type>
+            <name>GEOIP FIRST LEVEL DOMAIN</name>
+            <description>First level domain name of customer. For example: com, edu, net</description>
+            <displayName>
+                <value language="en">are browsing from an ISP with top level domain</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="GEOIP_CONNECTION_TYPE">
+            <type>ip_connection_type</type>
+            <name>GEOIP_CONNECTION_TYPE</name>
+            <description>Connection type information exctracted from user connection. This is used for serving the content that is optimized for certain connection speed to deliver the fastest browsing experience.</description>
+            <displayName>
+                <value language="en">are browsing from an internet connection of type</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="GEOIP_STATE_OR_PROVINCE">
+            <type>state</type>
+            <name>GEOIP_STATE_OR_PROVINCE</name>
+            <description>State/Province information exctracted from user connection.</description>
+            <displayName>
+                <value language="en">are browsing from state/province</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+        <tag code="GEOIP_SECOND_LEVEL_DOMAIN">
+            <type>domain_name</type>
+            <name>GEOIP SECOND LEVEL DOMAIN</name>
+            <description>Second level domain name of customer. For example www.somedomain.com - somedomain</description>
+            <displayName>
+                <value language="en">are browsing from an ISP with second level domain</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+                <dictionary>PLA_SHOPPER</dictionary>
+                <dictionary>PROMOTIONS_SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+    </definitions>
+</tag_group>
+
+<tag_group code="SHOPPING_CART">
+    <displayName>
+        <value language="en">Shopping Cart</value>
+    </displayName>
+    <definitions>
+        <tag code="CART_SUBTOTAL">
+            <type>money</type>
+            <name>CART_SUBTOTAL</name>
+            <description>Cart subtotal value after cart modification.</description>
+            <displayName>
+                <value language="en">have a cart subtotal</value>
+            </displayName>
+            <dictionaries>
+                <dictionary>SHOPPER</dictionary>
+            </dictionaries>
+        </tag>
+    </definitions>
+</tag_group>
+</tag_groups>
