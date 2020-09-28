@@ -22,9 +22,8 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import * as UserPrefs from '../utils/UserPrefs';
-// import currencyLogoCad from '../../../images/header-icons/ca.svg';
+import currencyLogoCad from '../../../images/header-icons/ca.svg';
 import currencyLogoEur from '../../../images/header-icons/eu.svg';
-import currencyLogoGB from '../../../images/header-icons/gb.svg';
 import headerLogo from '../../../images/site-images/Company-Logo-v1.png';
 import Config from '../../../ep.config.json';
 
@@ -84,7 +83,7 @@ class AppHeaderLocaleMain extends Component<AppHeaderLocaleMainProps, AppHeaderL
     const selectedLocale = Config.supportedLocales.filter(l => l.value === selectedLocaleValue)[0];
     const title = `${selectedCurrencyValue}/${selectedLocale.name}`;
     const { isMobileView } = this.props;
-    const selectedCurrencyLogo = selectedCurrencyValue === 'GBP' ? currencyLogoGB : currencyLogoEur;
+    const selectedCurrencyLogo = selectedCurrencyValue === 'CAD' ? currencyLogoCad : currencyLogoEur;
     return (
       <div className={`main-locale-container ${isMobileView ? 'mobile-view' : ''}`}>
         <button id={`${isMobileView ? 'mobile_' : ''}locale-dropdown-trigger`} type="button" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
