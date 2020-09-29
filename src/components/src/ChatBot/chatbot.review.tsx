@@ -89,9 +89,11 @@ class Review extends Component<ReviewProps, ReviewState> {
     const { userMessage, productImageUrl } = this.state;
     if (userMessage) {
       return (
-        <div style={{ width: '100%' }}>
+        <div style={{ width: '100%' }} className="chatbot-review">
           <div className="chatbot-review">
-            {userMessage}
+            {userMessage.split('\n').map(l => (
+              <div key={l}>{l}</div>
+            ))}
             {productImageUrl && <img src={productImageUrl} alt="" />}
           </div>
         </div>
