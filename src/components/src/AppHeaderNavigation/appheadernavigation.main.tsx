@@ -63,7 +63,7 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
           >
             <Link
               className={`nav__item-link nav__item-link--level-${level} ${(subCat.children && subCat.children.length > 0) ? 'nav__item-link--has-children' : ''}`}
-              to={`${level !== 0 ? '/category' : ''}/${subCat.name !== 'home' ? subCat.name : ''}`}
+              to={`/category/${subCat.name !== 'home' ? subCat.name : ''}`}
               onClick={e => props.onCategorySelected(e, prefix, subCat)}
               title={subCat.displayName}
             >
