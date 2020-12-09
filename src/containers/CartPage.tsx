@@ -283,7 +283,6 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     } = this.state;
     const itemDetailLink = '/itemdetail';
     const cartName = cartData && cartData._descriptor && cartData._descriptor[0].default !== 'true' && cartData._descriptor[0].name !== null ? cartData._descriptor[0].name : intl.get('default');
-    console.log(cartData);
     return (
       <div className="cart-container container">
         {isShowAlert ? (
