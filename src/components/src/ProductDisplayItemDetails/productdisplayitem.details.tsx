@@ -699,12 +699,11 @@ function ItemDetailSkuSelection({
     return null;
   }
 
-  productData._definition[0]._options[0]._element.map((ChoiceElement, index) => {
+  productData._definition[0]._options[0]._element.forEach((ChoiceElement, index) => {
     const selectorTitle = ChoiceElement['display-name'];
     const chosenItem = ChoiceElement._selector[0]._chosen[0];
-    const arraySelectors = ChoiceElement._selector[0]._choice || [];
+    const arraySelectors = [chosenItem, ...(ChoiceElement._selector[0]._choice || [])];
 
-    arraySelectors.unshift(chosenItem);
     if (selectorTitle === 'Size') {
       arraySelectors.sort((a, b) => {
         if (sizes.indexOf(a._description[0]['display-name']) < sizes.indexOf(b._description[0]['display-name'])) {
@@ -729,7 +728,6 @@ function ItemDetailSkuSelection({
     productKindsSelection.push(arraySelectors);
     productKindsSelection[index].displayName = selectorTitle;
     productKindsSelection[index].defaultChousen = chosenItem._description[0]['display-name'];
-    return productKindsSelection;
   });
 
   return (
