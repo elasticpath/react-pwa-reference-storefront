@@ -692,14 +692,13 @@ function ItemDetailSkuSelection({
   handleSelectionChange,
   handleSkuSelection,
 }) {
-  const productKindsSelection = [];
   const sizes = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large'];
 
   if (!productData._definition[0]._options) {
     return null;
   }
 
-  productData._definition[0]._options[0]._element.forEach((ChoiceElement, index) => {
+  const productKindsSelection = productData._definition[0]._options[0]._element.map((ChoiceElement) => {
     const selectorTitle = ChoiceElement['display-name'];
     const chosenItem = ChoiceElement._selector[0]._chosen[0];
     const arraySelectors = [chosenItem, ...(ChoiceElement._selector[0]._choice || [])];
@@ -725,9 +724,12 @@ function ItemDetailSkuSelection({
         return 0;
       });
     }
-    productKindsSelection.push(arraySelectors);
-    productKindsSelection[index].displayName = selectorTitle;
-    productKindsSelection[index].defaultChousen = chosenItem._description[0]['display-name'];
+
+    return {
+      displayName: selectorTitle,
+      defaultChosen: chosenItem._description[0]['display-name'],
+      options: arraySelectors,
+    };
   });
 
   return (
@@ -741,7 +743,7 @@ function ItemDetailSkuSelection({
             {ComponentEl.displayName}
             :&nbsp;
             {(ComponentEl.displayName.includes('Color')) ? (
-              <span>{ComponentEl.defaultChousen}</span>
+              <span>{ComponentEl.defaultChosen}</span>
             ) : ''}
           </span>
           <div
@@ -749,12 +751,12 @@ function ItemDetailSkuSelection({
             id={`${(ComponentEl.displayName.includes('Color')) ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}${itemIndex || ''}`}
             onChange={handleSkuSelection}
           >
-            {ComponentEl.map(Element => (
+            {ComponentEl.options.map(Element => (
 
               <SkuSelectAxisOption
                 optionData={Element}
                 axisDisplayName={ComponentEl.displayName}
-                defaultChosen={ComponentEl.defaultChousen}
+                defaultChosen={ComponentEl.defaultChosen}
                 code={productData._code[0].code}
                 selectionValue={selectionValue}
               />
