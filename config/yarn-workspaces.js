@@ -37,7 +37,7 @@ const loadPackageJson = (packagePath) => {
 const getWorkspacesRootConfig = (dir) => {
   const packageJsonUp = findUp.sync('package.json', { cwd: dir });
 
-  if (packageJsonUp === null) {
+  if (packageJsonUp === null || packageJsonUp === undefined) {
     return false;
   }
 
