@@ -1,0 +1,145 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../theme/common.scss';
+
+
+.account-details {
+  position: relative;
+}
+
+.tab-pane {
+  display: flex;
+  margin: 30px 0;
+
+  .title {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    p {
+      display: inline-block;
+      font-weight: bold;
+      margin: 10px 5px;
+    }
+
+    .edit-button {
+      position: absolute;
+      right: 0;
+      color: #197C93;
+
+      &:hover {
+        cursor: pointer;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.back-link {
+  margin: 20px 0 10px;
+  font-weight: normal;
+
+  &:hover {
+    text-decoration: none;
+
+  }
+}
+
+.account-name {
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.account-data-list {
+  border: 1px solid $mainBorderColor;
+  width: 100%;
+  height: 187px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 0 10px;
+
+  li {
+    width: 50%;
+    margin: 10px 0;
+    display: flex;
+    height: 26px;
+
+    .row-name {
+      width: 40%;
+      display: inline-block;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 10px;
+    }
+
+    .row-value {
+      width: 60%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border: 1px solid transparent;
+
+      .icons-status {
+        $size: 14px;
+        display: inline-block;
+        width: $size;
+        height: $size;
+        background-repeat: no-repeat;
+        background-size: contain;
+        vertical-align: sub;
+        margin: 0 6px 1px 0;
+        &.enabled {
+          background-image: url('../#{$imgUrl}/icons/check-circle.svg');
+        }
+        &.disabled {
+          background-image: url('../#{$imgUrl}/icons/remove-circle.svg');
+        }
+      }
+    }
+
+    .row-input {
+      height: 26px;
+      padding: 2px 6px;
+      border: 1px solid $secondBorderColor;
+      width: 40%;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .account-details {
+    padding-top: 50px;
+  }
+}
+
+@media (max-width: $mobileWidth - 1px) {
+  .account-data-list {
+    height: auto;
+
+    li {
+      width: 100%;
+    }
+  }
+}
