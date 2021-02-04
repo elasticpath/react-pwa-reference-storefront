@@ -485,5 +485,14 @@
   "your-account-billing-default": "Y-o-u-r- -s-e-l-e-c-t-e-d- -d-e-f-a-u-l-t- -b-i-l-l-i-n-g- -a-d-d-r-e-s-s- -i-s- -b-e-l-o-w",
   "profile-tooltip-text": "Y-o-u-r- -p-e-r-s-o-n-a-l- -d-e-f-a-u-l-t-s- -w-i-l-l- -b-e- -a-p-p-l-i-e-d- -a-u-t-o-m-a-t-i-c-a-l-l-y- -a-t- -C-h-e-c-k-o-u-t-.",
   "address-book-tooltip-text": "S-e-l-e-c-t- -y-o-u-r- -p-e-r-s-o-n-a-l- -d-e-f-a-u-l-t-s-,- -t-h-e-y- -w-i-l-l- -b-e- -a-p-p-l-i-e-d- -a-u-t-o-m-a-t-i-c-a-l-l-y- -a-t- -C-h-e-c-k-o-u-t-.",
-  "account-tooltip-text": "I-f- -y-o-u- -n-e-e-d- -t-o- -m-a-n-a-g-e- -y-o-u-r- -a-c-c-o-u-n-t-s-,- -s-p-e-a-k- -t-o- -y-o-u-r- -A-d-m-i-n-i-s-t-r-a-t-o-r-."
+  "account-tooltip-text": "I-f- -y-o-u- -n-e-e-d- -t-o- -m-a-n-a-g-e- -y-o-u-r- -a-c-c-o-u-n-t-s-,- -s-p-e-a-k- -t-o- -y-o-u-r- -A-d-m-i-n-i-s-t-r-a-t-o-r-.",
+  "account-details": "A-c-c-o-u-n-t- -D-e-t-a-i-l-s",
+  "business-name": "B-u-s-i-n-e-s-s- -N-a-m-e",
+  "business-number": "B-u-s-i-n-e-s-s- -N-u-m-b-e-r",
+  "phone-number": "P-h-o-n-e- -N-u-m-b-e-r",
+  "fax": "F-a-x",
+  "shared-id": "S-h-a-r-e-d- -I-D",
+  "additional-details": "A-d-d-i-t-i-o-n-a-l- -D-e-t-a-i-l-s",
+  "overview": "O-v-e-r-v-i-e-w-s",
+  "payment-instruments": "P-a-y-m-e-n-t- -I-n-s-t-r-u-m-e-n-t-s"
 }

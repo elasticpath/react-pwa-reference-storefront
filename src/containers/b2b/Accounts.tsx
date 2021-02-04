@@ -67,6 +67,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
       messages: [],
     };
     this.getAdminData();
+    this.handleAccount = this.handleAccount.bind(this);
     // this.setSearchAccounts = this.setSearchAccounts.bind(this);
     // this.getSearchAccounts = this.getSearchAccounts.bind(this);
     // this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
@@ -90,6 +91,14 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
         accounts: res, isLoading: false,
       });
     }
+  }
+
+  handleAccount(accountUri) {
+    const { history } = this.props;
+    history.push({
+      pathname: '/account-details',
+      state: { accountUri },
+    });
   }
 
   // getSearchAccounts() {
@@ -185,7 +194,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                     </thead>
                     <tbody>
                       {accounts._element.map(account => (
-                        <tr key={account.self.uri} className="account-list-rows">
+                        <tr key={account.self.uri} className="account-list-rows" onClick={() => this.handleAccount(account.self.uri)}>
                           <td className="name">{account['account-business-name']}</td>
                           <td className="external-id">{account['account-business-number']}</td>
                           <td className="status">

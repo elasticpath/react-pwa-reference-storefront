@@ -1,0 +1,119 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../theme/common.scss';
+
+
+.account-details {
+  position: relative;
+}
+
+.tab-pane {
+  display: flex;
+  //justify-content: center;
+  margin: 30px 0;
+
+  .title {
+    position: relative;
+
+    p {
+      display: inline-block;
+      font-weight: bold;
+      margin: 10px 5px;
+    }
+
+    .edit-button {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      color: #197C93
+    }
+  }
+}
+
+.back-link {
+  margin: 20px 0 10px;
+  font-weight: normal;
+
+  &:hover {
+    text-decoration: none;
+
+  }
+}
+
+.account-name {
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.account-data-list {
+  border: 1px solid $mainBorderColor;
+  width: 100%;
+  height: 172px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 0 10px;
+
+  li {
+  width: 50%;
+    //height: 30px;
+    margin: 10px 0;
+
+
+    .row-name {
+      width: 40%;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    .row-value {
+      width: 100px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      //background-color: red
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .account-details {
+    padding-top: 50px;
+  }
+}
+
+
+//@media (max-width: 991px) {
+//  .react-tabs__tab-list {
+//    display: none;
+//  }
+//}
+
+@media (max-width: $mobileWidth - 1px) {
+  .account-data-list {
+    height: auto;
+
+    li {
+      width: 100%;
+    }
+  }
+}

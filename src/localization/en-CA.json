@@ -485,5 +485,14 @@
   "your-account-billing-default": "Your selected default billing address is below",
   "profile-tooltip-text": "Your personal defaults will be applied automatically at Checkout.",
   "address-book-tooltip-text": "Select your personal defaults, they will be applied automatically at Checkout.",
-  "account-tooltip-text": "If you need to manage your accounts, speak to your Administrator."
+  "account-tooltip-text": "If you need to manage your accounts, speak to your Administrator.",
+  "account-details": "Account Details",
+  "business-name": "Business Name",
+  "business-number": "Business Number",
+  "phone-number": "Phone Number",
+  "fax": "Fax",
+  "shared-id": "Shared ID",
+  "additional-details": "Additional Details",
+  "overview": "Overviews",
+  "payment-instruments": "Payment Instruments"
 }

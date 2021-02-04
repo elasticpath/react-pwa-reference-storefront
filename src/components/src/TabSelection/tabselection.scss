@@ -1,0 +1,41 @@
+.react-tabs {
+  width: 100%;
+
+  .react-tabs__tab {
+    font-size: 16px;
+    border: none;
+    padding: 0 20px 5px;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &--selected {
+      border-bottom: 2px solid #197C93;
+      color: #197C93;
+      font-weight: 600;
+    }
+
+    &-list {
+      margin-bottom: 20px;
+
+      @media (max-width: 991px) {
+      display: none;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    display: none;
+
+    @media (max-width: 991px) {
+      display: block;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 0;
+      border: none;
+      margin: 0 auto;
+    }
+  }
+}
