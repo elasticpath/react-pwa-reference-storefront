@@ -27,8 +27,9 @@ import 'react-tabs/style/react-tabs.css';
 import './tabselection.scss';
 
 interface TabSelectionProps {
-  /** option */
+  /** array of tabs */
   tabs: string[]
+  /** array of tab data */
   data: any[]
 }
 
@@ -47,6 +48,7 @@ export default class TabSelection extends React.Component<TabSelectionProps, Tab
     };
 
     this.clickListener = this.clickListener.bind(this);
+    this.handleSwitcherClicked = this.handleSwitcherClicked.bind(this);
     this.setValue = this.setValue.bind(this);
   }
 
@@ -87,7 +89,7 @@ export default class TabSelection extends React.Component<TabSelectionProps, Tab
         <div className="side-menu-component dropdown-menu">
           <button
             className="side-menu-component-title"
-            onClick={e => this.handleSwitcherClicked(e)}
+            onClick={this.handleSwitcherClicked}
             type="button"
             aria-label="navigation menu"
           >
@@ -102,7 +104,7 @@ export default class TabSelection extends React.Component<TabSelectionProps, Tab
           </div>
         </div>
         {data.map(tabData => (
-          <TabPanel key={`_${Math.random().toString(36).substr(2, 9)}`}>
+          <TabPanel key={tabData.props.children}>
             {tabData}
           </TabPanel>
         ))}
