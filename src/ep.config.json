@@ -1,8 +1,8 @@
 {
   "cortexApi": {
     "path": "/cortex",
-    "scope": "vestri",
-    "pathForProxy": "http://localhost:9080",
+    "scope": "mobee",
+    "pathForProxy": "http://10.11.12.62:8080",
     "reqTimeout": "30000"
   },
   "supportedLocales": [
@@ -35,7 +35,7 @@
     "sizes": ["768", "1092", "2800"]
   },
   "b2b": {
-    "enable": false
+    "enable": true
   },
   "gaTrackingId": "",
   "arKit": {

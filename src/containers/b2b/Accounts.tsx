@@ -28,8 +28,10 @@ import { login } from '../../hooks/store';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
 import { ReactComponent as InfoIcon } from '../../images/icons/info-icon.svg';
 
+import AccountItem from '../../components/src/AccountItem/account.item';
 import Config from '../../ep.config.json';
 import './Accounts.scss';
+
 
 enum MessageType {
   success = 'success',
@@ -49,8 +51,13 @@ interface AccountsState {
 
 const zoomArray = [
   'element',
-  'element:attributes',
-  'element:identifier',
+  // 'element:attributes',
+  // 'element:identifier',
+  // 'element:addresses',
+  // 'element:paymentinstruments',
+  // 'element:purchases',
+  'element:childaccounts',
+  // 'element:associates',
 ];
 
 export default class Accounts extends React.Component<RouteComponentProps, AccountsState> {
@@ -85,11 +92,24 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
       },
     })
       .then(result => result.json());
+
     if (res && res._element) {
       this.setState({
         accounts: res, isLoading: false,
       });
     }
+  }
+
+  getChildAccounts = async (account) => {
+    await login();
+    const res = await cortexFetch(`${account._childaccounts[0].self.uri}?zoom=${zoomArray.join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    })
+      .then(result => result.json());
+    return res;
   }
 
   // getSearchAccounts() {
@@ -161,47 +181,41 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
               </div>
               <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }} />
             </div>
+
+            {/* Items */}
             <div className="b2b-section accounts">
               <div className="section-content">
-                { !noSearchResults ? (
-                  <table className="b2b-table accounts-table">
-                    <thead>
-                      <tr>
-                        <th className="name">
-                          {intl.get('name')}
-                          {isSellerAdmin && (
+                {!noSearchResults ? (
+                  <div className="accounts-list">
+                    <div className="header-row">
+                      <span className="name">
+                        {intl.get('account')}
+                        {isSellerAdmin && (
                           <span className="mobile-table-title">
                               {' '}
                             &
                             {' '}
                             {intl.get('external-id')}
                           </span>
-                          )}
-                        </th>
-                        <th className="external-id">{intl.get('external-id')}</th>
-                        <th className="status">{intl.get('status')}</th>
-                        <th className="arrow" />
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {accounts._element.map(account => (
-                        <tr key={account.self.uri} className="account-list-rows">
-                          <td className="name">{account['account-business-name']}</td>
-                          <td className="external-id">{account['account-business-number']}</td>
-                          <td className="status">
-                            <i className="icons-status enabled" />
-                            {intl.get('enabled')}
-                          </td>
-                          <td className="arrow">
-                            <span className="arrow-btn" />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                        )}
+                      </span>
+                      <span className="external-id">{intl.get('external-id')}</span>
+                      <span className="status">{intl.get('status')}</span>
+                      <span className="action" />
+                    </div>
+                    {accounts._element.map((account, i, arr) => (
+                      <AccountItem
+                        account={account}
+                        level={0}
+                        isLine={arr.length - 1 !== i}
+                        getChildAccounts={this.getChildAccounts}
+                      />
+                    ))}
+                  </div>
                 ) : <p className="no-results">{intl.get('no-results-found')}</p>}
               </div>
             </div>
+
           </div>
         ) : (
           <div className="loader" />
