@@ -32,6 +32,7 @@ import TabSelection from '../../components/src/TabSelection/tabselection.main';
 import { ReactComponent as ArrowIcon } from '../../images/icons/arrow_left.svg';
 import './AccountMain.scss';
 import './AccountDetails.scss';
+import PaymentInstruments from './PaymentInstruments';
 
 interface AccountMainState {
   accountData: any;
@@ -280,7 +281,7 @@ class AccountDetails extends React.Component<RouteComponentProps<AccountMainRout
         {intl.get('address-book')}
       </div>,
       <div>
-        {intl.get('payment-instruments')}
+        <PaymentInstruments />
       </div>,
       <div>
         {intl.get('purchase-history')}

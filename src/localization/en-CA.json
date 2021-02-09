@@ -495,5 +495,11 @@
   "additional-details": "Additional Details",
   "overview": "Overviews",
   "payment-instruments": "Payment Instruments",
-  "back-to-accounts": "Back to Accounts"
+  "back-to-accounts": "Back to Accounts",
+  "defaults": "Defaults",
+  "payment-type": "Payment Type",
+  "display-name": "Display Name",
+  "action": "Action",
+  "delete-payment-instrument": "Delete payment instrument",
+  "delete-payment-instrument-confirmation": "Are you sure you want to Delete the added payment instrument?"
 }
