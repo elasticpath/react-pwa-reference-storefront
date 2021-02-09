@@ -1,0 +1,99 @@
+@import './../../theme/common.scss';
+
+
+.container {
+  padding: 0;
+
+  .title {
+    font-weight: bold;
+    padding: 15px 0;
+  }
+}
+
+.accounts-table {
+  .account-list-rows {
+    cursor: pointer;
+    &:hover {
+      background-color: $accountTreeActive;
+    }
+
+    .defaults {
+      label {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    @media (max-width: $mobileWidth) {
+      .arrow {
+        grid-row: 1 / 3;
+        grid-column: 3 / 4;
+        align-self: center;
+      }
+      .status {
+        grid-row: 1 / 3;
+        grid-column: 2 / 3;
+        align-self: center;
+      }
+    }
+  }
+
+  .action-column {
+    color: $firstComplimentColor;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}
+
+.b2b-table {
+  width: 100%;
+
+  thead {
+    background-color: $secondComplimentBackground;
+
+    th {
+      padding: 5px;
+      vertical-align: middle;
+      color: $firstComplimentTextColor;
+
+      @media (min-width: 576px) {
+        height: 50px;
+        padding: 0 10px;
+      }
+
+      @media (min-width: $mobileWidth) {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    tr {
+      border: none;
+    }
+  }
+
+  tr {
+    border-bottom: 1px solid $fifthComplimentTextColor;
+
+    @media (min-width: 576px) {
+      height: 50px;
+    }
+
+    td {
+      padding: 5px;
+      vertical-align: middle;
+
+      @media (min-width: 576px) {
+        padding: 0 10px;
+      }
+
+      @media (min-width: $mobileWidth) {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  }
+}
