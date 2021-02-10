@@ -139,11 +139,11 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
     let defaultAddress = '';
 
     if (self.uri === chosenBillingUri && self.uri === chosenShippingUri) {
-      defaultAddress = 'Default Bill/Ship To';
+      defaultAddress = intl.get('default-bill-ship-to');
     } else if (self.uri === chosenBillingUri) {
-      defaultAddress = 'Default Bill To';
+      defaultAddress = intl.get('default-bill-to');
     } else if (self.uri === chosenShippingUri) {
-      defaultAddress = 'Default Ship To';
+      defaultAddress = intl.get('default-ship-to');
     }
     return (
       <div key={`profile_address_${Math.random().toString(36).substr(2, 9)}`} className={`address-wrapper ${defaultAddress && 'default'}`} data-el-container="profile.addresses">
