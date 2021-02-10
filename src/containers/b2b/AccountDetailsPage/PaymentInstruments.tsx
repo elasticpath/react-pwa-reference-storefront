@@ -23,9 +23,9 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { cortexFetch } from '../../components/src/utils/Cortex';
-import { login } from '../../hooks/store';
-import * as Config from '../../ep.config.json';
+import { cortexFetch } from '../../../components/src/utils/Cortex';
+import { login } from '../../../hooks/store';
+import * as Config from '../../../ep.config.json';
 import './PaymentInstruments.scss';
 
 
@@ -106,19 +106,21 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
   async handleDefaultCheck(paymentUri) {
     const { paymentInstruments } = this.state;
     const selectedPayment = paymentInstruments._defaultinstrumentselector[0]._choice.find(choice => choice._description[0].self.uri === paymentUri.self.uri);
-    login().then(() => {
-      cortexFetch(`${selectedPayment._selectaction[0].self.uri}`, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-        body: JSON.stringify({}),
-      })
-        .then(() => {
-          this.getPayments();
-        });
-    });
+    if (selectedPayment && selectedPayment._selectaction) {
+      login().then(() => {
+        cortexFetch(`${selectedPayment._selectaction[0].self.uri}`, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({}),
+        })
+          .then(() => {
+            this.getPayments();
+          });
+      });
+    }
   }
 
   async getPayments() {

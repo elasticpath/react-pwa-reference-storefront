@@ -501,5 +501,12 @@
   "display-name": "Display Name",
   "action": "Action",
   "delete-payment-instrument": "Delete payment instrument",
-  "delete-payment-instrument-confirmation": "Are you sure you want to Delete the added payment instrument?"
+  "delete-payment-instrument-confirmation": "Are you sure you want to Delete the added payment instrument?",
+  "address-is-added": "New address is added to the account {accountName}.",
+  "address-is-updated": "The address is successfully updated.",
+  "add-address-error": "Error adding new address.",
+  "update-address-error": "Error updating address.",
+  "default-bill-ship-to": "Default Bill/Ship To",
+  "default-bill-to": "Default Bill To",
+  "default-ship-to": "Default Ship To"
 }

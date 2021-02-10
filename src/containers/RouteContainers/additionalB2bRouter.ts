@@ -50,7 +50,7 @@ import SupportPage from '../SupportPage';
 import PrivacyPoliciesPage from '../PrivacyPoliciesPage';
 import PurchaseHistoryPage from '../b2b/PurchaseHistoryPage';
 import AddressBookPage from '../b2b/AddressBookPage';
-import AccountDetails from '../b2b/AccountDetails';
+import AccountDetailsPage from '../b2b/AccountDetailsPage/AccountDetailsPage';
 
 const router = [{
   path: '/mycart',
@@ -140,7 +140,7 @@ const router = [{
 }, {
   path: '/account-details/',
   exact: true,
-  component: AccountDetails,
+  component: AccountDetailsPage,
 }, {
   path: '/account',
   component: MyAccountMain,
