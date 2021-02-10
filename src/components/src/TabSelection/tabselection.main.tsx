@@ -31,6 +31,8 @@ interface TabSelectionProps {
   tabs: string[]
   /** array of tab data */
   data: any[]
+  /** on select tab */
+  onSelectTab: (index: number) => void
 }
 
 interface TabSelectionState {
@@ -69,6 +71,7 @@ export default class TabSelection extends React.Component<TabSelectionProps, Tab
     this.setState({
       selectedValue: index,
     });
+    this.props.onSelectTab(index);
   };
 
 
@@ -104,7 +107,7 @@ export default class TabSelection extends React.Component<TabSelectionProps, Tab
           </div>
         </div>
         {data.map(tabData => (
-          <TabPanel key={tabData.props.children}>
+          <TabPanel key={tabData.key}>
             {tabData}
           </TabPanel>
         ))}

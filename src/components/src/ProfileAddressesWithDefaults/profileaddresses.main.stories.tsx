@@ -19,26 +19,18 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import Readme from './README.md';
-import TabSelection from './tabselection.main';
 
-function renderData() {
-  return ([
-    <div>Tab data1</div>,
-    <div>Tab data2</div>,
-    <div>Tab data3</div>,
-  ]);
-}
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../../storybook/utils/storybookUtils";
 
-function onSelectTab(index) {
-  return index;
-}
+import profileData from '../CommonMockHttpResponses/profile_data_response.json';
+import ProfileAddressesMain from './profileaddresses.main';
 
-const tabs = ['Tab1', 'Tab2', 'Tab3'];
 
-storiesOf('Components|TabSelection', module)
+storiesOf('Components|ProfileAddressesMain', module)
   .addParameters({
     readme: {
       // Show readme at the addons panel
@@ -48,6 +40,16 @@ storiesOf('Components|TabSelection', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('TabSelection', () => (
-    <TabSelection tabs={tabs} data={renderData()} onSelectTab={index => onSelectTab(index)} />
-  ));
+  .add('ProfileAddressesMain', () => {
+    
+    let handleEditAddressFuncText = text('handleEditAddress', '() => {alert("handleEditAddress invoked")}');
+    let fetchProfileDataFuncText = text('fetchProfileData', '() => {alert("fetchProfileData invoked")}');
+    
+    return (
+      <ProfileAddressesMain 
+        addresses={object('addresses', profileData._defaultprofile[0]._addresses[0])} 
+        onChange={()=>{textToFunc(fetchProfileDataFuncText)}}
+        onEditAddress={()=>{textToFunc(handleEditAddressFuncText)}}
+      />
+    );
+  });

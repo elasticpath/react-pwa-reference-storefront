@@ -1,3 +1,4 @@
+
 /**
  * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
@@ -19,54 +20,29 @@
  *
  */
 
-@import './../../theme/common.scss';
+ @import './../../../theme/common.scss';
 
-
-.account-details {
+.title {
   position: relative;
-}
-
-.tab-pane {
   display: flex;
-  margin: 30px 0;
+  align-items: center;
 
-  .title {
-    position: relative;
-    display: flex;
-    align-items: center;
+  p {
+    display: inline-block;
+    font-weight: bold;
+    margin: 10px 5px;
+  }
 
-    p {
-      display: inline-block;
+  .edit-button {
+    position: absolute;
+    right: 0;
+    color: #197C93;
+
+    &:hover {
+      cursor: pointer;
       font-weight: bold;
-      margin: 10px 5px;
-    }
-
-    .edit-button {
-      position: absolute;
-      right: 0;
-      color: #197C93;
-
-      &:hover {
-        cursor: pointer;
-        font-weight: bold;
-      }
     }
   }
-}
-
-.back-link {
-  margin: 20px 0 10px;
-  font-weight: normal;
-
-  &:hover {
-    text-decoration: none;
-
-  }
-}
-
-.account-name {
-  margin: 10px 0;
-  font-size: 24px;
 }
 
 .account-data-list {
@@ -111,10 +87,10 @@
         vertical-align: sub;
         margin: 0 6px 1px 0;
         &.enabled {
-          background-image: url('../#{$imgUrl}/icons/check-circle.svg');
+          background-image: url('../../#{$imgUrl}/icons/check-circle.svg');
         }
         &.disabled {
-          background-image: url('../#{$imgUrl}/icons/remove-circle.svg');
+          background-image: url('../../#{$imgUrl}/icons/remove-circle.svg');
         }
       }
     }
@@ -125,12 +101,6 @@
       border: 1px solid $secondBorderColor;
       width: 40%;
     }
-  }
-}
-
-@media (max-width: 991px) {
-  .account-details {
-    padding-top: 50px;
   }
 }
 

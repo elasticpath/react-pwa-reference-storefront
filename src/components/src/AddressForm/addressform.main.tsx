@@ -33,8 +33,12 @@ interface AddressFormMainProps {
   addressData?: {
     [key: string]: any
   },
+  /** Account business name. */
+  accountName?: string
   /** Closes the address form. */
   onCloseModal?: (...args: any[]) => any,
+  /** Show alert after submit */
+  handleShowAlert?: (...args: any[]) => any,
   /** Retrieves the saved address. */
   fetchData?: (...args: any[]) => any,
   /** Chosen shipping address. */
@@ -76,6 +80,7 @@ const zoomArray = [
 class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainState> {
   static defaultProps = {
     onCloseModal: () => {},
+    handleShowAlert: () => {},
     fetchData: () => {},
     addressData: undefined,
     chosenBilling: '',
@@ -172,7 +177,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
   async submitAddress(event) {
     event.preventDefault();
     const {
-      addressData, fetchData, onCloseModal, selectactionShippingUri, selectactionBillingUri,
+      addressData, fetchData, handleShowAlert, onCloseModal, selectactionShippingUri, selectactionBillingUri, accountName,
     } = this.props;
     const {
       addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode, isShippingAddress, isBillingAddress,
@@ -180,12 +185,15 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
 
     let link;
     let methodType;
+    let isAddAddress;
     if (addressData && addressData.addressUri) {
       link = addressData.addressUri;
       methodType = 'put';
+      isAddAddress = false;
     } else {
       link = addressForm;
       methodType = 'post';
+      isAddAddress = true;
     }
 
     try {
@@ -239,8 +247,10 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
         this.setState({ failedSubmit: false });
         await fetchData();
         await onCloseModal();
+        await handleShowAlert(isAddAddress ? intl.get('address-is-added', { accountName }) : intl.get('address-is-updated'), true);
       }
     } catch (error) {
+      await handleShowAlert(isAddAddress ? intl.get('add-address-error') : intl.get('update-address-error'));
       // eslint-disable-next-line no-console
       console.error(error.message);
     }
