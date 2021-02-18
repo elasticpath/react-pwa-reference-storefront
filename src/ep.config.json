@@ -13,10 +13,6 @@
     {
       "value": "en-UK",
       "name": "English UK"
-    },
-    {
-      "value": "es",
-      "name": "Spanish"
     }
   ],
   "defaultLocaleValue": "en",
