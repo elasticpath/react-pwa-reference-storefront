@@ -1,38 +1,55 @@
 {
   "cortexApi": {
-    "path": "/cortex",
-    "scope": "vestri",
+    "path": "http://10.11.12.17:8080/cortex",
+    "scope": "main_UK",
     "pathForProxy": "http://localhost:9080",
     "reqTimeout": "30000"
   },
   "supportedLocales": [
     {
-      "value": "en-CA",
+      "value": "en",
       "name": "English"
     },
     {
-      "value": "fr-FR",
-      "name": "French"
+      "value": "en-UK",
+      "name": "English UK"
+    },
+    {
+      "value": "es",
+      "name": "Spanish"
     }
   ],
-  "defaultLocaleValue": "en-CA",
+  "defaultLocaleValue": "en",
   "supportedCurrencies": [
     {
-      "value": "CAD",
-      "name": "Canadian Dollar"
+      "value": "GBP",
+      "name": "British Pound"
     },
     {
       "value": "EUR",
       "name": "Euro"
+    },
+    {
+      "value": "USD",
+      "name": "US Dollar"
     }
   ],
-  "defaultCurrencyValue": "CAD",
+  "defaultCurrencyValue": "GBP",
   "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
   "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
   "enableOfflineMode": false,
   "ImageContainerSrcs": {
-    "types": ["webp", "jp2", "jpg", "jxr"],
-    "sizes": ["768", "1092", "2800"]
+    "types": [
+      "webp",
+      "jp2",
+      "jpg",
+      "jxr"
+    ],
+    "sizes": [
+      "768",
+      "1092",
+      "2800"
+    ]
   },
   "b2b": {
     "enable": false
@@ -105,7 +122,7 @@
       "authKey": "",
       "domainKey": "",
       "requestId": "",
-      "brUID2":"",
+      "brUID2": "",
       "url": "",
       "refurl": "",
       "suggestionConfig": {
