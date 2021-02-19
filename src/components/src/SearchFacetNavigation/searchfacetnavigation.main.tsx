@@ -99,7 +99,9 @@ class SearchFacetNavigationMain extends Component<SearchFacetNavigationMainProps
             <li className="list-group-item facet-value" key={chosen._description[0].value}>
               <button type="button" className="form-check-label chosen" onClick={() => this.handleFacetSelection(encodeURIComponent(chosen._selectaction[0].self.uri))}>
                 <span className="checkmark chosen" />
-                {chosen._description[0].value}
+                <span className="description">
+                  {chosen._description[0].value}
+                </span>
               </button>
             </li>
           );
@@ -118,7 +120,9 @@ class SearchFacetNavigationMain extends Component<SearchFacetNavigationMainProps
             <li className="list-group-item facet-value" key={choice._description[0].value}>
               <button type="button" className="form-check-label choice" onClick={() => this.handleFacetSelection(encodeURIComponent(choice._selectaction[0].self.uri))}>
                 <span className="checkmark" />
-                {`${choice._description[0].value} (${choice._description[0].count})`}
+                <span className="description">
+                  {`${choice._description[0].value} (${choice._description[0].count})`}
+                </span>
               </button>
             </li>
           );

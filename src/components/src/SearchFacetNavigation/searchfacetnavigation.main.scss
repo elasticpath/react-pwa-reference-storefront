@@ -29,6 +29,7 @@
 
   .card-stack {
     margin-top: 11px;
+    max-width: 307px;
 
     .card {
       border-radius: 0;
@@ -66,6 +67,7 @@
           padding-right: 0px;
           background:none;
           border:none;
+          text-align: left;
 
           .checkmark {
             top: 4px;
@@ -118,6 +120,7 @@
       z-index: 5;
       background: $mainBackgroundColor;
       margin-top: 0;
+      max-width: none;
 
       &.show-filter-mobile-menu {
         display: flex;
