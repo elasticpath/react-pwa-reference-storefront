@@ -27,7 +27,7 @@
     "@storybook/react": "^5.2.8",
     "babel-loader": "^8.0.6",
     "declaration-bundler-webpack-plugin": "^1.0.3",
-    "react-dev-utils": "^10.0.0",
+    "react-dev-utils": "^11.0.4",
     "react-scripts": "^3.4.0",
     "ts-loader": "^6.2.1"
   },
