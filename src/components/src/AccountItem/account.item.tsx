@@ -26,6 +26,8 @@ import intl from 'react-intl-universal';
 import '../../../containers/b2b/Accounts.scss';
 
 export default function AccountItem({
+  onEditAccount,
+  accountKey,
   account,
   level,
   isLine,
@@ -53,10 +55,10 @@ export default function AccountItem({
   };
 
   return (
-    <div className="account-row-container">
+    <div className="account-row-container" key={accountKey}>
       <div className={`account-row level${level}`}>
         <span className="name" style={{ marginLeft: `${level * 18}px` }}>
-          <button className="collapse-btn" type="button" onClick={onGetChildAccounts}>
+          <button className="collapse-btn" type="button" onClick={() => onGetChildAccounts()}>
             {isLine && (
               <span className="line" style={{ left: `${level * 18}px` }} />
             )}
@@ -72,7 +74,7 @@ export default function AccountItem({
           {intl.get('enabled')}
         </span>
         <span className="action">
-          <button className="ep-btn" type="button">
+          <button className="ep-btn" type="button" onClick={() => onEditAccount(accountKey)}>
             <span className="edit-text">{intl.get('edit')}</span>
             <i className="edit-icon" />
           </button>
@@ -80,6 +82,8 @@ export default function AccountItem({
       </div>
       {isCollapsed && childAccounts._element && childAccounts._element.map((childAccount, i, arr) => (
         <AccountItem
+          onEditAccount={(uri: string) => onEditAccount(uri)}
+          accountKey={childAccount.self.uri}
           account={childAccount}
           level={level + 1}
           isLine={arr.length - 1 !== i}

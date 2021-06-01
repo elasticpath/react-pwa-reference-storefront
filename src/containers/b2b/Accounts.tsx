@@ -51,13 +51,7 @@ interface AccountsState {
 
 const zoomArray = [
   'element',
-  // 'element:attributes',
-  // 'element:identifier',
-  // 'element:addresses',
-  // 'element:paymentinstruments',
-  // 'element:purchases',
   'element:childaccounts',
-  // 'element:associates',
 ];
 
 export default class Accounts extends React.Component<RouteComponentProps, AccountsState> {
@@ -77,6 +71,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
     // this.setSearchAccounts = this.setSearchAccounts.bind(this);
     // this.getSearchAccounts = this.getSearchAccounts.bind(this);
     // this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
+    this.getChildAccounts = this.getChildAccounts.bind(this);
   }
 
   // setSearchAccounts(event) {
@@ -98,6 +93,14 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
         accounts: res, isLoading: false,
       });
     }
+  }
+
+  handleAccount = (accountUri) => {
+    const { history } = this.props;
+    history.push({
+      pathname: '/account-details',
+      state: { accountUri },
+    });
   }
 
   getChildAccounts = async (account) => {
@@ -137,9 +140,8 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
     return (
       <div className="dashboard-component">
         <div className="message-boxes">
-          {messages.map((message, index) => (
-            /* eslint-disable-next-line react/no-array-index-key */
-            <div key={index} className={`message-box ${message.type.toString()}`}>
+          {messages.map((message: {text: string, type: MessageType}) => (
+            <div key={message.text} className={`message-box ${message.type.toString()}`}>
               <div className="container">
                 <div className="message">
                   {message.text}
@@ -205,10 +207,12 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                     </div>
                     {accounts._element.map((account, i, arr) => (
                       <AccountItem
+                        onEditAccount={(uri: string) => this.handleAccount(uri)}
+                        accountKey={account.self.uri}
                         account={account}
                         level={0}
                         isLine={arr.length - 1 !== i}
-                        getChildAccounts={this.getChildAccounts}
+                        getChildAccounts={(accountData: any) => this.getChildAccounts(accountData)}
                       />
                     ))}
                   </div>
