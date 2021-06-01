@@ -68,6 +68,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
       messages: [],
     };
     this.getAdminData();
+    this.handleAccount = this.handleAccount.bind(this);
     // this.setSearchAccounts = this.setSearchAccounts.bind(this);
     // this.getSearchAccounts = this.getSearchAccounts.bind(this);
     // this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);

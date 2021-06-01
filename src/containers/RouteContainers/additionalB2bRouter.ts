@@ -50,6 +50,7 @@ import SupportPage from '../SupportPage';
 import PrivacyPoliciesPage from '../PrivacyPoliciesPage';
 import PurchaseHistoryPage from '../b2b/PurchaseHistoryPage';
 import AddressBookPage from '../b2b/AddressBookPage';
+import AccountDetailsPage from '../b2b/AccountDetailsPage/AccountDetailsPage';
 
 const router = [{
   path: '/mycart',
@@ -136,6 +137,10 @@ const router = [{
   path: '/account/requisition-list-item/:uri',
   exact: true,
   component: RequisitionPageMain,
+}, {
+  path: '/account-details/',
+  exact: true,
+  component: AccountDetailsPage,
 }, {
   path: '/account',
   component: MyAccountMain,
