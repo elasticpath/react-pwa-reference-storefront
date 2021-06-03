@@ -27,11 +27,9 @@ import { cortexFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../hooks/store';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
 import { ReactComponent as InfoIcon } from '../../images/icons/info-icon.svg';
-
 import AccountItem from '../../components/src/AccountItem/account.item';
 import Config from '../../ep.config.json';
 import './Accounts.scss';
-
 
 enum MessageType {
   success = 'success',
@@ -41,9 +39,7 @@ enum MessageType {
 interface AccountsState {
   admins: any;
   accounts: any;
-  // searchAccounts: string;
   isLoading: boolean;
-  // showSearchLoader: boolean;
   noSearchResults: boolean;
   isSellerAdmin: boolean;
   messages: { type: MessageType; text: string; }[];
@@ -52,6 +48,7 @@ interface AccountsState {
 const zoomArray = [
   'element',
   'element:childaccounts',
+  'element:childaccounts:element',
 ];
 
 export default class Accounts extends React.Component<RouteComponentProps, AccountsState> {
@@ -60,24 +57,15 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
     this.state = {
       isLoading: true,
       noSearchResults: false,
-      // showSearchLoader: false,
       accounts: [],
       admins: [],
-      // searchAccounts: '',
       isSellerAdmin: false,
       messages: [],
     };
     this.getAdminData();
     this.handleAccount = this.handleAccount.bind(this);
-    // this.setSearchAccounts = this.setSearchAccounts.bind(this);
-    // this.getSearchAccounts = this.getSearchAccounts.bind(this);
-    // this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
     this.getChildAccounts = this.getChildAccounts.bind(this);
   }
-
-  // setSearchAccounts(event) {
-  //   this.setState({ searchAccounts: event.target.value });
-  // }
 
   async getAdminData() {
     await login();
@@ -116,23 +104,11 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
     return res;
   }
 
-  // getSearchAccounts() {
-  //   this.setState({ showSearchLoader: true });
-  // }
-  //
-  // handleEnterKeyPress(e) {
-  //   if (e.keyCode === 13) {
-  //     this.getSearchAccounts();
-  //   }
-  // }
-
   render() {
     const {
       admins,
       accounts,
       isLoading,
-      // searchAccounts,
-      // showSearchLoader,
       noSearchResults,
       isSellerAdmin,
       messages,
@@ -164,10 +140,6 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
         </div>
         {!isLoading ? (
           <div>
-            {/* <div className="accounts-search">
-              <input type="text" placeholder={intl.get('search-accounts')} aria-label={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
-              {showSearchLoader && <div className="circularLoader" />}
-            </div> */}
             <div className="admin-address-book">
               <div className="b2b-section section-1 admin-section">
                 <div className="section-content">
@@ -184,8 +156,6 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
               </div>
               <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }} />
             </div>
-
-            {/* Items */}
             <div className="b2b-section accounts">
               <div className="section-content">
                 {!noSearchResults ? (
@@ -195,7 +165,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                         {intl.get('account')}
                         {isSellerAdmin && (
                           <span className="mobile-table-title">
-                              {' '}
+                            {' '}
                             &
                             {' '}
                             {intl.get('external-id')}
@@ -206,21 +176,22 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                       <span className="status">{intl.get('status')}</span>
                       <span className="action" />
                     </div>
-                    {accounts._element.map((account, i, arr) => (
+                    {accounts && accounts._element && accounts._element.map((account, i, arr) => (
                       <AccountItem
+                        key={account.self.uri}
                         onEditAccount={(uri: string) => this.handleAccount(uri)}
                         accountKey={account.self.uri}
                         account={account}
                         level={0}
                         isLine={arr.length - 1 !== i}
                         getChildAccounts={(accountData: any) => this.getChildAccounts(accountData)}
+                        hasChild={!!account._childaccounts[0]._element}
                       />
                     ))}
                   </div>
                 ) : <p className="no-results">{intl.get('no-results-found')}</p>}
               </div>
             </div>
-
           </div>
         ) : (
           <div className="loader" />

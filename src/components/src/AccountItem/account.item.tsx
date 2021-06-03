@@ -23,7 +23,7 @@
 import React, { useState } from 'react';
 import intl from 'react-intl-universal';
 
-import '../../../containers/b2b/Accounts.scss';
+import './account.item.scss';
 
 export default function AccountItem({
   onEditAccount,
@@ -32,6 +32,7 @@ export default function AccountItem({
   level,
   isLine,
   getChildAccounts,
+  hasChild,
 }) {
   const [childAccounts, setChildAccounts] = useState<any>({});
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -62,7 +63,14 @@ export default function AccountItem({
             {isLine && (
               <span className="line" style={{ left: `${level * 18}px` }} />
             )}
-            <i className={`icons-collapse ${isCollapsed ? 'open' : 'closed'}`} />
+            {(!isLine && isCollapsed) && (
+              <span className="line short-line" style={{ left: `${level * 18}px` }} />
+            )}
+            {hasChild ? (
+              <i className={`icons-collapse ${isCollapsed ? 'open' : 'closed'}`} />
+            ) : (
+              <i className="icons-collapse empty" />
+            )}
           </button>
           {account['account-business-name']}
         </span>
@@ -82,12 +90,14 @@ export default function AccountItem({
       </div>
       {isCollapsed && childAccounts._element && childAccounts._element.map((childAccount, i, arr) => (
         <AccountItem
+          key={childAccount.self.uri}
           onEditAccount={(uri: string) => onEditAccount(uri)}
           accountKey={childAccount.self.uri}
           account={childAccount}
           level={level + 1}
           isLine={arr.length - 1 !== i}
           getChildAccounts={getChildAccounts}
+          hasChild={!!childAccount._childaccounts[0]._element}
         />
       ))}
     </div>
