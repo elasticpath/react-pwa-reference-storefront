@@ -105,6 +105,11 @@
       .name {
         padding-left: 36px;
       }
+
+      .miniLoader {
+        border: 3px solid $firstComplimentBackground;
+        border-top: 3px solid $secondComplimentColor;
+      }
     }
   }
 

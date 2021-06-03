@@ -39,6 +39,7 @@ enum MessageType {
 interface AccountsState {
   admins: any;
   accounts: any;
+  isMiniLoading: boolean;
   isLoading: boolean;
   noSearchResults: boolean;
   isSellerAdmin: boolean;
@@ -55,6 +56,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
   constructor(props) {
     super(props);
     this.state = {
+      isMiniLoading: false,
       isLoading: true,
       noSearchResults: false,
       accounts: [],
@@ -93,15 +95,21 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
   }
 
   getChildAccounts = async (account) => {
-    await login();
-    const res = await cortexFetch(`${account._childaccounts[0].self.uri}?zoom=${zoomArray.join()}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    })
-      .then(result => result.json());
-    return res;
+    this.setState({ isMiniLoading: true });
+    try {
+      await login();
+      return await cortexFetch(`${account._childaccounts[0].self.uri}?zoom=${zoomArray.join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(result => result.json());
+    } catch (e) {
+      return 'caught';
+    } finally {
+      this.setState({ isMiniLoading: false });
+    }
   }
 
   render() {
@@ -112,6 +120,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
       noSearchResults,
       isSellerAdmin,
       messages,
+      isMiniLoading,
     } = this.state;
 
     return (
@@ -175,6 +184,13 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                       <span className="external-id">{intl.get('external-id')}</span>
                       <span className="status">{intl.get('status')}</span>
                       <span className="action" />
+                      {
+                        (isMiniLoading) && (
+                          <div className="loader-wrapper">
+                            <div className="miniLoader" />
+                          </div>
+                        )
+                      }
                     </div>
                     {accounts && accounts._element && accounts._element.map((account, i, arr) => (
                       <AccountItem
