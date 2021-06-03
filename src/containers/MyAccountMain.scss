@@ -165,10 +165,12 @@
     .page-title {
       flex: 1 0 auto;
       padding-right: 5px;
+      padding-left: 15px;
       font-size: 24px;
       font-weight: bold;
       @media screen and (min-width: 992px) {
         display: block;
+        padding-left: 0;
         border: none;
         color: $mainTextColor;
       }
