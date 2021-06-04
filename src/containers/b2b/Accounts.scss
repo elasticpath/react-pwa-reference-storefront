@@ -68,107 +68,51 @@
       }
     }
   }
+
   .accounts {
     margin-bottom: 100px;
     .section-content {
-      .accounts-table {
-        td.name {
-          font-weight: bold;
-        }
-        .arrow {
+      .accounts-list {
+        .action {
           position: relative;
           width: 20px;
         }
       }
     }
   }
-  .accounts-table {
-    .account-list-rows {
-      cursor: pointer;
-       &:hover {
-         background-color: $accountTreeActive;
-       }
 
-      @media (max-width: $mobileWidth) {
-        .arrow {
-          grid-row: 1 / 3;
-          grid-column: 3 / 4;
-          align-self: center;
+  .accounts-list {
+    .header-row {
+      display: grid;
+      grid-template-columns: 40% 20% 20% 20%;
+      padding: 24px 0 24px 24px;
+      font-size: 14px;
+      line-height: 17px;
+      color: $sixComplimentTextColor;
+      background-color: $secondComplimentBackground;
+
+      @media (max-width: $tabletWidth) {
+        grid-template-columns: 80% 20%;
+
+        .external-id {
+          display: none;
         }
         .status {
-          grid-row: 1 / 3;
-          grid-column: 2 / 3;
-          align-self: center;
+          display: none;
         }
       }
-    }
 
-    .mobile-table-title {
-      display: none;
-    }
-    .icons-status {
-      $size: 14px;
-      display: inline-block;
-      width: $size;
-      height: $size;
-      background-repeat: no-repeat;
-      background-size: contain;
-      vertical-align: sub;
-      margin: 0 6px 1px 0;
-      &.enabled {
-        background-image: url('../#{$imgUrl}/icons/check-circle.svg');
+      .name {
+        padding-left: 36px;
       }
-      &.disabled {
-        background-image: url('../#{$imgUrl}/icons/remove-circle.svg');
-      }
-    }
-    .arrow-btn {
-      position: absolute;
-      display: inline-block;
-      height: 16px;
-      width: 16px;
-      border: none;
-      background: transparent;
-      &:before {
-        content: "";
-        border-top: none;
-        border-bottom: 2px solid $mainBorderColor;
-        border-right: 2px solid $mainBorderColor;
-        height: 9px;
-        width: 9px;
-        position: absolute;
-        transform: rotate(45deg);
-        top: 3px;
-        right: 5px;
-      }
-      &:hover {
-        &:before {
-          border-color: $mainTextColor;
-        }
-      }
-    }
-    @media (max-width: 575px) {
-      display: block;
-      thead, tbody, th, td {
-        display: block;
-      }
-      tr {
-        display: grid;
-        grid-template-columns: 1fr 1fr 30px;
-        padding: 5px 0;
-      }
-      td.external-id {
-        grid-row: 2 / 3;
-        grid-column: 1 / 2;
-      }
-      .mobile-table-title {
-        display: inline;
-      }
-      th.external-id {
-        display: none;
+
+      .miniLoader {
+        border: 3px solid $firstComplimentBackground;
+        border-top: 3px solid $secondComplimentColor;
       }
     }
   }
+
   .accounts-search {
     position: relative;
     margin-bottom: 15px;

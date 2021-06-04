@@ -27,7 +27,7 @@ import { cortexFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../hooks/store';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
 import { ReactComponent as InfoIcon } from '../../images/icons/info-icon.svg';
-
+import AccountItem from '../../components/src/AccountItem/account.item';
 import Config from '../../ep.config.json';
 import './Accounts.scss';
 
@@ -39,9 +39,8 @@ enum MessageType {
 interface AccountsState {
   admins: any;
   accounts: any;
-  // searchAccounts: string;
+  isMiniLoading: boolean;
   isLoading: boolean;
-  // showSearchLoader: boolean;
   noSearchResults: boolean;
   isSellerAdmin: boolean;
   messages: { type: MessageType; text: string; }[];
@@ -49,33 +48,26 @@ interface AccountsState {
 
 const zoomArray = [
   'element',
-  'element:attributes',
-  'element:identifier',
+  'element:childaccounts',
+  'element:childaccounts:element',
 ];
 
 export default class Accounts extends React.Component<RouteComponentProps, AccountsState> {
   constructor(props) {
     super(props);
     this.state = {
+      isMiniLoading: false,
       isLoading: true,
       noSearchResults: false,
-      // showSearchLoader: false,
       accounts: [],
       admins: [],
-      // searchAccounts: '',
       isSellerAdmin: false,
       messages: [],
     };
     this.getAdminData();
     this.handleAccount = this.handleAccount.bind(this);
-    // this.setSearchAccounts = this.setSearchAccounts.bind(this);
-    // this.getSearchAccounts = this.getSearchAccounts.bind(this);
-    // this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
+    this.getChildAccounts = this.getChildAccounts.bind(this);
   }
-
-  // setSearchAccounts(event) {
-  //   this.setState({ searchAccounts: event.target.value });
-  // }
 
   async getAdminData() {
     await login();
@@ -86,6 +78,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
       },
     })
       .then(result => result.json());
+
     if (res && res._element) {
       this.setState({
         accounts: res, isLoading: false,
@@ -93,7 +86,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
     }
   }
 
-  handleAccount(accountUri) {
+  handleAccount = (accountUri) => {
     const { history } = this.props;
     history.push({
       pathname: '/account-details',
@@ -101,34 +94,40 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
     });
   }
 
-  // getSearchAccounts() {
-  //   this.setState({ showSearchLoader: true });
-  // }
-  //
-  // handleEnterKeyPress(e) {
-  //   if (e.keyCode === 13) {
-  //     this.getSearchAccounts();
-  //   }
-  // }
+  getChildAccounts = async (account) => {
+    this.setState({ isMiniLoading: true });
+    try {
+      await login();
+      return await cortexFetch(`${account._childaccounts[0].self.uri}?zoom=${zoomArray.join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(result => result.json());
+    } catch (e) {
+      return 'caught';
+    } finally {
+      this.setState({ isMiniLoading: false });
+    }
+  }
 
   render() {
     const {
       admins,
       accounts,
       isLoading,
-      // searchAccounts,
-      // showSearchLoader,
       noSearchResults,
       isSellerAdmin,
       messages,
+      isMiniLoading,
     } = this.state;
 
     return (
       <div className="dashboard-component">
         <div className="message-boxes">
-          {messages.map((message, index) => (
-            /* eslint-disable-next-line react/no-array-index-key */
-            <div key={index} className={`message-box ${message.type.toString()}`}>
+          {messages.map((message: {text: string, type: MessageType}) => (
+            <div key={message.text} className={`message-box ${message.type.toString()}`}>
               <div className="container">
                 <div className="message">
                   {message.text}
@@ -150,10 +149,6 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
         </div>
         {!isLoading ? (
           <div>
-            {/* <div className="accounts-search">
-              <input type="text" placeholder={intl.get('search-accounts')} aria-label={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
-              {showSearchLoader && <div className="circularLoader" />}
-            </div> */}
             <div className="admin-address-book">
               <div className="b2b-section section-1 admin-section">
                 <div className="section-content">
@@ -172,42 +167,44 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
             </div>
             <div className="b2b-section accounts">
               <div className="section-content">
-                { !noSearchResults ? (
-                  <table className="b2b-table accounts-table">
-                    <thead>
-                      <tr>
-                        <th className="name">
-                          {intl.get('name')}
-                          {isSellerAdmin && (
+                {!noSearchResults ? (
+                  <div className="accounts-list">
+                    <div className="header-row">
+                      <span className="name">
+                        {intl.get('account')}
+                        {isSellerAdmin && (
                           <span className="mobile-table-title">
-                              {' '}
+                            {' '}
                             &
                             {' '}
                             {intl.get('external-id')}
                           </span>
-                          )}
-                        </th>
-                        <th className="external-id">{intl.get('external-id')}</th>
-                        <th className="status">{intl.get('status')}</th>
-                        <th className="arrow" />
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {accounts._element.map(account => (
-                        <tr key={account.self.uri} className="account-list-rows" onClick={() => this.handleAccount(account.self.uri)}>
-                          <td className="name">{account['account-business-name']}</td>
-                          <td className="external-id">{account['account-business-number']}</td>
-                          <td className="status">
-                            <i className="icons-status enabled" />
-                            {intl.get('enabled')}
-                          </td>
-                          <td className="arrow">
-                            <span className="arrow-btn" />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                        )}
+                      </span>
+                      <span className="external-id">{intl.get('external-id')}</span>
+                      <span className="status">{intl.get('status')}</span>
+                      <span className="action" />
+                      {
+                        (isMiniLoading) && (
+                          <div className="loader-wrapper">
+                            <div className="miniLoader" />
+                          </div>
+                        )
+                      }
+                    </div>
+                    {accounts && accounts._element && accounts._element.map((account, i, arr) => (
+                      <AccountItem
+                        key={account.self.uri}
+                        onEditAccount={(uri: string) => this.handleAccount(uri)}
+                        accountKey={account.self.uri}
+                        account={account}
+                        level={0}
+                        isLine={arr.length - 1 !== i}
+                        getChildAccounts={(accountData: any) => this.getChildAccounts(accountData)}
+                        hasChild={!!account._childaccounts[0]._element}
+                      />
+                    ))}
+                  </div>
                 ) : <p className="no-results">{intl.get('no-results-found')}</p>}
               </div>
             </div>
