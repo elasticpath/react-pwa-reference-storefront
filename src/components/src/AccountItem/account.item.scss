@@ -50,6 +50,22 @@
       height: calc(100% - 46px);
     }
 
+    .open-icon {
+      display: block;
+      width: 17px;
+      height: 17px;
+      background-image: url('../../#{$imgUrl}/icons/open-icon.svg');
+    }
+
+    .name {
+      display: flex;
+      align-items: baseline;
+    }
+
+    .account-name {
+      padding-top: 2px;
+    }
+
     &:hover {
       background-color: $accountTreeActive;
       color: $mainNavigationColor;
@@ -77,6 +93,10 @@
 
       .ep-btn {
         color: $mainNavigationColor;
+      }
+
+      .open-icon {
+        background-image: url('../../#{$imgUrl}/icons/open-icon-white.svg');
       }
     }
   }

@@ -33,6 +33,7 @@ export default function AccountItem({
   isLine,
   getChildAccounts,
   hasChild,
+  isChildList = false,
 }) {
   const [childAccounts, setChildAccounts] = useState<any>({});
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -59,7 +60,7 @@ export default function AccountItem({
     <div className="account-row-container" key={accountKey}>
       <div className={`account-row level${level}`}>
         <span className="name" style={{ marginLeft: `${level * 18}px` }}>
-          <button className="collapse-btn" type="button" onClick={() => onGetChildAccounts()}>
+          <button className="collapse-btn" type="button" onClick={() => hasChild && onGetChildAccounts()}>
             {isLine && (
               <span className="line" style={{ left: `${level * 18}px` }} />
             )}
@@ -72,7 +73,9 @@ export default function AccountItem({
               <i className="icons-collapse empty" />
             )}
           </button>
-          {account['account-business-name']}
+          <span className="account-name">
+            {account['account-business-name']}
+          </span>
         </span>
         <span className="external-id">
           {account['account-business-number']}
@@ -82,16 +85,23 @@ export default function AccountItem({
           {intl.get('enabled')}
         </span>
         <span className="action">
-          <button className="ep-btn" type="button" onClick={() => onEditAccount(accountKey)}>
-            <span className="edit-text">{intl.get('edit')}</span>
-            <i className="edit-icon" />
+          <button className="ep-btn" type="button" onClick={() => onEditAccount(accountKey, account['account-business-name'])}>
+            {isChildList ? (
+              <i className="open-icon" />
+            ) : (
+              <span>
+                <span className="edit-text">{intl.get('edit')}</span>
+                <i className="edit-icon" />
+              </span>
+            )}
           </button>
         </span>
       </div>
       {isCollapsed && childAccounts._element && childAccounts._element.map((childAccount, i, arr) => (
         <AccountItem
+          isChildList={isChildList}
           key={childAccount.self.uri}
-          onEditAccount={(uri: string) => onEditAccount(uri)}
+          onEditAccount={(uri: string, accountName: string) => onEditAccount(uri, accountName)}
           accountKey={childAccount.self.uri}
           account={childAccount}
           level={level + 1}

@@ -23,17 +23,17 @@
 
 
 .account-details {
+  padding: 0 10px;
 
   .back-link {
     margin: 20px 0 10px;
     font-weight: normal;
-  
+
     &:hover {
       text-decoration: none;
-  
     }
   }
-  
+
   .account-details-header {
     display: flex;
     justify-content: space-between;

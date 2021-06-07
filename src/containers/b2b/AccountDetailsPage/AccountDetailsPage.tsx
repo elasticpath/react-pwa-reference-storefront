@@ -24,21 +24,16 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { cortexFetch } from '../../../components/src/utils/Cortex';
-import * as Config from '../../../ep.config.json';
 import AlertContainer from '../../../components/src/AlertContainer/alert.container';
-
 import AddressBook from './AddressBook';
 import Overviews from './Overviews';
 import PaymentInstruments from './PaymentInstruments';
-
 import TabSelection from '../../../components/src/TabSelection/tabselection.main';
 import { ReactComponent as ArrowIcon } from '../../../images/icons/arrow_left.svg';
 import '../AccountMain.scss';
 import './AccountDetailsPage.scss';
 
 interface AccountMainState {
-  accountData: any
   isShowAlert: boolean
   alertMessageData: { message: string, isSuccess: boolean }
   isCreateAddressModalOpen: boolean
@@ -49,10 +44,6 @@ interface AccountMainRouterProps {
   uri: string;
 }
 
-const zoomArray = [
-  'attributes',
-];
-
 class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMainRouterProps>, AccountMainState> {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
@@ -61,7 +52,6 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
   constructor(props: any) {
     super(props);
     this.state = {
-      accountData: [],
       isShowAlert: false,
       alertMessageData: { message: '', isSuccess: false },
       isCreateAddressModalOpen: false,
@@ -96,30 +86,9 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
     this.setState({ isCreateAddressModalOpen: false });
   }
 
-  async getAccountData(accountUri) {
-    const res = await cortexFetch(`${accountUri}/?zoom=${zoomArray.join()}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    })
-      .then(result => result.json());
-    if (res && res._attributes) {
-      this.setState({
-        accountData: res,
-      });
-    }
-  }
-
-  componentDidMount() {
-    const { history } = this.props;
-    if (history.location.state && history.location.state.accountUri) {
-      this.getAccountData(history.location.state.accountUri);
-    }
-  }
-
   renderData() {
-    const { accountData, isCreateAddressModalOpen } = this.state;
+    const { isCreateAddressModalOpen } = this.state;
+    const { history } = this.props;
 
     return ([
       <div key="tab-content">
@@ -133,7 +102,7 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
           isCreateModalOpen={isCreateAddressModalOpen}
           setIsCreateAddressModalOpen={() => this.setIsCreateAddressModalOpen()}
           handleShowAlert={this.handleShowAlert}
-          accountName={accountData['account-business-name']}
+          accountName={history && history.location && history.location.state.accountName && history.location.state.accountName}
         />
       </div>,
       <div key="tab-payment-instruments">
@@ -146,8 +115,9 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
   }
 
   render() {
+    const { history } = this.props;
     const {
-      accountData, isShowAlert, alertMessageData, selectedTab,
+      isShowAlert, alertMessageData, selectedTab,
     } = this.state;
 
     const tabs = [intl.get('overview'), intl.get('associates'), intl.get('address-book'), intl.get('payment-instruments'), intl.get('purchase-history')];
@@ -163,7 +133,7 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
         <br />
         <div className="account-details-header">
           <div className="account-name">
-            {accountData['account-business-name']}
+            {history && history.location && history.location.state.accountName && history.location.state.accountName}
           </div>
           {selectedTab === 2 && (
           <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" onClick={() => this.openCreateAddressModal()}>

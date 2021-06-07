@@ -27,8 +27,9 @@ import { cortexFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../hooks/store';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
 import { ReactComponent as InfoIcon } from '../../images/icons/info-icon.svg';
-import AccountItem from '../../components/src/AccountItem/account.item';
 import Config from '../../ep.config.json';
+import AccountTable from './AccountTable';
+
 import './Accounts.scss';
 
 enum MessageType {
@@ -39,10 +40,7 @@ enum MessageType {
 interface AccountsState {
   admins: any;
   accounts: any;
-  isMiniLoading: boolean;
   isLoading: boolean;
-  noSearchResults: boolean;
-  isSellerAdmin: boolean;
   messages: { type: MessageType; text: string; }[];
 }
 
@@ -56,17 +54,13 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
   constructor(props) {
     super(props);
     this.state = {
-      isMiniLoading: false,
       isLoading: true,
-      noSearchResults: false,
       accounts: [],
       admins: [],
-      isSellerAdmin: false,
       messages: [],
     };
     this.getAdminData();
     this.handleAccount = this.handleAccount.bind(this);
-    this.getChildAccounts = this.getChildAccounts.bind(this);
   }
 
   async getAdminData() {
@@ -94,33 +88,13 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
     });
   }
 
-  getChildAccounts = async (account) => {
-    this.setState({ isMiniLoading: true });
-    try {
-      await login();
-      return await cortexFetch(`${account._childaccounts[0].self.uri}?zoom=${zoomArray.join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(result => result.json());
-    } catch (e) {
-      return 'caught';
-    } finally {
-      this.setState({ isMiniLoading: false });
-    }
-  }
-
   render() {
+    const { history } = this.props;
     const {
       admins,
       accounts,
       isLoading,
-      noSearchResults,
-      isSellerAdmin,
       messages,
-      isMiniLoading,
     } = this.state;
 
     return (
@@ -165,49 +139,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
               </div>
               <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }} />
             </div>
-            <div className="b2b-section accounts">
-              <div className="section-content">
-                {!noSearchResults ? (
-                  <div className="accounts-list">
-                    <div className="header-row">
-                      <span className="name">
-                        {intl.get('account')}
-                        {isSellerAdmin && (
-                          <span className="mobile-table-title">
-                            {' '}
-                            &
-                            {' '}
-                            {intl.get('external-id')}
-                          </span>
-                        )}
-                      </span>
-                      <span className="external-id">{intl.get('external-id')}</span>
-                      <span className="status">{intl.get('status')}</span>
-                      <span className="action" />
-                      {
-                        (isMiniLoading) && (
-                          <div className="loader-wrapper">
-                            <div className="miniLoader" />
-                          </div>
-                        )
-                      }
-                    </div>
-                    {accounts && accounts._element && accounts._element.map((account, i, arr) => (
-                      <AccountItem
-                        key={account.self.uri}
-                        onEditAccount={(uri: string) => this.handleAccount(uri)}
-                        accountKey={account.self.uri}
-                        account={account}
-                        level={0}
-                        isLine={arr.length - 1 !== i}
-                        getChildAccounts={(accountData: any) => this.getChildAccounts(accountData)}
-                        hasChild={!!account._childaccounts[0]._element}
-                      />
-                    ))}
-                  </div>
-                ) : <p className="no-results">{intl.get('no-results-found')}</p>}
-              </div>
-            </div>
+            <AccountTable history={history} accounts={accounts} />
           </div>
         ) : (
           <div className="loader" />
