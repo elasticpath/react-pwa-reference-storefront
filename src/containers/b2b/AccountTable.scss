@@ -1,0 +1,52 @@
+@import './../../theme/common.scss';
+
+  .accounts {
+    border: 1px solid $fifthComplimentTextColor;
+    margin-bottom: 100px;
+    .section-content {
+      .accounts-list {
+        .action {
+          position: relative;
+          width: 20px;
+        }
+      }
+    }
+  }
+
+  .accounts-list {
+    .header-row {
+      display: grid;
+      grid-template-columns: 40% 20% 20% 20%;
+      padding: 24px 0 24px 24px;
+      font-size: 14px;
+      line-height: 17px;
+      color: $sixComplimentTextColor;
+      background-color: $secondComplimentBackground;
+
+      @media (max-width: $tabletWidth) {
+        grid-template-columns: 80% 20%;
+
+        .external-id {
+          display: none;
+        }
+        .status {
+          display: none;
+        }
+      }
+
+      .name {
+        padding-left: 36px;
+      }
+      .miniLoader {
+        border: 3px solid $firstComplimentBackground;
+        border-top: 3px solid $secondComplimentColor;
+      }
+    }
+  }
+
+  .no-results {
+    text-align: center ;
+    font-size: 14px;
+    padding: 15px 0;
+    border-top: 1px solid $fifthComplimentTextColor;
+  }

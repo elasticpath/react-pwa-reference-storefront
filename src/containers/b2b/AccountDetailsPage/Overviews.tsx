@@ -28,6 +28,7 @@ import * as Config from '../../../ep.config.json';
 
 import '../AccountMain.scss';
 import './Overviews.scss';
+import AccountTable from '../AccountTable';
 
 interface OverviewsProps {
   history: any
@@ -39,6 +40,8 @@ const zoomArray = [
   'childaccounts',
   'childaccounts:account',
   'childaccounts:element',
+  'childaccounts:element:childaccounts',
+  'childaccounts:element:childaccounts:element',
   'childaccounts:account:attributes',
   'paymentmethods',
   'attributes',
@@ -124,7 +127,7 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
       {isLoading ? (
         <div className="loader" />
       ) : (
-        <div>
+        <div className="overview">
           <div className="title">
             <p>
               {intl.get('account-details')}
@@ -195,7 +198,7 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
               {intl.get('additional-details')}
             </p>
           </div>
-          <div className="account-data-container">
+          <div className="account-data-container underline">
             <ul className="account-data-list">
               {formFields && formFields.map(element => (
                 <li key={element.field}>
@@ -206,6 +209,14 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
               }
             </ul>
           </div>
+          <div className="title">
+            <p>
+              {intl.get('children-accounts-list')}
+            </p>
+          </div>
+          {accountData && (
+            <AccountTable history={history} accounts={accountData && accountData._childaccounts[0]} isChildList={true} />
+          )}
         </div>
       )}
     </div>

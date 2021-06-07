@@ -508,5 +508,7 @@
   "update-address-error": "Error updating address.",
   "default-bill-ship-to": "Default Bill/Ship To",
   "default-bill-to": "Default Bill To",
-  "default-ship-to": "Default Ship To"
+  "default-ship-to": "Default Ship To",
+  "no-child-accounts": "No children added to this account",
+  "children-accounts-list": "Children - Accounts list"
 }
