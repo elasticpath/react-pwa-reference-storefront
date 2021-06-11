@@ -198,7 +198,7 @@
   "page": "Showing page",
   "of": "of",
   "ok": "OK",
-  "next": "Next Page",
+  "next-page": "Next Page",
   "product-recommendations": "Related Products",
   "product-bundle-constituents": "Available Products",
   "no-saved-address-message": "You have no saved addresses",
@@ -510,5 +510,11 @@
   "default-bill-to": "Default Bill To",
   "default-ship-to": "Default Ship To",
   "no-child-accounts": "No children added to this account",
-  "children-accounts-list": "Children - Accounts list"
+  "no-payment-instruments": "No payment instruments added to this account",
+  "children-accounts-list": "Children - Accounts list",
+  "add-new-payment-instrument": "Add New Payment Instrument",
+  "new-payment-instrument": "New Payment Instrument",
+  "next": "Next",
+  "new-payment-instrument-added": "New payment instrument is added.",
+  "credit-card-deleted": "Added credit card is successfully deleted from account."
 }

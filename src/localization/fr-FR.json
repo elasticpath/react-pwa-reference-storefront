@@ -198,7 +198,7 @@
   "page": "S-h-o-w-i-n-g- -p-a-g-e",
   "of": "o-f",
   "ok": "O-K",
-  "next": "N-e-x-t- -P-a-g-e",
+  "next-page": "N-e-x-t- -P-a-g-e",
   "product-recommendations": "R-e-l-a-t-e-d- -P-r-o-d-u-c-t-s",
   "product-bundle-constituents": "A-v-a-i-l-a-b-l-e- -P-r-o-d-u-c-t-s",
   "no-saved-address-message": "Y-o-u- -h-a-v-e- -n-o- -s-a-v-e-d- -a-d-d-r-e-s-s-e-s",
@@ -510,5 +510,11 @@
   "default-bill-to": "D-e-f-a-u-l-t- -B-i-l-l- -T-o",
   "default-ship-to": "D-e-f-a-u-l-t- -S-h-i-p- -T-o",
   "no-child-accounts": "N-o- -c-h-i-l-d-r-e-n- -a-d-d-e-d- -t-o- -t-h-i-s- -a-c-c-o-u-n-t",
-  "children-accounts-list": "C-h-i-l-d-r-e-n- --- -A-c-c-o-u-n-t-s- -l-i-s-t"
+  "no-payment-instruments": "N-o- -p-a-y-m-e-n-t- -i-n-s-t-r-u-m-e-n-t-s- -a-d-d-e-d- -t-o- -t-h-i-s- -a-c-c-o-u-n-t",
+  "children-accounts-list": "C-h-i-l-d-r-e-n- --- -A-c-c-o-u-n-t-s- -l-i-s-t",
+  "add-new-payment-instrument": "A-d-d- -N-e-w- -P-a-y-m-e-n-t- -I-n-s-t-r-u-m-e-n-t",
+  "new-payment-instrument": "N-e-w- -P-a-y-m-e-n-t- -I-n-s-t-r-u-m-e-n-t",
+  "next": "N-e-x-t",
+  "new-payment-instrument-added": "N-e-w- -p-a-y-m-e-n-t- -i-n-s-t-r-u-m-e-n-t- -i-s- -a-d-d-e-d-.",
+  "credit-card-deleted": "A-d-d-e-d- -c-r-e-d-i-t- -c-a-r-d- -i-s- -s-u-c-c-e-s-s-f-u-l-l-y- -d-e-l-e-t-e-d- -f-r-o-m- -a-c-c-o-u-n-t-."
 }

@@ -37,6 +37,8 @@ interface OverviewsProps {
 const zoomArray = [
   'status',
   'identifier',
+  'associates:element',
+  'associates:element:associatedetails',
   'childaccounts',
   'childaccounts:account',
   'childaccounts:element',
@@ -58,6 +60,7 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
   const [businessNumber, setBusinessNumber] = useState<string>('');
   const [accountPhone, setAccountPhone] = useState<string>('');
   const [accountFax, setAccountFax] = useState<string>('');
+  const [userRole, setUserRole] = useState<string>('');
 
   const getAccountData = async (uri) => {
     setIsLoading(true);
@@ -81,7 +84,13 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
           }
         }
       }
+      const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
+      let associate;
+      if (res._associates) {
+        associate = res._associates[0]._element.find(el => el._associatedetails[0].email === userName);
+      }
 
+      setUserRole(associate.role);
       setAccountData(res);
       setIsLoading(false);
       setIsShowForm(false);
@@ -132,7 +141,7 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
             <p>
               {intl.get('account-details')}
             </p>
-            {!isShowForm && (
+            {userRole && userRole === 'BUYER_ADMIN' && !isShowForm && (
             <span role="presentation" className="edit-button" onClick={() => setIsShowForm(!isShowForm)}>{intl.get('edit')}</span>
             )}
           </div>

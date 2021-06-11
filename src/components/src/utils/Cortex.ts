@@ -98,7 +98,7 @@ export function cortexFetch(input, init): any {
               messageData.debugMessages = debugMessages;
               messageData.type = data.messages[0].type;
               messageData.id = data.messages[0].id;
-              if (messageData.id !== 'cart.is.not.empty') {
+              if (messageData.id !== 'cart.is.not.empty' && messageData.id !== 'payment.instrument.creation.failed') {
                 messages.push(messageData);
               }
             }
