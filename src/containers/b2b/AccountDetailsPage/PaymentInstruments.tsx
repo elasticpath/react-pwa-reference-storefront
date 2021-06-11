@@ -179,6 +179,7 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
         await this.handleDefaultCheck(choice[0]._description[0], res._paymentinstruments[0]);
       }
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
     } finally {
       this.setState({
@@ -226,6 +227,7 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
       await this.getPayments();
       this.handleShowAlert(intl.get('new-payment-instrument-added'), true);
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
     } finally {
       this.handleClosePaymentModal();
