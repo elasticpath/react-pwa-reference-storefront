@@ -174,7 +174,7 @@ class ProductListPagination extends Component<ProductListPaginationProps, Produc
                 {paginationNextLink !== ''
                   ? (
                     <Link to={`${urlPrefix}/${titleString}${paginationNextLink}`} className="btn-pagination next" role="button">
-                      {intl.get('next')}
+                      {intl.get('next-page')}
                       <ArrowIcon className="arrow-icon" />
                     </Link>
                   )

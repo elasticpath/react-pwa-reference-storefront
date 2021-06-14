@@ -1,6 +1,5 @@
 @import './../../../theme/common.scss';
 
-
 .container {
   padding: 0;
 
@@ -14,7 +13,7 @@
   .account-list-rows {
     cursor: pointer;
     &:hover {
-      background-color: $accountTreeActive;
+      cursor: pointer;
     }
 
     .defaults {
@@ -50,6 +49,7 @@
 
 .b2b-table {
   width: 100%;
+  position: relative;
 
   thead {
     background-color: $secondComplimentBackground;
@@ -95,5 +95,123 @@
         padding-right: 20px;
       }
     }
+  }
+
+  .no-data-message {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    margin: 15px;
+  }
+}
+
+.payment-instrument {
+  .alert-container {
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    padding: 0 10px;
+  }
+}
+
+.new-payment-modal {
+  .modal-body {
+    margin-top: 20px;
+  }
+
+  .input-name {
+    margin-bottom: 20px;
+  }
+
+  .payment-form {
+    .default-checkbox {
+      + label {
+        &:before {
+          border: 1px solid $firstComplimentTextColor;
+        }
+      }
+
+      &:checked {
+        + label {
+          &:before {
+            border-color: $firstComplimentColor;
+            background-color: $firstComplimentColor;
+          }
+        }
+      }
+    }
+  }
+
+  .modal-content {
+    padding: 0 20px;
+  }
+
+  .required-label {
+    color: $mainErrorColor
+  }
+
+  .modal-header {
+    border-bottom: 1px solid $secondBorderColor;
+    margin: 10px 20px;
+    padding: 10px 0;
+  }
+
+  .cart-selection-menu {
+    width: 90%;
+    height: 250px;
+    overflow: scroll;
+  }
+
+  .btn-payment-method {
+    border: 1px solid $secondBorderColor;
+    position: relative;
+    display: block;
+    width: 90%;
+    color: $mainColor;
+    text-align: left;
+    font-weight: 400;
+
+    &::after {
+      right: 16px;
+      top: 16px;
+      position: absolute;
+    }
+
+    &:hover {
+      background-color: unset;
+    }
+  }
+
+  .payment-option {
+    padding: 10px;
+    border-bottom: 1px solid $secondBorderColor;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+
+    &:hover {
+      cursor: pointer;
+    background-color: $forthComplimentBackground;
+    }
+  }
+
+  .dialog-footer {
+    margin-top: 40px;
+    text-transform: capitalize;
+
+    .cancel {
+      &:hover {
+        background-color: unset;
+        color: $firstComplimentColor;
+      }
+    }
+    .ep-btn {
+      text-transform: capitalize;
+    }
+  }
+
+  .form-control {
+    width: 90%;
+    height: 35px;
+    font-size: 16px;
   }
 }

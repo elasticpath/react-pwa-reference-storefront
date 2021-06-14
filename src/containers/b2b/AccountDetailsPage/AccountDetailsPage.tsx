@@ -37,7 +37,9 @@ interface AccountMainState {
   isShowAlert: boolean
   alertMessageData: { message: string, isSuccess: boolean }
   isCreateAddressModalOpen: boolean
+  isCreatePaymentModalOpen: boolean
   selectedTab: number
+  isDisabled: boolean
 }
 
 interface AccountMainRouterProps {
@@ -55,14 +57,18 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
       isShowAlert: false,
       alertMessageData: { message: '', isSuccess: false },
       isCreateAddressModalOpen: false,
+      isCreatePaymentModalOpen: false,
       selectedTab: 0,
+      isDisabled: false,
     };
     this.renderData = this.renderData.bind(this);
     this.handleShowAlert = this.handleShowAlert.bind(this);
     this.handleHideAlert = this.handleHideAlert.bind(this);
     this.openCreateAddressModal = this.openCreateAddressModal.bind(this);
+    this.openPaymentModal = this.openPaymentModal.bind(this);
     this.setIsCreateAddressModalOpen = this.setIsCreateAddressModalOpen.bind(this);
     this.onSelectTab = this.onSelectTab.bind(this);
+    this.checkPaymentInstrument = this.checkPaymentInstrument.bind(this);
   }
 
   onSelectTab = (index) => {
@@ -82,12 +88,22 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
     this.setState({ isCreateAddressModalOpen: true });
   }
 
+  openPaymentModal = (isOpen) => {
+    this.setState({ isCreatePaymentModalOpen: isOpen });
+  }
+
+  checkPaymentInstrument = (disabled) => {
+    if (disabled) {
+      this.setState({ isDisabled: true });
+    }
+  }
+
   setIsCreateAddressModalOpen = () => {
     this.setState({ isCreateAddressModalOpen: false });
   }
 
   renderData() {
-    const { isCreateAddressModalOpen } = this.state;
+    const { isCreateAddressModalOpen, isCreatePaymentModalOpen } = this.state;
     const { history } = this.props;
 
     return ([
@@ -106,7 +122,12 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
         />
       </div>,
       <div key="tab-payment-instruments">
-        <PaymentInstruments />
+        <PaymentInstruments
+          isCreateModalOpen={isCreatePaymentModalOpen}
+          setIsCreatePaymentModalOpen={isOpen => this.openPaymentModal(isOpen)}
+          history={history}
+          checkIsDisabled={disabled => this.checkPaymentInstrument(disabled)}
+        />
       </div>,
       <div key="tab-purchase-history">
         {intl.get('purchase-history')}
@@ -117,15 +138,15 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
   render() {
     const { history } = this.props;
     const {
-      isShowAlert, alertMessageData, selectedTab,
+      isShowAlert, alertMessageData, selectedTab, isDisabled,
     } = this.state;
 
     const tabs = [intl.get('overview'), intl.get('associates'), intl.get('address-book'), intl.get('payment-instruments'), intl.get('purchase-history')];
     return (
       <div className="container account-details">
-        {isShowAlert ? (
+        {isShowAlert && (
           <AlertContainer messageData={alertMessageData} />
-        ) : ''}
+        )}
         <Link to="/account/accounts" className="back-link" role="button">
           <ArrowIcon className="arrow-icon" />
           {intl.get('back-to-accounts')}
@@ -139,6 +160,11 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
           <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" onClick={() => this.openCreateAddressModal()}>
             {intl.get('add-new-address')}
           </button>
+          )}
+          {selectedTab === 3 && (
+            <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" disabled={isDisabled} onClick={() => this.openPaymentModal(true)}>
+              {intl.get('add-new-payment-instrument')}
+            </button>
           )}
         </div>
         <div className="tab-pane" id="item-form" role="tabpanel">
