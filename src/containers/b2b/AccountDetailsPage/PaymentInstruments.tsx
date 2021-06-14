@@ -134,21 +134,22 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
   }
 
   async handleDefaultCheck(paymentUri, instruments) {
-    const selectedPayment = instruments._defaultinstrumentselector[0]._choice.find(choice => choice._description[0].self.uri === paymentUri.self.uri);
-    if (selectedPayment && selectedPayment._selectaction) {
-      login().then(() => {
-        cortexFetch(`${selectedPayment._selectaction[0].self.uri}`, {
+    try {
+      const selectedPayment = instruments._defaultinstrumentselector[0]._choice.find(choice => choice._description[0].self.uri === paymentUri.self.uri);
+      if (selectedPayment && selectedPayment._selectaction) {
+        await login();
+        await cortexFetch(`${selectedPayment._selectaction[0].self.uri}`, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
-          body: JSON.stringify({}),
-        })
-          .then(() => {
-            this.getPayments();
-          });
-      });
+        });
+        await this.getPayments();
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
     }
   }
 
@@ -165,9 +166,13 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
       })
         .then(result => result.json());
       if (res && res._paymentmethods && res._paymentinstruments) {
+        const paymentData = res._paymentmethods[0]._element.filter((el) => {
+          const keys = Object.keys(el._paymentinstrumentform[0]['payment-instrument-identification-form']);
+          return keys.length === 1 && keys.indexOf('display-name') !== -1 && !el._paymentinstrumentform[0].messages[0];
+        });
         this.setState({
           paymentInstruments: res._paymentinstruments[0],
-          paymentMethodsData: res._paymentmethods[0],
+          paymentMethodsData: paymentData,
           isShowConfirmModal: false,
           selectedPayment: '',
         });
@@ -225,7 +230,7 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
         }),
       });
       await this.getPayments();
-      this.handleShowAlert(intl.get('new-payment-instrument-added'), true);
+      await this.handleShowAlert(intl.get('new-payment-instrument-added'), true);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
@@ -314,7 +319,7 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
                   </button>
                   <div className="dropdown-menu cart-selection-menu">
                     <div className="cart-selection-menu-wrap">
-                      {paymentMethodsData._element && paymentMethodsData._element.map(method => (
+                      {paymentMethodsData && paymentMethodsData.map(method => (
                         <option key={method['display-name']} value={method['display-name']} className="payment-option" onClick={() => this.onSelectPayment(method)}>
                           {method['display-name']}
                         </option>
