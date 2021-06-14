@@ -88,9 +88,9 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
       let associate;
       if (res._associates) {
         associate = res._associates[0]._element.find(el => el._associatedetails[0].email === userName);
+        setUserRole(associate.role);
       }
 
-      setUserRole(associate.role);
       setAccountData(res);
       setIsLoading(false);
       setIsShowForm(false);
