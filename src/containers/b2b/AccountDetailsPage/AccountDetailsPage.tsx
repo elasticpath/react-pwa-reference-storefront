@@ -74,7 +74,7 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
   componentDidMount() {
     const { history } = this.props;
     const { isSelectedTab } = history.location.state;
-    console.log('isSelectedTab', isSelectedTab);
+
     if (isSelectedTab) {
       this.setState({ selectedTab: isSelectedTab });
     }
@@ -151,7 +151,7 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
       isShowAlert, alertMessageData, selectedTab, isDisabled,
     } = this.state;
     const selected: number = isSelectedTab || selectedTab;
-    console.log('selectedTab!!!!!!', selected);
+
     const tabs = [intl.get('overview'), intl.get('associates'), intl.get('address-book'), intl.get('payment-instruments'), intl.get('purchase-history')];
     return (
       <div className="container account-details">
