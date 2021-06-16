@@ -516,5 +516,6 @@
   "new-payment-instrument": "New Payment Instrument",
   "next": "Next",
   "new-payment-instrument-added": "New payment instrument is added.",
-  "credit-card-deleted": "Added credit card is successfully deleted from account."
+  "credit-card-deleted": "Added credit card is successfully deleted from account.",
+  "payment-instrument": "Payment Instrument"
 }

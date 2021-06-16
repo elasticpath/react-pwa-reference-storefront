@@ -38,10 +38,6 @@ interface AccountMainState {
   isDeleteLoading: boolean;
   paymentMethodsData: any;
   selectedPayment: any;
-  isNextOpen: boolean;
-  isMiniLoader: boolean;
-  displayName: string;
-  asDefault: boolean;
   isShowAlert: boolean;
   alertMessageData: any;
 }
@@ -79,10 +75,6 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
       deletePaymentUri: '',
       paymentMethodsData: [],
       selectedPayment: '',
-      isNextOpen: false,
-      isMiniLoader: false,
-      displayName: '',
-      asDefault: false,
       isShowAlert: false,
       alertMessageData: '',
     };
@@ -93,14 +85,17 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
     this.renderNewPaymentModal = this.renderNewPaymentModal.bind(this);
     this.onSelectPayment = this.onSelectPayment.bind(this);
     this.handleNext = this.handleNext.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    this.setName = this.setName.bind(this);
-    this.setAsDefault = this.setAsDefault.bind(this);
     this.handleHideAlert = this.handleHideAlert.bind(this);
     this.handleShowAlert = this.handleShowAlert.bind(this);
   }
 
   componentDidMount() {
+    const { history } = this.props;
+    const { isPaymentAdded } = history.location.state;
+
+    if (isPaymentAdded) {
+      this.handleShowAlert(intl.get('new-payment-instrument-added'), true);
+    }
     this.getPayments();
   }
 
@@ -155,7 +150,6 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
 
   async getPayments() {
     const { history, checkIsDisabled } = this.props;
-    const { asDefault, displayName } = this.state;
     const { accountUri } = history.location.state;
     try {
       const res = await cortexFetch(`${accountUri}/?zoom=${zoomArray.join()}`, {
@@ -179,10 +173,6 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
       } else {
         checkIsDisabled(true);
       }
-      if (asDefault && res._paymentinstruments[0]._defaultinstrumentselector[0]._choice) {
-        const choice = res._paymentinstruments[0]._defaultinstrumentselector[0]._choice.filter(el => el._description[0].name === displayName);
-        await this.handleDefaultCheck(choice[0]._description[0], res._paymentinstruments[0]);
-      }
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
@@ -190,7 +180,6 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
       this.setState({
         isDeleteLoading: false,
         isDataLoading: false,
-        asDefault: false,
         isShowConfirmModal: false,
       });
     }
@@ -211,48 +200,13 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
     });
   }
 
-  async handleSave() {
-    const { selectedPayment, displayName } = this.state;
-    this.setState({
-      isMiniLoader: true,
-    });
-    try {
-      await cortexFetch(selectedPayment._paymentinstrumentform[0].self.uri, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-        body: JSON.stringify({
-          'payment-instrument-identification-form': {
-            'display-name': displayName,
-          },
-        }),
-      });
-      await this.getPayments();
-      await this.handleShowAlert(intl.get('new-payment-instrument-added'), true);
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e);
-    } finally {
-      this.handleClosePaymentModal();
-    }
-  }
-
-  setName(event) {
-    this.setState({ displayName: event.target.value });
-  }
-
-  setAsDefault = () => {
-    const { asDefault } = this.state;
-    this.setState({
-      asDefault: !asDefault,
-    });
-  }
-
   handleNext = () => {
-    this.setState({
-      isNextOpen: true,
+    const { history } = this.props;
+    const { accountUri } = history.location.state;
+    const { selectedPayment } = this.state;
+    history.push({
+      pathname: '/payment-instrument-form/',
+      state: { selectedPayment, accountUri },
     });
   }
 
@@ -260,15 +214,14 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
     const { setIsCreatePaymentModalOpen } = this.props;
     setIsCreatePaymentModalOpen(false);
     this.setState({
-      isNextOpen: false,
-      isMiniLoader: false,
+      selectedPayment: '',
     });
   };
 
   renderNewPaymentModal = () => {
     const { isCreateModalOpen } = this.props;
     const {
-      paymentMethodsData, selectedPayment, isNextOpen, isMiniLoader,
+      paymentMethodsData, selectedPayment,
     } = this.state;
 
     return (
@@ -284,61 +237,36 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
               </button>
             </div>
             <div className="modal-body">
-              {isNextOpen ? (
-                <div className="payment-form">
-                  <div className="input-name">
-                    <label htmlFor="nameField">
-                      <span className="required-label">
-                        *
-                      </span>
-                      {' '}
-                      {intl.get('display-name')}
-                    </label>
-                    <input type="text" className="form-control" id="nameField" onChange={event => this.setName(event)} />
-                  </div>
-                  <input type="checkbox" className="style-checkbox default-checkbox" id="defaultField" onChange={() => this.setAsDefault()} />
-                  <label htmlFor="defaultField" />
-                  <label htmlFor="defaultField">
-                    {intl.get('set-as-default')}
-                  </label>
-                </div>
-              ) : (
-                <div className="dropdown cart-selection-dropdown">
-                  <span className="required-label">
-                    *
-                  </span>
-                  {' '}
-                  {intl.get('payment-method')}
-                  <button
-                    className="ep-btn btn-payment-method dropdown-toggle"
-                    data-toggle="dropdown"
-                    disabled={false}
-                    type="button"
-                  >
-                    {selectedPayment['display-name']}
-                  </button>
-                  <div className="dropdown-menu cart-selection-menu">
-                    <div className="cart-selection-menu-wrap">
-                      {paymentMethodsData && paymentMethodsData.map(method => (
-                        <option key={method['display-name']} value={method['display-name']} className="payment-option" onClick={() => this.onSelectPayment(method)}>
-                          {method['display-name']}
-                        </option>
-                      ))}
-                    </div>
+              <div className="dropdown cart-selection-dropdown">
+                <span className="required-label">
+                  *
+                </span>
+                {' '}
+                {intl.get('payment-method')}
+                <button
+                  className="ep-btn btn-payment-method dropdown-toggle"
+                  data-toggle="dropdown"
+                  disabled={false}
+                  type="button"
+                >
+                  {selectedPayment['display-name']}
+                </button>
+                <div className="dropdown-menu cart-selection-menu">
+                  <div className="cart-selection-menu-wrap">
+                    {paymentMethodsData && paymentMethodsData.map(method => (
+                      <option key={method['display-name']} value={method['display-name']} className="payment-option" onClick={() => this.onSelectPayment(method)}>
+                        {method['display-name']}
+                      </option>
+                    ))}
                   </div>
                 </div>
-              )}
+              </div>
               <div className="dialog-footer btn-container">
                 <button className="ep-btn cancel" type="button" onClick={this.handleClosePaymentModal}>{intl.get('cancel')}</button>
-                <button className="ep-btn primary" type="button" disabled={!selectedPayment['display-name']} onClick={isNextOpen ? this.handleSave : this.handleNext}>
-                  {isNextOpen ? intl.get('save') : intl.get('next') }
+                <button className="ep-btn primary" type="button" disabled={!selectedPayment['display-name']} onClick={this.handleNext}>
+                  {intl.get('next')}
                 </button>
               </div>
-              {isMiniLoader && (
-                <div className="loader-wrapper">
-                  <div className="miniLoader" />
-                </div>
-              )}
             </div>
           </div>
         </div>

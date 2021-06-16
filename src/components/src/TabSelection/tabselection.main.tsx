@@ -33,6 +33,8 @@ interface TabSelectionProps {
   data: any[]
   /** on select tab */
   onSelectTab: (index: number) => void
+  /** default select tab */
+  defaultSelectTab?: number
 }
 
 interface TabSelectionState {
@@ -60,6 +62,15 @@ export default class TabSelection extends React.Component<TabSelectionProps, Tab
 
     e.preventDefault();
     e.stopPropagation();
+  }
+
+  componentDidMount() {
+    const { defaultSelectTab } = this.props;
+    if (defaultSelectTab && defaultSelectTab !== 0) {
+      this.setState({
+        selectedValue: defaultSelectTab,
+      });
+    }
   }
 
   clickListener() {
