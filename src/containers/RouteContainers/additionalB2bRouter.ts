@@ -51,6 +51,7 @@ import PrivacyPoliciesPage from '../PrivacyPoliciesPage';
 import PurchaseHistoryPage from '../b2b/PurchaseHistoryPage';
 import AddressBookPage from '../b2b/AddressBookPage';
 import AccountDetailsPage from '../b2b/AccountDetailsPage/AccountDetailsPage';
+import PaymentInstrumentFormPage from '../b2b/AccountDetailsPage/PaymentInstrumentFormPage';
 
 const router = [{
   path: '/mycart',
@@ -141,6 +142,10 @@ const router = [{
   path: '/account-details/',
   exact: true,
   component: AccountDetailsPage,
+}, {
+  path: '/payment-instrument-form/',
+  exact: true,
+  component: PaymentInstrumentFormPage,
 }, {
   path: '/account',
   component: MyAccountMain,

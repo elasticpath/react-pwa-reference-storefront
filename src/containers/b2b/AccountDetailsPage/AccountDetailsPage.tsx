@@ -71,6 +71,15 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
     this.checkPaymentInstrument = this.checkPaymentInstrument.bind(this);
   }
 
+  componentDidMount() {
+    const { history } = this.props;
+    const { isSelectedTab } = history.location.state;
+
+    if (isSelectedTab) {
+      this.setState({ selectedTab: isSelectedTab });
+    }
+  }
+
   onSelectTab = (index) => {
     this.setState({ selectedTab: index });
   }
@@ -137,9 +146,11 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
 
   render() {
     const { history } = this.props;
+    const { isSelectedTab } = history.location.state;
     const {
       isShowAlert, alertMessageData, selectedTab, isDisabled,
     } = this.state;
+    const selected: number = isSelectedTab || selectedTab;
 
     const tabs = [intl.get('overview'), intl.get('associates'), intl.get('address-book'), intl.get('payment-instruments'), intl.get('purchase-history')];
     return (
@@ -156,19 +167,19 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
           <div className="account-name">
             {history && history.location && history.location.state.accountName && history.location.state.accountName}
           </div>
-          {selectedTab === 2 && (
+          {selected === 2 && (
           <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" onClick={() => this.openCreateAddressModal()}>
             {intl.get('add-new-address')}
           </button>
           )}
-          {selectedTab === 3 && (
+          {selected === 3 && (
             <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" disabled={isDisabled} onClick={() => this.openPaymentModal(true)}>
               {intl.get('add-new-payment-instrument')}
             </button>
           )}
         </div>
         <div className="tab-pane" id="item-form" role="tabpanel">
-          <TabSelection tabs={tabs} data={this.renderData()} onSelectTab={index => this.onSelectTab(index)} />
+          <TabSelection tabs={tabs} data={this.renderData()} onSelectTab={index => this.onSelectTab(index)} defaultSelectTab={selected} />
         </div>
       </div>
     );

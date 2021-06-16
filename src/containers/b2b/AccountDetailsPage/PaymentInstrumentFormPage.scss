@@ -1,0 +1,52 @@
+@import './../../../theme/common.scss';
+
+.payment-instrument-form {
+  width: 35%;
+  padding: 30px;
+  margin-left: 40px;
+
+  .payment-form {
+    .default-checkbox {
+      + label {
+        &:before {
+          border: 1px solid $firstComplimentTextColor;
+        }
+      }
+
+      &:checked {
+        + label {
+          &:before {
+            border-color: $firstComplimentColor;
+            background-color: $firstComplimentColor;
+          }
+        }
+      }
+    }
+  }
+
+  .required-label {
+    color: $mainErrorColor
+  }
+
+  .input-name {
+    margin-bottom: 20px;
+  }
+
+  .page-title {
+    margin: 30px 0;
+  }
+
+  .form-control {
+    width: 100%;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  @media (max-width: $tabletWidth) {
+    width: 90%
+  }
+
+  .ep-btn {
+    text-transform: capitalize;
+  }
+}

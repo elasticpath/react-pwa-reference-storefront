@@ -119,29 +119,6 @@
     margin-top: 20px;
   }
 
-  .input-name {
-    margin-bottom: 20px;
-  }
-
-  .payment-form {
-    .default-checkbox {
-      + label {
-        &:before {
-          border: 1px solid $firstComplimentTextColor;
-        }
-      }
-
-      &:checked {
-        + label {
-          &:before {
-            border-color: $firstComplimentColor;
-            background-color: $firstComplimentColor;
-          }
-        }
-      }
-    }
-  }
-
   .modal-content {
     padding: 0 20px;
   }
@@ -207,11 +184,5 @@
     .ep-btn {
       text-transform: capitalize;
     }
-  }
-
-  .form-control {
-    width: 90%;
-    height: 35px;
-    font-size: 16px;
   }
 }

@@ -516,5 +516,6 @@
   "new-payment-instrument": "N-e-w- -P-a-y-m-e-n-t- -I-n-s-t-r-u-m-e-n-t",
   "next": "N-e-x-t",
   "new-payment-instrument-added": "N-e-w- -p-a-y-m-e-n-t- -i-n-s-t-r-u-m-e-n-t- -i-s- -a-d-d-e-d-.",
-  "credit-card-deleted": "A-d-d-e-d- -c-r-e-d-i-t- -c-a-r-d- -i-s- -s-u-c-c-e-s-s-f-u-l-l-y- -d-e-l-e-t-e-d- -f-r-o-m- -a-c-c-o-u-n-t-."
+  "credit-card-deleted": "A-d-d-e-d- -c-r-e-d-i-t- -c-a-r-d- -i-s- -s-u-c-c-e-s-s-f-u-l-l-y- -d-e-l-e-t-e-d- -f-r-o-m- -a-c-c-o-u-n-t-.",
+  "payment-instrument": "P-a-y-m-e-n-t- -I-n-s-t-r-u-m-e-n-t"
 }
