@@ -292,10 +292,10 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
             firstName: res.name['given-name'],
             lastName: res.name['family-name'],
             address: res.address['street-address'],
-            extendedAddress: res.address['extended-address'] ? res.address['extended-address'] : '',
+            extendedAddress: res.address['extended-address'] || '',
             city: res.address.locality,
             country: res.address['country-name'],
-            subCountry: res.address.region,
+            subCountry: res.address.region || '',
             postalCode: res.address['postal-code'],
           });
         });

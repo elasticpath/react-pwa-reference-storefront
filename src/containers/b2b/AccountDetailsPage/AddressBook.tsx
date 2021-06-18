@@ -29,6 +29,7 @@ import Config from '../../../ep.config.json';
 import './AddressBook.scss';
 import AddressFormMain from '../../../components/src/AddressForm/addressform.main';
 import ProfileAddressesMain from '../../../components/src/ProfileAddressesWithDefaults/profileaddresses.main';
+import SettingDefaultAddress from './SettingDefaultAddress';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 interface AddressBookProps {
@@ -72,6 +73,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
   const [chosenBillingUri, setChosenBillingUri] = useState<string>('');
   const [isEditAddressModalOpen, setIsEditAddressModalOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDefaultAddressModalOpen, setIsDefaultAddressModalOpen] = useState<boolean>(false);
 
   const fetchAccountData = async () => {
     try {
@@ -111,6 +113,15 @@ const AddressBook: React.FC<AddressBookProps> = ({
   const handleEditAddress = (addressLink) => {
     setIsEditAddressModalOpen(true);
     setAddressData({ addressUri: addressLink, addressData: accountData });
+  };
+
+  const SetDefaultAddress = () => {
+    setIsDefaultAddressModalOpen(!isDefaultAddressModalOpen);
+  };
+
+  const handleSaveDefaultAddress = () => {
+    SetDefaultAddress();
+    fetchAccountData();
   };
 
   const handleCloseAddressModal = () => {
@@ -170,6 +181,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
         <div>
           {accountData && !isLoading && (
             <ProfileAddressesMain
+              onSetDefaultAddress={SetDefaultAddress}
               addresses={accountData}
               onChange={fetchAccountData}
               onEditAddress={handleEditAddress}
@@ -183,6 +195,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
             </div>
           )}
           {renderNewAddressModal()}
+          <SettingDefaultAddress onSaveAddress={handleSaveDefaultAddress} isDefaultAddressModalOpen={isDefaultAddressModalOpen} addressData={accountData} handleCloseAddressModal={SetDefaultAddress} />
         </div>
       )}
     </div>

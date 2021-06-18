@@ -36,6 +36,8 @@ interface ProfileAddressesMainProps {
   },
   /** handle addresses change */
   onChange: () => void,
+  /** to set the default address */
+  onSetDefaultAddress?: () => void,
   /** handle edit address */
   onEditAddress: (address: string) => void,
   /** chosen Billing Address URI */
@@ -87,11 +89,12 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
       }).then(() => {
-        const { onChange } = this.props;
+        const { onChange, onSetDefaultAddress } = this.props;
         onChange();
+        onSetDefaultAddress();
         this.setState({ isLoading: false, isDeleteAddressOpen: false });
       }).catch((error) => {
-        // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
         console.error(error.message);
       });
     });
@@ -100,22 +103,22 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
   renderAddresses() {
     const { addresses, chosenBillingUri, chosenShippingUri } = this.props;
     if (addresses._element) {
-      const defaultAdresses = addresses._element.filter(address => (
+      const defaultAddresses = addresses._element.filter(address => (
         address.self.uri === chosenShippingUri || address.self.uri === chosenBillingUri
       ));
-      const allAdresses = addresses._element.filter(address => (
+      const allAddresses = addresses._element.filter(address => (
         address.self.uri !== chosenShippingUri && address.self.uri !== chosenBillingUri
       ));
       return (
         <div>
           <div className="addresses-wrapper default">
-            {defaultAdresses.map(address => (
+            {defaultAddresses.map(address => (
               this.renderAddress(address)
             ))}
           </div>
-          {allAdresses.length > 0 && (
+          {allAddresses.length > 0 && (
             <div className="addresses-wrapper">
-              {allAdresses.map(address => (
+              {allAddresses.map(address => (
                 this.renderAddress(address)
               ))}
             </div>
@@ -209,7 +212,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
               <div className="dialog-header">{intl.get('delete-address')}</div>
               <div className="dialog-content">
                 <p>
-                  {intl.get('confirm-delete-address')}
+                  {intl.get('confirm-delete-default-address')}
                 </p>
               </div>
               <div className="dialog-footer btn-container">
