@@ -311,9 +311,9 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
 
     return (
       <div className="container payment-instrument">
-        {isShowAlert ? (
+        {isShowAlert && (
           <AlertContainer messageData={alertMessageData} />
-        ) : ''}
+        )}
         <p className="title">
           {intl.get('payment-instruments')}
         </p>

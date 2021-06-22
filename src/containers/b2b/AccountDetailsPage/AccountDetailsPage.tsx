@@ -127,7 +127,8 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
           isCreateModalOpen={isCreateAddressModalOpen}
           setIsCreateAddressModalOpen={() => this.setIsCreateAddressModalOpen()}
           handleShowAlert={this.handleShowAlert}
-          accountName={history && history.location && history.location.state.accountName && history.location.state.accountName}
+          accountName={history && history.location && history.location.state.accountName}
+          history={history}
         />
       </div>,
       <div key="tab-payment-instruments">

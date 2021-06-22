@@ -523,5 +523,6 @@
   "please-assign-default-address": "Please assign Default Ship To / Bill To address",
   "ship-to-address": "Ship To Address",
   "bill-to-address": "Bill To Address",
-  "same-as-ship-to": "Same as Ship To"
+  "same-as-ship-to": "Same as Ship To",
+  "addresses-are-successfully-updated": "The Ship To and Bill To addresses are successfully updated."
 }

@@ -34,12 +34,12 @@ interface SettingDefaultAddressProps {
   isDefaultAddressModalOpen: boolean,
   handleCloseAddressModal: () => void,
   onSaveAddress: () => void,
+  handleShowAlert?: (...args: any[]) => any,
 }
-
 
 const SettingDefaultAddress: React.FC<SettingDefaultAddressProps> = (props) => {
   const {
-    isDefaultAddressModalOpen, addressData, handleCloseAddressModal, onSaveAddress,
+    isDefaultAddressModalOpen, addressData, handleCloseAddressModal, onSaveAddress, handleShowAlert,
   } = props;
   const [selectedShipping, setSelectedShipping] = useState<string>('');
   const [shippingData, setShippingData] = useState<any>({});
@@ -71,7 +71,7 @@ const SettingDefaultAddress: React.FC<SettingDefaultAddressProps> = (props) => {
       selectactionBillingUri = addressData && addressData._billingaddresses[0]._selector && addressData._billingaddresses[0]._selector[0]._choice
         && addressData._billingaddresses[0]._selector[0]._choice.find(el => shippingData.self.uri === el._description[0].self.uri);
       selectactionBillingUri = selectactionBillingUri && selectactionBillingUri._selectaction[0].self.uri;
-    } else {
+    } else if (billingData) {
       selectactionBillingUri = addressData && addressData._billingaddresses[0]._selector && addressData._billingaddresses[0]._selector[0]._choice
         && addressData._billingaddresses[0]._selector[0]._choice.find(el => billingData.self.uri === el._description[0].self.uri);
       selectactionBillingUri = selectactionBillingUri && selectactionBillingUri._selectaction[0].self.uri;
@@ -100,6 +100,7 @@ const SettingDefaultAddress: React.FC<SettingDefaultAddressProps> = (props) => {
             body: JSON.stringify({}),
           });
       }
+      await handleShowAlert(intl.get('addresses-are-successfully-updated'), true);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error.message);
@@ -108,7 +109,6 @@ const SettingDefaultAddress: React.FC<SettingDefaultAddressProps> = (props) => {
       setIsMiniLoader(false);
     }
   };
-
 
   const onSelectShipping = (value) => {
     setShippingData(value);
