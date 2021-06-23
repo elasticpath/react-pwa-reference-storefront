@@ -172,9 +172,8 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
     }
     return (
       <div>
-        <p>
+        <p className="no-address-message">
           {intl.get('no-saved-address-message')}
-          .
         </p>
       </div>
     );

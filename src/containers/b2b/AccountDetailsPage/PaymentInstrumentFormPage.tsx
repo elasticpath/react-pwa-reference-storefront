@@ -161,7 +161,6 @@ class PaymentInstrumentFormPage extends React.Component<RouteComponentProps<Acco
     }
   }
 
-
   setName(event) {
     this.setState({ displayName: event.target.value });
   }

@@ -19,7 +19,7 @@
  *
  */
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { login } from '../../../hooks/store';
@@ -38,6 +38,7 @@ interface AddressBookProps {
   handleShowAlert: any,
   accountName: string,
   history?: any
+  checkIsDisabled?: (key: boolean) => any
 }
 
 const zoomArray = [
@@ -65,7 +66,7 @@ const zoomArray = [
 ];
 
 const AddressBook: React.FC<AddressBookProps> = ({
-  isCreateModalOpen, setIsCreateAddressModalOpen, handleShowAlert, accountName, history,
+  isCreateModalOpen, setIsCreateAddressModalOpen, handleShowAlert, accountName, history, checkIsDisabled,
 }) => {
   const [accountData, setAccountData] = useState<any>(undefined);
   const [addressData, setAddressData] = useState<any>(undefined);
@@ -99,13 +100,15 @@ const AddressBook: React.FC<AddressBookProps> = ({
         res = await cortexFetch(`${uri}/?zoom=${zoomArray.join()}`, options)
           .then(resData => resData.json());
       }
-      if (res && res._addresses) {
+      if (res && res._addresses && res._addresses[0]._addressform) {
         const resAddressData = res._addresses[0];
         const chosenBillingAddress = resAddressData._billingaddresses[0]._selector && resAddressData._billingaddresses[0]._selector[0]._chosen && resAddressData._billingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
         const chosenShippingAddress = resAddressData._shippingaddresses[0]._selector && resAddressData._shippingaddresses[0]._selector[0]._chosen && resAddressData._shippingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
         setAccountData(resAddressData);
         setChosenShippingUri(chosenShippingAddress);
         setChosenBillingUri(chosenBillingAddress);
+      } else {
+        checkIsDisabled(true);
       }
     } catch (error) {
       setIsLoading(false);
@@ -171,6 +174,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
                 handleShowAlert={(message, isSuccess) => handleShowAlert(message, isSuccess)}
                 fetchData={fetchAccountData}
                 addressData={accountData}
+                addressUri={addressData && addressData.addressUri}
                 accountName={accountName}
                 chosenBilling={isChosenBilling}
                 chosenShipping={isChosenShipping}
@@ -201,7 +205,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
             />
           )}
           {!accountData && !isLoading && (
-            <div>
+            <div className="no-address-message">
               {intl.get('no-saved-address-message')}
             </div>
           )}

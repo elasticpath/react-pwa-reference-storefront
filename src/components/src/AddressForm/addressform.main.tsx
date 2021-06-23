@@ -49,6 +49,8 @@ interface AddressFormMainProps {
   selectactionShippingUri?: string,
   /** Selectaction billing URI. */
   selectactionBillingUri?: string,
+  /** Opened address URI. */
+  addressUri?: string,
 }
 
 interface AddressFormMainState {
@@ -126,8 +128,10 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
 
   componentDidMount() {
     this.fetchGeoData();
-    const { addressData } = this.props;
-    if (addressData && addressData.addressUri) {
+    const { addressData, addressUri } = this.props;
+    if (addressUri) {
+      this.fetchAddressData(addressUri);
+    } else if (addressData && addressData.addressUri) {
       this.fetchAddressData(addressData.addressUri);
     } else {
       this.fetchAddressForm();
@@ -179,7 +183,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
   async submitAddress(event) {
     event.preventDefault();
     const {
-      addressData, fetchData, handleShowAlert, onCloseModal, selectactionShippingUri, selectactionBillingUri, accountName,
+      addressData, fetchData, handleShowAlert, onCloseModal, selectactionShippingUri, selectactionBillingUri, accountName, addressUri,
     } = this.props;
     const {
       addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode, isShippingAddress, isBillingAddress,
@@ -188,7 +192,11 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     let link;
     let methodType;
     let isAddAddress;
-    if (addressData && addressData.addressUri) {
+    if (addressUri) {
+      link = addressUri;
+      methodType = 'put';
+      isAddAddress = false;
+    } else if (addressData && addressData.addressUri) {
       link = addressData.addressUri;
       methodType = 'put';
       isAddAddress = false;

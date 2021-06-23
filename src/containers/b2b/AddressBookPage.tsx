@@ -217,7 +217,7 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
                   chosenBillingUri={chosenBillingUri}
                 />
               ) : (
-                <div>
+                <div className="no-address-message">
                   {intl.get('no-saved-address-message')}
                 </div>
               )}
