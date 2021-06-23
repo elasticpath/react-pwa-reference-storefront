@@ -257,13 +257,13 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
         this.setState({ failedSubmit: false });
         await handleShowAlert(isAddAddress ? intl.get('address-is-added', { accountName }) : intl.get('address-is-updated'), true);
       }
+      await fetchData();
     } catch (error) {
       await handleShowAlert(isAddAddress ? intl.get('add-address-error') : intl.get('update-address-error'));
       // eslint-disable-next-line no-console
       console.error(error.message);
     } finally {
       await onCloseModal();
-      await fetchData();
     }
   }
 
