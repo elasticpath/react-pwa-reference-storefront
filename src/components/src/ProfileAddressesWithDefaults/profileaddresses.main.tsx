@@ -36,6 +36,8 @@ interface ProfileAddressesMainProps {
   },
   /** handle addresses change */
   onChange: () => void,
+  /** to set the default address */
+  onSetDefaultAddress?: () => void,
   /** handle edit address */
   onEditAddress: (address: string) => void,
   /** chosen Billing Address URI */
@@ -45,6 +47,7 @@ interface ProfileAddressesMainProps {
 }
 interface ProfileAddressesMainState {
   isDeleteAddressOpen: boolean,
+  isDeleteDefaultAddressOpen: boolean,
   selectedUri: boolean,
   isLoading: boolean,
 }
@@ -60,6 +63,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
 
     this.state = {
       isDeleteAddressOpen: false,
+      isDeleteDefaultAddressOpen: false,
       selectedUri: false,
       isLoading: false,
     };
@@ -68,8 +72,13 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
     this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleDeleteModalOpen(selectedUri) {
+  handleDeleteModalOpen(selectedUri, isDefault = false) {
     this.setState({ isDeleteAddressOpen: true, selectedUri });
+    if (isDefault) {
+      this.setState({ isDeleteDefaultAddressOpen: true });
+    } else {
+      this.setState({ isDeleteDefaultAddressOpen: false });
+    }
   }
 
   handleDeleteModalClose() {
@@ -77,7 +86,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
   }
 
   handleDelete() {
-    const { selectedUri } = this.state;
+    const { selectedUri, isDeleteDefaultAddressOpen } = this.state;
     this.setState({ isLoading: true });
     login().then(() => {
       cortexFetch(selectedUri, {
@@ -87,11 +96,15 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
       }).then(() => {
-        const { onChange } = this.props;
+        const { onChange, onSetDefaultAddress } = this.props;
         onChange();
         this.setState({ isLoading: false, isDeleteAddressOpen: false });
+        if (isDeleteDefaultAddressOpen) {
+          this.setState({ isDeleteDefaultAddressOpen: false });
+          onSetDefaultAddress();
+        }
       }).catch((error) => {
-        // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
         console.error(error.message);
       });
     });
@@ -100,22 +113,22 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
   renderAddresses() {
     const { addresses, chosenBillingUri, chosenShippingUri } = this.props;
     if (addresses._element) {
-      const defaultAdresses = addresses._element.filter(address => (
+      const defaultAddresses = addresses._element.filter(address => (
         address.self.uri === chosenShippingUri || address.self.uri === chosenBillingUri
       ));
-      const allAdresses = addresses._element.filter(address => (
+      const allAddresses = addresses._element.filter(address => (
         address.self.uri !== chosenShippingUri && address.self.uri !== chosenBillingUri
       ));
       return (
         <div>
           <div className="addresses-wrapper default">
-            {defaultAdresses.map(address => (
+            {defaultAddresses.map(address => (
               this.renderAddress(address)
             ))}
           </div>
-          {allAdresses.length > 0 && (
+          {allAddresses.length > 0 && (
             <div className="addresses-wrapper">
-              {allAdresses.map(address => (
+              {allAddresses.map(address => (
                 this.renderAddress(address)
               ))}
             </div>
@@ -125,9 +138,8 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
     }
     return (
       <div>
-        <p>
+        <p className="no-address-message">
           {intl.get('no-saved-address-message')}
-          .
         </p>
       </div>
     );
@@ -182,10 +194,10 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
               </li>
             </ul>
           </div>
-          <button className="ep-btn small edit-address-btn" type="button" onClick={() => { onEditAddress(addressElement.self.uri); }}>
+          <button className="ep-btn small edit-address-btn" type="button" onClick={() => onEditAddress(addressElement.self.uri)}>
             {intl.get('edit')}
           </button>
-          <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDeleteModalOpen(addressElement.self.uri); }} data-actionlink="">
+          <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDeleteModalOpen(addressElement.self.uri, !!defaultAddress); }} data-actionlink="">
             {intl.get('delete')}
           </button>
         </div>
@@ -199,7 +211,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
     if (addresses) {
       return (
         <div data-region="profileAddressesRegion">
-          <div>
+          <div className="profile-address">
             {this.renderAddresses()}
             <Modal
               open={isDeleteAddressOpen}
@@ -209,7 +221,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
               <div className="dialog-header">{intl.get('delete-address')}</div>
               <div className="dialog-content">
                 <p>
-                  {intl.get('confirm-delete-address')}
+                  {intl.get('confirm-delete-default-address')}
                 </p>
               </div>
               <div className="dialog-footer btn-container">

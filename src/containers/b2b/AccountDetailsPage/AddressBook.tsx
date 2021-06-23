@@ -29,42 +29,44 @@ import Config from '../../../ep.config.json';
 import './AddressBook.scss';
 import AddressFormMain from '../../../components/src/AddressForm/addressform.main';
 import ProfileAddressesMain from '../../../components/src/ProfileAddressesWithDefaults/profileaddresses.main';
+import SettingDefaultAddress from './SettingDefaultAddress';
 import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 interface AddressBookProps {
   isCreateModalOpen: boolean,
   setIsCreateAddressModalOpen: any,
   handleShowAlert: any,
-  accountName: string
+  accountName: string,
+  history?: any
+  checkIsDisabled?: (key: boolean) => any
 }
 
 const zoomArray = [
-  'defaultprofile',
-  'defaultprofile:addresses',
-  'defaultprofile:addresses:addressform',
-  'defaultprofile:addresses:element',
-  'defaultprofile:addresses:billingaddresses',
-  'defaultprofile:addresses:billingaddresses:default',
-  'defaultprofile:addresses:billingaddresses:selector',
-  'defaultprofile:addresses:billingaddresses:selector:choice',
-  'defaultprofile:addresses:billingaddresses:selector:choice:description',
-  'defaultprofile:addresses:billingaddresses:selector:choice:selectaction',
-  'defaultprofile:addresses:billingaddresses:selector:chosen',
-  'defaultprofile:addresses:billingaddresses:selector:chosen:description',
-  'defaultprofile:addresses:billingaddresses:selector:chosen:selectaction',
-  'defaultprofile:addresses:shippingaddresses',
-  'defaultprofile:addresses:shippingaddresses:default',
-  'defaultprofile:addresses:shippingaddresses:selector',
-  'defaultprofile:addresses:shippingaddresses:selector:choice',
-  'defaultprofile:addresses:shippingaddresses:selector:choice:description',
-  'defaultprofile:addresses:shippingaddresses:selector:choice:selectaction',
-  'defaultprofile:addresses:shippingaddresses:selector:chosen',
-  'defaultprofile:addresses:shippingaddresses:selector:chosen:description',
-  'defaultprofile:addresses:shippingaddresses:selector:chosen:selectaction',
+  'addresses',
+  'addresses:addressform:createaddressaction',
+  'addresses:element',
+  'addresses:billingaddresses',
+  'addresses:billingaddresses:default',
+  'addresses:billingaddresses:selector',
+  'addresses:billingaddresses:selector:choice',
+  'addresses:billingaddresses:selector:choice:description',
+  'addresses:billingaddresses:selector:choice:selectaction',
+  'addresses:billingaddresses:selector:chosen',
+  'addresses:billingaddresses:selector:chosen:description',
+  'addresses:billingaddresses:selector:chosen:selectaction',
+  'addresses:shippingaddresses',
+  'addresses:shippingaddresses:default',
+  'addresses:shippingaddresses:selector',
+  'addresses:shippingaddresses:selector:choice',
+  'addresses:shippingaddresses:selector:choice:description',
+  'addresses:shippingaddresses:selector:choice:selectaction',
+  'addresses:shippingaddresses:selector:chosen',
+  'addresses:shippingaddresses:selector:chosen:description',
+  'addresses:shippingaddresses:selector:chosen:selectaction',
 ];
 
 const AddressBook: React.FC<AddressBookProps> = ({
-  isCreateModalOpen, setIsCreateAddressModalOpen, handleShowAlert, accountName,
+  isCreateModalOpen, setIsCreateAddressModalOpen, handleShowAlert, accountName, history, checkIsDisabled,
 }) => {
   const [accountData, setAccountData] = useState<any>(undefined);
   const [addressData, setAddressData] = useState<any>(undefined);
@@ -72,8 +74,15 @@ const AddressBook: React.FC<AddressBookProps> = ({
   const [chosenBillingUri, setChosenBillingUri] = useState<string>('');
   const [isEditAddressModalOpen, setIsEditAddressModalOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDefaultAddressModalOpen, setIsDefaultAddressModalOpen] = useState<boolean>(false);
 
   const fetchAccountData = async () => {
+    let uri: string = '';
+
+    if (history && history.location && history.location.state.accountUri) {
+      const { accountUri } = history.location.state;
+      uri = accountUri;
+    }
     try {
       setIsLoading(true);
       await login();
@@ -86,31 +95,47 @@ const AddressBook: React.FC<AddressBookProps> = ({
       if (Config.Compliance.enable) {
         options.headers['X-Ep-Data-Policy-Segments'] = `${Config.Compliance.dataPolicySegments}`;
       }
-      const res = await cortexFetch(`/?zoom=${zoomArray.join()}`, options)
-        .then(resData => resData.json());
-      if (res && res._defaultprofile) {
-        const resAddressData = res._defaultprofile[0]._addresses[0];
+      let res;
+      if (uri) {
+        res = await cortexFetch(`${uri}/?zoom=${zoomArray.join()}`, options)
+          .then(resData => resData.json());
+      }
+      if (res && res._addresses && res._addresses[0]._addressform) {
+        const resAddressData = res._addresses[0];
         const chosenBillingAddress = resAddressData._billingaddresses[0]._selector && resAddressData._billingaddresses[0]._selector[0]._chosen && resAddressData._billingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
         const chosenShippingAddress = resAddressData._shippingaddresses[0]._selector && resAddressData._shippingaddresses[0]._selector[0]._chosen && resAddressData._shippingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
         setAccountData(resAddressData);
         setChosenShippingUri(chosenShippingAddress);
         setChosenBillingUri(chosenBillingAddress);
-        setIsLoading(false);
+      } else {
+        checkIsDisabled(true);
       }
     } catch (error) {
       setIsLoading(false);
       // eslint-disable-next-line no-console
       console.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     fetchAccountData();
+    // eslint-disable-next-line
   }, []);
 
   const handleEditAddress = (addressLink) => {
     setIsEditAddressModalOpen(true);
     setAddressData({ addressUri: addressLink, addressData: accountData });
+  };
+
+  const setModalOpen = () => {
+    setIsDefaultAddressModalOpen(!isDefaultAddressModalOpen);
+  };
+
+  const handleSaveDefaultAddress = () => {
+    fetchAccountData();
+    setIsDefaultAddressModalOpen(false);
   };
 
   const handleCloseAddressModal = () => {
@@ -146,9 +171,10 @@ const AddressBook: React.FC<AddressBookProps> = ({
             <div className="modal-body">
               <AddressFormMain
                 onCloseModal={handleCloseAddressModal}
-                handleShowAlert={handleShowAlert}
+                handleShowAlert={(message, isSuccess) => handleShowAlert(message, isSuccess)}
                 fetchData={fetchAccountData}
-                addressData={addressData}
+                addressData={accountData}
+                addressUri={addressData && addressData.addressUri}
                 accountName={accountName}
                 chosenBilling={isChosenBilling}
                 chosenShipping={isChosenShipping}
@@ -170,6 +196,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
         <div>
           {accountData && !isLoading && (
             <ProfileAddressesMain
+              onSetDefaultAddress={setModalOpen}
               addresses={accountData}
               onChange={fetchAccountData}
               onEditAddress={handleEditAddress}
@@ -178,11 +205,18 @@ const AddressBook: React.FC<AddressBookProps> = ({
             />
           )}
           {!accountData && !isLoading && (
-            <div>
+            <div className="no-address-message">
               {intl.get('no-saved-address-message')}
             </div>
           )}
           {renderNewAddressModal()}
+          <SettingDefaultAddress
+            handleShowAlert={(message, isSuccess) => handleShowAlert(message, isSuccess)}
+            onSaveAddress={handleSaveDefaultAddress}
+            isDefaultAddressModalOpen={isDefaultAddressModalOpen}
+            addressData={accountData}
+            handleCloseAddressModal={setModalOpen}
+          />
         </div>
       )}
     </div>

@@ -81,7 +81,7 @@
   "terms-and-conditions-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "province": "Province",
   "address": "Address",
-  "new" : "New",
+  "new": "New",
   "first-name": "First Name",
   "last-name": "Last Name",
   "street-address": "Street Address",
@@ -201,7 +201,7 @@
   "next-page": "Next Page",
   "product-recommendations": "Related Products",
   "product-bundle-constituents": "Available Products",
-  "no-saved-address-message": "You have no saved addresses",
+  "no-saved-address-message": "You have no saved addresses.",
   "delete-address": "Delete Address",
   "addresses": "Addresses",
   "personal-information": "Personal Information",
@@ -517,5 +517,12 @@
   "next": "Next",
   "new-payment-instrument-added": "New payment instrument is added.",
   "credit-card-deleted": "Added credit card is successfully deleted from account.",
-  "payment-instrument": "Payment Instrument"
+  "payment-instrument": "Payment Instrument",
+  "confirm-delete-default-address": "This address is default address for Ship To Bill To. Are you sure you want to delete the added address?",
+  "ship-to-bill-to": "Ship To / Bill To",
+  "please-assign-default-address": "Please assign Default Ship To / Bill To address",
+  "ship-to-address": "Ship To Address",
+  "bill-to-address": "Bill To Address",
+  "same-as-ship-to": "Same as Ship To",
+  "addresses-are-successfully-updated": "The Ship To and Bill To addresses are successfully updated."
 }

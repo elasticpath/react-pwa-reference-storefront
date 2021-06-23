@@ -49,6 +49,8 @@ interface AddressFormMainProps {
   selectactionShippingUri?: string,
   /** Selectaction billing URI. */
   selectactionBillingUri?: string,
+  /** Opened address URI. */
+  addressUri?: string,
 }
 
 interface AddressFormMainState {
@@ -120,12 +122,16 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     this.setAsBillingAddress = this.setAsBillingAddress.bind(this);
     this.submitAddress = this.submitAddress.bind(this);
     this.cancel = this.cancel.bind(this);
+    this.fetchAddressForm = this.fetchAddressForm.bind(this);
+    this.fetchGeoData = this.fetchGeoData.bind(this);
   }
 
   componentDidMount() {
     this.fetchGeoData();
-    const { addressData } = this.props;
-    if (addressData && addressData.addressUri) {
+    const { addressData, addressUri } = this.props;
+    if (addressUri) {
+      this.fetchAddressData(addressUri);
+    } else if (addressData && addressData.addressUri) {
       this.fetchAddressData(addressData.addressUri);
     } else {
       this.fetchAddressForm();
@@ -177,7 +183,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
   async submitAddress(event) {
     event.preventDefault();
     const {
-      addressData, fetchData, handleShowAlert, onCloseModal, selectactionShippingUri, selectactionBillingUri, accountName,
+      addressData, fetchData, handleShowAlert, onCloseModal, selectactionShippingUri, selectactionBillingUri, accountName, addressUri,
     } = this.props;
     const {
       addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode, isShippingAddress, isBillingAddress,
@@ -186,7 +192,11 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     let link;
     let methodType;
     let isAddAddress;
-    if (addressData && addressData.addressUri) {
+    if (addressUri) {
+      link = addressUri;
+      methodType = 'put';
+      isAddAddress = false;
+    } else if (addressData && addressData.addressUri) {
       link = addressData.addressUri;
       methodType = 'put';
       isAddAddress = false;
@@ -245,14 +255,15 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
             });
         }
         this.setState({ failedSubmit: false });
-        await fetchData();
-        await onCloseModal();
         await handleShowAlert(isAddAddress ? intl.get('address-is-added', { accountName }) : intl.get('address-is-updated'), true);
       }
+      await fetchData();
     } catch (error) {
       await handleShowAlert(isAddAddress ? intl.get('add-address-error') : intl.get('update-address-error'));
       // eslint-disable-next-line no-console
       console.error(error.message);
+    } finally {
+      await onCloseModal();
     }
   }
 
@@ -292,10 +303,10 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
             firstName: res.name['given-name'],
             lastName: res.name['family-name'],
             address: res.address['street-address'],
-            extendedAddress: res.address['extended-address'] ? res.address['extended-address'] : '',
+            extendedAddress: res.address['extended-address'] || '',
             city: res.address.locality,
             country: res.address['country-name'],
-            subCountry: res.address.region,
+            subCountry: res.address.region || '',
             postalCode: res.address['postal-code'],
           });
         });
@@ -303,21 +314,28 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
   }
 
   fetchAddressForm() {
-    login().then(() => {
-      cortexFetch('/?zoom=defaultprofile:addresses:addressform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          const addressFormLink = res._defaultprofile[0]._addresses[0]._addressform[0].links.find(link => link.rel === 'createaddressaction').uri;
-          this.setState({
-            addressForm: addressFormLink,
+    const { addressData } = this.props;
+    if (addressData && addressData._addressform[0]._createaddressaction) {
+      this.setState({
+        addressForm: addressData._addressform[0]._createaddressaction[0].self.uri,
+      });
+    } else {
+      login().then(() => {
+        cortexFetch('/?zoom=defaultprofile:addresses:addressform', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+          .then(res => res.json())
+          .then((res) => {
+            const addressFormLink = res._defaultprofile[0]._addresses[0]._addressform[0].links.find(link => link.rel === 'createaddressaction').uri;
+            this.setState({
+              addressForm: addressFormLink,
+            });
           });
-        });
-    });
+      });
+    }
   }
 
   cancel() {
@@ -413,7 +431,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     return (
       <div className="address-form-component container" data-region="appMain">
         <div className="feedback-label feedback-container" data-region="componentAddressFeedbackRegion">
-          {failedSubmit ? intl.get('failed-to-save-message') : ('')}
+          {failedSubmit && intl.get('failed-to-save-message')}
         </div>
         <form className="form-horizontal" onSubmit={this.submitAddress}>
           <div className="form-group">

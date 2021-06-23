@@ -55,7 +55,7 @@
         }
       }
     }
-  
+
     .edit-address-btn {
       + .delete-address-btn {
         text-transform: capitalize;
@@ -103,8 +103,14 @@
   margin-bottom: 32px;
 }
 
+.no-address-message {
+  text-align: center;
+  font-size: 18px;
+}
+
 .delete-address-dialog {
   padding: 15px 30px;
+  max-width: 570px;
 
   @media (min-width: $mobileWidth) {
     min-width: 550px;

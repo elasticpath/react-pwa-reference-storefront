@@ -201,7 +201,7 @@
   "next-page": "N-e-x-t- -P-a-g-e",
   "product-recommendations": "R-e-l-a-t-e-d- -P-r-o-d-u-c-t-s",
   "product-bundle-constituents": "A-v-a-i-l-a-b-l-e- -P-r-o-d-u-c-t-s",
-  "no-saved-address-message": "Y-o-u- -h-a-v-e- -n-o- -s-a-v-e-d- -a-d-d-r-e-s-s-e-s",
+  "no-saved-address-message": "Y-o-u- -h-a-v-e- -n-o- -s-a-v-e-d- -a-d-d-r-e-s-s-e-s-.",
   "delete-address": "D-e-l-e-t-e- -A-d-d-r-e-s-s",
   "addresses": "A-d-d-r-e-s-s-e-s",
   "personal-information": "P-e-r-s-o-n-a-l- -I-n-f-o-r-m-a-t-i-o-n",
@@ -517,5 +517,12 @@
   "next": "N-e-x-t",
   "new-payment-instrument-added": "N-e-w- -p-a-y-m-e-n-t- -i-n-s-t-r-u-m-e-n-t- -i-s- -a-d-d-e-d-.",
   "credit-card-deleted": "A-d-d-e-d- -c-r-e-d-i-t- -c-a-r-d- -i-s- -s-u-c-c-e-s-s-f-u-l-l-y- -d-e-l-e-t-e-d- -f-r-o-m- -a-c-c-o-u-n-t-.",
-  "payment-instrument": "P-a-y-m-e-n-t- -I-n-s-t-r-u-m-e-n-t"
+  "payment-instrument": "P-a-y-m-e-n-t- -I-n-s-t-r-u-m-e-n-t",
+  "confirm-delete-default-address": "T-h-i-s- -a-d-d-r-e-s-s- -i-s- -d-e-f-a-u-l-t- -a-d-d-r-e-s-s- -f-o-r- -S-h-i-p- -T-o- -B-i-l-l- -T-o-.- -A-r-e- -y-o-u- -s-u-r-e- -y-o-u- -w-a-n-t- -t-o- -d-e-l-e-t-e- -t-h-e- -a-d-d-e-d- -a-d-d-r-e-s-s-?",
+  "ship-to-bill-to": "S-h-i-p- -T-o- -/- -B-i-l-l- -T-o",
+  "please-assign-default-address": "P-l-e-a-s-e- -a-s-s-i-g-n- -D-e-f-a-u-l-t- -S-h-i-p- -T-o- -/- -B-i-l-l- -T-o- -a-d-d-r-e-s-s",
+  "ship-to-address": "S-h-i-p- -T-o- -A-d-d-r-e-s-s",
+  "bill-to-address": "B-i-l-l- -T-o- -A-d-d-r-e-s-s",
+  "same-as-ship-to": "S-a-m-e- -a-s- -S-h-i-p- -T-o",
+  "addresses-are-successfully-updated": "T-h-e- -S-h-i-p- -T-o- -a-n-d- -B-i-l-l- -T-o- -a-d-d-r-e-s-s-e-s- -a-r-e- -s-u-c-c-e-s-s-f-u-l-l-y- -u-p-d-a-t-e-d-."
 }

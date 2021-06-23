@@ -39,7 +39,8 @@ interface AccountMainState {
   isCreateAddressModalOpen: boolean
   isCreatePaymentModalOpen: boolean
   selectedTab: number
-  isDisabled: boolean
+  isPaymentDisabled: boolean
+  isAddressDisabled: boolean
 }
 
 interface AccountMainRouterProps {
@@ -59,7 +60,8 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
       isCreateAddressModalOpen: false,
       isCreatePaymentModalOpen: false,
       selectedTab: 0,
-      isDisabled: false,
+      isPaymentDisabled: false,
+      isAddressDisabled: false,
     };
     this.renderData = this.renderData.bind(this);
     this.handleShowAlert = this.handleShowAlert.bind(this);
@@ -103,7 +105,13 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
 
   checkPaymentInstrument = (disabled) => {
     if (disabled) {
-      this.setState({ isDisabled: true });
+      this.setState({ isPaymentDisabled: true });
+    }
+  }
+
+  checkAddressData = (disabled) => {
+    if (disabled) {
+      this.setState({ isAddressDisabled: true });
     }
   }
 
@@ -127,7 +135,9 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
           isCreateModalOpen={isCreateAddressModalOpen}
           setIsCreateAddressModalOpen={() => this.setIsCreateAddressModalOpen()}
           handleShowAlert={this.handleShowAlert}
-          accountName={history && history.location && history.location.state.accountName && history.location.state.accountName}
+          accountName={history && history.location && history.location.state.accountName}
+          history={history}
+          checkIsDisabled={disabled => this.checkAddressData(disabled)}
         />
       </div>,
       <div key="tab-payment-instruments">
@@ -148,7 +158,7 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
     const { history } = this.props;
     const { isSelectedTab } = history.location.state;
     const {
-      isShowAlert, alertMessageData, selectedTab, isDisabled,
+      isShowAlert, alertMessageData, selectedTab, isPaymentDisabled, isAddressDisabled,
     } = this.state;
     const selected: number = isSelectedTab || selectedTab;
 
@@ -168,12 +178,12 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
             {history && history.location && history.location.state.accountName && history.location.state.accountName}
           </div>
           {selected === 2 && (
-          <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" onClick={() => this.openCreateAddressModal()}>
+          <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" disabled={isAddressDisabled} onClick={() => this.openCreateAddressModal()}>
             {intl.get('add-new-address')}
           </button>
           )}
           {selected === 3 && (
-            <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" disabled={isDisabled} onClick={() => this.openPaymentModal(true)}>
+            <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" disabled={isPaymentDisabled} onClick={() => this.openPaymentModal(true)}>
               {intl.get('add-new-payment-instrument')}
             </button>
           )}
