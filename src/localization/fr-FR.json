@@ -524,5 +524,21 @@
   "ship-to-address": "S-h-i-p- -T-o- -A-d-d-r-e-s-s",
   "bill-to-address": "B-i-l-l- -T-o- -A-d-d-r-e-s-s",
   "same-as-ship-to": "S-a-m-e- -a-s- -S-h-i-p- -T-o",
-  "addresses-are-successfully-updated": "T-h-e- -S-h-i-p- -T-o- -a-n-d- -B-i-l-l- -T-o- -a-d-d-r-e-s-s-e-s- -a-r-e- -s-u-c-c-e-s-s-f-u-l-l-y- -u-p-d-a-t-e-d-."
+  "addresses-are-successfully-updated": "T-h-e- -S-h-i-p- -T-o- -a-n-d- -B-i-l-l- -T-o- -a-d-d-r-e-s-s-e-s- -a-r-e- -s-u-c-c-e-s-s-f-u-l-l-y- -u-p-d-a-t-e-d-.",
+  "add-new-associate": "A-d-d- -N-e-w- -A-s-s-o-c-i-a-t-e",
+  "email-id": "E-m-a-i-l- -I-D",
+  "associates-list": "A-s-s-o-c-i-a-t-e-s- -L-i-s-t",
+  "buyer-admin": "B-u-y-e-r- -A-d-m-i-n",
+  "catalog-browser": "C-a-t-a-l-o-g- -B-r-o-w-s-e-r",
+  "limited-catalog-browser": "L-i-m-i-t-e-d- -C-a-t-a-l-o-g- -B-r-o-w-s-e-r",
+  "single-session-buyer": "S-i-n-g-l-e- -S-e-s-s-i-o-n- -B-u-y-e-r",
+  "remove-associate-message": "A-r-e- -y-o-u- -s-u-r-e- -y-o-u- -w-a-n-t- -t-o- -r-e-m-o-v-e- -t-h-e- -a-s-s-o-c-i-a-t-e- {email}?",
+  "user-role": "U-s-e-r- -R-o-l-e",
+  "associate-successfully-deleted": "T-h-e- -a-s-s-o-c-i-a-t-e- -i-s- -s-u-c-c-e-s-s-f-u-l-l-y- -d-e-l-e-t-e-d",
+  "associate-successfully-updated": "T-h-e- -a-s-s-o-c-i-a-t-e- -i-s- -s-u-c-c-e-s-s-f-u-l-l-y- -u-p-d-a-t-e-d",
+  "associate-successfully-added": "N-e-w- -a-s-s-o-c-i-a-t-e- -i-s- -a-d-d-e-d- -t-o- -t-h-e- -a-c-c-o-u-n-t- -'{account}'",
+  "new-user-role": "N-e-w- -U-s-e-r- -R-o-l-e",
+  "buyer-name": "B-u-y-e-r- -N-a-m-e",
+  "purchase": "P-u-r-c-h-a-s-e",
+  "no-account-associates": "N-o- -a-s-s-o-c-i-a-t-e-s- -a-d-d-e-d- -t-o- -t-h-i-s- -a-c-c-o-u-n-t"
 }

@@ -35,7 +35,6 @@ interface AccountMainState {
   isMiniLoader: boolean
   setAsDefault: boolean
   displayName: string
-
 }
 
 interface AccountMainRouterProps {
@@ -80,7 +79,8 @@ class PaymentInstrumentFormPage extends React.Component<RouteComponentProps<Acco
         },
       })
         .then(result => result.json());
-      if (res && res._paymentmethods && res._paymentinstruments) {
+      console.log('res', res);
+      if (res && res._paymentinstruments) {
         if (setAsDefault && res._paymentinstruments[0]._defaultinstrumentselector[0]._choice) {
           const choice = res._paymentinstruments[0]._defaultinstrumentselector[0]._choice.filter(el => el._description[0].name === displayName);
           await this.handleDefaultCheck(choice[0]._description[0], res._paymentinstruments[0]);
@@ -89,6 +89,10 @@ class PaymentInstrumentFormPage extends React.Component<RouteComponentProps<Acco
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
+    } finally {
+      this.setState({
+        isMiniLoader: false,
+      });
     }
   }
 

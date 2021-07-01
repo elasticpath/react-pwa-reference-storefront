@@ -1,0 +1,153 @@
+@import './../../../theme/common.scss';
+
+.account-associates {
+  overflow-x: auto;
+
+  .associate-edit {
+    border-right: 1px solid $mainBorderColor;
+  }
+
+  .alert-container {
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    padding: 0 10px;
+  }
+
+  .action {
+    padding: 0 6px;
+    min-width: 42px;
+    display: inline-block;
+
+    &:hover {
+      font-weight: 600;
+    }
+
+    &.disabled-button {
+      color: $sixComplimentTextColor;
+
+      &:hover {
+        font-weight: unset;
+      }
+    }
+  }
+
+  .action-wrapper {
+    min-width: 128px;
+  }
+
+  .action-column {
+    &:hover {
+      font-weight: unset;
+    }
+  }
+}
+
+.email-input {
+  width: 100%;
+  padding-bottom: 20px;
+  padding-right: 10px;
+
+  input {
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+
+.btn-select-role {
+  border: 1px solid #CCCCCC;
+  position: relative;
+  display: block;
+  width: 50%;
+  color: #000000;
+  text-align: left;
+  font-weight: 400;
+
+  &::after {
+    right: 16px;
+    top: 16px;
+    position: absolute;
+  }
+
+  &:hover {
+    background-color: unset;
+  }
+
+  &.dropdown-toggle {
+    &:hover {
+    color: $mainColor;
+    }
+  }
+}
+
+.role-selection-menu {
+  width: 50%;
+  padding-top: 5px;
+
+  .associate-option {
+    padding: 5px 15px;
+    color: $mainColor;
+    font-size: 14px;
+
+    &:hover {
+      background-color: $firstComplimentBackground;
+      cursor: pointer;
+    }
+  }
+}
+
+.new-associate-modal {
+  width: calc(100vw - 4.8rem);
+  padding: 15px;
+
+  @media screen and (min-width: 681px) {
+    width: 580px;
+  }
+
+  .modal-header {
+    padding: 10px 20px;
+  }
+
+  .required-label {
+    color: $mainErrorColor
+  }
+
+  .modal-content {
+    border: none;
+  }
+  +button {
+    top: 25px;
+    right: 27px;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.associate-data {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .field-title {
+    color: $secondComplimentTextColor
+  }
+
+  .field-value {
+    font-size: 15px;
+    color: $mainColor;
+    padding-top: 10px;
+  }
+
+  .associate-field {
+    width: 50%;
+    margin: 0;
+    padding: 20px 10px;
+  }
+}
+
+.padding-field {
+  padding: 10px 0;
+}

@@ -524,5 +524,21 @@
   "ship-to-address": "Ship To Address",
   "bill-to-address": "Bill To Address",
   "same-as-ship-to": "Same as Ship To",
-  "addresses-are-successfully-updated": "The Ship To and Bill To addresses are successfully updated."
+  "addresses-are-successfully-updated": "The Ship To and Bill To addresses are successfully updated.",
+  "add-new-associate": "Add New Associate",
+  "email-id": "Email ID",
+  "associates-list": "Associates List",
+  "buyer-admin": "Buyer Admin",
+  "catalog-browser": "Catalog Browser",
+  "limited-catalog-browser": "Limited Catalog Browser",
+  "single-session-buyer": "Single Session Buyer",
+  "remove-associate-message": "Are you sure you want to remove the associate {email}?",
+  "user-role": "User Role",
+  "associate-successfully-deleted": "The associate is successfully deleted",
+  "associate-successfully-updated": "The associate is successfully updated",
+  "associate-successfully-added": "New associate is added to the account '{account}'",
+  "new-user-role": "New User Role",
+  "buyer-name": "Buyer Name",
+  "purchase": "Purchase",
+  "no-account-associates": "No associates added to this account"
 }

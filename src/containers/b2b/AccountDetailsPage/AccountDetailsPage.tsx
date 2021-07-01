@@ -32,15 +32,19 @@ import TabSelection from '../../../components/src/TabSelection/tabselection.main
 import { ReactComponent as ArrowIcon } from '../../../images/icons/arrow_left.svg';
 import '../AccountMain.scss';
 import './AccountDetailsPage.scss';
+import AccountAssociates from './AccountAssociates';
+import PurchaseHistory from './PurchaseHistoryPage';
 
 interface AccountMainState {
   isShowAlert: boolean
   alertMessageData: { message: string, isSuccess: boolean }
   isCreateAddressModalOpen: boolean
+  isCreateAssociateModalOpen: boolean
   isCreatePaymentModalOpen: boolean
   selectedTab: number
   isPaymentDisabled: boolean
   isAddressDisabled: boolean
+  isAssociateDisabled: boolean
 }
 
 interface AccountMainRouterProps {
@@ -58,27 +62,32 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
       isShowAlert: false,
       alertMessageData: { message: '', isSuccess: false },
       isCreateAddressModalOpen: false,
+      isCreateAssociateModalOpen: false,
       isCreatePaymentModalOpen: false,
       selectedTab: 0,
       isPaymentDisabled: false,
       isAddressDisabled: false,
+      isAssociateDisabled: false,
     };
     this.renderData = this.renderData.bind(this);
     this.handleShowAlert = this.handleShowAlert.bind(this);
     this.handleHideAlert = this.handleHideAlert.bind(this);
     this.openCreateAddressModal = this.openCreateAddressModal.bind(this);
     this.openPaymentModal = this.openPaymentModal.bind(this);
-    this.setIsCreateAddressModalOpen = this.setIsCreateAddressModalOpen.bind(this);
+    this.setIsCreateAddressModalClose = this.setIsCreateAddressModalClose.bind(this);
+    this.openCreateAssociateModal = this.openCreateAssociateModal.bind(this);
+    this.setIsCreateAssociateModalClose = this.setIsCreateAssociateModalClose.bind(this);
     this.onSelectTab = this.onSelectTab.bind(this);
     this.checkPaymentInstrument = this.checkPaymentInstrument.bind(this);
+    this.checkAssociateData = this.checkAssociateData.bind(this);
   }
 
   componentDidMount() {
     const { history } = this.props;
-    const { isSelectedTab } = history.location.state;
+    const { state } = history.location;
 
-    if (isSelectedTab) {
-      this.setState({ selectedTab: isSelectedTab });
+    if (state && state.isSelectedTab) {
+      this.setState({ selectedTab: state.isSelectedTab });
     }
   }
 
@@ -92,11 +101,15 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
 
   handleShowAlert(message, isSuccess) {
     this.setState({ isShowAlert: true, alertMessageData: { message, isSuccess } });
-    setTimeout(this.handleHideAlert, 3200);
+    setTimeout(this.handleHideAlert, 5000);
   }
 
   openCreateAddressModal = () => {
     this.setState({ isCreateAddressModalOpen: true });
+  }
+
+  openCreateAssociateModal = () => {
+    this.setState({ isCreateAssociateModalOpen: true });
   }
 
   openPaymentModal = (isOpen) => {
@@ -115,29 +128,48 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
     }
   }
 
-  setIsCreateAddressModalOpen = () => {
+  checkAssociateData = (disabled) => {
+    if (disabled) {
+      this.setState({ isAssociateDisabled: true });
+    }
+  }
+
+  setIsCreateAddressModalClose = () => {
     this.setState({ isCreateAddressModalOpen: false });
   }
 
+  setIsCreateAssociateModalClose = () => {
+    this.setState({ isCreateAssociateModalOpen: false });
+  }
+
   renderData() {
-    const { isCreateAddressModalOpen, isCreatePaymentModalOpen } = this.state;
     const { history } = this.props;
+    const {
+      isCreateAddressModalOpen, isCreatePaymentModalOpen, isCreateAssociateModalOpen, isAddressDisabled, isAssociateDisabled, isPaymentDisabled,
+    } = this.state;
 
     return ([
       <div key="tab-content">
         <Overviews history={this.props.history} />
       </div>,
       <div key="tab-associates">
-        {intl.get('associates')}
+        <AccountAssociates
+          isCreateAssociateModalOpen={isCreateAssociateModalOpen}
+          openCreateAssociateModal={() => this.openCreateAssociateModal()}
+          setIsCreateAssociateModalClose={() => this.setIsCreateAssociateModalClose()}
+          history={history}
+          checkIsDisabled={disabled => this.checkAssociateData(disabled)}
+          isReadOnly={isAssociateDisabled}
+        />
       </div>,
       <div key="tab-addresses">
         <AddressBook
           isCreateModalOpen={isCreateAddressModalOpen}
-          setIsCreateAddressModalOpen={() => this.setIsCreateAddressModalOpen()}
+          setIsCreateAddressModalOpen={() => this.setIsCreateAddressModalClose()}
           handleShowAlert={this.handleShowAlert}
-          accountName={history && history.location && history.location.state.accountName}
           history={history}
           checkIsDisabled={disabled => this.checkAddressData(disabled)}
+          isReadOnly={isAddressDisabled}
         />
       </div>,
       <div key="tab-payment-instruments">
@@ -146,22 +178,25 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
           setIsCreatePaymentModalOpen={isOpen => this.openPaymentModal(isOpen)}
           history={history}
           checkIsDisabled={disabled => this.checkPaymentInstrument(disabled)}
+          isReadOnly={isPaymentDisabled}
         />
       </div>,
       <div key="tab-purchase-history">
-        {intl.get('purchase-history')}
+        <PurchaseHistory
+          history={history}
+        />
       </div>]
     );
   }
 
   render() {
     const { history } = this.props;
-    const { isSelectedTab } = history.location.state;
+    const { state } = history.location;
     const {
-      isShowAlert, alertMessageData, selectedTab, isPaymentDisabled, isAddressDisabled,
+      isShowAlert, alertMessageData, selectedTab, isPaymentDisabled, isAddressDisabled, isAssociateDisabled,
     } = this.state;
-    const selected: number = isSelectedTab || selectedTab;
-
+    const selected: number = (state && state.isSelectedTab) || selectedTab;
+    console.log('isAddressDisabled', isAddressDisabled);
     const tabs = [intl.get('overview'), intl.get('associates'), intl.get('address-book'), intl.get('payment-instruments'), intl.get('purchase-history')];
     return (
       <div className="container account-details">
@@ -175,8 +210,13 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
         <br />
         <div className="account-details-header">
           <div className="account-name">
-            {history && history.location && history.location.state.accountName && history.location.state.accountName}
+            {history && history.location.state && history.location.state.accountName && history.location.state.accountName}
           </div>
+          {selected === 1 && (
+            <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" disabled={isAssociateDisabled} onClick={() => this.openCreateAssociateModal()}>
+              {intl.get('add-new-associate')}
+            </button>
+          )}
           {selected === 2 && (
           <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" disabled={isAddressDisabled} onClick={() => this.openCreateAddressModal()}>
             {intl.get('add-new-address')}

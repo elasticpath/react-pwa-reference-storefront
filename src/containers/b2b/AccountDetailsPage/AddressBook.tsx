@@ -36,9 +36,9 @@ interface AddressBookProps {
   isCreateModalOpen: boolean,
   setIsCreateAddressModalOpen: any,
   handleShowAlert: any,
-  accountName: string,
   history?: any
   checkIsDisabled?: (key: boolean) => any
+  isReadOnly?: boolean
 }
 
 const zoomArray = [
@@ -66,7 +66,7 @@ const zoomArray = [
 ];
 
 const AddressBook: React.FC<AddressBookProps> = ({
-  isCreateModalOpen, setIsCreateAddressModalOpen, handleShowAlert, accountName, history, checkIsDisabled,
+  isCreateModalOpen, setIsCreateAddressModalOpen, handleShowAlert, history, checkIsDisabled, isReadOnly,
 }) => {
   const [accountData, setAccountData] = useState<any>(undefined);
   const [addressData, setAddressData] = useState<any>(undefined);
@@ -79,7 +79,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
   const fetchAccountData = async () => {
     let uri: string = '';
 
-    if (history && history.location && history.location.state.accountUri) {
+    if (history && history.location.state && history.location.state.accountUri) {
       const { accountUri } = history.location.state;
       uri = accountUri;
     }
@@ -100,18 +100,18 @@ const AddressBook: React.FC<AddressBookProps> = ({
         res = await cortexFetch(`${uri}/?zoom=${zoomArray.join()}`, options)
           .then(resData => resData.json());
       }
-      if (res && res._addresses && res._addresses[0]._addressform) {
+      if (!res._addresses[0]._addressform) {
+        checkIsDisabled(true);
+      }
+      if (res && res._addresses) {
         const resAddressData = res._addresses[0];
         const chosenBillingAddress = resAddressData._billingaddresses[0]._selector && resAddressData._billingaddresses[0]._selector[0]._chosen && resAddressData._billingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
         const chosenShippingAddress = resAddressData._shippingaddresses[0]._selector && resAddressData._shippingaddresses[0]._selector[0]._chosen && resAddressData._shippingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
         setAccountData(resAddressData);
         setChosenShippingUri(chosenShippingAddress);
         setChosenBillingUri(chosenBillingAddress);
-      } else {
-        checkIsDisabled(true);
       }
     } catch (error) {
-      setIsLoading(false);
       // eslint-disable-next-line no-console
       console.error(error.message);
     } finally {
@@ -145,6 +145,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
   };
 
   const renderNewAddressModal = () => {
+    const { state } = history.location;
     const newOrEdit = (addressData && addressData.addressUri) ? intl.get('edit') : intl.get('new');
     const isChosenBilling = chosenBillingUri === (addressData && addressData.addressUri);
     const isChosenShipping = chosenShippingUri === (addressData && addressData.addressUri);
@@ -161,8 +162,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title">
-                {newOrEdit}
-                {intl.get('address')}
+                {`${newOrEdit} ${intl.get('address')}`}
               </h2>
               <button type="button" aria-label="close" className="close-modal-btn" onClick={handleCloseAddressModal}>
                 <CloseIcon />
@@ -175,7 +175,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
                 fetchData={fetchAccountData}
                 addressData={accountData}
                 addressUri={addressData && addressData.addressUri}
-                accountName={accountName}
+                accountName={state && state.accountName}
                 chosenBilling={isChosenBilling}
                 chosenShipping={isChosenShipping}
                 selectactionBillingUri={selectactionBillingUri}
@@ -202,6 +202,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
               onEditAddress={handleEditAddress}
               chosenShippingUri={chosenShippingUri}
               chosenBillingUri={chosenBillingUri}
+              isReadOnly={isReadOnly}
             />
           )}
           {!accountData && !isLoading && (

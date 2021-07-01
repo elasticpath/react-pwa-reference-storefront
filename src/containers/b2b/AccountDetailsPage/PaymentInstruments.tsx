@@ -47,6 +47,7 @@ interface AccountMainRouterProps {
   history: any
   setIsCreatePaymentModalOpen: (key: boolean) => any
   checkIsDisabled: (key: boolean) => any
+  isReadOnly?: boolean
 }
 
 const zoomArray = [
@@ -151,38 +152,39 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
   async getPayments() {
     const { history, checkIsDisabled } = this.props;
     const { accountUri } = history.location.state;
-    try {
-      const res = await cortexFetch(`${accountUri}/?zoom=${zoomArray.join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(result => result.json());
-      if (res && res._paymentmethods && res._paymentinstruments) {
-        const paymentData = res._paymentmethods[0]._element.filter((el) => {
-          const keys = Object.keys(el._paymentinstrumentform[0]['payment-instrument-identification-form']);
-          return keys.length === 1 && keys.indexOf('display-name') !== -1 && !el._paymentinstrumentform[0].messages[0];
-        });
-        this.setState({
-          paymentInstruments: res._paymentinstruments[0],
-          paymentMethodsData: paymentData,
-          isShowConfirmModal: false,
-          selectedPayment: '',
-        });
-      } else {
-        checkIsDisabled(true);
-      }
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e);
-    } finally {
+    const res = await cortexFetch(`${accountUri}/?zoom=${zoomArray.join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }).then(result => result.json());
+    if (res && res._paymentinstruments && !res._paymentinstruments[0]._defaultinstrumentselector) {
+      checkIsDisabled(true);
+    }
+    console.log('res', res);
+    if (res && res._paymentinstruments && res._paymentinstruments[0]) {
       this.setState({
-        isDeleteLoading: false,
-        isDataLoading: false,
-        isShowConfirmModal: false,
+        paymentInstruments: res._paymentinstruments[0],
       });
     }
+
+    if (res && res._paymentinstruments && res._paymentmethods && res._paymentinstruments[0]._defaultinstrumentselector) {
+      const paymentData = res._paymentmethods[0]._element.filter((el) => {
+        const keys = Object.keys(el._paymentinstrumentform[0]['payment-instrument-identification-form']);
+        return keys.length === 1 && keys.indexOf('display-name') !== -1 && !el._paymentinstrumentform[0].messages[0];
+      });
+
+      this.setState({
+        paymentMethodsData: paymentData,
+        isShowConfirmModal: false,
+        selectedPayment: '',
+      });
+    }
+    this.setState({
+      isDeleteLoading: false,
+      isDataLoading: false,
+      isShowConfirmModal: false,
+    });
   }
 
   handleHideAlert() {
@@ -191,7 +193,7 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
 
   handleShowAlert(message, isSuccess) {
     this.setState({ isShowAlert: true, alertMessageData: { message, isSuccess } });
-    setTimeout(this.handleHideAlert, 3200);
+    setTimeout(this.handleHideAlert, 5000);
   }
 
   onSelectPayment = (value) => {
@@ -305,6 +307,7 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
   }
 
   render() {
+    const { isReadOnly } = this.props;
     const {
       paymentInstruments, isDataLoading, isShowAlert, alertMessageData,
     } = this.state;
@@ -338,12 +341,12 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
                 <tr key={instrument.self.uri} className="account-list-rows" onClick={() => {}}>
                   <td className="defaults">
                     <input type="radio" name="paymentSelection" id="paymentSelection" className="style-radio" checked={instrument['default-on-profile']} readOnly />
-                    <label role="presentation" htmlFor="paymentSelection" onClick={() => this.handleDefaultCheck(instrument, paymentInstruments)} />
+                    <label role="presentation" htmlFor="paymentSelection" onClick={() => !isReadOnly && this.handleDefaultCheck(instrument, paymentInstruments)} />
                   </td>
                   <td className="name">{instrument._paymentmethod[0]['display-name']}</td>
                   <td className="external-id">{instrument.name}</td>
                   <td className="action-column">
-                    <div role="presentation" onClick={() => this.handleConfirmModal(instrument.self.uri)}>
+                    <div role="presentation" className={`${isReadOnly && 'disabled'} delete-button`} onClick={() => !isReadOnly && this.handleConfirmModal(instrument.self.uri)}>
                       {intl.get('delete')}
                     </div>
                   </td>
