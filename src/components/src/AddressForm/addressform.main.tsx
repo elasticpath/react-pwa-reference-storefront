@@ -188,8 +188,6 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     const {
       addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode, isShippingAddress, isBillingAddress,
     } = this.state;
-    console.log('addressUri', addressUri);
-    console.log('addressData', addressData);
     let link;
     let methodType;
     let isAddAddress;
@@ -206,7 +204,6 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
       methodType = 'post';
       isAddAddress = true;
     }
-    console.log('link', link);
     try {
       await login();
       const res = await cortexFetch(link, {

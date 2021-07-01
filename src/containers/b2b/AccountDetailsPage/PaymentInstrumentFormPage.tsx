@@ -79,7 +79,6 @@ class PaymentInstrumentFormPage extends React.Component<RouteComponentProps<Acco
         },
       })
         .then(result => result.json());
-      console.log('res', res);
       if (res && res._paymentinstruments) {
         if (setAsDefault && res._paymentinstruments[0]._defaultinstrumentselector[0]._choice) {
           const choice = res._paymentinstruments[0]._defaultinstrumentselector[0]._choice.filter(el => el._description[0].name === displayName);
