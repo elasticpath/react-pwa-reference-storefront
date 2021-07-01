@@ -180,6 +180,7 @@ const AddressBook: React.FC<AddressBookProps> = ({
                 chosenShipping={isChosenShipping}
                 selectactionBillingUri={selectactionBillingUri}
                 selectactionShippingUri={selectactionShippingUri}
+                isNewAddress={isCreateModalOpen}
               />
             </div>
           </div>
