@@ -51,6 +51,8 @@ interface AddressFormMainProps {
   selectactionBillingUri?: string,
   /** Opened address URI. */
   addressUri?: string,
+  /** New address modal */
+  isNewAddress?: boolean,
 }
 
 interface AddressFormMainState {
@@ -188,7 +190,6 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     const {
       addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode, isShippingAddress, isBillingAddress,
     } = this.state;
-
     let link;
     let methodType;
     let isAddAddress;
@@ -205,7 +206,6 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
       methodType = 'post';
       isAddAddress = true;
     }
-
     try {
       await login();
       const res = await cortexFetch(link, {
@@ -426,7 +426,12 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     const {
       failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode,
     } = this.state;
-    const { chosenShipping, chosenBilling, addressData } = this.props;
+    const {
+      chosenShipping, chosenBilling, addressUri, isNewAddress, addressData,
+    } = this.props;
+
+    const disableBilling = chosenBilling || isNewAddress || (!addressData && !addressUri);
+    const disableShipping = chosenShipping || isNewAddress || (!addressData && !addressUri);
 
     return (
       <div className="address-form-component container" data-region="appMain">
@@ -529,14 +534,14 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
           </div>
           <div className="checkbox-wrap">
             <label htmlFor="shipping_address" className="checkbox-label">
-              <input type="checkbox" id="shipping_address" defaultChecked={chosenShipping} disabled={chosenShipping || !addressData} onChange={this.setAsShippingAddress} />
-              <span className={`${chosenShipping || !addressData ? 'disabled' : ''} apply-balance-txt`}>
+              <input type="checkbox" id="shipping_address" defaultChecked={chosenShipping} disabled={disableShipping} onChange={this.setAsShippingAddress} />
+              <span className={`${disableShipping ? 'disabled' : ''} apply-balance-txt`}>
                 {intl.get('shipping-address')}
               </span>
             </label>
             <label htmlFor="billing_address">
-              <input type="checkbox" id="billing_address" defaultChecked={chosenBilling} disabled={chosenBilling || !addressData} onChange={this.setAsBillingAddress} />
-              <span className={`${chosenBilling || !addressData ? 'disabled' : ''} apply-balance-txt`}>
+              <input type="checkbox" id="billing_address" defaultChecked={chosenBilling} disabled={disableBilling} onChange={this.setAsBillingAddress} />
+              <span className={`${disableBilling ? 'disabled' : ''} apply-balance-txt`}>
                 {intl.get('billing-address')}
               </span>
             </label>

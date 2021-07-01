@@ -70,6 +70,21 @@
           top: 2px;
           left: -10px;
         }
+
+        &:disabled {
+          color: $mainBorderColor;
+
+          &:hover {
+            color: $mainBorderColor;
+          }
+        }
+      }
+      &:disabled {
+        color: $mainBorderColor;
+
+        &:hover {
+          color: $mainBorderColor;
+        }
       }
     }
 

@@ -44,6 +44,8 @@ interface ProfileAddressesMainProps {
   chosenBillingUri?: string,
   /** chosen Shipping Address URI */
   chosenShippingUri?: string,
+  /** read only address */
+  isReadOnly?: boolean,
 }
 interface ProfileAddressesMainState {
   isDeleteAddressOpen: boolean,
@@ -146,7 +148,9 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
   }
 
   renderAddress(addressElement) {
-    const { onEditAddress, chosenBillingUri, chosenShippingUri } = this.props;
+    const {
+      onEditAddress, chosenBillingUri, chosenShippingUri, isReadOnly,
+    } = this.props;
     const { name, address, self } = addressElement;
     let defaultAddress = '';
 
@@ -194,10 +198,10 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
               </li>
             </ul>
           </div>
-          <button className="ep-btn small edit-address-btn" type="button" onClick={() => onEditAddress(addressElement.self.uri)}>
+          <button disabled={isReadOnly} className="ep-btn small edit-address-btn" type="button" onClick={() => onEditAddress(addressElement.self.uri)}>
             {intl.get('edit')}
           </button>
-          <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDeleteModalOpen(addressElement.self.uri, !!defaultAddress); }} data-actionlink="">
+          <button disabled={isReadOnly} className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDeleteModalOpen(addressElement.self.uri, !!defaultAddress); }} data-actionlink="">
             {intl.get('delete')}
           </button>
         </div>

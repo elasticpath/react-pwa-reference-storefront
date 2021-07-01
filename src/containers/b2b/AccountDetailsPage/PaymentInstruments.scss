@@ -39,11 +39,24 @@
   }
 
   .action-column {
-    color: $firstComplimentColor;
+    .delete-button {
+      color: $firstComplimentColor;
 
-    &:hover {
-      font-weight: bold;
+      &:hover {
+        font-weight: bold;
+      }
+
+      &.disabled {
+        color: $buttonFocusColor;
+
+        &:hover {
+          font-weight: unset;
+        }
+      }
     }
+
+
+
   }
 }
 
