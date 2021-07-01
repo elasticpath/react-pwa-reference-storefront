@@ -161,7 +161,6 @@ class PaymentInstruments extends React.Component<AccountMainRouterProps, Account
     if (res && res._paymentinstruments && !res._paymentinstruments[0]._defaultinstrumentselector) {
       checkIsDisabled(true);
     }
-    console.log('res', res);
     if (res && res._paymentinstruments && res._paymentinstruments[0]) {
       this.setState({
         paymentInstruments: res._paymentinstruments[0],

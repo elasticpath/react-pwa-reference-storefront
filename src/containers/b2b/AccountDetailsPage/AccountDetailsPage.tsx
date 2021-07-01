@@ -196,7 +196,6 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
       isShowAlert, alertMessageData, selectedTab, isPaymentDisabled, isAddressDisabled, isAssociateDisabled,
     } = this.state;
     const selected: number = (state && state.isSelectedTab) || selectedTab;
-    console.log('isAddressDisabled', isAddressDisabled);
     const tabs = [intl.get('overview'), intl.get('associates'), intl.get('address-book'), intl.get('payment-instruments'), intl.get('purchase-history')];
     return (
       <div className="container account-details">
