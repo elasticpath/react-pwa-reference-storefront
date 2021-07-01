@@ -142,7 +142,7 @@ const AccountAssociates: React.FC<AccountAssociatesProps> = ({
         role: selectedRole,
       }),
     });
-    if (res.status === 200) {
+    if (res.status === 200 || res.status === 201) {
       await fetchAssociatesData();
       handleShowAlert(intl.get('associate-successfully-added', { account: accountName }), true);
     }
