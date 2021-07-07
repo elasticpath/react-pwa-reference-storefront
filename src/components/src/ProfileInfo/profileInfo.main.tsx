@@ -90,55 +90,33 @@ class ProfileInfoMain extends Component<ProfileInfoMainProps, ProfileInfoMainSta
 
   submitPersonalInfoChange(event) {
     event.preventDefault();
+    const { profileInfo } = this.props;
     const {
       firstName, lastName,
     } = this.state;
     login().then(() => {
-      cortexFetch('/', {
+      cortexFetch(profileInfo.self.uri, {
+        method: 'put',
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
-      }).then(res => res.json())
-        .then((res) => {
-          const profileNameLink = res.links.find(link => link.rel === 'defaultprofile');
-          cortexFetch(`${profileNameLink.uri}?followlocation=true`, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-          }).then(linkRes => linkRes.json())
-            .then((linkRes) => {
-              cortexFetch(linkRes.self.uri, {
-                method: 'put',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                },
-                body: JSON.stringify({
-                  'given-name': firstName,
-                  'family-name': lastName,
-                }),
-              }).then((response) => {
-                if (response.status === 400) {
-                  this.setState({ failedSubmit: true });
-                } else if (response.status === 201 || response.status === 200 || response.status === 204) {
-                  this.cancel();
-                  const { onChange } = this.props;
-                  onChange();
-                }
-              }).catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error.message);
-              });
-            }).catch((error) => {
-            // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        }).catch((error) => {
+        body: JSON.stringify({
+          'given-name': firstName,
+          'family-name': lastName,
+        }),
+      }).then((response) => {
+        if (response.status === 400) {
+          this.setState({ failedSubmit: true });
+        } else if (response.status === 201 || response.status === 200 || response.status === 204) {
+          this.cancel();
+          const { onChange } = this.props;
+          onChange();
+        }
+      }).catch((error) => {
         // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
+        console.error(error.message);
+      });
     });
   }
 

@@ -20,7 +20,7 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import intl from 'react-intl-universal';
 import { cortexFetch } from '../../../components/src/utils/Cortex';
 import { login } from '../../../hooks/store';
@@ -32,6 +32,7 @@ import AccountTable from '../AccountTable';
 
 interface OverviewsProps {
   history: any
+  onUpdateAccountName: (key: string) => any
 }
 
 const zoomArray = [
@@ -50,7 +51,7 @@ const zoomArray = [
   'purchases',
 ];
 
-const Overviews: React.FC<OverviewsProps> = ({ history }) => {
+const Overviews: React.FC<OverviewsProps> = ({ history, onUpdateAccountName }) => {
   const [accountData, setAccountData] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isShowForm, setIsShowForm] = useState<boolean>(false);
@@ -62,7 +63,7 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
   const [accountFax, setAccountFax] = useState<string>('');
   const [userRole, setUserRole] = useState<string>('');
 
-  const getAccountData = async (uri) => {
+  const getAccountData: (uri: string) => Promise<void> = useCallback(async (uri) => {
     setIsLoading(true);
     const res = await cortexFetch(`${uri}/?zoom=${zoomArray.join()}`, {
       headers: {
@@ -73,6 +74,7 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
       .then(result => result.json());
     if (res) {
       const fields = [];
+      onUpdateAccountName(res['account-business-name']);
       if (res._attributes) {
         // eslint-disable-next-line no-restricted-syntax,guard-for-in
         for (const fieldName in res._attributes[0]) {
@@ -88,7 +90,7 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
       let associate;
       if (res._associates) {
         associate = res._associates[0]._element.find(el => el._associatedetails[0].email === userName);
-        setUserRole(associate.role);
+        setUserRole(associate && associate.role);
       }
 
       setAccountData(res);
@@ -101,7 +103,8 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
       setAccountPhone(res['account-phone']);
       setAccountFax(res['account-fax']);
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleEdit = async () => {
     login().then(() => {
@@ -129,7 +132,7 @@ const Overviews: React.FC<OverviewsProps> = ({ history }) => {
     if (state && state.accountUri) {
       getAccountData(state.accountUri);
     }
-  }, [history.location]);
+  }, [getAccountData, history.location]);
 
   return (
     <div>
