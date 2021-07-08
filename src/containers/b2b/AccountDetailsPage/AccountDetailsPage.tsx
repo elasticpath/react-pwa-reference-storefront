@@ -45,6 +45,7 @@ interface AccountMainState {
   isPaymentDisabled: boolean
   isAddressDisabled: boolean
   isAssociateDisabled: boolean
+  accountName: string
 }
 
 interface AccountMainRouterProps {
@@ -68,6 +69,7 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
       isPaymentDisabled: false,
       isAddressDisabled: false,
       isAssociateDisabled: false,
+      accountName: '',
     };
     this.renderData = this.renderData.bind(this);
     this.handleShowAlert = this.handleShowAlert.bind(this);
@@ -80,12 +82,16 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
     this.onSelectTab = this.onSelectTab.bind(this);
     this.checkPaymentInstrument = this.checkPaymentInstrument.bind(this);
     this.checkAssociateData = this.checkAssociateData.bind(this);
+    this.onUpdateAccountName = this.onUpdateAccountName.bind(this);
   }
 
   componentDidMount() {
     const { history } = this.props;
     const { state } = history.location;
 
+    if (history && history.location.state && history.location.state.accountName) {
+      this.setState({ accountName: history.location.state.accountName });
+    }
     if (state && state.isSelectedTab) {
       this.setState({ selectedTab: state.isSelectedTab });
     }
@@ -142,6 +148,10 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
     this.setState({ isCreateAssociateModalOpen: false });
   }
 
+  onUpdateAccountName = (accountName) => {
+    this.setState({ accountName });
+  }
+
   renderData() {
     const { history } = this.props;
     const {
@@ -150,7 +160,10 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
 
     return ([
       <div key="tab-content">
-        <Overviews history={this.props.history} />
+        <Overviews
+          history={this.props.history}
+          onUpdateAccountName={(name: string) => this.onUpdateAccountName(name)}
+        />
       </div>,
       <div key="tab-associates">
         <AccountAssociates
@@ -193,7 +206,7 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
     const { history } = this.props;
     const { state } = history.location;
     const {
-      isShowAlert, alertMessageData, selectedTab, isPaymentDisabled, isAddressDisabled, isAssociateDisabled,
+      isShowAlert, alertMessageData, selectedTab, isPaymentDisabled, isAddressDisabled, isAssociateDisabled, accountName,
     } = this.state;
     const selected: number = (state && state.isSelectedTab) || selectedTab;
     const tabs = [intl.get('overview'), intl.get('associates'), intl.get('address-book'), intl.get('payment-instruments'), intl.get('purchase-history')];
@@ -209,7 +222,7 @@ class AccountDetailsPage extends React.Component<RouteComponentProps<AccountMain
         <br />
         <div className="account-details-header">
           <div className="account-name">
-            {history && history.location.state && history.location.state.accountName && history.location.state.accountName}
+            {accountName}
           </div>
           {selected === 1 && (
             <button className="ep-btn primary new-address-btn" type="button" data-region="billingAddressButtonRegion" disabled={isAssociateDisabled} onClick={() => this.openCreateAssociateModal()}>
