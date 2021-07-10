@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<attribute_policies>
+<attribute_policy>
+    <guid>hidden-none</guid>
+    <policy_key>HIDDEN</policy_key>
+    <policy_permission>NONE</policy_permission>
+</attribute_policy>
+
+<attribute_policy>
+    <guid>visible-emit</guid>
+    <policy_key>READ_ONLY</policy_key>
+    <policy_permission>EMIT</policy_permission>
+</attribute_policy>
+
+<attribute_policy>
+    <guid>default-emit</guid>
+    <policy_key>DEFAULT</policy_key>
+    <policy_permission>EMIT</policy_permission>
+</attribute_policy>
+
+<attribute_policy>
+    <guid>default-edit</guid>
+    <policy_key>DEFAULT</policy_key>
+    <policy_permission>EDIT</policy_permission>
+</attribute_policy>
+</attribute_policies>
