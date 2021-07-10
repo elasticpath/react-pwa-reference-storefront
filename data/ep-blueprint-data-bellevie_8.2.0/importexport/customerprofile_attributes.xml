@@ -170,30 +170,6 @@
 </attribute>
 
 <attribute>
-    <key>CP_GENDER</key>
-    <name>
-        <value language="en">Gender</value>
-        <value language="en_AU">Gender</value>
-        <value language="en_CA">Gender</value>
-        <value language="en_GB">Gender</value>
-        <value language="en_IE">Gender</value>
-        <value language="en_IN">Gender</value>
-        <value language="en_MT">Gender</value>
-        <value language="en_NZ">Gender</value>
-        <value language="en_PH">Gender</value>
-        <value language="en_SG">Gender</value>
-        <value language="en_US">Gender</value>
-        <value language="en_ZA">Gender</value>
-    </name>
-    <usage>UserProfile</usage>
-    <type>ShortText</type>
-    <multilanguage>false</multilanguage>
-    <required>false</required>
-    <multivalue>false</multivalue>
-    <global>false</global>
-</attribute>
-
-<attribute>
     <key>CP_HTML_EMAIL</key>
     <name>
         <value language="en">HTML emails</value>

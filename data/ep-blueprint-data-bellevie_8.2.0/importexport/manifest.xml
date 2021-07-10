@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <manifest>
     <version>6.0</version>
-    <resource>system_configuration.xml</resource>
     <resource>tax_codes.xml</resource>
     <resource>tax_jurisdictions.xml</resource>
     <resource>warehouses.xml</resource>
@@ -12,7 +11,7 @@
     <resource>store_associations.xml</resource>
     <resource>customerprofile_attributes.xml</resource>
     <resource>customers.xml</resource>
-    <resource>gift_certificates.xml</resource>
+    <resource>user_account_associations.xml</resource>
     <resource>products.xml</resource>
     <resource>bundles.xml</resource>
     <resource>productcategoryassociations.xml</resource>
@@ -30,7 +29,6 @@
     <resource>price_list_assignments.xml</resource>
     <resource>amounts.xml</resource>
     <resource>user_roles.xml</resource>
-    <resource>cmusers.xml</resource>
     <resource>shipping_regions.xml</resource>
     <resource>shipping_service_levels.xml</resource>
     <resource>cmimportjobs.xml</resource>
