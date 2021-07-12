@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<useraccountassociations>
+	<useraccountassociation>
+		<guid>1429f640-f245-4a67-96b6-33af433014cf</guid>
+		<account_guid>ceab9005-b3c7-48f2-bd26-9665629afe9e</account_guid>
+		<user_guid>fedca323-ffcc-4d91-a6e3-adbe872845b2</user_guid>
+		<role>BUYER_ADMIN</role>
+	</useraccountassociation>
+</useraccountassociations>

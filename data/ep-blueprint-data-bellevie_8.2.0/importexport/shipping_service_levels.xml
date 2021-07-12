@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<shipping_service_levels>
+<shipping_service_level guid="084acd38-9b04-415a-a678-294e81c35768">
+    <shipping_region>Switzerland</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>10</value>
+                <display_text>10</display_text>
+                <currency>CHF</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>sageCH</storecode>
+    <carrier>CH Shipping Cost</carrier>
+    <localized_names>
+        <value language="de_CH">Standardversand</value>
+        <value language="fr_CH">livraison standard</value>
+        <value language="it_CH">spedizione standard</value>
+    </localized_names>
+    <code>CHSHIPPING</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="3d752160-5">
+    <shipping_region>USA SELECTED</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>3.99</value>
+                <display_text>3.99</display_text>
+                <currency>USD</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>BelleVieUS</storecode>
+    <carrier>US Shipping Stock Cost</carrier>
+    <localized_names>
+        <value language="en"></value>
+        <value language="en_US">Standard Shipping</value>
+    </localized_names>
+    <code>USSHIPPINGSELECTED</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="3d752160-6">
+    <shipping_region>USA OTHERS</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>5.99</value>
+                <display_text>5.99</display_text>
+                <currency>USD</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>BelleVieUS</storecode>
+    <carrier>US Shipping Stock Cost</carrier>
+    <localized_names>
+        <value language="en"></value>
+        <value language="en_US">Standard Shipping</value>
+    </localized_names>
+    <code>USSHIPPINGOTHERS</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="3d752160-7">
+    <shipping_region>USA TWO DAY</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>30</value>
+                <display_text>30</display_text>
+                <currency>USD</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>BelleVieUS</storecode>
+    <carrier>FedEx 2 Day</carrier>
+    <localized_names>
+        <value language="en"></value>
+        <value language="en_US">2‌nd Day Shipping</value>
+    </localized_names>
+    <code>USSHIPPING2DAY</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="3edea9fd-c7f7-4564-a388-90543237c1c8">
+    <shipping_region>Germany (DE)</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>12</value>
+                <display_text>12</display_text>
+                <currency>EUR</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>BelleVieDE</storecode>
+    <carrier>CA Shipping Cost</carrier>
+    <localized_names>
+        <value language="de_DE">Standard Shipping</value>
+    </localized_names>
+    <code>DESHIPPINGFREE</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="64a3e7ef-d1ae-436a-b633-4be659b0b546">
+    <shipping_region>Canada</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>13.95</value>
+                <display_text>13.95</display_text>
+                <currency>CAD</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>BelleVieCA</storecode>
+    <carrier>CA Shipping Cost</carrier>
+    <localized_names>
+        <value language="en"></value>
+        <value language="en_CA">Standard Shipping</value>
+        <value language="fr"></value>
+        <value language="fr_CA">Expédition standard</value>
+    </localized_names>
+    <code>CASHIPPING13.95</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="6ef1ef40-e594-4dc5-87ce-c000f1dd7e763">
+    <shipping_region>Great Britain (UK)</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>2.5</value>
+                <display_text>2.5</display_text>
+                <currency>GBP</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>sageUK</storecode>
+    <carrier>UK Shipping Cost</carrier>
+    <localized_names>
+        <value language="en"></value>
+        <value language="en_GB">Standard Shipping</value>
+    </localized_names>
+    <code>UKSHIPFREE</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="6ef1ef40-e594-4dc5-87ce-c000f1dd7e764">
+    <shipping_region>Australia</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>10</value>
+                <display_text>10</display_text>
+                <currency>AUD</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>BelleVieAU</storecode>
+    <carrier>AU Shipping Cost</carrier>
+    <localized_names>
+        <value language="en"></value>
+        <value language="en_AU">Standard Shipping</value>
+    </localized_names>
+    <code>AUSHIPPING</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="6ef1ef40-e594-4dc5-87ce-c000f1dd7e765">
+    <shipping_region>Germany (DE)</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>11</value>
+                <display_text>11</display_text>
+                <currency>EUR</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>sageDE</storecode>
+    <carrier>DE Shipping Cost</carrier>
+    <localized_names>
+        <value language="de_DE">Standardversand</value>
+    </localized_names>
+    <code>DESHIPPING</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="6ef1ef40-e594-4dc5-87ce-c000f1dd7e766">
+    <shipping_region>New Zealand (NZ)</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>10</value>
+                <display_text>10</display_text>
+                <currency>NZD</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>BelleVieNZ</storecode>
+    <carrier>NZ Shipping Cost</carrier>
+    <localized_names>
+        <value language="en"></value>
+        <value language="en_NZ">Standard Shipping</value>
+    </localized_names>
+    <code>NZSHIPPING</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="a957c69a-ec5d-47ce-a884-b8fccded0766">
+    <shipping_region>Great Britain (UK)</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>8.99</value>
+                <display_text>8.99</display_text>
+                <currency>GBP</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>cooks</storecode>
+    <carrier>Royal Mail</carrier>
+    <localized_names>
+        <value language="en_GB">Royal Mail</value>
+    </localized_names>
+    <code>Cooks_UK</code>
+    <active>true</active>
+</shipping_service_level>
+
+<shipping_service_level guid="fa14929d-ad82-413d-8670-d372b4375bcd">
+    <shipping_region>Europe</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>10</value>
+                <display_text>10</display_text>
+                <currency>EUR</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>sageEU</storecode>
+    <carrier>EU Shipping Cost</carrier>
+    <localized_names>
+        <value language="de">Standardversand</value>
+        <value language="de_AT">Standardversand</value>
+        <value language="de_BE">Standardversand</value>
+        <value language="de_DE">Standardversand</value>
+        <value language="de_LU">Standardversand</value>
+        <value language="en">Standard Shipping</value>
+        <value language="en_NL">Standard Shipping</value>
+        <value language="es">entrega estándar</value>
+        <value language="es_ES">entrega estándar</value>
+        <value language="fr">livraison standard</value>
+        <value language="fr_BE">livraison standard</value>
+        <value language="fr_LU">livraison standard</value>
+        <value language="it">spedizione standard</value>
+        <value language="it_IT">spedizione standard</value>
+        <value language="nl">standaardlevering</value>
+        <value language="nl_BE">standaardlevering</value>
+        <value language="nl_NL">standaardlevering</value>
+        <value language="pt">Envio padrão</value>
+        <value language="pt_PT">Envio padrão</value>
+    </localized_names>
+    <code>EUSHIPPING</code>
+    <active>true</active>
+</shipping_service_level>
+</shipping_service_levels>
