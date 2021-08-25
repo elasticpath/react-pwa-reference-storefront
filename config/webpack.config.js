@@ -488,9 +488,6 @@ module.exports = function (webpackEnv) {
                 loader: 'css-loader',
               }, {
                 loader: 'sass-loader',
-                options: {
-                  javascriptEnabled: true,
-                },
               }],
             },
             // Opt-in support for SASS (using .scss or .sass extensions).
