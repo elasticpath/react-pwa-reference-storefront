@@ -1,0 +1,5484 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<inventory>
+<sku code="800BLXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="800CPBSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="800CPXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>19</onhand>
+        <available>19</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="800ESBSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="800ESXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="800JEBSS">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="800JEXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>14</onhand>
+        <available>14</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="ACC100UK"/>
+
+<sku code="AQP-24CS">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-24SS">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-BM4">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-CJUG">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FBOT4">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FCH-B">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FCH-W">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FCR-C2">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FCR-DAO">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FCR-Q">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FCR1">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FCR3">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FF05A">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FF11A">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FF12A">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FF17A">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FF20A">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FF27A">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FF32A">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FF32D">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FF35A">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-FKL-FF">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-LSAN">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-OT">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-OT-RF2">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-QJUG">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-RFL-FF">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="AQP-RFL-FF-12M">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="ATKCQ20">
+    <warehouse code="BelleVieUSA">
+        <onhand>10</onhand>
+        <available>10</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBA500XL">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBA600XL">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL001">
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL002SIL0NAN1">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL002SIL0NUC1">
+    <warehouse code="BelleVieCA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>100</onhand>
+        <available>100</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL100WHT">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL280WHT">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL290BKS">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL300SIL">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL380BKS">
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL405BAL1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL405BALUSC">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL420BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL550BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL550XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL560XL">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL600BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL600XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL605BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL605BSXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL605CBXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL605XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL620SIL1AUS1">
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL620SST1AUS1">
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL800BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL910BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL910XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>7</onhand>
+        <available>7</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL915BALUK">
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL920BSS1BUS1">
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBL925BSS2BAN1">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBM100WHT">
+    <warehouse code="BelleVieAU">
+        <onhand>3</onhand>
+        <available>3</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBM300WHT">
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBM400BSS">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBM600BSS">
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BBM800XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCB100">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>10</onhand>
+        <available>10</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCB100BSS">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG200BSS">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG300BSS">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG400SIL1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG450BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG450XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG600BKS">
+    <warehouse code="BelleVieUK">
+        <onhand>1000</onhand>
+        <available>998</available>
+        <allocated>2</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG600SIL">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG600SILUSC">
+    <warehouse code="BelleVieUSA">
+        <onhand>14</onhand>
+        <available>14</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG601SIL1BCA1"/>
+
+<sku code="BCG602SIL1BCA2"/>
+
+<sku code="BCG604SIL1BCA1"/>
+
+<sku code="BCG605SIL1BCA1"/>
+
+<sku code="BCG607SIL1BCA1"/>
+
+<sku code="BCG615SIL2EEU1"/>
+
+<sku code="BCG800BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG800BSXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG800CBXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG800XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG820BKSXL">
+    <warehouse code="BelleVieUK">
+        <onhand>1001</onhand>
+        <available>1001</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG820BSS">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG820BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG820BSSXL">
+    <warehouse code="BelleVieUK">
+        <onhand>1000</onhand>
+        <available>1000</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>14</onhand>
+        <available>14</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCG820CRNXL">
+    <warehouse code="BelleVieUK">
+        <onhand>1000</onhand>
+        <available>996</available>
+        <allocated>4</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCI100">
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCI600XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>9</onhand>
+        <available>9</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCM600BLK">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BCP200BLK">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BDC450BSS1BUS1">
+    <warehouse code="BelleVieUK">
+        <onhand>1000</onhand>
+        <available>998</available>
+        <allocated>2</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BDC650BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BDC650BSSUSC">
+    <warehouse code="BelleVieUSA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BEM800BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BEM800BSXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BEM800CBXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BEM800UK">
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BEM800XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES0080NXX1">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>10</onhand>
+        <available>10</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>5</onhand>
+        <available>0</available>
+        <allocated>5</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>19</onhand>
+        <available>7</available>
+        <allocated>12</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>10</onhand>
+        <available>5</available>
+        <allocated>5</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES200BLK">
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES200BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES250XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES500BSS1BUS1">
+    <warehouse code="BelleVieUSA">
+        <onhand>29</onhand>
+        <available>29</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES800XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES810BKSUK">
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES810BSS">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES810BSSUSC">
+    <warehouse code="BelleVieUSA">
+        <onhand>19</onhand>
+        <available>19</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES820XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES830XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES840BSXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES840CBXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES840XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>20</onhand>
+        <available>20</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES860BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES860XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES870BSXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>8</onhand>
+        <available>8</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES870CBXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES870XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>35</onhand>
+        <available>35</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES880BSS1BUS1">
+    <warehouse code="BelleVieUSA">
+        <onhand>19</onhand>
+        <available>19</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES900BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES900XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES920BKS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES920CBXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES920XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>20</onhand>
+        <available>20</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES980BKSUK">
+    <warehouse code="BelleVieUK">
+        <onhand>104</onhand>
+        <available>99</available>
+        <allocated>5</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES980XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>19</onhand>
+        <available>19</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES990BSS1BUS1">
+    <warehouse code="BelleVieUSA">
+        <onhand>25</onhand>
+        <available>25</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BES990BTR4JAN1">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BFP800BAL1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BFP800BSXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BFP800CBXL">
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BFP800UK">
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BFS800BSSUSC">
+    <warehouse code="BelleVieUSA">
+        <onhand>14</onhand>
+        <available>14</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BGR200XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BGR820XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>9</onhand>
+        <available>9</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BKE395UK">
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>1</available>
+        <allocated>3</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BNE500BKS1BUS1">
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BOV820BSS">
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BPB550BAL">
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>1</available>
+        <allocated>3</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BPR650BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BRC600BSS1BCA1">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BRC600XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>14</onhand>
+        <available>14</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BSM600SILUSC">
+    <warehouse code="BelleVieUSA">
+        <onhand>14</onhand>
+        <available>14</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BTM800BSS">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="BTM800XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>20</onhand>
+        <available>20</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="CS10001">
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="CS20001">
+    <warehouse code="BelleVieUSA">
+        <onhand>10</onhand>
+        <available>10</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="JE98XL">
+    <warehouse code="BelleVieUSA">
+        <onhand>49</onhand>
+        <available>49</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="LAD200WHT2JAN1">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="LAD250WHT2JAN1">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="LAD300WHT2JAN1">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="LAD500WHT2JAN1">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="LAH300WHT2IAN1">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="LAH400WHT2IAN1">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="LAP300WHT2IAN1">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SBL002SIL0NEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>199</onhand>
+        <available>199</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>398</onhand>
+        <available>398</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>100</onhand>
+        <available>99</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>1002</onhand>
+        <available>999</available>
+        <allocated>3</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SBL405BAL2EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>4380</onhand>
+        <available>4380</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>4380</onhand>
+        <available>4380</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SBL620SIL4CEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>1763</onhand>
+        <available>1763</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>4</onhand>
+        <available>3</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>1763</onhand>
+        <available>1762</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SBL820SHY2EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>814</onhand>
+        <available>814</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>814</onhand>
+        <available>814</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SBL920BSS2EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>853</onhand>
+        <available>853</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>853</onhand>
+        <available>853</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SBL920BSS2QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>762</onhand>
+        <available>762</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCB100BAL0NEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCB900BSS2G1UK5"/>
+
+<sku code="SCG007BAL2QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>50</onhand>
+        <available>50</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>50</onhand>
+        <available>50</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCG007BLK2QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>50</onhand>
+        <available>50</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>50</onhand>
+        <available>50</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCG111BAL2QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>100</onhand>
+        <available>100</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCG111BLK2QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCG115BAL2QEU1">
+    <warehouse code="BelleVieEU">
+        <onhand>100</onhand>
+        <available>100</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCG115BLK2QEU1">
+    <warehouse code="BelleVieEU">
+        <onhand>50</onhand>
+        <available>50</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCG115SIL2QEU1"/>
+
+<sku code="SCG333BKS2QEU1"/>
+
+<sku code="SCG600BTR2QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>124</onhand>
+        <available>124</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCG600SHY2QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCG631BKS2QEU1"/>
+
+<sku code="SCG655BKS2QEU1"/>
+
+<sku code="SCG699BKS2QEU1"/>
+
+<sku code="SCG820BSS4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>587</onhand>
+        <available>587</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>587</onhand>
+        <available>585</available>
+        <allocated>2</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCG884BTR2QEU1"/>
+
+<sku code="SCI600BSS2EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>349</onhand>
+        <available>349</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>350</onhand>
+        <available>350</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>350</onhand>
+        <available>348</available>
+        <allocated>2</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SCP800BAL4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>1318</onhand>
+        <available>1318</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SEC250NEU0NEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>1891</onhand>
+        <available>1891</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>3782</onhand>
+        <available>3782</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>15</onhand>
+        <available>12</available>
+        <allocated>3</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>1891</onhand>
+        <available>1889</available>
+        <allocated>2</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES100NEU0NEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>1105</onhand>
+        <available>1105</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>2210</onhand>
+        <available>2210</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>500</onhand>
+        <available>500</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>1110</onhand>
+        <available>1100</available>
+        <allocated>10</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES500BKS4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>778</onhand>
+        <available>778</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES500BSS4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>2107</onhand>
+        <available>2107</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>500</onhand>
+        <available>500</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>2107</onhand>
+        <available>2100</available>
+        <allocated>7</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES500BSS4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>1708</onhand>
+        <available>1708</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES500BTR4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>700</onhand>
+        <available>700</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES500SHY4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>356</onhand>
+        <available>356</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES500SST4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>342</onhand>
+        <available>342</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES810BSS2EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>1386</onhand>
+        <available>1386</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>50</onhand>
+        <available>49</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>1391</onhand>
+        <available>1374</available>
+        <allocated>17</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES810BSS2QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>1076</onhand>
+        <available>1076</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES880BKS4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>490</onhand>
+        <available>490</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>490</onhand>
+        <available>490</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES880BSS4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>1508</onhand>
+        <available>1508</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>4</onhand>
+        <available>3</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>1508</onhand>
+        <available>1489</available>
+        <allocated>19</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES880BSS4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>258</onhand>
+        <available>258</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES880BTR4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>140</onhand>
+        <available>140</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES880SST4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>629</onhand>
+        <available>629</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>629</onhand>
+        <available>628</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES920BSS4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>202</onhand>
+        <available>202</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>203</onhand>
+        <available>189</available>
+        <allocated>14</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES920BSS4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>176</onhand>
+        <available>176</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES920BTR4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>160</onhand>
+        <available>160</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>160</onhand>
+        <available>159</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES920BTR4GUK1">
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>3</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES980BSS4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>571</onhand>
+        <available>571</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>4</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>571</onhand>
+        <available>570</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>40</onhand>
+        <available>36</available>
+        <allocated>4</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES980BTR4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>187</onhand>
+        <available>187</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>187</onhand>
+        <available>187</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES980BTR4GUK1">
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>3</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES990BKS4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>383</onhand>
+        <available>383</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>383</onhand>
+        <available>383</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES990BSS4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>1042</onhand>
+        <available>1042</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>4</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>1042</onhand>
+        <available>1033</available>
+        <allocated>9</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES990BSS4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>462</onhand>
+        <available>462</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SES990BTR4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>262</onhand>
+        <available>262</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SFP800BAL2EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>687</onhand>
+        <available>687</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>500</onhand>
+        <available>500</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>687</onhand>
+        <available>685</available>
+        <allocated>2</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SFS800BSS4EEU1">
+    <warehouse code="BelleVieEU">
+        <onhand>500</onhand>
+        <available>489</available>
+        <allocated>11</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SGR200BSS4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>3651</onhand>
+        <available>3651</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>3651</onhand>
+        <available>3646</available>
+        <allocated>5</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SJE95SIL4CEU1B">
+    <warehouse code="BelleVieCA">
+        <onhand>1259</onhand>
+        <available>1259</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>4</onhand>
+        <available>3</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>1259</onhand>
+        <available>1258</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SKE395CLR4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>2023</onhand>
+        <available>2023</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>2024</onhand>
+        <available>2023</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000011"/>
+
+<sku code="SP0000021">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>272</onhand>
+        <available>272</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>141</onhand>
+        <available>141</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>49</onhand>
+        <available>49</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000022">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>1948</onhand>
+        <available>1948</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>4</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>986</onhand>
+        <available>986</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000024">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>146</onhand>
+        <available>146</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>94</onhand>
+        <available>94</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000026">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>1018</onhand>
+        <available>1018</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>517</onhand>
+        <available>517</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000027">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>48</onhand>
+        <available>48</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>33</onhand>
+        <available>33</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000031">
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000033"/>
+
+<sku code="SP0000034">
+    <warehouse code="BelleVieCA">
+        <onhand>10</onhand>
+        <available>10</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>20</onhand>
+        <available>20</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>10</onhand>
+        <available>10</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000084">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000123">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000129">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000165">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000166">
+    <warehouse code="BelleVieAU">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>37</onhand>
+        <available>37</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>50</onhand>
+        <available>50</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000257">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000261">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000264">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000265">
+    <warehouse code="BelleVieCA">
+        <onhand>30</onhand>
+        <available>30</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000266">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000277">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000359">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000366">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000381">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000383">
+    <warehouse code="BelleVieAU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000393">
+    <warehouse code="BelleVieAU">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000394">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000395">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000441">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000474">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>9</onhand>
+        <available>9</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>49</onhand>
+        <available>49</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000490">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>24</onhand>
+        <available>24</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000502">
+    <warehouse code="BelleVieCA">
+        <onhand>14</onhand>
+        <available>14</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000503">
+    <warehouse code="BelleVieCA">
+        <onhand>14</onhand>
+        <available>14</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000504">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000505">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000506">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000507">
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000538">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000550">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000551">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000569">
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000590">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>39</onhand>
+        <available>39</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000591">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000592">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>30</onhand>
+        <available>30</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000621">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>30</onhand>
+        <available>30</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000631">
+    <warehouse code="BelleVieAU">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000655">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>13</onhand>
+        <available>13</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>9</onhand>
+        <available>9</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000656">
+    <warehouse code="BelleVieCA">
+        <onhand>13</onhand>
+        <available>13</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>26</onhand>
+        <available>26</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>13</onhand>
+        <available>13</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000662">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>50</onhand>
+        <available>50</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>25</onhand>
+        <available>25</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0000663">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>8</onhand>
+        <available>8</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0001570">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>0</available>
+        <allocated>4</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0001789">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>28</onhand>
+        <available>28</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>50</onhand>
+        <available>45</available>
+        <allocated>5</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>16</onhand>
+        <available>13</available>
+        <allocated>3</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>10</onhand>
+        <available>10</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>15</onhand>
+        <available>15</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0001800">
+    <warehouse code="BelleVieCA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0001801">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>146</onhand>
+        <available>146</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>50</onhand>
+        <available>48</available>
+        <allocated>2</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>73</onhand>
+        <available>73</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0005830">
+    <warehouse code="BelleVieCA">
+        <onhand>1</onhand>
+        <available>1</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0007349">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0007384">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>30</onhand>
+        <available>30</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0007385">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>30</onhand>
+        <available>29</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0007386">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>30</onhand>
+        <available>30</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0007387">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>20</onhand>
+        <available>20</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0007744">
+    <warehouse code="BelleVieAU">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0008603">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>196</onhand>
+        <available>196</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>98</onhand>
+        <available>98</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>6</onhand>
+        <available>6</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0008604">
+    <warehouse code="BelleVieCA">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>192</onhand>
+        <available>192</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>96</onhand>
+        <available>96</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0009091">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0011042">
+    <warehouse code="BelleVieCA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0014470">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0014471">
+    <warehouse code="BelleVieUSA">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0016051">
+    <warehouse code="BelleVieAU">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCA">
+        <onhand>7</onhand>
+        <available>7</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>14</onhand>
+        <available>14</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>9</onhand>
+        <available>9</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieNZ">
+        <onhand>2</onhand>
+        <available>2</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0020005">
+    <warehouse code="BelleVieCA">
+        <onhand>42</onhand>
+        <available>42</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>84</onhand>
+        <available>84</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>42</onhand>
+        <available>42</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0020006">
+    <warehouse code="BelleVieCA">
+        <onhand>8</onhand>
+        <available>8</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>16</onhand>
+        <available>16</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>8</onhand>
+        <available>8</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0020007">
+    <warehouse code="BelleVieCA">
+        <onhand>9</onhand>
+        <available>9</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>18</onhand>
+        <available>18</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>9</onhand>
+        <available>9</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0020008">
+    <warehouse code="BelleVieCA">
+        <onhand>9</onhand>
+        <available>9</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>18</onhand>
+        <available>18</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>5</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>9</onhand>
+        <available>9</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SP0020137">
+    <warehouse code="BelleVieUK">
+        <onhand>0</onhand>
+        <available>0</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SPB550BAL2EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>830</onhand>
+        <available>830</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>5</onhand>
+        <available>4</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>830</onhand>
+        <available>830</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SRC600BSS4EEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>1234</onhand>
+        <available>1234</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>1234</onhand>
+        <available>1229</available>
+        <allocated>5</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SSM600SIL0NEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>3284</onhand>
+        <available>3284</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>4</onhand>
+        <available>4</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>3284</onhand>
+        <available>3282</available>
+        <allocated>2</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieUSA">
+        <onhand>5</onhand>
+        <available>2</available>
+        <allocated>3</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="STM800BSS4QEU1">
+    <warehouse code="BelleVieCH">
+        <onhand>510</onhand>
+        <available>510</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="SWF100NEU0NEU1">
+    <warehouse code="BelleVieCA">
+        <onhand>1917</onhand>
+        <available>1917</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieCH">
+        <onhand>3834</onhand>
+        <available>3834</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieDE">
+        <onhand>4</onhand>
+        <available>3</available>
+        <allocated>1</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+    <warehouse code="BelleVieEU">
+        <onhand>1917</onhand>
+        <available>1917</available>
+        <allocated>0</allocated>
+        <reserved>0</reserved>
+        <reordermin>0</reordermin>
+        <reorderqty>1</reorderqty>
+    </warehouse>
+</sku>
+
+<sku code="UATTEST"/>
+
+<sku code="atomXL1"/>
+</inventory>

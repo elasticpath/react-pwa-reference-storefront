@@ -1,0 +1,6316 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<productcategoryassociations>
+<product code="800BL">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="800CP">
+    <catalog code="BelleVieCHCatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_juicers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="juicers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="800ES">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="800JE">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_juicers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="ACC100UK">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FCR-C2">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FCR-DAO">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FCR-Q">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FCR1">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FCR3">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FF05A">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FF11A">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FF12A">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FF17A">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FF20A">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FF27A">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FF32A">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FF32D">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FF35A">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-FKL-FF">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-LSAN">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-OT-RF2">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-RFL-FF">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP-RFL-FF-12M">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP24C">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQP24S">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQPBM4">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQPCJU">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQPFBO">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQPFCHB">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQPFCHW">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQPOT">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="AQPQJU">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="water-filtration">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="ATKCQ20">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_sous-vide">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BAD200">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BAD250">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BAD300">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BAD500">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="air-dehumidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BAH300">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="air-humidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="air-humidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="air-humidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BAH400">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="air-humidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="air-humidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="air-humidifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BAP300">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="air-purifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="air-purifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="air-purifier">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBA500XL">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBA600XL">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_cookers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_mixers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL001">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ACCESSORY_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL002">
+    <catalog code="BelleVieCHCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL100">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL280WHT">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL290">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL300">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL380">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL405">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL420">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL550">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL560">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL600">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL605">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL620">
+    <catalog code="BelleVieCHCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL800">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL820">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL910">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL915">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL920">
+    <catalog code="BelleVieCHCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBL925">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBM100">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_bread-makers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="bread-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="bread-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="bread-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBM300">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_ovens">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBM400">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_ovens">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBM600">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_ovens">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BBM800">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_bread-makers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="bread-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="bread-makers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCB100">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_coffee-grinders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ACCESSORY_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCB100BSS">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_coffee-grinders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ACCESSORY_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCB900">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG007">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG111">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG115">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG200">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG300">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG333">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG400">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG450">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee-grinders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG600">
+    <catalog code="BelleVieCHCatalog">
+        <category code="coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="PRODUCT_coffee-grinders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="PRODUCT_coffee-grinders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="PRODUCT_coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG600SIL">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG601">
+    <catalog code="BelleVieEUCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG602">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG604">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG605">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG607">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG615">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG631">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG699">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG800">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee-grinders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG820">
+    <catalog code="BelleVieCHCatalog">
+        <category code="coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="PRODUCT_coffee-grinders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="PRODUCT_coffee-grinders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee-grinders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCG820BSS">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCGTESTUAT">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCI100">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_ice-cream">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCI600">
+    <catalog code="BelleVieCHCatalog">
+        <category code="ice-cream">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_ice-cream">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ice-cream">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="ice-cream">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ice-cream">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="ice-cream">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="ice-cream">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ice-cream">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="ice-cream">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ice-cream">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCM600">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BCP200">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="snack-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="snack-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="snack-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BDC450">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BDC650">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BEM800">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_mixers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="mixers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="mixers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="mixers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="mixers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="mixers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES0080NXX1">
+    <catalog code="BelleVieCHCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="ACCESSORY">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES200">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES250">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES500">
+    <catalog code="BelleVieCHCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES800">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES810">
+    <catalog code="BelleVieCHCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES810BSS">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES820">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES830">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES840">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES860">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES870">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES880">
+    <catalog code="BelleVieCHCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES900">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES920">
+    <catalog code="BelleVieCHCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ACCESSORY_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES980">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BES990">
+    <catalog code="BelleVieCHCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BFP800">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_food-processors">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="food-processors">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="food-processors">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="food-processors">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="food-processors">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="food-processors">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_food-processors">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="food-processors">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="food-processors">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="food-processors">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BFS800">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_cookers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="cookers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BGR200">
+    <catalog code="BelleVieCHCatalog">
+        <category code="grills-sandwich-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_grills-sandwich-makers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="grills-sandwich-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="grills-sandwich-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="grills-sandwich-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_grills-sandwich-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BGR820">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_grills-sandwich-makers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="grills-sandwich-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="grills-sandwich-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="grills-sandwich-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_grills-sandwich-makers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BKE395">
+    <catalog code="BelleVieCHCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BNE500">
+    <catalog code="BelleVieCHCatalog">
+        <category code="nespresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_nespresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="nespresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="nespresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="nespresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="nespresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_nespresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="nespresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BOV820">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_ovens">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ovens">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_ovens">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BPB550">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="blenders">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BPR650">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_cookers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BRC600">
+    <catalog code="BelleVieCHCatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_cookers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="cookers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="cookers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BSM600">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_smoking-gun">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="smoking-gun">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="smoking-gun">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="smoking-gun">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="smoking-gun">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="smoking-gun">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="smoking-gun">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="smoking-gun">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="smoking-gun">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="BTM800">
+    <catalog code="BelleVieCHCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="tea">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="CS10001">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_sous-vide">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="sous-vide">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="sous-vide">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="CS20001">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_sous-vide">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="sous-vide">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="sous-vide">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="JE95">
+    <catalog code="BelleVieCHCatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_juicers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="JE98XL">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_juicers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SCB100BAL0NEU1">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_nespresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ACCESSORY_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_nespresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SEC250NEU0NEU1">
+    <catalog code="BelleVieCHCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ACCESSORY_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SES100NEU0NEU1">
+    <catalog code="BelleVieCHCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ACCESSORY_espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000011">
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000021">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000022">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000024">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000026">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000027">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000031">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000033">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000034">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000084">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000123">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000129">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000165">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000166">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000257">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000261">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000264">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000265">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000266">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000277">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000359">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000366">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000381">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000383">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000393">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000394">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000395">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000441">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000474">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000490">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000502">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000503">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000504">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000505">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000506">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000507">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000538">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000550">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000551">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000569">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000590">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000591">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000592">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000621">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000631">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000655">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000656">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000662">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0000663">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0001570">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0001789">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieNZCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0001800">
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0001801">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0005830">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0007349">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0007384">
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0007385">
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0007386">
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0007387">
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0007744">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0008603">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0008604">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0009091">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0011042">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="atomXL">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_juicers">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieCACatalog">
+        <category code="juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_juicers">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="bCG655">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="bcg884">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PRODUCT_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Cooks">
+        <category code="PRODUCT_coffee">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0014470">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0014471">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUSCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0016051">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieAUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0020005">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0020006">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0020007">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0020008">
+    <catalog code="BelleVieCHCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SP0020137">
+    <catalog code="BelleVieMasterCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="PART">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="SWF100NEU0NEU1">
+    <catalog code="BelleVieCHCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieMasterCatalog">
+        <category code="ACCESSORY_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_coffee-grinders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_nespresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieEUCatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieUKCatalog">
+        <category code="ACCESSORY_blenders">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_coffee">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_espresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="ACCESSORY_nespresso">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="BelleVieDECatalog">
+        <category code="espresso">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+</productcategoryassociations>

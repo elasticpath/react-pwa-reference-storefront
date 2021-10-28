@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user_roles>
+<user_role guid="201">
+    <name>SUPERUSER</name>
+    <description>System super user role</description>
+    <permissions/>
+</user_role>
+
+<user_role guid="202">
+    <name>CMUSER</name>
+    <description>System user login role. Required for users to login to Commerce Manager.</description>
+    <permissions/>
+</user_role>
+
+<user_role guid="203">
+    <name>WSUSER</name>
+    <description>System web service access role.</description>
+    <permissions/>
+</user_role>
+
+<user_role guid="3503FE0F-D099-1367-4188-2A61FD5D1DA8">
+    <name>Store Marketing</name>
+    <permissions>
+        <permission>CONDITIONAL_EXPRESSION_MANAGE</permission>
+        <permission>COUPONS_MANAGE</permission>
+        <permission>DYNAMIC_CONTENT_DELIVERY_MANAGE</permission>
+        <permission>DYNAMIC_CONTENT_MANAGE</permission>
+        <permission>MANAGE_STORE_SETTINGS</permission>
+        <permission>PROMOTION_MANAGE</permission>
+        <permission>SHIPPING_SERVICE_LEVELS_MANAGE</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="696C8D33-3E65-D13E-7B3B-AB4FF6E86B6E">
+    <name>Reporting</name>
+    <permissions>
+        <permission>REPORTING_CUSTOMER_REGISTRATION_MANAGE</permission>
+        <permission>REPORTING_GIFT_CERTIFICATE_DETAILS_MANAGE</permission>
+        <permission>REPORTING_GIFT_CERTIFICATE_SUMMARY_MANAGE</permission>
+        <permission>REPORTING_LOW_STOCK_MANAGE</permission>
+        <permission>REPORTING_ORDERS_BY_STATUS_MANAGE</permission>
+        <permission>REPORTING_ORDER_SUMMARY_MANAGE</permission>
+        <permission>REPORTING_PROMOTION_DETAILS_MANAGE</permission>
+        <permission>REPORTING_PROMOTION_USAGE_MANAGE</permission>
+        <permission>REPORTING_RETURNS_AND_EXCHANGES_MANAGE</permission>
+        <permission>REPORTING_STOCK_ALLOCATION_MANAGE</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="7102d310-3e63-416a-8268-1ffad7e8e0cc">
+    <name>Guest Role</name>
+    <permissions>
+        <permission>REPORTING_ORDERS_BY_STATUS_MANAGE</permission>
+        <permission>REPORTING_ORDER_SUMMARY_MANAGE</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="7AA191A8-6979-7276-7BC8-FC2BC5845493">
+    <name>Configuration</name>
+    <permissions>
+        <permission>ADMIN_CONFIGURATION_MANAGE</permission>
+        <permission>ADMIN_CUSTOMER_PROFILES_MANAGE</permission>
+        <permission>ADMIN_DATA_POLICIES_MANAGE</permission>
+        <permission>ADMIN_GIFT_CERTIFICATE_THEMES_MANAGE</permission>
+        <permission>ADMIN_SHIPPING_MANAGE</permission>
+        <permission>ADMIN_STORES_MANAGE</permission>
+        <permission>ADMIN_TARGETED_SELLING_MANAGE</permission>
+        <permission>ADMIN_USERS_MANAGE</permission>
+        <permission>ADMIN_WAREHOUSES_MANAGE</permission>
+        <permission>TAXES_MANAGE</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="88705C72-7D4D-33AD-0E82-536402F3D441">
+    <name>Shipping Receiving</name>
+    <permissions>
+        <permission>WAREHOUSE_FORCE_ORDER_SHIPMENT_COMPLETE</permission>
+        <permission>WAREHOUSE_IMPORT_INVENTORY</permission>
+        <permission>WAREHOUSE_MANAGE_INVENTORY</permission>
+        <permission>WAREHOUSE_ORDER_RETURN_EDIT</permission>
+        <permission>WAREHOUSE_ORDER_SHIPMENT_COMPLETE</permission>
+        <permission>WAREHOUSE_RECEIVE_INVENTORY</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="8BE759EB-AD95-96CA-0348-DC22CA89FB99">
+    <name>Query Management</name>
+    <permissions>
+        <permission>CREATE_QUERIES</permission>
+        <permission>MANAGE_QUERIES</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="90EC180C-A9F3-A426-7070-AFC0CDBCD58A">
+    <name>Customer Service</name>
+    <permissions>
+        <permission>ASSIGN_CUSTOMER_SEGMENTS</permission>
+        <permission>CREATE_EDIT_EXCHANGES</permission>
+        <permission>CREATE_EDIT_RETURNS</permission>
+        <permission>CREATE_REFUND</permission>
+        <permission>CUSTOMER_EDIT</permission>
+        <permission>CUSTUMER_IMPORTS_EXECUTE</permission>
+        <permission>CUSTUMER_IMPORTS_MANAGE</permission>
+        <permission>EDIT_GIFT_CERTIFICATE_RECIPIENT</permission>
+        <permission>FULFILLMENT_ORDER_EDIT</permission>
+        <permission>ORDER_UNLOCK</permission>
+        <permission>PRICE_MANAGEMENT_MANAGE_PRODUCT_PRICING</permission>
+        <permission>VIEW_CREDITCARD_NUMBER</permission>
+        <permission>WAREHOUSE_ORDER_RETURN_EDIT</permission>
+        <permission>WAREHOUSE_ORDER_SHIPMENT_COMPLETE</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="AAB705C2-54CF-822F-AC97-58F403123456">
+    <name>Change Set Publisher</name>
+    <permissions>
+        <permission>CHANGE_SET_PERMISSIONS_MANAGE</permission>
+        <permission>PUBLISH_CHANGE_SETS_PERMISSION</permission>
+        <permission>WORK_WITH_CHANGE_SETS_PERMISSION</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="AAB705C2-54CF-822F-AC97-58F403B2B2F2">
+    <name>Change Set</name>
+    <permissions>
+        <permission>CHANGE_SET_PERMISSIONS_MANAGE</permission>
+        <permission>WORK_WITH_CHANGE_SETS_PERMISSION</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="ABCFCF0B-4CC1-4B01-A193-2DD35F12F8EF">
+    <name>Catalog Management</name>
+    <permissions>
+        <permission>CATALOG_IMPORTS_EXECUTE</permission>
+        <permission>CATALOG_IMPORTS_MANAGE</permission>
+        <permission>CATALOG_MANAGE</permission>
+        <permission>CATEGORY_INCLUDE_EXCLUDE</permission>
+        <permission>CATEGORY_MANAGE</permission>
+        <permission>GLOBAL_ATTRIBUTE_EDIT</permission>
+        <permission>INCLUDE_EXCLUDE_PRODUCT</permission>
+        <permission>MANAGE_PRODUCT_MERCHANDISING</permission>
+        <permission>MANAGE_PRODUCT_SKU</permission>
+        <permission>MANAGE_VIRTUAL_CATALOG_LINK_CATEGORY</permission>
+        <permission>PRICE_MANAGEMENT_MANAGE_PRODUCT_PRICING</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="configuration-without-data-policies">
+    <name>Configuration without data policies</name>
+    <permissions>
+        <permission>ADMIN_CONFIGURATION_MANAGE</permission>
+        <permission>ADMIN_CUSTOMER_PROFILES_MANAGE</permission>
+        <permission>ADMIN_GIFT_CERTIFICATE_THEMES_MANAGE</permission>
+        <permission>ADMIN_SHIPPING_MANAGE</permission>
+        <permission>ADMIN_STORES_MANAGE</permission>
+        <permission>ADMIN_TARGETED_SELLING_MANAGE</permission>
+        <permission>ADMIN_USERS_MANAGE</permission>
+        <permission>ADMIN_WAREHOUSES_MANAGE</permission>
+        <permission>TAXES_MANAGE</permission>
+    </permissions>
+</user_role>
+
+<user_role guid="manage-data-policies">
+    <name>Manage Data Policies</name>
+    <permissions>
+        <permission>ADMIN_DATA_POLICIES_MANAGE</permission>
+    </permissions>
+</user_role>
+</user_roles>
