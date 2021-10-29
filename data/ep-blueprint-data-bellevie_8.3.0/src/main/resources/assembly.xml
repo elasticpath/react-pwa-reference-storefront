@@ -6,7 +6,7 @@
 	<fileSets>
 		<fileSet>
 			<directory>src/main/resources</directory>
-			<outputDirectory>bellevie-demo-data</outputDirectory>
+			<outputDirectory>ep-blueprint-data-bellevie</outputDirectory>
 			<excludes>
 				<exclude>assembly.xml</exclude>
 			</excludes>

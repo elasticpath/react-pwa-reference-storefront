@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
-  logicalFilePath="bellevie-demo-data/liquibase-changelog.xml">
+  logicalFilePath="ep-blueprint-data-bellevie/liquibase-changelog.xml">
 
-	<changeSet id="bellevie-data-import" author="elasticpath" context="ep-blueprint">
+	<changeSet id="bellevie-data-import" author="elasticpath" context="ep-blueprint-bellevie">
 
-		<comment>Initial import of ep bellevie blueprint data.</comment>
+		<comment>Bellevie blueprint data for Elastic Path Commerce.</comment>
 
 		<customChange class="com.elasticpath.datapopulation.importexport.ImportExportChange">
-			<param name="dataSet" value="bellevie-demo-data" />
+			<param name="dataSet" value="ep-blueprint-data-bellevie" />
 		</customChange>
 	</changeSet>
 </databaseChangeLog>

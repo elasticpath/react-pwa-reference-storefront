@@ -136,7 +136,7 @@
   <packager type="NONE"/>
   <retrieval>
     <method>FILE</method>
-    		<source>${data.population.data.directory}/bellevie-demo-data/importexport/</source>
+    		<source>${data.population.data.directory}/ep-blueprint-data-bellevie/importexport/</source>
   </retrieval>
   <transformerschain/>
 </importconfiguration>

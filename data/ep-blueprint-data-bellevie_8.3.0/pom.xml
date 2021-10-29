@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.elasticpath.data</groupId>
-	<artifactId>ep-bellevie-data</artifactId>
+	<artifactId>ep-blueprint-data-bellevie</artifactId>
 	<name>Bellevie Demo Data</name>
 	<version>8.3.0</version>
 	<packaging>pom</packaging>
