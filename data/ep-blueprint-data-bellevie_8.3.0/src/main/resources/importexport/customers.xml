@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customers>
+    <customer guid="72c0feae-14c0-4c9c-89e8-4d5d9cf64ff7" shared_id="frank@ep.com" store_code="sageUK">
+        <customer_type>REGISTERED_USER</customer_type>
+        <status>1</status>
+        <creationDate>2020-01-31T14:14:19-08:00</creationDate>
+        <last_edited>2021-07-10T16:30:00-07:00</last_edited>
+        <username>frank@ep.com</username>
+        <password>7e969e424c9773d8dba45307015d73f8decfe3c797d35a6e42c82688098fd6e3</password>
+        <salt>9c4d8a60190a13e0ef1c9f63d55cf8566987369204d72a501d2b4fa8b752c310</salt>
+        <first_time_buyer>false</first_time_buyer>
+        <addresses>
+            <address guid="bbfdf535-94d5-48f9-80ab-91242b731b5e">
+                <creation_date>2020-02-03T16:20:30-08:00</creation_date>
+                <last_modified_date>2021-07-10T16:30:00-07:00</last_modified_date>
+                <last_name>Stallone</last_name>
+                <first_name>Frank</first_name>
+                <street1>123 4th St.</street1>
+                <street2></street2>
+                <city>London</city>
+                <subCountry></subCountry>
+                <zip_postal_code>12345</zip_postal_code>
+                <country>GB</country>
+                <commercial>false</commercial>
+            </address>
+        </addresses>
+        <groups>
+            <group>400</group>
+        </groups>
+        <preferred_shipping_address>bbfdf535-94d5-48f9-80ab-91242b731b5e</preferred_shipping_address>
+        <preferred_billing_address>bbfdf535-94d5-48f9-80ab-91242b731b5e</preferred_billing_address>
+        <customer_profile>
+            <profile_value key="CP_FIRST_NAME" type="AttributeType_ShortText" creation_date="2020-02-03T15:46:24-08:00">Frank</profile_value>
+            <profile_value key="CP_LAST_NAME" type="AttributeType_ShortText" creation_date="2020-02-03T15:46:24-08:00">Stallone</profile_value>
+            <profile_value key="CP_EMAIL" type="AttributeType_ShortText" creation_date="2020-02-03T15:46:24-08:00">frank@ep.com</profile_value>
+        </customer_profile>
+    </customer>
+    <customer guid="ceab9005-b3c7-48f2-bd26-9665629afe9e" shared_id="fbb47615-bd22-465e-b0be-4b0a3751a88a">
+        <customer_type>ACCOUNT</customer_type>
+        <status>1</status>
+        <creationDate>2021-07-10T16:37:31-07:00</creationDate>
+        <last_edited>2021-07-10T16:37:31-07:00</last_edited>
+        <first_time_buyer>true</first_time_buyer>
+        <addresses>
+            <address guid="0135b072-8b5f-4e7d-8696-886d6658f338">
+                <creation_date>2021-07-10T16:38:18-07:00</creation_date>
+                <last_modified_date>2021-07-10T16:38:18-07:00</last_modified_date>
+                <last_name></last_name>
+                <first_name></first_name>
+                <phone_number>8005551234</phone_number>
+                <fax_number></fax_number>
+                <street1>123 Main Street</street1>
+                <street2></street2>
+                <city>Seattle</city>
+                <subCountry>WA</subCountry>
+                <zip_postal_code>80001</zip_postal_code>
+                <country>US</country>
+                <commercial>false</commercial>
+                <organization>Generic Retailer</organization>
+            </address>
+        </addresses>
+        <groups>
+            <group>400</group>
+        </groups>
+        <customer_profile>
+            <profile_value key="AP_FAX" type="AttributeType_ShortText" creation_date="2021-07-10T16:37:31-07:00"></profile_value>
+            <profile_value key="AP_BUSINESS_NUMBER" type="AttributeType_ShortText" creation_date="2021-07-10T16:37:31-07:00"></profile_value>
+            <profile_value key="AP_NAME" type="AttributeType_ShortText" creation_date="2021-07-10T16:37:31-07:00">Generic Retailer</profile_value>
+            <profile_value key="AP_PHONE" type="AttributeType_ShortText" creation_date="2021-07-10T16:37:31-07:00"></profile_value>
+        </customer_profile>
+    </customer>
+    <customer guid="fedca323-ffcc-4d91-a6e3-adbe872845b2" shared_id="76de2261-7ef6-4a69-b7d9-a26eaaf94751" store_code="BelleVieUS">
+        <customer_type>REGISTERED_USER</customer_type>
+        <status>1</status>
+        <creationDate>2021-07-10T16:34:07-07:00</creationDate>
+        <last_edited>2021-07-10T16:34:48-07:00</last_edited>
+        <username>buyeradmin@retailer.com</username>
+        <password>$2a$08$QLUFbb/UWTf8RReYyXx8duCZxGDG9wVWtzeS0sGnQ4JnXDq55bbh6</password>
+        <first_time_buyer>true</first_time_buyer>
+        <addresses/>
+        <groups>
+            <group>400</group>
+        </groups>
+        <customer_profile>
+            <profile_value key="CP_FIRST_NAME" type="AttributeType_ShortText" creation_date="2021-07-10T16:34:48-07:00">Buyer</profile_value>
+            <profile_value key="CP_LAST_NAME" type="AttributeType_ShortText" creation_date="2021-07-10T16:34:48-07:00">Admin</profile_value>
+            <profile_value key="CP_EMAIL" type="AttributeType_ShortText" creation_date="2021-07-10T16:34:48-07:00">buyeradmin@retailer.com</profile_value>
+        </customer_profile>
+    </customer>
+</customers>

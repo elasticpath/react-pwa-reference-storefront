@@ -44,3 +44,7 @@ app/src/utils/*.jsx
 app/src/routes.js
 app/src/index.jsx
 app/src/App.jsx
+
+# maven
+target/
+*.iml
