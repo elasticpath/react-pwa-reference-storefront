@@ -12,9 +12,10 @@ FROM node:12.10.0
 ARG BUILD_DATE
 ARG VERSION
 ARG VCS_REF
+ARG SCOPE=vestri
 
 ENV CORTEX=http://localhost:9080
-ENV STORE=vestri
+ENV STORE="$SCOPE"
 
 LABEL build-date="$BUILD_DATE"
 LABEL name="ep/ep-store"
