@@ -1,7 +1,7 @@
 {
   "cortexApi": {
     "path": "/cortex",
-    "scope": "vestri",
+    "scope": "sageUK",
     "pathForProxy": "http://localhost:9080",
     "reqTimeout": "30000"
   },
@@ -9,10 +9,6 @@
     {
       "value": "en-GB",
       "name": "English UK"
-    },
-    {
-      "value": "fr-FR",
-      "name": "French"
     }
   ],
   "defaultLocaleValue": "en-GB",
