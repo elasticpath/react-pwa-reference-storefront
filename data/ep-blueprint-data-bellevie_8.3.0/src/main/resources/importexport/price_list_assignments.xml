@@ -30,7 +30,7 @@
             <condition>
                 <guid>686039f4-0eb3-4eca-9d69-32f2f83f1c0a</guid>
                 <name>30168790802363</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieDE' }  { SELLING_CHANNEL.equalTo 'BelleVieCA' }  { SELLING_CHANNEL.equalTo 'BelleVieUS' }  { SELLING_CHANNEL.equalTo 'sageCH' }  { SELLING_CHANNEL.equalTo 'sageUK' }  { SELLING_CHANNEL.equalTo 'BelleVieNZ' }  { SELLING_CHANNEL.equalTo 'sageEU' }  { SELLING_CHANNEL.equalTo 'sageDE' }  { SELLING_CHANNEL.equalTo 'BelleVieAT' }  { SELLING_CHANNEL.equalTo 'BelleVieAU' }  { SELLING_CHANNEL.equalTo 'cooks' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieDE' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieCA' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieUS' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageCH' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageUK' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieNZ' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageEU' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageDE' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieAT' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieAU' }  { SELLING_CHANNEL.equalsIgnoreCase 'cooks' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
@@ -52,7 +52,7 @@
             <condition>
                 <guid>15a78442-1672-4dd0-af80-ce52a8bc0233</guid>
                 <name>42673584568024304</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieCA' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieCA' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
             <condition>
@@ -81,7 +81,7 @@
             <condition>
                 <guid>21916b9e-7ace-4c05-aa71-eed4b7bc3758</guid>
                 <name>33370315053628</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'sageUK' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'sageUK' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
             <condition>
@@ -121,7 +121,7 @@
             <condition>
                 <guid>b1c45a33-f214-493f-8b6a-5ea30261c33b</guid>
                 <name>43549548452047200</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieUS' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieUS' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
@@ -144,7 +144,7 @@
             <condition>
                 <guid>7dab0026-a7ce-48a6-87f2-3bb6871e429b</guid>
                 <name>43073782952742</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieDE' }  { SELLING_CHANNEL.equalTo 'BelleVieCA' }  { SELLING_CHANNEL.equalTo 'BelleVieUS' }  { SELLING_CHANNEL.equalTo 'sageCH' }  { SELLING_CHANNEL.equalTo 'sageUK' }  { SELLING_CHANNEL.equalTo 'BelleVieNZ' }  { SELLING_CHANNEL.equalTo 'sageEU' }  { SELLING_CHANNEL.equalTo 'sageDE' }  { SELLING_CHANNEL.equalTo 'BelleVieAT' }  { SELLING_CHANNEL.equalTo 'BelleVieAU' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieDE' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieCA' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieUS' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageCH' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageUK' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieNZ' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageEU' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageDE' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieAT' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieAU' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
             <condition>
@@ -173,7 +173,7 @@
             <condition>
                 <guid>a06c1f93-e9a7-4fdb-a6ec-7f629c182dba</guid>
                 <name>237838820729563</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieNZ' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieNZ' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
@@ -196,7 +196,7 @@
             <condition>
                 <guid>5f22eb1a-20d2-4e1c-af42-352e6d50e2f0</guid>
                 <name>46660232173004</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieDE' }  { SELLING_CHANNEL.equalTo 'BelleVieCA' }  { SELLING_CHANNEL.equalTo 'BelleVieUS' }  { SELLING_CHANNEL.equalTo 'sageCH' }  { SELLING_CHANNEL.equalTo 'sageUK' }  { SELLING_CHANNEL.equalTo 'BelleVieNZ' }  { SELLING_CHANNEL.equalTo 'sageEU' }  { SELLING_CHANNEL.equalTo 'sageDE' }  { SELLING_CHANNEL.equalTo 'BelleVieAT' }  { SELLING_CHANNEL.equalTo 'BelleVieAU' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieDE' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieCA' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieUS' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageCH' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageUK' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieNZ' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageEU' }  { SELLING_CHANNEL.equalsIgnoreCase 'sageDE' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieAT' }  { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieAU' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
             <condition>
@@ -225,7 +225,7 @@
             <condition>
                 <guid>b339ba2a-951e-4985-b89b-32c6ea362f21</guid>
                 <name>978377495097282</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieCA' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieCA' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
@@ -248,7 +248,7 @@
             <condition>
                 <guid>0d510cb6-fe6d-4e0c-b08a-68ddbf9eacef</guid>
                 <name>975138220719244</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieUS' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieUS' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
@@ -271,7 +271,7 @@
             <condition>
                 <guid>7e317c37-211b-418e-8236-76c21c1a1382</guid>
                 <name>134138520819332</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'sageUK' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'sageUK' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
@@ -294,7 +294,7 @@
             <condition>
                 <guid>22845f53-76d5-40db-a3bb-96165eb6406c</guid>
                 <name>692807633358392</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'sageCH' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'sageCH' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
@@ -317,7 +317,7 @@
             <condition>
                 <guid>d8ba0b60-3363-44d0-aa19-37ccce877d75</guid>
                 <name>738027381234448</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieAU' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieAU' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
@@ -340,7 +340,7 @@
             <condition>
                 <guid>2f9853e4-30d8-43d7-b6f6-12606b0037f0</guid>
                 <name>955349949143679</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'sageEU' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'sageEU' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
@@ -363,7 +363,7 @@
             <condition>
                 <guid>5d510cb6-fe6d-4e0c-b08a-68ddbf9eacef</guid>
                 <name>975138220719245</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieAT' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'BelleVieAT' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
@@ -408,7 +408,7 @@
             <condition>
                 <guid>cd18a129-cea8-4f45-9012-0b19ce3987e5</guid>
                 <name>344214111081898</name>
-                <condition_string> { OR { SELLING_CHANNEL.equalTo 'sageDE' }  } </condition_string>
+                <condition_string> { OR { SELLING_CHANNEL.equalsIgnoreCase 'sageDE' }  } </condition_string>
                 <dictionary_guid>STORES</dictionary_guid>
             </condition>
         </conditions>
