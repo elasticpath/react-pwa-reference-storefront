@@ -1132,7 +1132,7 @@
     <type>Category</type>
     <order>5</order>
     <availability>
-        <storevisible>true</storevisible>
+        <storevisible>false</storevisible>
         <enabledate>2019-02-03T06:20:00-05:00</enabledate>
     </availability>
     <attributes/>
@@ -2204,7 +2204,7 @@
     <type>Category</type>
     <order>0</order>
     <availability>
-        <storevisible>true</storevisible>
+        <storevisible>false</storevisible>
         <enabledate>2019-02-03T06:20:00-05:00</enabledate>
     </availability>
     <attributes/>
@@ -2857,7 +2857,7 @@
     <type>Category</type>
     <order>4</order>
     <availability>
-        <storevisible>true</storevisible>
+        <storevisible>false</storevisible>
         <enabledate>2019-02-03T06:20:00-05:00</enabledate>
     </availability>
     <attributes/>
@@ -3348,7 +3348,7 @@
     <type>Category</type>
     <order>6</order>
     <availability>
-        <storevisible>true</storevisible>
+        <storevisible>false</storevisible>
         <enabledate>2019-02-03T06:20:00-05:00</enabledate>
     </availability>
     <attributes/>
@@ -3869,7 +3869,7 @@
     <type>Category</type>
     <order>10</order>
     <availability>
-        <storevisible>true</storevisible>
+        <storevisible>false</storevisible>
         <enabledate>2019-02-03T06:20:00-05:00</enabledate>
     </availability>
     <attributes/>
@@ -4228,7 +4228,7 @@
     <type>Category</type>
     <order>15</order>
     <availability>
-        <storevisible>true</storevisible>
+        <storevisible>false</storevisible>
         <enabledate>2019-02-03T06:20:00-05:00</enabledate>
     </availability>
     <attributes/>
@@ -5260,7 +5260,7 @@
     <type>Category</type>
     <order>3</order>
     <availability>
-        <storevisible>true</storevisible>
+        <storevisible>false</storevisible>
         <enabledate>2019-02-03T06:20:00-05:00</enabledate>
     </availability>
     <attributes/>
@@ -5963,7 +5963,7 @@
     <type>Category</type>
     <order>14</order>
     <availability>
-        <storevisible>true</storevisible>
+        <storevisible>false</storevisible>
         <enabledate>2019-02-03T06:20:00-05:00</enabledate>
     </availability>
     <attributes/>
@@ -6651,7 +6651,7 @@
     <type>Category</type>
     <order>18</order>
     <availability>
-        <storevisible>true</storevisible>
+        <storevisible>false</storevisible>
         <enabledate>2019-02-03T06:20:00-05:00</enabledate>
     </availability>
     <attributes/>
