@@ -8,19 +8,17 @@ ADD ./ /project
 
 RUN yarn
 
-RUN echo "deb http://deb.debian.org/debian/ jessie main \n\
-deb-src http://deb.debian.org/debian/ jessie main \n\
-deb http://security.debian.org/ jessie/updates main \n\
-deb-src http://security.debian.org/ jessie/updates main \n\
-deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main \n\
-deb-src [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list
+RUN echo "deb http://http.debian.net/debian jessie main contrib\n\
+deb-src http://http.debian.net/debian jessie main contrib\n\
+deb http://security.debian.org/ jessie/updates main contrib\n\
+deb-src http://security.debian.org/ jessie/updates main contrib" >/etc/apt/source.list
 
 RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/90ignore-release-date
 
 # Install jq for inline JSON replacement
 RUN apt-get clean
 RUN apt-get update
-RUN apt-get install jq
+RUN apt-get install -y jq
 
 # Add additional replacements for configurations below as necessary
 RUN jq -e '.cortexApi.scope|="NGINX_REPLACE_CORTEX_API_SCOPE"' ./src/ep.config.json > ./src/ep.config.json.tmp && cp ./src/ep.config.json.tmp ./src/ep.config.json

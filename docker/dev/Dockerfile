@@ -33,12 +33,10 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY yarn.lock ./
 
-RUN echo "deb http://deb.debian.org/debian/ jessie main \n\
-deb-src http://deb.debian.org/debian/ jessie main \n\
-deb http://security.debian.org/ jessie/updates main \n\
-deb-src http://security.debian.org/ jessie/updates main \n\
-deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main \n\
-deb-src [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list
+RUN echo "deb http://http.debian.net/debian jessie main contrib\n\
+deb-src http://http.debian.net/debian jessie main contrib\n\
+deb http://security.debian.org/ jessie/updates main contrib\n\
+deb-src http://security.debian.org/ jessie/updates main contrib" >/etc/apt/source.list
 
 RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/90ignore-release-date
 
