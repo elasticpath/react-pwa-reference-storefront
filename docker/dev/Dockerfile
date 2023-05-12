@@ -7,7 +7,7 @@
 #   --build-arg "VCS_REF"="$(git rev-parse HEAD)"
 #   -f ./docker/dev/Dockerfile .
 
-FROM node:12.10.0
+FROM node:12.10.0-buster-slim
 
 ARG BUILD_DATE
 ARG VERSION
