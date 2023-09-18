@@ -3,6 +3,7 @@
     "path": "/cortex",
     "scope": "sageUK",
     "pathForProxy": "http://localhost:9080",
+    "headerXForwardedBase": "",
     "reqTimeout": "30000"
   },
   "supportedLocales": [
