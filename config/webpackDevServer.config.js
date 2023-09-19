@@ -108,11 +108,9 @@ module.exports = function (proxy, allowedHost) {
           context: ['/cortex'],
           target: epConfig.cortexApi.pathForProxy,
           changeOrigin: true,
-          ...(epConfig.cortexApi.headerXForwardedBase !== '' ? {
-            headers: [{
-                'X-Forwarded-Base': epConfig.cortexApi.headerXForwardedBase,
-            }]
-          } : {}),
+          headers: {
+              'X-Forwarded-Base': epConfig.cortexApi.headerXForwardedBase,
+          }
         }],
     } : {}),
     public: allowedHost,
