@@ -8,7 +8,6 @@ ADD ./ /project
 
 RUN yarn
 
-# Replace the existing apt source.list configuration with:
 RUN echo "deb http://archive.debian.org/debian/ buster main contrib non-free" > /etc/apt/sources.list && \
     echo "deb http://archive.debian.org/debian-security/ buster/updates main contrib non-free" >> /etc/apt/sources.list && \
     echo 'Acquire::AllowInsecureRepositories "true";' > /etc/apt/apt.conf.d/90insecure-repos && \
