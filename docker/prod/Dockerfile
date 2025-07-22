@@ -1,4 +1,4 @@
-FROM node:12.10.0 as builder
+FROM node:12.10.0 AS builder
 
 ARG NPM_TOKEN
 
@@ -11,7 +11,6 @@ RUN yarn
 # Replace the existing apt source.list configuration with:
 RUN echo "deb http://archive.debian.org/debian/ buster main contrib non-free" > /etc/apt/sources.list && \
     echo "deb http://archive.debian.org/debian-security/ buster/updates main contrib non-free" >> /etc/apt/sources.list && \
-    echo "Acquire::Check-Valid-Until false;" > /etc/apt/apt.conf.d/90ignore-release-date && \
     echo 'Acquire::AllowInsecureRepositories "true";' > /etc/apt/apt.conf.d/90insecure-repos && \
     echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/90ignore-release-date
 
@@ -32,6 +31,6 @@ FROM nginx:1.15.1
 COPY --from=builder /project/build/ /usr/share/nginx/www
 COPY ./docker/prod/nginx.conf /etc/nginx/conf.d/default.conf.template
 
-ENV uri \$uri
+ENV uri=\$uri
 
 CMD ["sh", "-c", "envsubst < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
