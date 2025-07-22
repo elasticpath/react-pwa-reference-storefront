@@ -15,8 +15,6 @@ RUN echo "deb http://archive.debian.org/debian/ buster main contrib non-free" > 
     echo 'Acquire::AllowInsecureRepositories "true";' > /etc/apt/apt.conf.d/90insecure-repos && \
     echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/90ignore-release-date
 
-RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/90ignore-release-date
-
 # Install jq for inline JSON replacement
 RUN apt-get clean
 RUN apt-get update
