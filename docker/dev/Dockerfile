@@ -37,12 +37,10 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY yarn.lock ./
 
-RUN echo "deb http://http.debian.net/debian jessie main contrib\n\
-deb-src http://http.debian.net/debian jessie main contrib\n\
-deb http://security.debian.org/ jessie/updates main contrib\n\
-deb-src http://security.debian.org/ jessie/updates main contrib" >/etc/apt/source.list
-
-RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/90ignore-release-date
+RUN echo "deb http://archive.debian.org/debian/ buster main contrib non-free" > /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian-security/ buster/updates main contrib non-free" >> /etc/apt/sources.list && \
+    echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/90ignore-release-date && \
+    echo 'Acquire::AllowInsecureRepositories "true";' > /etc/apt/apt.conf.d/90insecure-repos
 
 RUN apt-get clean && \
 apt-get update && \
